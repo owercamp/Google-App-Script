@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <base target="_top">
+  <?!= include('CSS'); ?>
+</head>
+
+<body class="bg-primary-subtle">
+  <nav class="navbar bg-body-tertiary">
+    <div class="container">
+      <a class="navbar-brand" href="https://sites.google.com/soandes.co/soandes/inicio">
+        <img class="rounded" src="https://soandes.com.co/images/footer/footer-logosoa1.png" alt="Soandes" height="50">
+      </a>
+    </div>
+  </nav>
+  <div class="container-lg container-md container-sm container p-2">
+    <form id="formData" name="formData" class="needs-validation" novalidate>
+      <div class="mb-1">
+        <label for="compania" class="form-label ml-1">Nombre Contrato:<span class="badge text-danger">*</span>
+</label>
+        <input type="text" class="form-control shadow" id="compania" name="compania" placeholder="Nombre del Contrato" required>
+        <div class="invalid-feedback">
+          NOMBRE DEL CONTRATO es requerido
+        </div>
+      </div>
+      <div class="row mb-1">
+        <div class="col">
+          <label for="origen" class="form-label ml-1">Origen:</label>
+          <input type="text" id="origen" name="origen" class="form-control shadow" placeholder="Origen" aria-label="Origen">
+          <div class="invalid-feedback">
+            ORIGEN es requerido
+          </div>
+        </div>
+        <div class="col">
+          <label for="destino" class="form-label ml-1">Destino:</label>
+          <input type="text" id="destino" name="destino" class="form-control shadow" placeholder="Destino" aria-label="Destino">
+          <div class="invalid-feedback">
+            DESTINO es requerido
+          </div>
+        </div>
+      </div>
+      <div class="row mb-1">
+        <div class="col">
+          <label for="ciudad" class="form-label mr-1">Ciudad:<span class="badge text-danger">*</span></label>
+          <input type="text" class="form-control shadow" id="ciudad" name="ciudad" placeholder="Ciudad" required>
+          <div class="invalid-feedback">
+            CIUDAD es requerido
+          </div>
+        </div>
+        <div class="col">
+          <label for="ingreso" class="form-label mr-1">Ingreso:<span class="badge text-danger">*</span></label>
+          <input type="text" class="form-control shadow" id="ingreso" name="ingreso" placeholder="Ingreso" required>
+          <div class="invalid-feedback">
+            INGRESO es requerido
+          </div>
+        </div>
+        <div class="col">
+          <label for="tipoExamen" class="form-label mr-1">Tipo Examen:<span class="badge text-danger">*</span></label>
+          <select class="form-select shadow" id="tipoExamen" name="tipoExamen" placeholder="Tipo Examen" required>
+            <option value="">Seleccione...</option>
+          </select>
+          <div class="invalid-feedback">
+            TIPO DE EXAMEN es requerido
+          </div>
+        </div>
+        <div class="col">
+          <label for="fecha" class="form-label mr-1">Fecha:<span class="badge text-danger">*</span></label>
+          <input type="date" class="form-control shadow" id="fecha" name="fecha" placeholder="Fecha" required>
+          <div class="invalid-feedback">
+            FECHA es requerido
+          </div>
+        </div>
+      </div>
+      <div class="mb-1">
+        <label for="paciente" class="form-label ml-1">Nombre del Paciente:<span class="badge text-danger">*</span></label>
+        <input type="text" class="form-control shadow" id="paciente" name="paciente" placeholder="Nombre Completo" required>
+        <div class="invalid-feedback">
+          NOMBRE DEL PACIENTE es requerido
+        </div>
+      </div>
+      <div class="row mb-1">
+        <div class="col">
+          <label for="identificacion" class="form-label ml-1">Nro Identificación:<span class="badge text-danger">*</span></label>
+          <input type="text" id="identificacion" name="identificacion" class="form-control shadow" placeholder="Nro Identificación" aria-label="identificacion" required>
+          <div class="invalid-feedback">
+            N° DE IDENTIFICACIÖN es requerido
+          </div>
+        </div>
+        <div class="col">
+          <label for="edad" class="form-label ml-1">Edad:<span class="badge text-danger">*</span></label>
+          <input type="text" maxlength="3" minlength="1" id="edad" name="edad" class="form-control shadow" placeholder="Edad" aria-label="Edad" required>
+          <div class="invalid-feedback">
+            EDAD es requerido
+          </div>
+        </div>
+        <div class="col">
+          <label for="estrato" class="form-label ml-1">Estrato:<span class="badge text-danger">*</span></label>
+          <select class="form-select shadow" id="estrato" name="estrato" placeholder="Estrato" required>
+          <option value="">Seleccione...</option>
+        </select>
+          <div class="invalid-feedback">
+            ESTRATO es requerido
+          </div>
+        </div>
+      </div>
+      <div class="row mb-1">
+        <div class="col">
+          <label for="genero" class="form-label ml-1">Genero:<span class="badge text-danger">*</span></label>
+          <select class="form-select shadow" id="genero" name="genero" placeholder="Genero" required>
+          <option value="">Seleccione...</option>
+        </select>
+          <div class="invalid-feedback">
+            GENERO es requerido
+          </div>
+        </div>
+        <div class="col">
+          <label for="hijos" class="form-label ml-1">N° Hijos:</label>
+          <input type="text" maxlength="3" minlength="1" pattern="[0-9]{15}" id="hijos" name="hijos" class="form-control  shadow" placeholder="Numero de Hijos" aria-label="hijos">
+          <div class="invalid-feedback">
+            NUMERO DE HIJOS es requerido
+          </div>
+        </div>
+        <div class="col">
+          <label for="antiguedad" class="form-label ml-1">Antiguedad:<span class="badge text-danger d-none" id="antiguedadSpam">*</span></label>
+          <input type="text" maxlength="3" minlength="1" pattern="[0-9]{15}" id="antiguedad" name="antiguedad" class="form-control shadow" placeholder="Antiguedad Laboral" aria-label="antiguedad">
+          <div class="invalid-feedback">
+            ANTIGUEDAD es requerido
+          </div>
+        </div>
+        <div class="col">
+          <label for="raza" class="form-label ml-1">Raza:<span class="badge text-danger">*</span></label>
+          <select class="form-select shadow" id="raza" name="raza" placeholder="Raza" required>
+            <option value="">Seleccione...</option>
+          </select>
+          <div class="invalid-feedback">
+            RAZA es requerido
+          </div>
+        </div>
+      </div>
+      <div class="col-12 row">
+        <div class="col-6 row">
+          <div class="col">
+            <label for="civil" class="form-label mr-1">Estado Civil:<span class="badge text-danger">*</span></label>
+            <select class="form-select shadow" id="civil" name="civil" placeholder="Estado Civil" required>
+              <option value="">Seleccione...</option>
+            </select>
+            <div class="invalid-feedback">
+              ESTADO CIVIL es requerido
+            </div>
+          </div>
+          <div class="col">
+            <label for="escolaridad" class="form-label mr-1">Escolaridad:<span class="badge text-danger">*</span></label>
+            <select class="form-select shadow" id="escolaridad" name="escolaridad" placeholder="Escolaridad" required>
+              <option value="">Seleccione...</option>
+            </select>
+            <div class="invalid-feedback">
+              ESCOLARIDAD es requerido
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <label for="cargo" class="form-label ml-1">Cargo:<span class="badge text-danger">*</span></label>
+          <input type="text" id="cargo" name="cargo" class="form-control shadow" placeholder="Cargo o Ocupación" aria-label="cargo" required>
+          <div class="invalid-feedback">
+            CARGO es requerido
+          </div>
+        </div>
+      </div>
+      <div class="w-100 p-2 pt-3 d-none" id="checkboxExam">
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="EMO">
+          <label class="form-check-label" for="inlineCheckbox1">EMO</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="AUDIO">
+          <label class="form-check-label" for="inlineCheckbox2">AUDIO</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="OPTO">
+          <label class="form-check-label" for="inlineCheckbox3">OPTO</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="VISIO">
+          <label class="form-check-label" for="inlineCheckbox3">VISIO</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="ESPIRO">
+          <label class="form-check-label" for="inlineCheckbox3">ESPIRO</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="OSTEO">
+          <label class="form-check-label" for="inlineCheckbox3">OSTEO</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="COMPLEMENTARIOS">
+          <label class="form-check-label" for="inlineCheckbox3">COMPLEMENTARIOS</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="PSICOTECNICA">
+          <label class="form-check-label" for="inlineCheckbox3">PSICOTECNICA</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="PSICOSENSOMETRICA">
+          <label class="form-check-label" for="inlineCheckbox3">PSICOSENSOMETRICA</label>
+        </div>
+      </div>
+      <div class="divs mt-3 mb-1 border border-dark rounded p-2">
+        <!-- DIVS dinamicos -->
+      </div>
+      <div class="btn-group w-100 d-flex justify-content-center d-none" role="group" id="btn-exams">
+        <div>
+          <a href="#" id="prev" class="display btn btn-outline-secondary btn-sm"><i class="fa-solid fa-circle-chevron-left"></i> Anterior</a>
+          <a href="#" id="next" class="display btn btn-outline-primary btn-sm">Siguiente <i class="fa-solid fa-circle-chevron-right"></i></a>
+        </div>
+      </div>
+
+
+      <div class="w-100 d-flex justify-content-center mt-3">
+        <button type="submit" class="btn btn-secondary shadow" data-bs-toggle="tooltip" data-bs-placement="top"   data-bs-title="Registra el paciente en las hojas del libro de excel correspondiente a los examenes seleccionados">
+  <i class="fa-sharp fa-solid fa-address-card"></i> Registar Paciente
+</button>
+
+      </div>
+
+
+    </form>
+
+  </div>
+  <?!= include('JS'); ?>
+  <?!= include('IMPORT'); ?>
+</body>
+
+</html>

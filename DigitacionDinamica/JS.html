@@ -1,0 +1,580 @@
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+  integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
+  integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
+
+<script>
+  // Example starter JavaScript for disabling form submissions if there are invalid fields
+(() => {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  const forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+
+      form.classList.add('was-validated')
+    }, false)
+  })
+})()
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"
+  integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ=="
+  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script>
+  $(document).ready(()=>{
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    $('input[name=identificacion]').bind("keypress", event => sinComa(event));
+    $('input[name=edad]').bind("keypress", event => sinComa(event));
+    $('input[name=hijos]').bind("keypress", event => sinComa(event));
+    $('input[name=cargo]').bind("keypress", event => sinNumber(event));
+
+    $("#tipoExamen").change((e) =>{
+      if(e.target.value != ""){
+        $("#checkboxExam").removeClass("d-none");
+        $('div.sample').removeClass("d-none");
+      }else{
+        $("#checkboxExam").addClass("d-none");
+        $('div.sample').addClass("d-none");
+      }
+
+      if($("#inlineCheckbox1").is(":checked") && e.target.value == "PERIODICO" || $("#inlineCheckbox1").is(":checked") && e.target.value == "POS INCAPACIDAD" || $("#inlineCheckbox1").is(":checked") && e.target.value == "PERIODICO DE SEGUIMIENTO" || $("#inlineCheckbox1").is(":checked") && e.target.value == "ESPECIAL"){
+        $("#EMOEXAM").remove();
+        $(".divs").prepend(`<div class="sample" id="EMOEXAM">
+                <h4 class="w-100 text-center">Examen Medico Ocupacional (RIESGOS)</h4>
+                <div>
+                  <div class="w-100 text-center text-primary fw-semibold">RIESGOS FISICOS</div>
+                    <div class="form-check form-check-inline form-switch m-1">
+                      <input class="form-check-input" type="checkbox" role="switch" id="RIESGO_FISICO_/_RUIDO" value="RIESGO FISICO / RUIDO">
+                      <label class="form-check-label" for="RIESGO_FISICO_/_RUIDO">RIESGO FISICO / RUIDO</label>
+                    </div>
+                    <div class="form-check form-check-inline form-switch m-1">
+                      <input class="form-check-input" type="checkbox" role="switch" id="RIESGO_FISICO_/_ILUMINACION" value="RIESGO FISICO / ILUMINACION">
+                      <label class="form-check-label" for="RIESGO_FISICO_/_ILUMINACION">RIESGO FISICO / ILUMINACION</label>
+                    </div>
+                    <div class="form-check form-check-inline form-switch m-1">
+                      <input class="form-check-input" type="checkbox" role="switch" id="RIESGO_FISICO_/_VIBRACION" value="RIESGO FISICO / VIBRACION">
+                      <label class="form-check-label" for="RIESGO_FISICO_/_VIBRACION">RIESGO FISICO / VIBRACION</label>
+                    </div>
+                    <div class="form-check form-check-inline form-switch m-1">
+                      <input class="form-check-input" type="checkbox" role="switch" id="RIESGO_FISICO_/_TEMP_EXTREMAS" value="RIESGO FISICO / TEMP EXTREMAS">
+                      <label class="form-check-label" for="RIESGO_FISICO_/_TEMP_EXTREMAS">RIESGO FISICO / TEMP EXTREMAS</label>
+                    </div>
+                    <div class="form-check form-check-inline form-switch m-1">
+                      <input class="form-check-input" type="checkbox" role="switch" id="RIESGO_FISICO_/_PRES_ATMOSFERICA" value="RIESGO FISICO / PRES ATMOSFERICA">
+                      <label class="form-check-label" for="RIESGO_FISICO_/_PRES_ATMOSFERICA">RIESGO FISICO / PRES ATMOSFERICA</label>
+                    </div>
+                    <div class="form-check form-check-inline form-switch m-1">
+                      <input class="form-check-input" type="checkbox" role="switch" id="RIESGO_FISICO_/_RAD_IONIZANTES" value="RIESGO FISICO / RAD IONIZANTES">
+                      <label class="form-check-label" for="RIESGO_FISICO_/_RAD_IONIZANTES">RIESGO FISICO / RAD IONIZANTES</label>
+                    </div>
+                    <div class="form-check form-check-inline form-switch m-1">
+                      <input class="form-check-input" type="checkbox" role="switch" id="RIESGO_FISICO_/_RAD_NO_IONIZANTES" value="RIESGO FISICO / RAD NO IONIZANTES">
+                      <label class="form-check-label" for="RIESGO_FISICO_/_RAD_NO_IONIZANTES">RIESGO FISICO / RAD NO IONIZANTES</label>
+                    </div>
+                    <div class="input-group input-group-sm mb-3">
+                      <span class="input-group-text" id="inputGroup-sizing-sm">RIESGO DE OTROS FACTORES FISICOS:</span>
+                      <input type="text" class="form-control" name="otrosFacFisicos" id="otrosFacFisicos">
+                    </div>
+                    <hr>
+                    <div class="w-100 text-center text-primary fw-semibold">RIESGOS BIOLOGICOS</div>
+                    <div class="form-check form-check-inline form-switch m-1">
+                      <input class="form-check-input" type="checkbox" role="switch" id="RIESGO_BIOLOGICO_/_VIRUS" value="RIESGO BIOLOGICO / VIRUS">
+                      <label class="form-check-label" for="RIESGO_BIOLOGICO_/_VIRUS">RIESGO BIOLOGICO / VIRUS</label>
+                    </div>
+                    <div class="form-check form-check-inline form-switch m-1">
+                      <input class="form-check-input" type="checkbox" role="switch" id="RIESGO_BIOLOGICO_/_BACTERIAS" value="RIESGO BIOLOGICO / BACTERIAS">
+                      <label class="form-check-label" for="RIESGO_BIOLOGICO_/_BACTERIAS">RIESGO BIOLOGICO / BACTERIAS</label>
+                    </div>
+                    <div class="form-check form-check-inline form-switch m-1">
+                      <input class="form-check-input" type="checkbox" role="switch" id="RIESGO_BIOLOGICO_/_HONGOS" value="RIESGO BIOLOGICO / HONGOS">
+                      <label class="form-check-label" for="RIESGO_BIOLOGICO_/_HONGOS">RIESGO BIOLOGICO / HONGOS</label>
+                    </div>
+                    <div class="form-check form-check-inline form-switch m-1">
+                      <input class="form-check-input" type="checkbox" role="switch" id="RIESGO_BIOLOGICO_/_RICKETSIAS" value="RIESGO BIOLOGICO / RICKETSIAS">
+                      <label class="form-check-label" for="RIESGO_BIOLOGICO_/_RICKETSIAS">RIESGO BIOLOGICO / RICKETSIAS</label>
+                    </div>
+                    <div class="form-check form-check-inline form-switch m-1">
+                      <input class="form-check-input" type="checkbox" role="switch" id="RIESGO_BIOLOGICO_/_PARASITOS" value="RIESGO BIOLOGICO / PARASITOS">
+                      <label class="form-check-label" for="RIESGO_BIOLOGICO_/_PARASITOS">RIESGO BIOLOGICO / PARASITOS</label>
+                    </div>
+                    <div class="form-check form-check-inline form-switch m-1">
+                      <input class="form-check-input" type="checkbox" role="switch" id="RIESGO_BIOLOGICO_/_FLUIDOS" value="RIESGO BIOLOGICO / FLUIDOS">
+                      <label class="form-check-label" for="RIESGO_BIOLOGICO_/_FLUIDOS">RIESGO BIOLOGICO / FLUIDOS</label>
+                    </div>
+                    <div class="form-check form-check-inline form-switch m-1">
+                      <input class="form-check-input" type="checkbox" role="switch" id="RIESGO_BIOLOGICO_/_PICADURAS" value="RIESGO BIOLOGICO / PICADURAS">
+                      <label class="form-check-label" for="RIESGO_BIOLOGICO_/_PICADURAS">RIESGO BIOLOGICO / PICADURAS</label>
+                    </div>
+                    <div class="input-group input-group-sm mb-3">
+                      <span class="input-group-text" id="inputGroup-sizing-sm">OTROS RIESGOS BIOLOGICOS:</span>
+                      <input type="text" class="form-control" name="otrosRisBiologicos" id="otrosRisBiologicos">
+                    </div>
+                    <hr>
+                    <div class="w-100 text-center text-primary fw-semibold">RIESGOS QUIMICOS</div>
+                    <div class="form-check form-check-inline form-switch m-1">
+                      <input class="form-check-input" type="checkbox" role="switch" id="RIESGO_QCO/POLVOS" value="RIESGO_QCO/POLVOS">
+                      <label class="form-check-label" for="RIESGO_QCO/POLVOS">RIESGO_QCO/POLVOS</label>
+                    </div>
+                    <div class="form-check form-check-inline form-switch m-1">
+                      <input class="form-check-input" type="checkbox" role="switch" id="RIESGO_QUIMICO_/_FIBRAS" value="RIESGO QUIMICO / FIBRAS">
+                      <label class="form-check-label" for="RIESGO_QUIMICO_/_FIBRAS">RIESGO QUIMICO / FIBRAS</label>
+                    </div>
+                    <div class="form-check form-check-inline form-switch m-1">
+                      <input class="form-check-input" type="checkbox" role="switch" id="RIESGO_QUIMICO_/_LIQUIDOS" value="RIESGO QUIMICO / LIQUIDOS">
+                      <label class="form-check-label" for="RIESGO_QUIMICO_/_LIQUIDOS">RIESGO QUIMICO / LIQUIDOS</label>
+                    </div>
+                    <div class="form-check form-check-inline form-switch m-1">
+                      <input class="form-check-input" type="checkbox" role="switch" id="RIESGO_QUIMICO_/GASES" value="RIESGO QUIMICO /GASES">
+                      <label class="form-check-label" for="RIESGO_QUIMICO_/GASES">RIESGO QUIMICO /GASES</label>
+                    </div>
+                    <div class="form-check form-check-inline form-switch m-1">
+                      <input class="form-check-input" type="checkbox" role="switch" id="RIESGO_QUIMICO_/_VAPORES" value="RIESGO QUIMICO / VAPORES">
+                      <label class="form-check-label" for="RIESGO_QUIMICO_/_VAPORES">RIESGO QUIMICO / VAPORES</label>
+                    </div>
+                    <div class="form-check form-check-inline form-switch m-1">
+                      <input class="form-check-input" type="checkbox" role="switch" id="RIESGO_QCO/HUMOS" value="RIESGO_QCO/HUMOS">
+                      <label class="form-check-label" for="RIESGO_QCO/HUMOS">RIESGO_QCO/HUMOS</label>
+                    </div>
+                    <div class="form-check form-check-inline form-switch m-1">
+                      <input class="form-check-input" type="checkbox" role="switch" id="RIESGO_QUIMICO_/MATERIAL_PARTICULADO" value="RIESGO QUIMICO /MATERIAL PARTICULADO">
+                      <label class="form-check-label" for="RIESGO_QUIMICO_/MATERIAL_PARTICULADO">RIESGO QUIMICO /MATERIAL PARTICULADO</label>
+                    </div>
+                    <div class="input-group input-group-sm mb-3">
+                      <span class="input-group-text" id="inputGroup-sizing-sm">OTROS RIESGOS QUIMICOS:</span>
+                      <input type="text" class="form-control" name="otrosRisQuimicos" id="otrosRisQuimicos">
+                    </div>
+                    <hr>
+                    <div class="w-100 text-center text-primary fw-semibold">RIESGOS PSICOTECNICOS</div>
+                    <div class="form-check form-check-inline form-switch m-1">
+                      <input class="form-check-input" type="checkbox" role="switch" id="RIESGO_PSICO_/_GESTION_ORGANIZACIONAL" value="RIESGO PSICO / GESTION ORGANIZACIONAL">
+                      <label class="form-check-label" for="RIESGO_PSICO_/_GESTION_ORGANIZACIONAL">RIESGO PSICO / GESTION ORGANIZACIONAL</label>
+                    </div>
+                    <div class="form-check form-check-inline form-switch m-1">
+                      <input class="form-check-input" type="checkbox" role="switch" id="RIESGO_PSICO_/_CARACT_DEL_GRUPO" value="RIESGO PSICO / CARACT DEL GRUPO">
+                      <label class="form-check-label" for="RIESGO_PSICO_/_CARACT_DEL_GRUPO">RIESGO PSICO / CARACT DEL GRUPO</label>
+                    </div>
+                    <div class="form-check form-check-inline form-switch m-1">
+                      <input class="form-check-input" type="checkbox" role="switch" id="RIESGO_PSICO_/_INTERFACES_TAREA" value="RIESGO PSICO / INTERFACES TAREA">
+                      <label class="form-check-label" for="RIESGO_PSICO_/_INTERFACES_TAREA">RIESGO PSICO / INTERFACES TAREA</label>
+                    </div>
+                    <div class="form-check form-check-inline form-switch m-1">
+                      <input class="form-check-input" type="checkbox" role="switch" id="RIESGO_PSICO_/_CARACT_ORGANIZACION" value="RIESGO PSICO / CARACT ORGANIZACION">
+                      <label class="form-check-label" for="RIESGO_PSICO_/_CARACT_ORGANIZACION">RIESGO PSICO / CARACT ORGANIZACION</label>
+                    </div>
+                    <div class="form-check form-check-inline form-switch m-1">
+                      <input class="form-check-input" type="checkbox" role="switch" id="RIESGO_PSICO_/_CONDICIONES" value="RIESGO PSICO / CONDICIONES">
+                      <label class="form-check-label" for="RIESGO_PSICO_/_CONDICIONES">RIESGO PSICO / CONDICIONES</label>
+                    </div>
+                    <div class="form-check form-check-inline form-switch m-1">
+                      <input class="form-check-input" type="checkbox" role="switch" id="RIESGO_PSICO_/_JORNADA" value="RIESGO PSICO / JORNADA">
+                      <label class="form-check-label" for="RIESGO_PSICO_/_JORNADA">RIESGO PSICO / JORNADA</label>
+                    </div>
+                    <div class="input-group input-group-sm mb-3">
+                      <span class="input-group-text" id="inputGroup-sizing-sm">OTROS PSICO LABORAL:</span>
+                      <input type="text" class="form-control" name="otrosRisPsico" id="otrosRisPsico">
+                    </div>
+                    <hr>
+                    <div class="w-100 text-center text-primary fw-semibold">RIESGOS BIOMECANICOS</div>
+                    <div class="form-check form-check-inline form-switch m-1">
+                      <input class="form-check-input" type="checkbox" role="switch" id="RIESGO_BIOMECANICO_POSTURA" value="RIESGO_BIOMECANICO_POSTURA">
+                      <label class="form-check-label" for="RIESGO_BIOMECANICO_POSTURA">RIESGO BIOMECANICO POSTURA</label>
+                    </div>
+                    <div class="form-check form-check-inline form-switch m-1">
+                      <input class="form-check-input" type="checkbox" role="switch" id="RIESGO_BIOMECANICO_ESFUERZO" value="RIESGO_BIOMECANICO_ESFUERZO">
+                      <label class="form-check-label" for="RIESGO_BIOMECANICO_ESFUERZO">RIESGO BIOMECANICO ESFUERZO</label>
+                    </div>
+                    <div class="form-check form-check-inline form-switch m-1">
+                      <input class="form-check-input" type="checkbox" role="switch" id="RIESGO_BIOMECANICO_MOVREPETITIVO" value="RIESGO_BIOMECANICO_MOVREPETITIVO">
+                      <label class="form-check-label" for="RIESGO_BIOMECANICO_MOVREPETITIVO">RIESGO BIOMECANICO MOVREPETITIVO</label>
+                    </div>
+                    <div class="form-check form-check-inline form-switch m-1">
+                      <input class="form-check-input" type="checkbox" role="switch" id="RIESGO_BIOMECANICO_MANIPULACION_CARGA" value="RIESGO_BIOMECANICO_MANIPULACION_CARGA">
+                      <label class="form-check-label" for="RIESGO_BIOMECANICO_MANIPULACION_CARGA">RIESGO BIOMECANICO MANIPULACION CARGA</label>
+                    </div>
+                    <div class="input-group input-group-sm mb-3">
+                      <span class="input-group-text" id="inputGroup-sizing-sm">OTROS RIESGOS BIOMECANICOS:</span>
+                      <input type="text" class="form-control" name="otrosRisBiomecanicos" id="otrosRisBiomecanicos">
+                    </div>
+                    <hr>
+                    <div class="w-100 text-center text-primary fw-semibold">CONDICIONES DE SEGURIDAD</div>
+                    <div class="form-check form-check-inline form-switch m-1">
+                      <input class="form-check-input" type="checkbox" role="switch" id="CONDICIONES_DE_SEGURIDAD_/_MECANICOS" value="CONDICIONES_DE_SEGURIDAD_/_MECANICOS">
+                      <label class="form-check-label" for="CONDICIONES_DE_SEGURIDAD_/_MECANICOS">CONDICIONES DE SEGURIDAD / MECANICOS</label>
+                    </div>
+                    <div class="form-check form-check-inline form-switch m-1">
+                      <input class="form-check-input" type="checkbox" role="switch" id="CONDICIONES_DE_SEGURIDAD_/_ELECTRICOS" value="CONDICIONES_DE_SEGURIDAD_/_ELECTRICOS">
+                      <label class="form-check-label" for="CONDICIONES_DE_SEGURIDAD_/_ELECTRICOS">CONDICIONES DE SEGURIDAD / ELECTRICOS</label>
+                    </div>
+                    <div class="form-check form-check-inline form-switch m-1">
+                      <input class="form-check-input" type="checkbox" role="switch" id="CONDICIONES_DE_SEGURIDAD_/_LOCATIVO" value="CONDICIONES_DE_SEGURIDAD_/_LOCATIVO">
+                      <label class="form-check-label" for="CONDICIONES_DE_SEGURIDAD_/_LOCATIVO">CONDICIONES DE SEGURIDAD / LOCATIVO</label>
+                    </div>
+                    <div class="form-check form-check-inline form-switch m-1">
+                      <input class="form-check-input" type="checkbox" role="switch" id="CONDICIONES_DE_SEGURIDAD_/_TECNOLOGICO" value="CONDICIONES_DE_SEGURIDAD_/_TECNOLOGICO">
+                      <label class="form-check-label" for="CONDICIONES_DE_SEGURIDAD_/_TECNOLOGICO">CONDICIONES DE SEGURIDAD / TECNOLOGICO</label>
+                    </div>
+                    <div class="form-check form-check-inline form-switch m-1">
+                      <input class="form-check-input" type="checkbox" role="switch" id="CONDICIONES_DE_SEGURIDAD_/_ACC_DE_TRANSITO" value="CONDICIONES_DE_SEGURIDAD_/_ACC_DE_TRANSITO">
+                      <label class="form-check-label" for="CONDICIONES_DE_SEGURIDAD_/_ACC_DE_TRANSITO">CONDICIONES DE SEGURIDAD / ACC DE TRANSITO</label>
+                    </div>
+                    <div class="form-check form-check-inline form-switch m-1">
+                      <input class="form-check-input" type="checkbox" role="switch" id="CONDICIONES_DE_SEGURIDAD_/_PUBLICOS" value="CONDICIONES_DE_SEGURIDAD_/_PUBLICOS">
+                      <label class="form-check-label" for="CONDICIONES_DE_SEGURIDAD_/_PUBLICOS">CONDICIONES DE SEGURIDAD / PUBLICOS</label>
+                    </div>
+                    <div class="form-check form-check-inline form-switch m-1">
+                      <input class="form-check-input" type="checkbox" role="switch" id="CONDICIONES_DE_SEGURIDAD_/_TRABAJO_EN_ALTURAS" value="CONDICIONES_DE_SEGURIDAD_/_TRABAJO_EN_ALTURAS">
+                      <label class="form-check-label" for="CONDICIONES_DE_SEGURIDAD_/_TRABAJO_EN_ALTURAS">CONDICIONES DE SEGURIDAD / TRABAJO EN ALTURAS</label>
+                    </div>
+                    <div class="form-check form-check-inline form-switch m-1">
+                      <input class="form-check-input" type="checkbox" role="switch" id="CONDICIONES_DE_SEGURIDAD_/_ESPACIOS_CONFINADOS" value="CONDICIONES_DE_SEGURIDAD_/_ESPACIOS_CONFINADOS">
+                      <label class="form-check-label" for="CONDICIONES_DE_SEGURIDAD_/_ESPACIOS_CONFINADOS">CONDICIONES DE SEGURIDAD / ESPACIOS CONFINADOS</label>
+                    </div>
+                    <div class="input-group input-group-sm mb-3">
+                      <span class="input-group-text" id="inputGroup-sizing-sm">CONDICIONES DE SEGURIDAD / OTROS DE SEGURIDAD:</span>
+                      <input type="text" class="form-control" name="otrosRisSeguridad" id="otrosRisSeguridad">
+                    </div>
+                    <hr>
+                    <div class="w-100 text-center text-primary fw-semibold">FENOMENOS NATURALES</div>
+                    <div class="form-check form-check-inline form-switch m-1">
+                      <input class="form-check-input" type="checkbox" role="switch" id="FENOMENOS_NATURALES_/_SISMO" value="FENOMENOS_NATURALES_/_SISMO">
+                      <label class="form-check-label" for="FENOMENOS_NATURALES_/_SISMO">FENOMENOS NATURALES / SISMO</label>
+                    </div>
+                    <div class="form-check form-check-inline form-switch m-1">
+                      <input class="form-check-input" type="checkbox" role="switch" id="FENOMENOS_NATURALES_/_TERREMOTO" value="FENOMENOS_NATURALES_/_TERREMOTO">
+                      <label class="form-check-label" for="FENOMENOS_NATURALES_/_TERREMOTO">FENOMENOS NATURALES / TERREMOTO</label>
+                    </div>
+                    <div class="form-check form-check-inline form-switch m-1">
+                      <input class="form-check-input" type="checkbox" role="switch" id="FENOMENOS_NATURALES_/_VENDAVAL" value="FENOMENOS_NATURALES_/_VENDAVAL">
+                      <label class="form-check-label" for="FENOMENOS_NATURALES_/_VENDAVAL">FENOMENOS NATURALES / VENDAVAL</label>
+                    </div>
+                    <div class="form-check form-check-inline form-switch m-1">
+                      <input class="form-check-input" type="checkbox" role="switch" id="FENOMENOS_NATURALES_/_INUNDACION" value="FENOMENOS_NATURALES_/_INUNDACION">
+                      <label class="form-check-label" for="FENOMENOS_NATURALES_/_INUNDACION">FENOMENOS NATURALES / INUNDACION</label>
+                    </div>
+                    <div class="form-check form-check-inline form-switch m-1">
+                      <input class="form-check-input" type="checkbox" role="switch" id="FENOMENOS_NATURALES_/_DERRUMBE" value="FENOMENOS_NATURALES_/_DERRUMBE">
+                      <label class="form-check-label" for="FENOMENOS_NATURALES_/_DERRUMBE">FENOMENOS NATURALES / DERRUMBE</label>
+                    </div>
+                    <div class="form-check form-check-inline form-switch m-1">
+                      <input class="form-check-input" type="checkbox" role="switch" id="FENOMENOS_NATURALES_/_PRECIPITACIONES" value="FENOMENOS_NATURALES_/_PRECIPITACIONES">
+                      <label class="form-check-label" for="FENOMENOS_NATURALES_/_PRECIPITACIONES">FENOMENOS NATURALES / PRECIPITACIONES</label>
+                    </div>
+                    <div class="input-group input-group-sm mb-3">
+                      <span class="input-group-text" id="inputGroup-sizing-sm">FENOMENOS NATURALES / OTROS NATURALES:</span>
+                      <input type="text" class="form-control" name="otrosRisSeguridad" id="otrosRisSeguridad">
+                    </div>
+                </div>
+              </div>`);
+              $('div.sample').hide().first().show();
+      }else{
+        $("#EMOEXAM").remove();
+        $('div.sample').hide().first().show();
+      }
+
+      if(e.target.value == "PERIODICO" || e.target.value == "PERIODICO DE SEGUIMIENTO" || e.target.value == "CAMBIO DE OCUPACION" || e.target.value == "POS INCAPACIDAD"){
+        $("#antiguedadSpam").removeClass("d-none");
+        $("#antiguedad").attr("required",true);
+      }else{
+        $("#antiguedadSpam").addClass("d-none");
+        $("#antiguedad").attr("required",false);
+      }
+    });
+
+    $("input[type=text]").change(e =>{
+      $("input[type=text]").each((index, event) =>{
+        if(event.id == e.currentTarget.id){
+          let str = event.value;
+          $("#"+event.id).val(str.toLocaleUpperCase());
+        }
+      })
+    });
+    
+  });
+
+  $('div.sample').hide().first().show();
+
+  $('a.display').on('click', function(e) {
+    e.preventDefault();
+    let that = $('div.sample:visible'),
+      t = e.target.id;
+
+    if (t == 'next' && that.next('div.sample').length > 0) { 
+      $('div.sample').hide().removeClass("select");
+      that.next('div.sample').show().addClass("select");
+      (that.next('div.sample#ANTECEDENTES').hasClass("select")) ? $('#incapacidad').keypress((e)=>{sinComa(e);}) : "";
+      (that.next('div.sample#ANTECEDENTES').hasClass("select")) ? $('#peso').keypress((e)=>{sinLetra(e);}) : "";
+      (that.next('div.sample#ANTECEDENTES').hasClass("select")) ? $('#talla').keypress((e)=>{sinLetra(e);}) : "";
+      (that.next('div.sample#ANTECEDENTES').hasClass("select")) ? $('#cardiaca').keypress((e)=>{sinComa(e);}) : "";
+      (that.next('div.sample#ANTECEDENTES').hasClass("select")) ? $('#respiratoria').keypress((e)=>{sinComa(e);}) : "";
+      (that.next('div.sample#ANTECEDENTES').hasClass("select")) ? $('#abdominal').keypress((e)=>{sinComa(e);}) : "";
+      (that.next('div.sample#ANTECEDENTES').hasClass("select")) ? $('#tension').keypress((e)=>{frec(e);}) : "";
+      (that.next('div.sample#DIAGNOSTICOS').hasClass("select")) ? $('#diagnostico').keypress((e)=>{sinCharacters(e);}) : "";
+      (that.next('div.sample#ANTECEDENTES').hasClass("select")) ? $('#peso').change((e)=>{imc(e.target.value,$('#talla').val());}) : "";
+      (that.next('div.sample#ANTECEDENTES').hasClass("select")) ? $('#talla').change((e)=>{imc($('#peso').val(),e.target.value);}) : "";
+      if(that.next('div.sample#ANTECEDENTES').hasClass("select")){
+        physicalActivity();
+        smoked();
+        hardDrink();
+      }
+      (that.next('div.sample#ENFASIS').hasClass("select")) ? emphasis() : "";
+      
+    }else if (t == 'prev' && that.prev('div.sample').length > 0) {
+      $('div.sample').hide().removeClass("select");
+      that.hide().prev('div.sample').show().addClass("select");
+      (that.prev('div.sample#ANTECEDENTES').hasClass("select")) ? $('#incapacidad').keypress((e)=>{sinComa(e);}) : "";
+      (that.prev('div.sample#ANTECEDENTES').hasClass("select")) ? $('#peso').keypress((e)=>{sinLetra(e);}) : "";
+      (that.prev('div.sample#ANTECEDENTES').hasClass("select")) ? $('#talla').keypress((e)=>{sinLetra(e);}) : "";
+      (that.prev('div.sample#ANTECEDENTES').hasClass("select")) ? $('#cardiaca').keypress((e)=>{sinComa(e);}) : "";
+      (that.prev('div.sample#ANTECEDENTES').hasClass("select")) ? $('#respiratoria').keypress((e)=>{sinComa(e);}) : "";
+      (that.prev('div.sample#ANTECEDENTES').hasClass("select")) ? $('#abdominal').keypress((e)=>{sinComa(e);}) : "";
+      (that.prev('div.sample#ANTECEDENTES').hasClass("select")) ? $('#tension').keypress((e)=>{frec(e);}) : "";
+      (that.prev('div.sample#DIAGNOSTICOS').hasClass("select")) ? $('#diagnostico').keypress((e)=>{sinCharacters(e);}) : "";
+      (that.prev('div.sample#ANTECEDENTES').hasClass("select")) ? $('#peso').change((e)=>{imc(e.target.value,$('#talla').val());}) : "";
+      (that.prev('div.sample#ANTECEDENTES').hasClass("select")) ? $('#talla').change((e)=>{imc($('#peso').val(),e.target.value);}) : "";
+      if(that.prev('div.sample#ANTECEDENTES').hasClass("select")){
+        physicalActivity();
+        smoked();
+        hardDrink();
+      }
+      (that.prev('div.sample#ENFASIS').hasClass("select")) ? emphasis() : "";
+    }
+  });
+
+  const sinComa = event => {
+    let regex = new RegExp("^[0-9]+$");
+    let key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+    if (!regex.test(key)) {
+      event.preventDefault();
+      return false;
+    }
+  }
+
+  const frec = event => {
+    let regex = new RegExp("^[0-9/]+$");
+    let key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+    if (!regex.test(key)) {
+      event.preventDefault();
+      return false;
+    }
+  }
+
+  const sinLetra = event => {
+    let regex = new RegExp("^[0-9.]+$");
+    let key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+    if (!regex.test(key)) {
+      event.preventDefault();
+      return false;
+    }
+  }
+  
+  const sinNumber = e => {
+    let regex = new RegExp("^[a-zA-Z ]+$");
+    let key = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+    if (!regex.test(key)) {
+      e.preventDefault();
+      return false;
+    }
+  }
+
+  const sinCharacters = e => {
+    let regex = new RegExp("^[a-zA-Z0-9]+$");
+    let key = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+    if (!regex.test(key)) {
+      e.preventDefault();
+      return false;
+    }
+  }
+
+  const upperLetter = () =>{
+    $("input[type=text]").change(e =>{
+      $("input[type=text]").each((index, event) =>{
+        if(event.id == e.currentTarget.id){
+          let str = event.value;
+          $("#"+event.id).val(str.toLocaleUpperCase());
+        }
+      })
+    });
+  }
+
+  const registroDiagnostico = () => {
+    $("#registro").on("click",()=>{
+      let codigo = $("input[name=codigo]").val();
+      let diagnostico = $("input[name=diagnosticos]").val();
+      $("#tbl_diagnosticos").append(`<tr>
+        <th scope="row">${codigo}</th>
+        <td>${diagnostico}</td>
+      </tr>`);
+      $("input[name=codigo]").val("");
+      $("input[name=diagnosticos]").val("");
+    });
+  }
+
+  const registroEnfasis = () =>{
+    $("#registroEnfasis").on("click",()=>{
+      let enfasis = $("select[name=enfasis]").val();
+      let concepto = $("select[name=concepEnfasis]").val();
+      let obs = $("input[name=obsEnfasis]").val();
+
+      $("#tbl_enfasis").append(`<tr>
+        <th scope="row">${enfasis}</th>
+        <td>${concepto}</td>
+        <td>${obs}</td>
+      </tr>`);
+      $("select[name=enfasis]").val("");
+      $("select[name=concepEnfasis]").val("");
+      $("input[name=obsEnfasis]").val("");
+    })
+  }
+
+  const imc = (peso,talla) =>{
+    if (peso === "" || talla === "") {
+      $("#imc").text("IMC: 0");
+      $("#clasificacion").text("CLASIFICACION IMC: SIN DATO");
+    }else{
+      const result = (peso / (talla ** 2));
+      $("#imc").text("IMC: "+result.toFixed(2));
+      if(result < 18.5){
+        $("#clasificacion").text("CLASIFICACION IMC: BAJO DE PESO");
+      }else if(result >= 18.5 && result < 24.9){
+        $("#clasificacion").text("CLASIFICACION IMC: NORMAL");
+      }else if(result >= 24.9 && result < 29.9){
+        $("#clasificacion").text("CLASIFICACION IMC: SOBREPESO");
+      }else if(result >= 29.9 && result < 34.9){
+        $("#clasificacion").text("CLASIFICACION IMC: OBESIDAD GRADO I");
+      }else if(result >= 34.9 && result < 39.9){
+        $("#clasificacion").text("CLASIFICACION IMC: OBESIDAD GRADO II");
+      }else if(result >= 39.9 && result < 50){
+        $("#clasificacion").text("CLASIFICACION IMC: OBESIDAD GRADO III");
+      }else{
+        $("#clasificacion").text("CLASIFICACION IMC: CAMPO SIN VALOR");
+      }
+    }
+  }
+
+</script>
+
+<script>
+  window.addEventListener("load",examens);
+  window.addEventListener("load",stratum);
+  window.addEventListener("load",gender);
+  window.addEventListener("load",race);
+  window.addEventListener("load",civilStatus);
+  window.addEventListener("load",scholarship);
+
+  function scholarship(){
+    google.script.run.withSuccessHandler(scholarship =>{
+      scholarship.forEach(element =>{
+        $("#escolaridad").append(`<option value="${element}">${element}</option>`);
+      })
+    })
+    .getScholarship();
+  }
+
+  function civilStatus(){
+    google.script.run.withSuccessHandler(civilStatus =>{
+      civilStatus.forEach(element =>{
+        if(element == "SIN DATO" || element == "UNION LIBRE"){
+          $("#civil").append(`<option value="${element}">${element}</option>`);
+        }else{
+          $("#civil").append(`<option value="${element}">${element} (A)</option>`);
+        }
+      })
+    })
+    .getCivilStatus();
+  }
+
+  function race(){
+    google.script.run.withSuccessHandler(race =>{
+      race.forEach(element =>{
+        $("#raza").append(`<option value="${element}">${element}</option>`);
+      })
+    })
+    .getRace();
+  }
+
+  function gender(){
+    google.script.run.withSuccessHandler(gender =>{
+      gender.forEach(element =>{
+        $("#genero").append(`<option value="${element}">${element}</option>`);
+      })
+    })
+    .getGender();
+  }
+
+  function examens(){
+    google.script.run.withSuccessHandler(exam =>{
+      exam.forEach( element =>{
+        $("#tipoExamen").append(`<option value="${element}">${element}</option>`);
+      })
+    })
+    .getExamns();
+  }
+
+  function stratum(){
+    google.script.run.withSuccessHandler(stratum =>{
+      stratum.forEach(element =>{
+        if(element == "SIN DATO"){
+          $("#estrato").append(`<option value="${element}">${element}</option>`);
+        }else{
+          $("#estrato").append(`<option value="${element}"> ESTRATO ${element}</option>`);
+        }
+      })
+    })
+    .getStratum();
+  }
+
+  function emphasis(){
+    $("#enfasis").empty();
+    $("#enfasis").append(`<option value="">Seleccione ENFASIS</option>`);
+    google.script.run.withSuccessHandler(emphasis =>{
+      emphasis.forEach(element =>{
+        $("#enfasis").append(`<option value="${element}">${element}</option>`);
+      })
+    })
+    .getEmphasis();
+  }
+
+  function physicalActivity(){
+    $("#actFisica").empty();
+    $("#actFisica").append(`<option value="">Seleccione...</option>`);
+    google.script.run.withSuccessHandler(physicalActivity =>{
+      physicalActivity.forEach(element =>{
+        $("#actFisica").append(`<option value="${element}">${element}</option>`);
+      })
+    })
+    .getPhysicalActivity();
+  }
+
+  function smoked(){
+    $("#fuma").empty();
+    $("#fuma").append(`<option value="">Seleccione...</option>`);
+    google.script.run.withSuccessHandler(smoke =>{
+      smoke.forEach(element =>{
+        $("#fuma").append(`<option value="${element}">${element}</option>`);
+      })
+    })
+    .getSmoke();
+  }
+
+  function hardDrink(){
+    $("#alcohol").empty();
+    $("#alcohol").append(`<option value="">Seleccione...</option>`);
+    google.script.run.withSuccessHandler(drink =>{
+      drink.forEach(element =>{
+        $("#alcohol").append(`<option value="${element}">${element}</option>`);
+      })
+    })
+    .getHardDrink();
+  }
+
+
+</script>
