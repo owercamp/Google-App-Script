@@ -5,56 +5,182 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"
   integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ=="
   crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.datatables.net/v/dt/dt-1.13.4/b-2.3.6/r-2.4.1/datatables.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+
 <script>
-  $(document).ready(function(){
-    const ctx = document.getElementById('factureChart');
-    const xtc = document.getElementById('examsChart');
-    new Chart(xtc, {
-      type: 'doughnut',
-      data:{
-        labels: ['Zona Industrial','Polo II', 'Calle 103'],
-        datasets:[{
-          label: "Sedes",
-          data: [12, 19, 3],
-          backgroundColor: ['rgba(123,36,28,.6)','rgba(121,125,127,.6)','rgba(25,111,61,.6)'],
-          borderColor:['rgb(123,36,28)','rgb(121,125,127)','rgb(25,111,61)'],
-          borderWidth: 1
-        }]
-      },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true
+  /*** llamado de las funciones luego de cargar la pagina ***/
+  window.addEventListener('load',specialty);
+  window.addEventListener('load',graphProfessional);
+  window.addEventListener('load',graphHeadquartersInvoice);
+
+  /*** instanciación de los DataTables ***/
+  var myTable = $("#Professional").DataTable({
+    language:{
+      "url":"//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
+    },
+    responsive: true,
+    pagingType: "full_numbers"
+  });
+
+  var invoiceTable = $("#Headquarters").DataTable({
+    language:{
+      "url":"//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
+    },
+    responsive: true,
+    pagingType: "full_numbers"
+  })
+
+  /*** funcion que carga las diferentes especialidades ***/
+  function specialty(){
+    google.script.run.withSuccessHandler(element =>{
+      element.forEach( item =>{
+        $("#specialty").append(`<option value="${item}">${item}</option>`);
+      })
+    })
+    .withFailureHandler(error=>{
+      console.log(`${error}`)
+    })
+    .getSpecialty();
+  }
+
+  /*** funcion que carga los datos de los profesionales medicos en la grafica y alimenta la tabla ***/
+  function graphProfessional(){
+    let dataTable = [];
+    google.script.run.withSuccessHandler(element =>{
+      console.log(element);
+      for(let x = 1; x < element[0].length; x++){
+        dataTable.push({ '0':x,'1': element[0][x],'2': element[1][x],'3':element[4][x]})
+      }
+
+      myTable.rows.add(dataTable).draw();
+
+      const ctx = document.getElementById('factureChart');
+
+      new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels: element[0],
+          datasets: [{
+            data: element[1],
+            backgroundColor: element[3],
+            borderColor:element[2],
+            borderWidth: 1
+          },{
+            data: element[4],
+            backgroundColor: element[6],
+            borderColor:element[5],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          borderRadius:'5',
+          interaction: {
+            intersect: false,
+            mode: 'index',
+          },
+          plugins: {
+            legend: {
+              position: 'bottom',
+              display: false,
+              font: {
+                size: 3
+              }
+            },
+            tooltip:{
+              backgroundColor: 'rgba(0,82,164,0.7)',
+              titleFont:{
+                size: 14,
+                family: 'helvetica'
+              },
+              bodyFont:{
+                size:16,
+                family: 'sans-serif'
+              },
+            },
+            title: {
+              display: true,
+              text: 'Profesionales Medicos',
+              font:{
+                size: 20
+              }
+            }
+          }
+        }  
+      });
+    })
+    .withFailureHandler(error =>{
+      console.log(`${error}`)
+    })
+    .getCollaborators();
+  }
+
+  /*** funcion que carga los datos de las sedes en la grafica y alimenta la tabla ***/
+  function graphHeadquartersInvoice(){
+    google.script.run.withSuccessHandler(element =>{
+      let dataTable = [];
+      const footer = (tooltipItems) => {
+        let sum = 0;
+
+        tooltipItems.forEach(function(tooltipItem) {
+          sum += tooltipItem.parsed.y;
+        });
+        return 'Sum: ' + sum;
+      };
+
+      for(let x = 1; x < element[0].length; x++){
+        dataTable.push({ '0':x,'1': element[0][x],'2': element[1][x],'3':element[2][x]})
+      }
+
+      invoiceTable.rows.add(dataTable).draw();
+
+      const xtc = document.getElementById('examsChart');
+      new Chart(xtc, {
+        type: 'line',
+        data:{
+          labels: element[0],
+          datasets:[{
+            label: "Historia Clinica",
+            data: element[1],
+            backgroundColor: 'rgba(123,36,28,.2)',
+            borderColor:'rgb(123,36,28)',
+            borderWidth: 1,
+            fill: true
+          },{
+            label: "Informe Ventas",
+            data: element[2],
+            backgroundColor: 'rgba(123,36,128,.2)',
+            borderColor:'rgb(123,36,128)',
+            borderWidth: 1,
+            fill: true,
+          }]
+        },
+        options: {
+          responsive: true,
+          interaction: {
+            intersect: false,
+            mode: 'index',
+          },
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          },
+          plugins: {
+            tooltip: {
+              callbacks: {
+                footer: footer,
+              }
+            }
           }
         }
-      }
+      })
     })
-
-    new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: ['Auxiliar 1', 'Auxiliar 2', 'Auxiliar 3', 'Auxiliar 4', 'Auxiliar 5', 'Auxiliar 6'],
-        datasets: [{
-          label: '# Profesionales',
-          data: [12, 19, 3, 5, 2, 3],
-          backgroundColor: ['rgba(123,36,28,.6)','rgba(121,125,127,.6)','rgba(25,111,61,.6)','rgba(74,35,90,.6)','rgba(185,119,14,.6)','rgba(44,62,80,.6)'],
-          borderColor:['rgb(123,36,28)','rgb(121,125,127)','rgb(25,111,61)','rgb(74,35,90)','rgb(185,119,14)','rgb(44,62,80)'],
-          borderWidth: 1
-        }]
-      },
-      options: {
-        borderRadius:'5',
-        scales: {
-            x: {
-                stacked: true
-            },
-            y: {
-                stacked: true
-            }
-        }
-    }
-    });
-  })
+    .withFailureHandler(error =>{
+      console.log(`${error}`)
+    })
+    .getHeadquartersInvoice();
+  }
 </script>

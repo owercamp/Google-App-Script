@@ -4,9 +4,15 @@
 <head>
   <base target="_top">
   <?!= include('CSS'); ?>
+  <style>
+    table {
+      width: 100%;
+      max-width: 800px;
+    }
+  </style>
 </head>
 
-<body class="bg-primary-subtle">
+<body class="container-fluid bg-primary-subtle">
   <nav class="navbar bg-body-tertiary">
     <div class="container">
       <a class="navbar-brand" href="https://sites.google.com/soandes.co/soandes/inicio">
@@ -18,15 +24,54 @@
   <div class="container-lg container-md container-sm container p-2">
     <nav class="navbar navbar-expand-lg bg-body-tertiary rounded">
       <div class="container-fluid">
-        <b class="text-dark py-1 ms-3">Especialidades</b>
+        <b class="text-dark py-1 mx-3">Especialidades: </b>
+        <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="specialty">
+          <option>Seleccione...</option>
+          <!-- cargue dinamico -->
+        </select>
       </div>
     </nav>
-    <div class="container d-flex">
+    <div class="container d-flex mt-2">
       <div class="w-50 h-100 mx-2">
-        <canvas id="factureChart" width="6" height="4"></canvas>
+        <canvas id="factureChart" width="6" height="4" style="margin-top: 4% !important;"></canvas>
       </div>
       <div class="w-50 mx-2">
-        <canvas id="examsChart" width="6" height="4"></canvas>
+        <table class="table text-center table-hover table-secondary table-sm table-striped align-middle" id="Professional">
+          <thead>
+            <th scope="col" rowspan="2" style="text-align:center; vertical-align:middle;">#</th>
+            <th scope="col" rowspan="2" style="text-align:center; vertical-align:middle;">Profesional</th>
+            <th scope="col" colspan="2" style="text-align:center; vertical-align:middle;">Cantidades</th>
+            <tr>
+              <th style="text-align:center; vertical-align:middle;">Historia Clinica</th>
+              <th style="text-align:center; vertical-align:middle;">Informe Ventas</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- dinamico -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <hr>
+    <div class="container d-flex mt-2">
+      <div class="w-50 h-100 mx-2">
+        <canvas id="examsChart" width="6" height="4" style="margin-top: 4% !important;"></canvas>
+      </div>
+      <div class="w-50 mx-2">
+        <table class="table text-center table-hover table-dark table-sm table-striped align-middle" id="Headquarters">
+          <thead>
+            <th scope="col" rowspan="2" style="text-align:center; vertical-align:middle;">#</th>
+            <th scope="col" rowspan="2" style="text-align:center; vertical-align:middle;">Sedes</th>
+            <th scope="col" colspan="2" style="text-align:center; vertical-align:middle;">Cantidades</th>
+            <tr>
+              <th style="text-align:center; vertical-align:middle;">Historia Clinica</th>
+              <th style="text-align:center; vertical-align:middle;">Informe Ventas</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- dinamico -->
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
