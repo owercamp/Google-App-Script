@@ -17,8 +17,8 @@ function getSpecialty() {
   let values = rows.getValues().filter(e => (e[0] != "") ? e : "");
 
 
-  values.forEach(item =>{
-    if(!specialty.includes(item[0])){
+  values.forEach(item => {
+    if (!specialty.includes(item[0])) {
       specialty.push(item[0]);
     }
   });
@@ -26,87 +26,76 @@ function getSpecialty() {
   return specialty;
 }
 
-function getCollaborators(){
+function getCollaborators(special) {
   let collaborators = [];
   let collaborator = [];
   let sum = [];
-  let sum2 = [];
   let datos = [];
   let colors = [];
-  let colors2 = [];
   let backgrounds = [];
-  let backgrounds2 = [];
   let spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
   let sh = spreadsheet.getSheetByName("Historia Clinica");
-  let sh2 = spreadsheet.getSheetByName("Informe Ventas");
-  let data = sh.getRange(2,13, sh.getLastRow(),1);
-  let data2 = sh2.getRange(2,1, sh.getLastRow(),1);
+  let data = sh.getRange(2, 1, sh.getLastRow(), 14);
   let values = data.getValues().filter(e => (e[0] != "") ? e : "");
-  let values2 = data2.getValues().filter(e => (e[0] != "") ? e : "");
+  let valuesClasi;
 
-/**
- * Limpieza de duplicados
- */
-  values.forEach(item =>{
-    if(!collaborators.includes(item[0])){
-      collaborators.push(item[0]);
-    }
-  });
+  /**
+   * Limpieza de duplicados
+   */
+  if (special) {
+    let shClasi = spreadsheet.getSheetByName("Clasificación");
+    let dataClasi = shClasi.getRange(2, 6, shClasi.getLastRow(), 2);
+    valuesClasi = dataClasi.getValues().filter(e => (e[0] != "" && e[1] == special) ? e : "");
+    values.forEach(item => {
+      valuesClasi.forEach(clasi => {
+        if (!collaborators.includes(item[12]) && item[8] == clasi[0]) {
+          collaborators.push(item[12]);
+        }
+      })
+    });
+  } else {
+    values.forEach(item => {
+      if (!collaborators.includes(item[12])) {
+        collaborators.push(item[12]);
+      }
+    });
+  }
+
 
   /**
    * Cambio a uppercase
    */
   collaborators.sort();
-  collaborators.map(e =>{
-  
+  collaborators.map(e => {
+
     let suma = 0;
     values.sort();
-    values.map(professional =>{
-      if(professional[0] == e){
+    values.map(professional => {
+      if (professional[12] == e) {
         suma++;
       }
     })
     sum.push(suma);
-    
-    suma = 0;
-    values2.sort();
-    values2.map(info =>{
-      if(info[0] == e){
-        suma++;
-      }
-    })
-    sum2.push(suma);
 
     collaborator.push(e.toString().toUpperCase());
-    let red = Math.round((Math.random()*255).toFixed(0));
-    let green = Math.round((Math.random()*255).toFixed(0));
-    let blue = Math.round((Math.random()*255).toFixed(0));
+    let red = Math.round((Math.random() * 255).toFixed(0));
+    let green = Math.round((Math.random() * 255).toFixed(0));
+    let blue = Math.round((Math.random() * 255).toFixed(0));
     let color = `rgb(${red},${green},${blue})`;
     let background = `rgba(${red},${green},${blue},.6)`;
     colors.push(color);
     backgrounds.push(background);
-    
-    let red2 = Math.round((Math.random()*255).toFixed(0));
-    let green2 = Math.round((Math.random()*255).toFixed(0));
-    let blue2 = Math.round((Math.random()*255).toFixed(0));
-    let color2 = `rgb(${red2},${green2},${blue2})`;
-    let background2 = `rgba(${red2},${green2},${blue2},.6)`;
-    colors2.push(color2);
-    backgrounds2.push(background2);
   })
 
   datos[0] = collaborator;
   datos[1] = sum;
   datos[2] = colors;
   datos[3] = backgrounds;
-  datos[4] = sum2;
-  datos[5] = colors2;
-  datos[6] = backgrounds2;
 
   return datos;
 }
 
-function getHeadquartersInvoice(){
+function getHeadquartersInvoice(special) {
   let invoices = [];
   let sumHistory = [];
   let sumInfo = [];
@@ -114,44 +103,105 @@ function getHeadquartersInvoice(){
   let spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
   let sh = spreadsheet.getSheetByName("Historia Clinica");
   let sh2 = spreadsheet.getSheetByName("Informe Ventas");
-  let invoice = sh.getRange(2,4,sh.getLastRow(),1).getValues();
-  let invoice2 = sh2.getRange(4,2,sh2.getLastRow(),1).getValues();
-  let values = invoice.filter(e => (e[0] != "") ? e : "").sort();
-  let values2 = invoice2.filter(e => (e[0] != "") ? e : "").sort();
+  let invoice = sh.getRange(2, 1, sh.getLastRow(), 14).getValues();
+  let invoice2 = sh2.getRange(4, 1, sh2.getLastRow(), sh2.getLastColumn()).getValues();
+  let values = invoice.filter(e => (e[3] != "") ? e : "");
+  let values2 = invoice2.filter(e => (e[0] != "") ? e : "");
+  let valuesClasi;
 
   /**
- * Limpieza de duplicados
- */
-  values.forEach(item =>{
-    if(!invoices.includes(item[0])){
-      invoices.push(item[0]);
+   * Limpieza de duplicados
+   */
+  values.sort();
+  values.forEach(item => {
+    if (!invoices.includes(item[3])) {
+      invoices.push(item[3]);
     }
   });
 
   /**
    * datos para la grafica
    */
+  if (special) {
+    let arrayCups = [];
+    let position = [];
+    let headers = spreadsheet.getSheetByName("Informe ventas");
+    let headersValues = headers.getRange(3, 1, 1, headers.getLastColumn()).getValues();
+    let sh = spreadsheet.getSheetByName("Clasificación");
+    let clasificacion = sh.getRange(2, 1, sh.getLastRow(), 3).getValues();
+    let shClasi = spreadsheet.getSheetByName("Clasificación");
+    let dataClasi = shClasi.getRange(2, 6, shClasi.getLastRow(), 2);
+    valuesClasi = dataClasi.getValues().filter(e => (e[0] != "" && e[1] == special) ? e : "");
 
-  invoices.forEach(item =>{
-    let sumInvoiceHistory = 0;
-    let sumInvoiceInfo = 0;
-
-    values.map(element =>{
-      if(element[0] == item){
-        sumInvoiceHistory++
+    /**
+     * Captura de Cups
+     */
+    clasificacion.map(element => {
+      if (element[0] == special) {
+        arrayCups.push(element[2].toString());
       }
     })
-    sumHistory.push(sumInvoiceHistory);
 
-    values2.forEach(element =>{
-      if(element[0] == item){
-        sumInvoiceInfo++
-      }
+    /**
+     * Captura de indices para sumar segun especialidad
+     */
+    arrayCups.map(e => {
+      headersValues[0].forEach(data => {
+        if (e == data) {
+          position.push(headersValues[0].indexOf(e));
+        }
+      })
     })
-    sumInfo.push(sumInvoiceInfo);
 
 
-  });
+    invoices.forEach(item => {
+      let sumInvoiceHistory = 0;
+      let sumInvoiceInfo = 0;
+
+      values.map(element => {
+        valuesClasi.map(clasi => {
+          if (element[3] == item && element[8] == clasi[0]) {
+            sumInvoiceHistory++
+          }
+        })
+      })
+      sumHistory.push(sumInvoiceHistory);
+
+      values2.forEach(element => {
+        let sumInter = 0;
+        position.forEach(pos => {
+          let number = (element[pos] != "") ? parseInt(element[pos]) : 0;
+          sumInter += number;
+        })
+
+        if (element[1] == item && sumInter > 0) {
+          sumInvoiceInfo++;
+        }
+      })
+      sumInfo.push(sumInvoiceInfo);
+    });
+
+  } else {
+    invoices.forEach(item => {
+      let sumInvoiceHistory = 0;
+      let sumInvoiceInfo = 0;
+
+      values.map(element => {
+        if (element[3] == item) {
+          sumInvoiceHistory++
+        }
+      })
+      sumHistory.push(sumInvoiceHistory);
+
+      values2.forEach(element => {
+        if (element[1] == item) {
+          sumInvoiceInfo++
+        }
+      })
+      sumInfo.push(sumInvoiceInfo);
+    });
+  }
+
 
   datos[0] = invoices;
   datos[1] = sumHistory;
@@ -172,40 +222,6 @@ function abrirInforme() {
   SpreadsheetApp.getUi().showModalDialog(html, "Abriendo Informe");
 }
 
-function id() {
-  let spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
-  let row = spreadsheet.getActiveSheet().getCurrentCell().getRow();
-  let column = spreadsheet.getActiveSheet().getCurrentCell().getColumn();
-  Logger.log(`${row} - ${column} - ${spreadsheet.getSheetId()}`);
-}
-
-function clearCC() {
-  Utilities.sleep(2000);
-  let spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
-  let ui = SpreadsheetApp.getUi();
-  let tooltip = SpreadsheetApp.getActive();
-  let column = spreadsheet.getActiveSheet().getActiveRange().getColumn();
-
-  if (column == 1 && spreadsheet.getSheetName() == "Historia Clinica" && spreadsheet.getActiveSheet().getRange(2, 1).getValue() != "") {
-    spreadsheet.setActiveSheet(spreadsheet.getSheetByName("Historia Clinica"));
-    let proccess = ui.alert("¿Desea iniciar la separación del tipo de Identificación y su Número?", ui.ButtonSet.YES_NO);
-    if (proccess == ui.Button.YES) {
-      tooltip.toast("Procesando la información POR FAVOR ESPERE", "📇 Procesando", 5000);
-      let range = spreadsheet.getActiveSheet().getRange(2, 1, spreadsheet.getActiveSheet().getLastRow(), 1).getValues();
-      spreadsheet.getActiveSheet().getRange("A2").activate();
-      range.forEach(element => {
-        let splitElement = element.toLocaleString().split(" ");
-        spreadsheet.getActiveSheet().getActiveCell().setValue(splitElement[1]);
-        spreadsheet.getActiveSheet().getActiveCell().offset(1, 0).activate();
-      })
-      spreadsheet.getActiveSheet().getRange("A2").activate();
-      tooltip.toast("Ejecución Completa", "🎖️ Exito");
-      ui.alert("separación completada satisfactoriamente", ui.ButtonSet.OK);
-    }
-  }
-}
-
-
 async function hideOfColumn() {
   /**
    * Seleccion de la informacion para realizxar la validación
@@ -217,8 +233,8 @@ async function hideOfColumn() {
 
     let htmlOutput = HtmlService
       .createHtmlOutput(`<div><p>Procesando la información <b style="color: red;">POR FAVOR ESPERE</b></p></div>
-      <iframe src="https://giphy.com/embed/ZO9b1ntYVJmjZlsWlm" width="360" height="160" frameBorder="0"></iframe>
-      <div><p style="color: blue;">Nota:</p><p>Puede continuar usando el ordenador con normalidad</p></div>`)
+    <iframe src="https://giphy.com/embed/ZO9b1ntYVJmjZlsWlm" width="360" height="160" frameBorder="0"></iframe>
+    <div><p style="color: blue;">Nota:</p><p>Puede continuar usando el ordenador con normalidad</p></div>`)
       .setWidth(400)
       .setHeight(300);
     SpreadsheetApp.getUi().showModelessDialog(htmlOutput, '📇 Procesando');
@@ -265,23 +281,49 @@ async function hideOfColumn() {
       })
     })
 
+    /**
+     * Sumatoria de examenes
+     */
     spreadsheet.getSheetByName("Informe Ventas").getRange("$L4").activate();
     let ran;
-    let historys = spreadsheet.getSheetByName("Historia Clinica").getRange(2, 1, spreadsheet.getSheetByName("Historia Clinica").getLastRow(), 14).getValues();
     while (spreadsheet.getCurrentCell().activate().getValue() != "") {
       ran = spreadsheet.getSheetByName("Informe Ventas").getCurrentCell().getRow();
       let lt = spreadsheet.getSheetByName("Informe Ventas").getRange(ran, 17, 1, spreadsheet.getSheetByName("Informe Ventas").getLastColumn()).getValues();
       spreadsheet.getCurrentCell().offset(0, 3).setValue(await COUNTEXAMS(lt));
-      spreadsheet.getCurrentCell().offset(0, 4).setValue(await WASPRESENTED(spreadsheet.getSheetByName("Informe Ventas").getCurrentCell().offset(0, 3).getValue(), spreadsheet.getSheetByName("Informe Ventas").getCurrentCell().offset(0, 1).getValue(), historys, spreadsheet.getSheetByName("Informe Ventas").getRange(1, 2).getValue()));
       spreadsheet.getCurrentCell().offset(1, 0).activate();
     }
-    spreadsheet.getSheetByName("Informe Ventas").getRange("$O4").activate();
 
-    htmlOutput = HtmlService
-      .createHtmlOutput(`<div><p>Ejecución Completa</p></div>`)
-      .setWidth(300)
-      .setHeight(100);
-    SpreadsheetApp.getUi().showModalDialog(htmlOutput, '🎖️ Exito');
+    spreadsheet.getSheetByName("Informe Ventas").getRange("$L4").activate();
+
+    const NB_RETRY = 10;
+    var nbSecPause = 1.5;
+    var nbErr = 0;
+    while (nbErr < NB_RETRY) {
+      try {
+        if (nbErr > 0) SpreadsheetApp.getActiveSpreadsheet().toast("Here we go again.");
+        while (spreadsheet.getCurrentCell().activate().getValue() != "") {
+          let sum = spreadsheet.getCurrentCell().offset(0, 3).getValue();
+          let id = spreadsheet.getCurrentCell().offset(0, 1).getValue();
+          spreadsheet.getCurrentCell().offset(0, 4).setValue(await WASPRESENTED(sum, id, valor));
+          spreadsheet.getCurrentCell().offset(1, 0).activate();
+        }
+
+        spreadsheet.getSheetByName("Informe Ventas").getRange("$O4").activate();
+        nbErr = 10;
+
+        htmlOutput = HtmlService
+          .createHtmlOutput(`<div><p>Ejecución Completa</p></div>`)
+          .setWidth(300)
+          .setHeight(100);
+        SpreadsheetApp.getUi().showModalDialog(htmlOutput, '🎖️ Exito');
+      }
+      catch (error) {
+        nbErr++;
+        SpreadsheetApp.getActiveSpreadsheet().toast("Let's pause the system during " + nbSecPause + " seconds. Loop number: " + nbErr);
+        Utilities.sleep(nbSecPause * 1000)
+        nbSecPause += 0.5;
+      }
+    }
   }
 }
 
@@ -311,19 +353,44 @@ function COUNTEXAMS(rango) {
  * @return Validated columns that are not hidden.
  * @customfunction
  */
-function WASPRESENTED(num_exam, id, rango, especial) {
-
+function WASPRESENTED(num_exam, id, especial) {
+  let register = [];
   let def = "Sin Registro";
-  for (let x = 0; x < rango.length; x++) {
-    let exp = specialty(rango[0][8]);
-    if (rango[x][0].toString() == id && exp == especial && num_exam == 0) {
-      def = "Con Registro";
+  let spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  let dataFilter = spreadsheet.getSheetByName("Clasificación");
+  let clasi = dataFilter.getRange(2, 6, dataFilter.getLastRow(), 2).getValues().filter(element => (element[1] != "" && element[1] == especial) ? element : "");
+  let historys = spreadsheet.getSheetByName("Historia Clinica").getRange(2, 1, spreadsheet.getSheetByName("Historia Clinica").getLastRow(), 14).getValues();
+
+  /**
+   * separo los registros de la especialidad solicitada
+   */
+  historys.map(item => {
+    clasi.map(element => {
+      if (item[8] == element[0]) {
+        register.push(item);
+      }
+    })
+  })
+
+  let yes = 0;
+  register.map(reg => {
+    if (reg[0] == id && num_exam == 0) {
+      yes = 1;
+    } else if (reg[0] == id && num_exam > 0) {
+      yes = 2;
     }
+  })
+
+  if (yes == 1) {
+    def = "Cuenta con registro en Historia Clinica";
+  } else if (yes == 2) {
+    def = "Cuenta con registro en Historia Clinica y en Facturación";
   }
+
   return def;
 }
 
-function specialty(data = "Certificado Evaluación Medico Ocupacional") {
+function specialty(data) {
   let spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
   let clasi = spreadsheet.getSheetByName("Clasificación").getRange(2, 6, spreadsheet.getSheetByName("Clasificación").getLastRow(), 2).getValues().filter(e => (e[0] != "") ? e : "");
   clasi.forEach(element => {

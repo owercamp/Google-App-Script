@@ -7,13 +7,16 @@
   crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdn.datatables.net/v/dt/dt-1.13.4/b-2.3.6/r-2.4.1/datatables.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.7.3/sweetalert2.min.js"
+  integrity="sha512-eN8dd/MGUx/RgM4HS5vCfebsBxvQB2yI0OS5rfmqfTo8NIseU+FenpNoa64REdgFftTY4tm0w8VMj5oJ8t+ncQ=="
+  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
 <script>
   /*** llamado de las funciones luego de cargar la pagina ***/
   window.addEventListener('load',specialty);
-  window.addEventListener('load',graphProfessional);
-  window.addEventListener('load',graphHeadquartersInvoice);
+  window.addEventListener('load',graphProfessional(""));
+  window.addEventListener('load',graphHeadquartersInvoice(""));
 
   /*** instanciación de los DataTables ***/
   var myTable = $("#Professional").DataTable({
@@ -45,20 +48,25 @@
     .getSpecialty();
   }
 
+  let professionalGraph, invoiceGraph;
   /*** funcion que carga los datos de los profesionales medicos en la grafica y alimenta la tabla ***/
-  function graphProfessional(){
+  function graphProfessional(data){
     let dataTable = [];
-    google.script.run.withSuccessHandler(element =>{
-      console.log(element);
+    if(data != ""){myTable.clear().draw();}
+    let consult = google.script.run.withSuccessHandler(element =>{
       for(let x = 1; x < element[0].length; x++){
-        dataTable.push({ '0':x,'1': element[0][x],'2': element[1][x],'3':element[4][x]})
+        dataTable.push({ '0':x,'1': element[0][x],'2': element[1][x]})
       }
 
       myTable.rows.add(dataTable).draw();
 
       const ctx = document.getElementById('factureChart');
 
-      new Chart(ctx, {
+      if(professionalGraph){
+        professionalGraph.destroy();
+      }
+
+      professionalGraph = new Chart(ctx, {
         type: 'doughnut',
         data: {
           labels: element[0],
@@ -66,11 +74,6 @@
             data: element[1],
             backgroundColor: element[3],
             borderColor:element[2],
-            borderWidth: 1
-          },{
-            data: element[4],
-            backgroundColor: element[6],
-            borderColor:element[5],
             borderWidth: 1
           }]
         },
@@ -114,13 +117,18 @@
     .withFailureHandler(error =>{
       console.log(`${error}`)
     })
-    .getCollaborators();
+    if(data != ""){
+      consult.getCollaborators(data);
+    }else{
+      consult.getCollaborators();
+    }
   }
 
   /*** funcion que carga los datos de las sedes en la grafica y alimenta la tabla ***/
-  function graphHeadquartersInvoice(){
-    google.script.run.withSuccessHandler(element =>{
+  function graphHeadquartersInvoice(data){
+    let consult = google.script.run.withSuccessHandler(element =>{
       let dataTable = [];
+      if(data != ""){invoiceTable.clear().draw();}
       const footer = (tooltipItems) => {
         let sum = 0;
 
@@ -136,8 +144,12 @@
 
       invoiceTable.rows.add(dataTable).draw();
 
+      if(invoiceGraph){
+        invoiceGraph.destroy();
+      }
+
       const xtc = document.getElementById('examsChart');
-      new Chart(xtc, {
+      invoiceGraph = new Chart(xtc, {
         type: 'line',
         data:{
           labels: element[0],
@@ -181,6 +193,33 @@
     .withFailureHandler(error =>{
       console.log(`${error}`)
     })
-    .getHeadquartersInvoice();
+    if(data != ""){
+      consult.getHeadquartersInvoice(data);
+    }else{
+      consult.getHeadquartersInvoice();
+    }
+    
   }
+
+  $(document).ready(function(){
+    Swal.fire({
+      icon: 'info',
+      html:`<p>Realizando la consulta <b style="color:Red;"><i>General</i></b> de los datos</p>`,
+      footer:`<p style="color:#5faefe">Por favor espere..</p>`,
+      showConfirmButton: false,
+      timer: 8000
+    });
+  })
+
+  $("#specialty").change((e)=>{
+    Swal.fire({
+      icon: 'info',
+      html:`<p>Realizando la consulta <b style="color:Red;"><i>${e.target.value}</i></b> de los datos</p>`,
+      footer:`<p style="color:#5faefe">Por favor espere..</p>`,
+      showConfirmButton: false,
+      timer: 9000
+    })
+    graphProfessional(e.target.value);
+    graphHeadquartersInvoice(e.target.value);
+  })
 </script>
