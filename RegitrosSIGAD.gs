@@ -21,7 +21,7 @@ function katherine() {
   let spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
   spreadsheet.getActiveSheet().getActiveCell().setValue('katherine.sanchez@soandes.co, gestiondocumental@soandes.co, diana.ortiz@soandes.co');
 }
-function katherine() {
+function juan() {
   let spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
   spreadsheet.getActiveSheet().getActiveCell().setValue('juan.avila@soandes.co, gestiondocumental@soandes.co, diana.ortiz@soandes.co');
 }
