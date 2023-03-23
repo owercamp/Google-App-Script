@@ -237,7 +237,7 @@ async function hideOfColumn() {
     <div><p style="color: blue;">Nota:</p><p>Puede continuar usando el ordenador con normalidad</p></div>`)
       .setWidth(400)
       .setHeight(300);
-    SpreadsheetApp.getUi().showModelessDialog(htmlOutput, '📇 Procesando');
+    SpreadsheetApp.getUi().showModalDialog(htmlOutput, '📇 Procesando');
 
     let sh = spreadsheet.getSheetByName("Clasificación");
     let clasificacion = sh.getRange(2, 1, sh.getLastRow(), 3).getValues();
