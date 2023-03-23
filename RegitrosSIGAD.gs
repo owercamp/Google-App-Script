@@ -1,3 +1,43 @@
+/***
+ * funciones para adjuntar correos
+ */
+function leidy() {
+  let spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  spreadsheet.getActiveSheet().getActiveCell().setValue('leidy.sanchez@soandes.co, gestiondocumental@soandes.co, diana.ortiz@soandes.co');
+}
+function camila() {
+  let spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  spreadsheet.getActiveSheet().getActiveCell().setValue('camila.gonzalez@soandes.co, gestiondocumental@soandes.co, diana.ortiz@soandes.co');
+}
+function natalia() {
+  let spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  spreadsheet.getActiveSheet().getActiveCell().setValue('natalia.guerrero@soandes.co, gestiondocumental@soandes.co, diana.ortiz@soandes.co');
+}
+function diana() {
+  let spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  spreadsheet.getActiveSheet().getActiveCell().setValue('diana.perdomo@soandes.co, gestiondocumental@soandes.co, diana.ortiz@soandes.co');
+}
+function katherine() {
+  let spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  spreadsheet.getActiveSheet().getActiveCell().setValue('katherine.sanchez@soandes.co, gestiondocumental@soandes.co, diana.ortiz@soandes.co');
+}
+function katherine() {
+  let spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  spreadsheet.getActiveSheet().getActiveCell().setValue('juan.avila@soandes.co, gestiondocumental@soandes.co, diana.ortiz@soandes.co');
+}
+
+function onOpen(e) {
+  SpreadsheetApp.getUi()
+    .createMenu('GESTORES DB')
+    .addItem('Leidy sanchez', `leidy`)
+    .addItem('Camila gonzalez', 'camila')
+    .addItem('Natalia guerrero', 'natalia')
+    .addItem('Diana perdomo', 'diana')
+    .addItem('Katherine sanchez', 'katherine')
+    .addItem('Juan avila', 'juan')
+    .addToUi();
+}
+
 function Auto_Increment() {
   let spreadsheet = SpreadsheetApp.getActive();
   let row = spreadsheet.getActiveCell().getRow();
