@@ -234,9 +234,15 @@ async function hideOfColumn() {
     let htmlOutput = HtmlService
       .createHtmlOutput(`<div><p>Procesando la información <b style="color: red;">POR FAVOR ESPERE</b></p></div>
     <iframe src="https://giphy.com/embed/ZO9b1ntYVJmjZlsWlm" width="360" height="160" frameBorder="0"></iframe>
-    <div><p style="color: blue;">Nota:</p><p>Puede continuar usando el ordenador con normalidad</p></div>`)
+    <div><p style="color: blue;">Nota:</p><p>Puede continuar usando el ordenador con normalidad</p></div>
+    <div style="display: flex; width: 100%; justify-content: center;"><button onClick="apertura()"style="padding:0.5rem;background:#000000;color:#ffffff; border-color:#fbfbfb;border-radius:5px;">Grafica Informe</button></div><script>
+    function apertura(){
+      let url = 'https://script.google.com/a/macros/soandes.co/s/AKfycbyk2dsjKCdFiPUJTmRRPbRg6CpOsK19AzxOSd94ZkI/dev'
+      window.open(url);
+    }
+    </script>`)
       .setWidth(400)
-      .setHeight(300);
+      .setHeight(400);
     SpreadsheetApp.getUi().showModalDialog(htmlOutput, '📇 Procesando');
 
     let sh = spreadsheet.getSheetByName("Clasificación");
