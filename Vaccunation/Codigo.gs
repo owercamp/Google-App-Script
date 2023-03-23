@@ -399,6 +399,3 @@ function specialty(data) {
     }
   })
 }
-
-
-
