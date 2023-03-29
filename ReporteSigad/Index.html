@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <base target="_top">
+  <?!= include('CSS'); ?>
+</head>
+
+<body class="container-fluid bg-warning-subtle">
+  <nav class="navbar bg-body-tertiary">
+    <div class="container">
+      <a class="navbar-brand" href="https://sites.google.com/soandes.co/soandes/inicio">
+        <img class="rounded" src="https://soandes.com.co/images/footer/footer-logosoa1.png" alt="Soandes" height="50">
+      </a>
+      <div>Registros Pacientes en <span class="text-danger">SIGAD</span></div>
+    </div>
+  </nav>
+  <div class="container-lg container-md container-sm container p-2">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary rounded">
+      <div class="container-fluid">
+        <b class="text-dark py-1 mx-3">Año: </b>
+        <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="year">
+          <option>Seleccione...</option>
+          <!-- cargue dinamico -->
+        </select>
+      </div>
+    </nav>
+    <div class="graphs">
+      <div class="borderLabels">
+        <label class="w-100 text-center text-info labels">Ciudades</label>
+        <canvas id="citys"></canvas>
+      </div>
+      <div class="borderLabels">
+        <label class="w-100 text-center text-info labels">Años</label>
+        <canvas id="years"></canvas>
+      </div>
+      <div class="borderLabels">
+        <label class="w-100 text-center text-info labels">Empresas</label>
+        <canvas id="companies"></canvas>
+      </div>
+      <div class="borderLabels order">
+        <div class="table-responsive" style="max-height: 359px !important">
+          <table class="table table-sm table-hover table-primary text-center" id="tbl_citys">
+            <caption>Lista de Ciudades</caption>
+            <thead>
+              <tr>
+                <th scope="col">Ciudad</th>
+                <th scope="col">Cantidad</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Carga Dinamica -->
+            </tbody>
+          </table>
+        </div>
+        <label class="w-100 text-center text-info labels">Ciudades</label>
+      </div>
+      <div class="borderLabels order">
+        <div class="table-responsive" style="max-height: 359px !important">
+          <table class="table table-sm table-hover table-dark text-center" id="tbl_years">
+            <caption>Lista en Años</caption>
+            <thead>
+              <tr>
+                <th scope="col">Año</th>
+                <th scope="col">Cantidad</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Carga Dinamica -->
+            </tbody>
+          </table>
+        </div>
+        <label class="w-100 text-center text-info labels">Años</label>
+      </div>
+      <div class="borderLabels order">
+        <div class="table-responsive" style="max-height: 359px !important">
+          <table class="table table-sm table-hover table-danger text-center" id="tbl_companies">
+            <caption>Lista de Empresas</caption>
+            <thead>
+              <tr>
+                <th scope="col">Empresa</th>
+                <th scope="col">Cantidad</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Carga Dinamica -->
+            </tbody>
+          </table>
+        </div>
+        <label class="w-100 text-center text-info labels">Empresas</label>
+      </div>
+    </div>
+  </div>
+  <?!= include('JS'); ?>
+</body>
+
+</html>
