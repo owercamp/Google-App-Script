@@ -12,9 +12,9 @@
   crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script>
-  window.addEventListener('load', years);
-  window.addEventListener('load', cities);
-  window.addEventListener('load', companies);
+  window.addEventListener('load', years(""));
+  window.addEventListener('load', cities(""));
+  window.addEventListener('load', companies(""));
 
   /*** instanciación de los DataTables ***/
   var tbl_citys = $("#tbl_citys").DataTable({
@@ -44,9 +44,23 @@
   });
 
   let companiesGraph;
-  function companies() {
-    google.script.run.withSuccessHandler(company => {
+  function companies(data) {
+    let dataTable = [];
+    let consultCompanies = google.script.run.withSuccessHandler(company => {
       const illustration = document.getElementById('companies');
+
+      if (data) {
+        tbl_companies.clear().draw();
+      }
+      if (companiesGraph) {
+        companiesGraph.destroy();
+      }
+
+      for (let x = 0; x < company[0].length; x++) {
+        dataTable.push({ 0: company[0][x], 1: company[1][x] });
+      }
+
+      tbl_companies.rows.add(dataTable).draw();
 
       companiesGraph = new Chart(illustration, {
         type: 'doughnut',
@@ -93,16 +107,37 @@
       .withFailureHandler(error => {
         console.log(error);
       })
-      .getCompanies();
+    if (data) {
+      consultCompanies.getCompanies(data);
+    } else {
+      consultCompanies.getCompanies();
+    }
   }
 
   let yearsGraph;
-  function years() {
-    google.script.run.withSuccessHandler(year => {
-      year[0].map(item => {
-        $("#year").append(`<option value="${item}">${item}</option>`);
-      })
+  function years(data) {
+    let dataTable = [];
+    let consultYear = google.script.run.withSuccessHandler(year => {
+      if (!data) {
+        year[0].map(item => {
+          $("#year").append(`<option value="${item}">${item}</option>`);
+        })
+      }
       const frame = document.getElementById('years');
+
+      if (data) {
+        tbl_years.clear().draw();
+      }
+
+      if (yearsGraph) {
+        yearsGraph.destroy();
+      }
+
+      for (let x = 0; x < year[0].length; x++) {
+        dataTable.push({ 0: year[0][x], 1: year[1][x] });
+      }
+
+      tbl_years.rows.add(dataTable).draw();
 
       yearsGraph = new Chart(frame, {
         type: 'polarArea',
@@ -157,35 +192,41 @@
       .withFailureHandler(error => {
         console.log(error);
       })
-      .getYears();
+    if (data) {
+      consultYear.getYears(data);
+    } else {
+      consultYear.getYears();
+    }
   }
 
   let citiesGraph;
-  function cities() {
+  function cities(data) {
     let dataTable = [];
-    google.script.run.withSuccessHandler(data => {
-      console.log(data);
+    let consultCities = google.script.run.withSuccessHandler(city => {
       const ctx = document.getElementById('citys');
 
-      if (true) {
+      if (data) {
         tbl_citys.clear().draw();
       }
+      if (citiesGraph) {
+        citiesGraph.destroy();
+      }
 
-      for (let x = 1; x < data[0].length; x++) {
-        dataTable.push({ 0: data[0][x], 1: data[1][x] });
+      for (let x = 0; x < city[0].length; x++) {
+        dataTable.push({ 0: city[0][x], 1: city[1][x] });
       }
 
       tbl_citys.rows.add(dataTable).draw();
       citiesGraph = new Chart(ctx, {
         type: 'pie',
         data: {
-          labels: data[0],
+          labels: city[0],
           datasets: [
             {
               label: 'Registros',
-              data: data[1],
-              backgroundColor: data[3],
-              color: data[2]
+              data: city[1],
+              backgroundColor: city[3],
+              color: city[2]
             }
           ]
         },
@@ -226,6 +267,35 @@
       .withFailureHandler(error => {
         console.log(error);
       })
-      .getCities();
+    if (data) {
+      consultCities.getCities(data);
+    } else {
+      consultCities.getCities();
+    }
   }
+
+  $(document).on('change', '#year', function () {
+    let year = $(this).val();
+    cities(year);
+    companies(year);
+    years(year);
+    Swal.fire({
+      icon: 'info',
+      html: `<p>Realizando la consulta  para el año <b style="color:Red;"><i>${year}</i></b> de los datos</p>`,
+      footer: `<p style="color:#5faefe">Por favor espere..</p>`,
+      showConfirmButton: false,
+      timer: 82000
+    });
+  })
+
+  $(document).ready(function () {
+    Swal.fire({
+      icon: 'info',
+      html: `<p>Realizando la consulta <b style="color:Red;"><i>General</i></b> de los datos</p>`,
+      footer: `<p style="color:#5faefe">Por favor espere..</p>`,
+      showConfirmButton: false,
+      timer: 82000
+    });
+  })
+
 </script>

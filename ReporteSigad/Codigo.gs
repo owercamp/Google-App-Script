@@ -21,7 +21,7 @@ function abrirInforme() {
   SpreadsheetApp.getUi().showModalDialog(html, "Abriendo Informe");
 }
 
-function getYears() {
+function getYears(yearSelect) {
   let years = [];
   let response = [];
   let infoYears = [];
@@ -29,30 +29,55 @@ function getYears() {
   let backgrounds = [];
   let spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
   let sh = spreadsheet.getSheetByName("orden_lista_trabajadores");
-  let values = sh.getRange(2, 7, sh.getLastRow(), 1).getValues().filter(e => (e[0] != "") ? e : "");
+  let values = sh.getRange(2, 1, sh.getLastRow(), sh.getLastColumn()).getValues().filter(e => (e[0] != "") ? e : "");
 
-  values.map(item => {
-    if (!years.includes(item[0])) {
-      years.push(item[0]);
-    }
-  })
-
-  years.map(year => {
-    let sum = 0;
-    values.map(element => {
-      if (year == element[0]) {
-        sum += 1;
+  if (yearSelect) {
+    values.map(item => {
+      if (!years.includes(item[6]) && item[6] == yearSelect) {
+        years.push(item[6]);
       }
     })
-    infoYears.push(sum);
-    let red = Math.round((Math.random() * 255).toFixed(0));
-    let green = Math.round((Math.random() * 255).toFixed(0));
-    let blue = Math.round((Math.random() * 255).toFixed(0));
-    let color = `rgb(${red},${green},${blue})`;
-    let background = `rgba(${red},${green},${blue},.6)`;
-    colors.push(color);
-    backgrounds.push(background);
-  })
+
+    years.map(year => {
+      let sum = 0;
+      values.map(element => {
+        if (year == element[6] && element[6] == yearSelect) {
+          sum += 1;
+        }
+      })
+      infoYears.push(sum);
+      let red = Math.round((Math.random() * 255).toFixed(0));
+      let green = Math.round((Math.random() * 255).toFixed(0));
+      let blue = Math.round((Math.random() * 255).toFixed(0));
+      let color = `rgb(${red},${green},${blue})`;
+      let background = `rgba(${red},${green},${blue},.6)`;
+      colors.push(color);
+      backgrounds.push(background);
+    })
+  } else {
+    values.map(item => {
+      if (!years.includes(item[6])) {
+        years.push(item[6]);
+      }
+    })
+
+    years.map(year => {
+      let sum = 0;
+      values.map(element => {
+        if (year == element[6]) {
+          sum += 1;
+        }
+      })
+      infoYears.push(sum);
+      let red = Math.round((Math.random() * 255).toFixed(0));
+      let green = Math.round((Math.random() * 255).toFixed(0));
+      let blue = Math.round((Math.random() * 255).toFixed(0));
+      let color = `rgb(${red},${green},${blue})`;
+      let background = `rgba(${red},${green},${blue},.6)`;
+      colors.push(color);
+      backgrounds.push(background);
+    })
+  }
 
   response[0] = years;
   response[1] = infoYears;
@@ -62,7 +87,7 @@ function getYears() {
   return response;
 }
 
-function getCities() {
+function getCities(year) {
   let cities = [];
   let register = [];
   let infoCities = [];
@@ -70,30 +95,55 @@ function getCities() {
   let backgrounds = [];
   let spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
   let sh = spreadsheet.getSheetByName('orden_lista_trabajadores');
-  let values = sh.getRange(2, 4, sh.getLastRow(), 1).getValues().filter(e => (e[0] != "") ? e : "").sort();
+  let values = sh.getRange(2, 1, sh.getLastRow(), sh.getLastColumn()).getValues().filter(e => (e[0] != "") ? e : "").sort();
 
-  values.map(element => {
-    if (!cities.includes(element[0])) {
-      cities.push(element[0]);
-    }
-  })
-
-  cities.map(city => {
-    let sum = 0;
-    values.map(item => {
-      if (item[0] == city) {
-        sum += 1
+  if (year) {
+    values.map(element => {
+      if (!cities.includes(element[3]) && element[6] == year) {
+        cities.push(element[3]);
       }
     })
-    register.push(sum);
-    let red = Math.round((Math.random() * 255).toFixed(0));
-    let green = Math.round((Math.random() * 255).toFixed(0));
-    let blue = Math.round((Math.random() * 255).toFixed(0));
-    let color = `rgb(${red},${green},${blue})`;
-    let background = `rgba(${red},${green},${blue},.6)`;
-    colors.push(color);
-    backgrounds.push(background);
-  })
+
+    cities.map(city => {
+      let sum = 0;
+      values.map(item => {
+        if (item[3] == city && item[6] == year) {
+          sum += 1
+        }
+      })
+      register.push(sum);
+      let red = Math.round((Math.random() * 255).toFixed(0));
+      let green = Math.round((Math.random() * 255).toFixed(0));
+      let blue = Math.round((Math.random() * 255).toFixed(0));
+      let color = `rgb(${red},${green},${blue})`;
+      let background = `rgba(${red},${green},${blue},.6)`;
+      colors.push(color);
+      backgrounds.push(background);
+    })
+  } else {
+    values.map(element => {
+      if (!cities.includes(element[3])) {
+        cities.push(element[3]);
+      }
+    })
+
+    cities.map(city => {
+      let sum = 0;
+      values.map(item => {
+        if (item[3] == city) {
+          sum += 1
+        }
+      })
+      register.push(sum);
+      let red = Math.round((Math.random() * 255).toFixed(0));
+      let green = Math.round((Math.random() * 255).toFixed(0));
+      let blue = Math.round((Math.random() * 255).toFixed(0));
+      let color = `rgb(${red},${green},${blue})`;
+      let background = `rgba(${red},${green},${blue},.6)`;
+      colors.push(color);
+      backgrounds.push(background);
+    })
+  }
   infoCities[0] = cities;
   infoCities[1] = register;
   infoCities[2] = colors;
@@ -101,7 +151,7 @@ function getCities() {
   return infoCities;
 }
 
-function getCompanies() {
+function getCompanies(year) {
   let companies = [];
   let register = [];
   let infocompanies = [];
@@ -109,30 +159,55 @@ function getCompanies() {
   let backgrounds = [];
   let spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
   let sh = spreadsheet.getSheetByName('orden_lista_trabajadores');
-  let values = sh.getRange(2, 5, sh.getLastRow(), 1).getValues().filter(e => (e[0] != "") ? e : "").sort();
+  let values = sh.getRange(2, 1, sh.getLastRow(), sh.getLastColumn()).getValues().filter(e => (e[0] != "") ? e : "").sort();
 
-  values.map(element => {
-    if (!companies.includes(element[0])) {
-      companies.push(element[0]);
-    }
-  })
-
-  companies.map(item => {
-    let sum = 0;
+  if (year) {
     values.map(element => {
-      if (item == element[0]) {
-        sum += 1;
+      if (!companies.includes(element[4]) && element[6] == year) {
+        companies.push(element[4]);
       }
     })
-    register.push(sum);
-    let red = Math.round((Math.random() * 255).toFixed(0));
-    let green = Math.round((Math.random() * 255).toFixed(0));
-    let blue = Math.round((Math.random() * 255).toFixed(0));
-    let color = `rgb(${red},${green},${blue})`;
-    let background = `rgba(${red},${green},${blue},.6)`;
-    colors.push(color);
-    backgrounds.push(background);
-  })
+
+    companies.map(item => {
+      let sum = 0;
+      values.map(element => {
+        if (item == element[4] && element[6] == year) {
+          sum += 1;
+        }
+      })
+      register.push(sum);
+      let red = Math.round((Math.random() * 255).toFixed(0));
+      let green = Math.round((Math.random() * 255).toFixed(0));
+      let blue = Math.round((Math.random() * 255).toFixed(0));
+      let color = `rgb(${red},${green},${blue})`;
+      let background = `rgba(${red},${green},${blue},.6)`;
+      colors.push(color);
+      backgrounds.push(background);
+    })
+  } else {
+    values.map(element => {
+      if (!companies.includes(element[4])) {
+        companies.push(element[4]);
+      }
+    })
+
+    companies.map(item => {
+      let sum = 0;
+      values.map(element => {
+        if (item == element[4]) {
+          sum += 1;
+        }
+      })
+      register.push(sum);
+      let red = Math.round((Math.random() * 255).toFixed(0));
+      let green = Math.round((Math.random() * 255).toFixed(0));
+      let blue = Math.round((Math.random() * 255).toFixed(0));
+      let color = `rgb(${red},${green},${blue})`;
+      let background = `rgba(${red},${green},${blue},.6)`;
+      colors.push(color);
+      backgrounds.push(background);
+    })
+  }
 
   infocompanies[0] = companies;
   infocompanies[1] = register;
