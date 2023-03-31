@@ -5,31 +5,35 @@
 
 <script>
   // Example starter JavaScript for disabling form submissions if there are invalid fields
-(() => {
-  'use strict'
+  (() => {
+    'use strict'
 
-  // Fetch all the forms we want to apply custom Bootstrap validation styles to
-  const forms = document.querySelectorAll('.needs-validation')
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    const forms = document.querySelectorAll('.needs-validation')
 
-  // Loop over them and prevent submission
-  Array.from(forms).forEach(form => {
-    form.addEventListener('submit', event => {
-      if (!form.checkValidity()) {
-        event.preventDefault()
-        event.stopPropagation()
-      }
+    // Loop over them and prevent submission
+    Array.from(forms).forEach(form => {
+      form.addEventListener('submit', event => {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
 
-      form.classList.add('was-validated')
-    }, false)
-  })
-})()
+        form.classList.add('was-validated')
+      }, false)
+    })
+  })()
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"
   integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ=="
   crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.7.3/sweetalert2.all.min.js"
+  integrity="sha512-/iBgV43zPirSC0tue+PT/1VHGs7En24twBmT+sVMgn9PTaOpKfbgIyL5YsGKlbAIxcwz9S8W/YEnYjpIYj2Axw=="
+  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 <script>
-  $(document).ready(()=>{
+  $(document).ready(() => {
     const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
     const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
     $('input[name=identificacion]').bind("keypress", event => sinComa(event));
@@ -37,16 +41,16 @@
     $('input[name=hijos]').bind("keypress", event => sinComa(event));
     $('input[name=cargo]').bind("keypress", event => sinNumber(event));
 
-    $("#tipoExamen").change((e) =>{
-      if(e.target.value != ""){
+    $("#tipoExamen").change((e) => {
+      if (e.target.value != "") {
         $("#checkboxExam").removeClass("d-none");
         $('div.sample').removeClass("d-none");
-      }else{
+      } else {
         $("#checkboxExam").addClass("d-none");
         $('div.sample').addClass("d-none");
       }
 
-      if($("#inlineCheckbox1").is(":checked") && e.target.value == "PERIODICO" || $("#inlineCheckbox1").is(":checked") && e.target.value == "POS INCAPACIDAD" || $("#inlineCheckbox1").is(":checked") && e.target.value == "PERIODICO DE SEGUIMIENTO" || $("#inlineCheckbox1").is(":checked") && e.target.value == "ESPECIAL"){
+      if ($("#inlineCheckbox1").is(":checked") && e.target.value == "PERIODICO" || $("#inlineCheckbox1").is(":checked") && e.target.value == "POS INCAPACIDAD" || $("#inlineCheckbox1").is(":checked") && e.target.value == "PERIODICO DE SEGUIMIENTO" || $("#inlineCheckbox1").is(":checked") && e.target.value == "ESPECIAL") {
         $("#EMOEXAM").remove();
         $(".divs").prepend(`<div class="sample" id="EMOEXAM">
                 <h4 class="w-100 text-center">Examen Medico Ocupacional (RIESGOS)</h4>
@@ -274,73 +278,72 @@
                     </div>
                 </div>
               </div>`);
-              $('div.sample').hide().first().show();
-      }else{
+        $('div.sample').hide().first().show();
+      } else {
         $("#EMOEXAM").remove();
         $('div.sample').hide().first().show();
       }
 
-      if(e.target.value == "PERIODICO" || e.target.value == "PERIODICO DE SEGUIMIENTO" || e.target.value == "CAMBIO DE OCUPACION" || e.target.value == "POS INCAPACIDAD"){
+      if (e.target.value == "PERIODICO" || e.target.value == "PERIODICO DE SEGUIMIENTO" || e.target.value == "CAMBIO DE OCUPACION" || e.target.value == "POS INCAPACIDAD") {
         $("#antiguedadSpam").removeClass("d-none");
-        $("#antiguedad").attr("required",true);
-      }else{
+        $("#antiguedad").attr("required", true);
+      } else {
         $("#antiguedadSpam").addClass("d-none");
-        $("#antiguedad").attr("required",false);
+        $("#antiguedad").attr("required", false);
       }
     });
 
-    $("input[type=text]").change(e =>{
-      $("input[type=text]").each((index, event) =>{
-        if(event.id == e.currentTarget.id){
+    $("input[type=text]").change(e => {
+      $("input[type=text]").each((index, event) => {
+        if (event.id == e.currentTarget.id) {
           let str = event.value;
-          $("#"+event.id).val(str.toLocaleUpperCase());
+          $("#" + event.id).val(str.toLocaleUpperCase());
         }
       })
     });
-    
   });
 
   $('div.sample').hide().first().show();
 
-  $('a.display').on('click', function(e) {
+  $('a.display').on('click', function (e) {
     e.preventDefault();
     let that = $('div.sample:visible'),
       t = e.target.id;
 
-    if (t == 'next' && that.next('div.sample').length > 0) { 
+    if (t == 'next' && that.next('div.sample').length > 0) {
       $('div.sample').hide().removeClass("select");
       that.next('div.sample').show().addClass("select");
-      (that.next('div.sample#ANTECEDENTES').hasClass("select")) ? $('#incapacidad').keypress((e)=>{sinComa(e);}) : "";
-      (that.next('div.sample#ANTECEDENTES').hasClass("select")) ? $('#peso').keypress((e)=>{sinLetra(e);}) : "";
-      (that.next('div.sample#ANTECEDENTES').hasClass("select")) ? $('#talla').keypress((e)=>{sinLetra(e);}) : "";
-      (that.next('div.sample#ANTECEDENTES').hasClass("select")) ? $('#cardiaca').keypress((e)=>{sinComa(e);}) : "";
-      (that.next('div.sample#ANTECEDENTES').hasClass("select")) ? $('#respiratoria').keypress((e)=>{sinComa(e);}) : "";
-      (that.next('div.sample#ANTECEDENTES').hasClass("select")) ? $('#abdominal').keypress((e)=>{sinComa(e);}) : "";
-      (that.next('div.sample#ANTECEDENTES').hasClass("select")) ? $('#tension').keypress((e)=>{frec(e);}) : "";
-      (that.next('div.sample#DIAGNOSTICOS').hasClass("select")) ? $('#diagnostico').keypress((e)=>{sinCharacters(e);}) : "";
-      (that.next('div.sample#ANTECEDENTES').hasClass("select")) ? $('#peso').change((e)=>{imc(e.target.value,$('#talla').val());}) : "";
-      (that.next('div.sample#ANTECEDENTES').hasClass("select")) ? $('#talla').change((e)=>{imc($('#peso').val(),e.target.value);}) : "";
-      if(that.next('div.sample#ANTECEDENTES').hasClass("select")){
+      (that.next('div.sample#ANTECEDENTES').hasClass("select")) ? $('#incapacidad').keypress((e) => { sinComa(e); }) : "";
+      (that.next('div.sample#ANTECEDENTES').hasClass("select")) ? $('#peso').keypress((e) => { sinLetra(e); }) : "";
+      (that.next('div.sample#ANTECEDENTES').hasClass("select")) ? $('#talla').keypress((e) => { sinLetra(e); }) : "";
+      (that.next('div.sample#ANTECEDENTES').hasClass("select")) ? $('#cardiaca').keypress((e) => { sinComa(e); }) : "";
+      (that.next('div.sample#ANTECEDENTES').hasClass("select")) ? $('#respiratoria').keypress((e) => { sinComa(e); }) : "";
+      (that.next('div.sample#ANTECEDENTES').hasClass("select")) ? $('#abdominal').keypress((e) => { sinComa(e); }) : "";
+      (that.next('div.sample#ANTECEDENTES').hasClass("select")) ? $('#tension').keypress((e) => { frec(e); }) : "";
+      (that.next('div.sample#DIAGNOSTICOS').hasClass("select")) ? $('#diagnostico').keypress((e) => { sinCharacters(e); }) : "";
+      (that.next('div.sample#ANTECEDENTES').hasClass("select")) ? $('#peso').change((e) => { imc(e.target.value, $('#talla').val()); }) : "";
+      (that.next('div.sample#ANTECEDENTES').hasClass("select")) ? $('#talla').change((e) => { imc($('#peso').val(), e.target.value); }) : "";
+      if (that.next('div.sample#ANTECEDENTES').hasClass("select")) {
         physicalActivity();
         smoked();
         hardDrink();
       }
       (that.next('div.sample#ENFASIS').hasClass("select")) ? emphasis() : "";
-      
-    }else if (t == 'prev' && that.prev('div.sample').length > 0) {
+
+    } else if (t == 'prev' && that.prev('div.sample').length > 0) {
       $('div.sample').hide().removeClass("select");
       that.hide().prev('div.sample').show().addClass("select");
-      (that.prev('div.sample#ANTECEDENTES').hasClass("select")) ? $('#incapacidad').keypress((e)=>{sinComa(e);}) : "";
-      (that.prev('div.sample#ANTECEDENTES').hasClass("select")) ? $('#peso').keypress((e)=>{sinLetra(e);}) : "";
-      (that.prev('div.sample#ANTECEDENTES').hasClass("select")) ? $('#talla').keypress((e)=>{sinLetra(e);}) : "";
-      (that.prev('div.sample#ANTECEDENTES').hasClass("select")) ? $('#cardiaca').keypress((e)=>{sinComa(e);}) : "";
-      (that.prev('div.sample#ANTECEDENTES').hasClass("select")) ? $('#respiratoria').keypress((e)=>{sinComa(e);}) : "";
-      (that.prev('div.sample#ANTECEDENTES').hasClass("select")) ? $('#abdominal').keypress((e)=>{sinComa(e);}) : "";
-      (that.prev('div.sample#ANTECEDENTES').hasClass("select")) ? $('#tension').keypress((e)=>{frec(e);}) : "";
-      (that.prev('div.sample#DIAGNOSTICOS').hasClass("select")) ? $('#diagnostico').keypress((e)=>{sinCharacters(e);}) : "";
-      (that.prev('div.sample#ANTECEDENTES').hasClass("select")) ? $('#peso').change((e)=>{imc(e.target.value,$('#talla').val());}) : "";
-      (that.prev('div.sample#ANTECEDENTES').hasClass("select")) ? $('#talla').change((e)=>{imc($('#peso').val(),e.target.value);}) : "";
-      if(that.prev('div.sample#ANTECEDENTES').hasClass("select")){
+      (that.prev('div.sample#ANTECEDENTES').hasClass("select")) ? $('#incapacidad').keypress((e) => { sinComa(e); }) : "";
+      (that.prev('div.sample#ANTECEDENTES').hasClass("select")) ? $('#peso').keypress((e) => { sinLetra(e); }) : "";
+      (that.prev('div.sample#ANTECEDENTES').hasClass("select")) ? $('#talla').keypress((e) => { sinLetra(e); }) : "";
+      (that.prev('div.sample#ANTECEDENTES').hasClass("select")) ? $('#cardiaca').keypress((e) => { sinComa(e); }) : "";
+      (that.prev('div.sample#ANTECEDENTES').hasClass("select")) ? $('#respiratoria').keypress((e) => { sinComa(e); }) : "";
+      (that.prev('div.sample#ANTECEDENTES').hasClass("select")) ? $('#abdominal').keypress((e) => { sinComa(e); }) : "";
+      (that.prev('div.sample#ANTECEDENTES').hasClass("select")) ? $('#tension').keypress((e) => { frec(e); }) : "";
+      (that.prev('div.sample#DIAGNOSTICOS').hasClass("select")) ? $('#diagnostico').keypress((e) => { sinCharacters(e); }) : "";
+      (that.prev('div.sample#ANTECEDENTES').hasClass("select")) ? $('#peso').change((e) => { imc(e.target.value, $('#talla').val()); }) : "";
+      (that.prev('div.sample#ANTECEDENTES').hasClass("select")) ? $('#talla').change((e) => { imc($('#peso').val(), e.target.value); }) : "";
+      if (that.prev('div.sample#ANTECEDENTES').hasClass("select")) {
         physicalActivity();
         smoked();
         hardDrink();
@@ -375,7 +378,7 @@
       return false;
     }
   }
-  
+
   const sinNumber = e => {
     let regex = new RegExp("^[a-zA-Z ]+$");
     let key = String.fromCharCode(!e.charCode ? e.which : e.charCode);
@@ -394,19 +397,19 @@
     }
   }
 
-  const upperLetter = () =>{
-    $("input[type=text]").change(e =>{
-      $("input[type=text]").each((index, event) =>{
-        if(event.id == e.currentTarget.id){
+  const upperLetter = () => {
+    $("input[type=text]").change(e => {
+      $("input[type=text]").each((index, event) => {
+        if (event.id == e.currentTarget.id) {
           let str = event.value;
-          $("#"+event.id).val(str.toLocaleUpperCase());
+          $("#" + event.id).val(str.toLocaleUpperCase());
         }
       })
     });
   }
 
   const registroDiagnostico = () => {
-    $("#registro").on("click",()=>{
+    $("#registro").on("click", () => {
       let codigo = $("input[name=codigo]").val();
       let diagnostico = $("input[name=diagnosticos]").val();
       $("#tbl_diagnosticos").append(`<tr>
@@ -418,8 +421,8 @@
     });
   }
 
-  const registroEnfasis = () =>{
-    $("#registroEnfasis").on("click",()=>{
+  const registroEnfasis = () => {
+    $("#registroEnfasis").on("click", () => {
       let enfasis = $("select[name=enfasis]").val();
       let concepto = $("select[name=concepEnfasis]").val();
       let obs = $("input[name=obsEnfasis]").val();
@@ -435,26 +438,26 @@
     })
   }
 
-  const imc = (peso,talla) =>{
+  const imc = (peso, talla) => {
     if (peso === "" || talla === "") {
       $("#imc").text("IMC: 0");
       $("#clasificacion").text("CLASIFICACION IMC: SIN DATO");
-    }else{
+    } else {
       const result = (peso / (talla ** 2));
-      $("#imc").text("IMC: "+result.toFixed(2));
-      if(result < 18.5){
+      $("#imc").text("IMC: " + result.toFixed(2));
+      if (result < 18.5) {
         $("#clasificacion").text("CLASIFICACION IMC: BAJO DE PESO");
-      }else if(result >= 18.5 && result < 24.9){
+      } else if (result >= 18.5 && result < 24.9) {
         $("#clasificacion").text("CLASIFICACION IMC: NORMAL");
-      }else if(result >= 24.9 && result < 29.9){
+      } else if (result >= 24.9 && result < 29.9) {
         $("#clasificacion").text("CLASIFICACION IMC: SOBREPESO");
-      }else if(result >= 29.9 && result < 34.9){
+      } else if (result >= 29.9 && result < 34.9) {
         $("#clasificacion").text("CLASIFICACION IMC: OBESIDAD GRADO I");
-      }else if(result >= 34.9 && result < 39.9){
+      } else if (result >= 34.9 && result < 39.9) {
         $("#clasificacion").text("CLASIFICACION IMC: OBESIDAD GRADO II");
-      }else if(result >= 39.9 && result < 50){
+      } else if (result >= 39.9 && result < 50) {
         $("#clasificacion").text("CLASIFICACION IMC: OBESIDAD GRADO III");
-      }else{
+      } else {
         $("#clasificacion").text("CLASIFICACION IMC: CAMPO SIN VALOR");
       }
     }
@@ -463,117 +466,117 @@
 </script>
 
 <script>
-  window.addEventListener("load",examens);
-  window.addEventListener("load",stratum);
-  window.addEventListener("load",gender);
-  window.addEventListener("load",race);
-  window.addEventListener("load",civilStatus);
-  window.addEventListener("load",scholarship);
+  window.addEventListener("load", examens);
+  window.addEventListener("load", stratum);
+  window.addEventListener("load", gender);
+  window.addEventListener("load", race);
+  window.addEventListener("load", civilStatus);
+  window.addEventListener("load", scholarship);
 
-  function scholarship(){
-    google.script.run.withSuccessHandler(scholarship =>{
-      scholarship.forEach(element =>{
+  function scholarship() {
+    google.script.run.withSuccessHandler(scholarship => {
+      scholarship.forEach(element => {
         $("#escolaridad").append(`<option value="${element}">${element}</option>`);
       })
     })
-    .getScholarship();
+      .getScholarship();
   }
 
-  function civilStatus(){
-    google.script.run.withSuccessHandler(civilStatus =>{
-      civilStatus.forEach(element =>{
-        if(element == "SIN DATO" || element == "UNION LIBRE"){
+  function civilStatus() {
+    google.script.run.withSuccessHandler(civilStatus => {
+      civilStatus.forEach(element => {
+        if (element == "SIN DATO" || element == "UNION LIBRE") {
           $("#civil").append(`<option value="${element}">${element}</option>`);
-        }else{
+        } else {
           $("#civil").append(`<option value="${element}">${element} (A)</option>`);
         }
       })
     })
-    .getCivilStatus();
+      .getCivilStatus();
   }
 
-  function race(){
-    google.script.run.withSuccessHandler(race =>{
-      race.forEach(element =>{
+  function race() {
+    google.script.run.withSuccessHandler(race => {
+      race.forEach(element => {
         $("#raza").append(`<option value="${element}">${element}</option>`);
       })
     })
-    .getRace();
+      .getRace();
   }
 
-  function gender(){
-    google.script.run.withSuccessHandler(gender =>{
-      gender.forEach(element =>{
+  function gender() {
+    google.script.run.withSuccessHandler(gender => {
+      gender.forEach(element => {
         $("#genero").append(`<option value="${element}">${element}</option>`);
       })
     })
-    .getGender();
+      .getGender();
   }
 
-  function examens(){
-    google.script.run.withSuccessHandler(exam =>{
-      exam.forEach( element =>{
+  function examens() {
+    google.script.run.withSuccessHandler(exam => {
+      exam.forEach(element => {
         $("#tipoExamen").append(`<option value="${element}">${element}</option>`);
       })
     })
-    .getExamns();
+      .getExamns();
   }
 
-  function stratum(){
-    google.script.run.withSuccessHandler(stratum =>{
-      stratum.forEach(element =>{
-        if(element == "SIN DATO"){
+  function stratum() {
+    google.script.run.withSuccessHandler(stratum => {
+      stratum.forEach(element => {
+        if (element == "SIN DATO") {
           $("#estrato").append(`<option value="${element}">${element}</option>`);
-        }else{
+        } else {
           $("#estrato").append(`<option value="${element}"> ESTRATO ${element}</option>`);
         }
       })
     })
-    .getStratum();
+      .getStratum();
   }
 
-  function emphasis(){
+  function emphasis() {
     $("#enfasis").empty();
     $("#enfasis").append(`<option value="">Seleccione ENFASIS</option>`);
-    google.script.run.withSuccessHandler(emphasis =>{
-      emphasis.forEach(element =>{
+    google.script.run.withSuccessHandler(emphasis => {
+      emphasis.forEach(element => {
         $("#enfasis").append(`<option value="${element}">${element}</option>`);
       })
     })
-    .getEmphasis();
+      .getEmphasis();
   }
 
-  function physicalActivity(){
+  function physicalActivity() {
     $("#actFisica").empty();
     $("#actFisica").append(`<option value="">Seleccione...</option>`);
-    google.script.run.withSuccessHandler(physicalActivity =>{
-      physicalActivity.forEach(element =>{
+    google.script.run.withSuccessHandler(physicalActivity => {
+      physicalActivity.forEach(element => {
         $("#actFisica").append(`<option value="${element}">${element}</option>`);
       })
     })
-    .getPhysicalActivity();
+      .getPhysicalActivity();
   }
 
-  function smoked(){
+  function smoked() {
     $("#fuma").empty();
     $("#fuma").append(`<option value="">Seleccione...</option>`);
-    google.script.run.withSuccessHandler(smoke =>{
-      smoke.forEach(element =>{
+    google.script.run.withSuccessHandler(smoke => {
+      smoke.forEach(element => {
         $("#fuma").append(`<option value="${element}">${element}</option>`);
       })
     })
-    .getSmoke();
+      .getSmoke();
   }
 
-  function hardDrink(){
+  function hardDrink() {
     $("#alcohol").empty();
     $("#alcohol").append(`<option value="">Seleccione...</option>`);
-    google.script.run.withSuccessHandler(drink =>{
-      drink.forEach(element =>{
+    google.script.run.withSuccessHandler(drink => {
+      drink.forEach(element => {
         $("#alcohol").append(`<option value="${element}">${element}</option>`);
       })
     })
-    .getHardDrink();
+      .getHardDrink();
   }
 
 

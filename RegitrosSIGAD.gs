@@ -29,12 +29,12 @@ function juan() {
 function onOpen(e) {
   SpreadsheetApp.getUi()
     .createMenu('GESTORES DB')
-    .addItem('Leidy sanchez', `leidy`)
-    .addItem('Camila gonzalez', 'camila')
-    .addItem('Natalia guerrero', 'natalia')
-    .addItem('Diana perdomo', 'diana')
-    .addItem('Katherine sanchez', 'katherine')
-    .addItem('Juan avila', 'juan')
+    .addItem('Leidy Sanchez', `leidy`)
+    .addItem('Camila Gonzalez', 'camila')
+    .addItem('Natalia Guerrero', 'natalia')
+    .addItem('Diana Perdomo', 'diana')
+    .addItem('Katherine Sanchez', 'katherine')
+    .addItem('Juan Avila', 'juan')
     .addToUi();
 }
 
@@ -74,13 +74,23 @@ function enviarCorreo() {
 
     if (msg == ui.Button.YES) {
       let textCapture = ui.prompt("indice las novedades encontradas:", ui.ButtonSet.OK)
-      text = `<b style='color:red'>Importante:</b><br> ${textCapture.getResponseText()}`
+      let separateSplit = textCapture.getResponseText().split("*");
+
+      let list = "<ul>"
+      separateSplit.map(item => {
+        if (item) {
+          list+=`<li>${item}</li>`;
+        }
+      });
+      list+="</ul>";
+
+      text = `<b style='color:red'>Importante:</b><br>${list}`;
     }
     let signature = Gmail.Users.Settings.SendAs.list("me").sendAs.filter(function (account) { if (account.isDefault) { return true } })[0].signature;
 
     MailApp.sendEmail({
       to: spreadsheet.getActiveCell().offset(0, 2).getValue(),
-      /* to: "owerion22@gmail.com", */
+      /* to: "ower.campos@soandes.co", */
       subject: spreadsheet.getActiveCell().offset(0, -2).getValue(),
       htmlBody: hi + "<br><br>Se generó la orden número (" +
         spreadsheet.getActiveCell().offset(0, -1).getValue() +
