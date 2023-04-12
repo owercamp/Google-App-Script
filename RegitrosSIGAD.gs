@@ -25,6 +25,10 @@ function juan() {
   let spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
   spreadsheet.getActiveSheet().getActiveCell().setValue('juan.avila@soandes.co, gestiondocumental@soandes.co, diana.ortiz@soandes.co');
 }
+function monica() {
+  let spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  spreadsheet.getActiveSheet().getActiveCell().setValue('monica.marroquin@soandes.co, gestiondocumental@soandes.co, diana.ortiz@soandes.co');
+}
 
 function onOpen(e) {
   SpreadsheetApp.getUi()
@@ -35,6 +39,7 @@ function onOpen(e) {
     .addItem('Diana Perdomo', 'diana')
     .addItem('Katherine Sanchez', 'katherine')
     .addItem('Juan Avila', 'juan')
+    .addItem('Monica Marroquin', 'monica')
     .addToUi();
 }
 
@@ -47,7 +52,7 @@ function Auto_Increment() {
     let data_value = spreadsheet.getActiveSheet().getRange((row - 1), 3).getValue();
     let split = data_value.toString().split("-");
     let au = parseInt(split[1]) + 1;
-    spreadsheet.getActiveSheet().getRange(row, 3).setValue(`ICS-0${au}`);
+    spreadsheet.getActiveSheet().getRange(row, 3).setValue(`ICS-${("0000" + au).slice(-4)}`);
     spreadsheet.getActiveSheet().getRange(row, 4).setValue("PENDIENTE");
     Filtro(row);
   }
@@ -79,10 +84,10 @@ function enviarCorreo() {
       let list = "<ul>"
       separateSplit.map(item => {
         if (item) {
-          list+=`<li>${item}</li>`;
+          list += `<li>${item}</li>`;
         }
       });
-      list+="</ul>";
+      list += "</ul>";
 
       text = `<b style='color:red'>Importante:</b><br>${list}`;
     }
@@ -106,7 +111,7 @@ function enviarCorreo() {
 function Filtro(row) {
   let spreadsheet = SpreadsheetApp.getActive();
   spreadsheet.getActiveSheet().getFilter().remove();
-  spreadsheet.getRange('B2:F' + row).activate();
-  spreadsheet.getRange('B2:F' + row).createFilter();
+  spreadsheet.getRange('B2:G' + row).activate();
+  spreadsheet.getRange('B2:G' + row).createFilter();
   spreadsheet.getActiveRangeList().setBorder(true, true, true, true, true, true, '#000000', SpreadsheetApp.BorderStyle.SOLID);
 }

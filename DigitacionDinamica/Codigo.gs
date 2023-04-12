@@ -48,7 +48,7 @@ function getGender() {
   return gender;
 }
 
-function getRace(){
+function getRace() {
   let race = [];
   let spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
   let sheet = spreadsheet.getSheetByName("Data");
@@ -61,7 +61,7 @@ function getRace(){
   return race;
 }
 
-function getCivilStatus(){
+function getCivilStatus() {
   let civilStatus = [];
   let spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
   let sheet = spreadsheet.getSheetByName("Data");
@@ -74,7 +74,7 @@ function getCivilStatus(){
   return civilStatus;
 }
 
-function getScholarship(){
+function getScholarship() {
   let scholarship = [];
   let spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
   let sheet = spreadsheet.getSheetByName("Data");
@@ -87,7 +87,7 @@ function getScholarship(){
   return scholarship;
 }
 
-function getEmphasis(){
+function getEmphasis() {
   let scholarship = [];
   let spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
   let sheet = spreadsheet.getSheetByName("Data");
@@ -100,7 +100,7 @@ function getEmphasis(){
   return scholarship;
 }
 
-function getPhysicalActivity(){
+function getPhysicalActivity() {
   let activity = [];
   let spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
   let sheet = spreadsheet.getSheetByName("Data");
@@ -113,7 +113,7 @@ function getPhysicalActivity(){
   return activity;
 }
 
-function getSmoke(){
+function getSmoke() {
   let smoke = [];
   let spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
   let sheet = spreadsheet.getSheetByName("Data");
@@ -126,7 +126,7 @@ function getSmoke(){
   return smoke;
 }
 
-function getHardDrink(){
+function getHardDrink() {
   let drink = [];
   let spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
   let sheet = spreadsheet.getSheetByName("Data");
@@ -139,15 +139,15 @@ function getHardDrink(){
   return drink;
 }
 
-function getConceptEmphasis(enfasis){
+function getConceptEmphasis(enfasis) {
   let concept = [];
   let spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
   let sheet = spreadsheet.getSheetByName("Data");
   let rows = sheet.getRange(2, 21, sheet.getMaxRows(), 2);
   let values = rows.getValues().filter(e => (e[0] != "") ? e : "");
-  
-  values.forEach(element =>{
-    if(element[0] == enfasis){
+
+  values.forEach(element => {
+    if (element[0] == enfasis) {
       concept.push(element[1]);
     }
   })
