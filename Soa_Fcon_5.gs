@@ -1,27 +1,42 @@
+/**
+ * Retrieves the currently active cell in the spreadsheet and logs its row and column.
+ *
+ * @return {void} This function does not return anything.
+ */
 function props() {
-  let spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
-  let row = spreadsheet.getActiveCell().getRow();
-  let column = spreadsheet.getActiveCell().getColumn();
+  const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  const row = spreadsheet.getActiveCell().getRow();
+  const column = spreadsheet.getActiveCell().getColumn();
   console.log(`fila => ${row}, Columna => ${column}`)
 }
 
+/**
+ * Selects the previous sheet in the active spreadsheet and activates cell A1.
+ *
+ * @return {void} Nothing is returned.
+ */
 function selectSheet() {
-  var spreadsheet = SpreadsheetApp.getActive();
+  const spreadsheet = SpreadsheetApp.getActive();
   spreadsheet.getRange('A1').activate();
-  var previousSheetIndex = spreadsheet.getActiveSheet().getIndex() - 1;
+  const previousSheetIndex = spreadsheet.getActiveSheet().getIndex() - 1;
   if (previousSheetIndex <= 0) { previousSheetIndex = spreadsheet.getSheets().length; }
   spreadsheet.setActiveSheet(spreadsheet.getSheets()[previousSheetIndex - 1], true);
   spreadsheet.getRange('A1').activate();
 };
 
 /**
- * Carga la lista de proveedores con los correspondientes a la ciudad seleccionada y marca por default intramural
+ * Retrieves the active spreadsheet and cell, as well as the active sheet name, then checks if the current 
+ * active cell is in column 1, has a value, and if the active sheet name is "GESTOR". If all are true, call the 
+ * providers function with the value of the active cell and row as parameters, and set the value of the cell 
+ * at the same row and column 21 to be 'INTRAMURAL'.
+ *
+ * @return {void} No return value.
  */
 function list() {
-  let spreadsheet = SpreadsheetApp.getActive();
-  let column = spreadsheet.getActiveCell().getColumn();
-  let row = spreadsheet.getActiveCell().getRow();
-  let name = spreadsheet.getActiveSheet().getName();
+  const spreadsheet = SpreadsheetApp.getActive();
+  const column = spreadsheet.getActiveCell().getColumn();
+  const row = spreadsheet.getActiveCell().getRow();
+  const name = spreadsheet.getActiveSheet().getName();
 
   if (column == 1 && spreadsheet.getActiveCell().getValue() != "" && name == "GESTOR") {
     providers(spreadsheet.getActiveCell().getValue(), row);
@@ -29,17 +44,20 @@ function list() {
   }
 }
 
-
 /**
- * @function que es usada para consultar los proveedores
+ * Returns a list of providers from the "DATA" sheet for a given city.
+ *
+ * @param {string} city - The name of the city to retrieve providers for.
+ * @param {number} row - The row number to set the data validation for.
+ * @return {void} This function does not return anything.
  */
 function providers(city, row) {
-  let list_providers = [];
-  let spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
-  let sheet = spreadsheet.getSheetByName("DATA");
-  let rows = sheet.getRange(2, 3, sheet.getMaxRows(), 2);
-  let values = rows.getValues().filter(e => (e[0] != "") ? e : "");
-  let name = spreadsheet.getActiveSheet().getName();
+  const list_providers = [];
+  const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  const sheet = spreadsheet.getSheetByName("DATA");
+  const rows = sheet.getRange(2, 3, sheet.getMaxRows(), 2);
+  const values = rows.getValues().filter(e => (e[0] != "") ? e : "");
+  const name = spreadsheet.getActiveSheet().getName();
 
   if (name != "ESTADISTICA" && name != "DATA" && name != "GRUPOS") {
     for (var i = 0; i < values.length; ++i) {
@@ -48,7 +66,7 @@ function providers(city, row) {
       }
     }
 
-    let provider = SpreadsheetApp.getActive();
+    const provider = SpreadsheetApp.getActive();
     provider.getActiveSheet().getRange(row, 3).setDataValidation(SpreadsheetApp.newDataValidation()
       .setAllowInvalid(false)
       .requireValueInList(list_providers, true)
@@ -57,21 +75,27 @@ function providers(city, row) {
 }
 
 /**
- * Consulta a los medicos relacionados depenciendo de la ciudad seleccionada y el proveedor
+ * Retrieves a list of medicals based on the city and type of medical
+ * selected in the "GESTOR" sheet. The list is populated in the corresponding
+ * cell of the "GESTOR" sheet and is validated against a master list of 
+ * medicals in the "DATA" sheet. If there are no valid medicals for the 
+ * selected city and type, the cell is cleared of any previous validation.
+ *
+ * @return {void}
  */
 function medicals() {
-  let spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
-  let row = spreadsheet.getActiveCell().getRow();
-  let column = spreadsheet.getActiveCell().getColumn();
-  let name = spreadsheet.getActiveSheet().getName();
-  let city = spreadsheet.getActiveSheet().getRange(row, 1).getValue();
+  const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  const row = spreadsheet.getActiveCell().getRow();
+  const column = spreadsheet.getActiveCell().getColumn();
+  const name = spreadsheet.getActiveSheet().getName();
+  const city = spreadsheet.getActiveSheet().getRange(row, 1).getValue();
 
   if (column == 3 && name == "GESTOR") {
-    let list_medicals = [];
-    let spreadsheet2 = SpreadsheetApp.getActiveSpreadsheet();
-    let sheet = spreadsheet2.getSheetByName("DATA");
-    let rows = sheet.getRange(2, 12, sheet.getLastRow(), 3);
-    let values = rows.getValues().filter(e => (e[0] != "") ? e : "");
+    const list_medicals = [];
+    const spreadsheet2 = SpreadsheetApp.getActiveSpreadsheet();
+    const sheet = spreadsheet2.getSheetByName("DATA");
+    const rows = sheet.getRange(2, 12, sheet.getLastRow(), 3);
+    const values = rows.getValues().filter(e => (e[0] != "") ? e : "");
 
     for (var i = 0; i < values.length; ++i) {
       if (values[i][0] == city && values[i][1] == spreadsheet.getActiveSheet().getRange(row, 3).getValue()) {
@@ -79,7 +103,7 @@ function medicals() {
       }
     }
 
-    let medical = SpreadsheetApp.getActive();
+    const medical = SpreadsheetApp.getActive();
     if (list_medicals.length > 0) {
       medical.getActiveSheet().getRange(row, 19).setDataValidation(SpreadsheetApp.newDataValidation()
         .setAllowInvalid(false)
@@ -92,15 +116,16 @@ function medicals() {
 }
 
 /**
- * Separa y marca los examenes correspondientea a cada familia la sigla no es considerada
- * ya que esta se encuentra desde la seleccion del tipo de examen
+ * Retrieves data from the active spreadsheet and sets values to specific cells based on conditions.
+ *
+ * @return {void} Returns nothing.
  */
 function familys() {
-  let spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
-  let row = spreadsheet.getActiveCell().getRow();
-  let column = spreadsheet.getActiveCell().getColumn();
-  let values = spreadsheet.getActiveCell().getValue();
-  let name = spreadsheet.getActiveSheet().getName();
+  const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  const row = spreadsheet.getActiveCell().getRow();
+  const column = spreadsheet.getActiveCell().getColumn();
+  const values = spreadsheet.getActiveCell().getValue();
+  const name = spreadsheet.getActiveSheet().getName();
 
   if (column == 36 && name == "GESTOR") {
     let pos1 = values.toString().indexOf("(");
@@ -130,9 +155,11 @@ function familys() {
   }
 }
 
-/***
- * Confirma las siglas de los examenes hemoclasificación, gonadotropina
- * ostemuscular y audiometria
+/**
+ * Validates a given value and returns a specific string based on the input.
+ *
+ * @param {string} value - The value to be validated.
+ * @return {string} A string based on the input value or the same input value if it doesn't match any case.
  */
 function validate(value) {
   switch (value) {
@@ -155,13 +182,18 @@ function validate(value) {
 }
 
 /**
- * Marcación de imagenes Diagnosticas
+ * This function diagnoses the active cell in a Google Sheets spreadsheet by checking if it is in column 35 of the
+ * "GESTOR" sheet. If it is, the function checks the value of the cell and sets the value of a corresponding cell in
+ * the same row to either "x" or an empty string based on the value of the cell. The corresponding cells are determined
+ * by a switch statement that checks the value of the active cell.
+ *
+ * @return {void} This function does not return anything.
  */
 function diagnoseActive() {
-  let spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
-  let row = spreadsheet.getActiveCell().getRow();
-  let column = spreadsheet.getActiveCell().getColumn();
-  let name = spreadsheet.getActiveSheet().getName();
+  const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  const row = spreadsheet.getActiveCell().getRow();
+  const column = spreadsheet.getActiveCell().getColumn();
+  const name = spreadsheet.getActiveSheet().getName();
 
   if (column == 35 && name == "GESTOR") {
     switch (spreadsheet.getActiveSheet().getRange(row, column).getValue()) {
@@ -212,13 +244,15 @@ function diagnoseActive() {
 }
 
 /**
- * Marcación de Drogas
+ * Sets the value of certain cells based on the active cell's content.
+ *
+ * @return {void} This function does not return anything.
  */
 function drugsActive() {
-  let spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
-  let row = spreadsheet.getActiveCell().getRow();
-  let column = spreadsheet.getActiveCell().getColumn();
-  let name = spreadsheet.getActiveSheet().getName();
+  const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  const row = spreadsheet.getActiveCell().getRow();
+  const column = spreadsheet.getActiveCell().getColumn();
+  const name = spreadsheet.getActiveSheet().getName();
 
   if (column == 34 && name == "GESTOR") {
     spreadsheet.getActiveSheet().getRange(row, 135).setValue("");
@@ -243,14 +277,11 @@ function drugsActive() {
   }
 }
 
-/**
- * Marcación de laboratorios
- */
 function laboratoryActive() {
-  let spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
-  let row = spreadsheet.getActiveCell().getRow();
-  let column = spreadsheet.getActiveCell().getColumn();
-  let name = spreadsheet.getActiveSheet().getName();
+  const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  const row = spreadsheet.getActiveCell().getRow();
+  const column = spreadsheet.getActiveCell().getColumn();
+  const name = spreadsheet.getActiveSheet().getName();
 
   if (column == 33 && name == "GESTOR") {
     switch (spreadsheet.getActiveSheet().getRange(row, column).getValue()) {
@@ -399,13 +430,15 @@ function laboratoryActive() {
 }
 
 /**
- * Marcación de la prueba covid
+ * Executes actions based on the value of a cell in a Google Sheets spreadsheet.
+ *
+ * @return {void} No return value.
  */
 function covidActive() {
-  let spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
-  let row = spreadsheet.getActiveCell().getRow();
-  let column = spreadsheet.getActiveCell().getColumn();
-  let name = spreadsheet.getActiveSheet().getName();
+  const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  const row = spreadsheet.getActiveCell().getRow();
+  const column = spreadsheet.getActiveCell().getColumn();
+  const name = spreadsheet.getActiveSheet().getName();
 
   if (column == 32 && name == "GESTOR") {
     spreadsheet.getActiveSheet().getRange(row, 159).setValue("");
@@ -426,15 +459,16 @@ function covidActive() {
   }
 }
 
-
 /**
- * Marcación de Vacunación
+ * Updates the value of a cell in the active Google Sheets spreadsheet based on the conditions specified.
+ *
+ * @return {void} No return value.
  */
 function vaccineActive() {
-  let spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
-  let row = spreadsheet.getActiveCell().getRow();
-  let column = spreadsheet.getActiveCell().getColumn();
-  let name = spreadsheet.getActiveSheet().getName();
+  const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  const row = spreadsheet.getActiveCell().getRow();
+  const column = spreadsheet.getActiveCell().getColumn();
+  const name = spreadsheet.getActiveSheet().getName();
 
   if (column == 31 && name == "GESTOR") {
     switch (spreadsheet.getActiveSheet().getRange(row, column).getValue()) {
@@ -460,30 +494,19 @@ function vaccineActive() {
 }
 
 /**
- * Selección de examenes correspondientes a los enfasis
+ * This function checks if the active cell is on column 30 in the sheet named "GESTOR". If it is, 
+ * this function performs certain actions based on the value of the active cell in the same row. 
+ * Specifically, it sets certain cells in the active row to "x", depending on the active cell value. 
+ *
+ * @return {void}
  */
 function emphasisActive() {
-  let spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
-  let row = spreadsheet.getActiveCell().getRow();
-  let column = spreadsheet.getActiveCell().getColumn();
-  let name = spreadsheet.getActiveSheet().getName();
+  const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  const row = spreadsheet.getActiveCell().getRow();
+  const column = spreadsheet.getActiveCell().getColumn();
+  const name = spreadsheet.getActiveSheet().getName();
 
   if (column == 30 && name == "GESTOR") {
-    //spreadsheet.getActiveSheet().getRange(row, 28).setValue("");
-    //spreadsheet.getActiveSheet().getRange(row, 29).setValue("");
-    //spreadsheet.getActiveSheet().getRange(row, 37).setValue("");
-    //spreadsheet.getActiveSheet().getRange(row, 39).setValue("");
-    //spreadsheet.getActiveSheet().getRange(row, 41).setValue("");
-    //spreadsheet.getActiveSheet().getRange(row, 44).setValue("");
-    //spreadsheet.getActiveSheet().getRange(row, 46).setValue("");
-    //spreadsheet.getActiveSheet().getRange(row, 62).setValue("");
-    //spreadsheet.getActiveSheet().getRange(row, 88).setValue("");
-    //spreadsheet.getActiveSheet().getRange(row, 89).setValue("");
-    //spreadsheet.getActiveSheet().getRange(row, 96).setValue("");
-    //spreadsheet.getActiveSheet().getRange(row, 98).setValue("");
-    //spreadsheet.getActiveSheet().getRange(row, 99).setValue("");
-    //spreadsheet.getActiveSheet().getRange(row, 106).setValue("");
-    //spreadsheet.getActiveSheet().getRange(row, 107).setValue("");
 
     switch (spreadsheet.getActiveSheet().getRange(row, column).getValue()) {
       case "AEROPORTUARIO":
@@ -548,15 +571,17 @@ function emphasisActive() {
   }
 }
 
-/***
- * Marcación del tipo de examen a realizar
+/**
+ * Updates a Google Spreadsheet with checked values based on the selected exam type.
+ *
+ * @return {void} This function does not return anything.
  */
 function checkedExam() {
-  let spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
-  let activeExam = spreadsheet.getActiveCell().getValue();
-  let row = spreadsheet.getActiveCell().getRow();
-  let column = spreadsheet.getActiveCell().getColumn();
-  let name = spreadsheet.getActiveSheet().getName();
+  const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  const activeExam = spreadsheet.getActiveCell().getValue();
+  const row = spreadsheet.getActiveCell().getRow();
+  const column = spreadsheet.getActiveCell().getColumn();
+  const name = spreadsheet.getActiveSheet().getName();
 
   if (column == 8 && name == "GESTOR") {
     spreadsheet.getActiveSheet().getRange(row, 22).setValue("");
@@ -589,16 +614,21 @@ function checkedExam() {
   }
 }
 
+/**
+ * Retrieves a list of exams from a Google Sheets document based on the active cell's row and column.
+ *
+ * @return {void} No return value.
+ */
 function listExams() {
   const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
-  let row = spreadsheet.getActiveSheet().getActiveCell().getRow();
-  let column = spreadsheet.getActiveSheet().getActiveCell().getColumn();
+  const row = spreadsheet.getActiveSheet().getActiveCell().getRow();
+  const column = spreadsheet.getActiveSheet().getActiveCell().getColumn();
 
   SpreadsheetApp.getActive().toast("Realizando consulta por favor espere","Consulta");
 
-  let spreadsheet2 = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("ORDEN");
+  const spreadsheet2 = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("ORDEN");
   spreadsheet2.getRange('B14').activate();
-  let currentCell = spreadsheet2.getCurrentCell();
+  const currentCell = spreadsheet2.getCurrentCell();
   spreadsheet2.getSelection().getNextDataRange(SpreadsheetApp.Direction.DOWN).activate();
   currentCell.activateAsCurrentCell();
   spreadsheet2.getActiveRangeList().clear({ contentsOnly: true, skipFilteredRows: true });
@@ -612,17 +642,17 @@ function listExams() {
     const ccArray = sheetData.getRange(7, 11, sheetData.getLastRow(), sheetData.getLastColumn()).getValues();
     const exams = sheetData.getRange(6, 37, 1, sheetData.getLastColumn()).getValues();
     let item;
-    let myExam = [];
+    const myExam = [];
 
     ccArray.find(element => (element[0] == cc && element[5].toLocaleDateString() == ordenDate) ? item = ccArray.indexOf(element) : "");
 
     const data = ccArray[item];
     const examArray = data.slice(26);
 
-    let indices = [];
+    const indices = [];
     const element = 'X';
-    let selected = examArray.map(e => { return e.toUpperCase() })
-    let idx = selected.indexOf(element);
+    const selected = examArray.map(e => { return e.toUpperCase() })
+    const idx = selected.indexOf(element);
     while (idx != -1) {
       indices.push(idx);
       idx = selected.indexOf(element, idx + 1);
