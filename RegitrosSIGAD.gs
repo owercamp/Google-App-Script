@@ -14,26 +14,75 @@ const mailUser = {
 }
 
 const mailToSend = {
+  /**
+   * Sends an email to Leidy Sanchez with the given mailUser properties.
+   *
+   * @param {object} mailUser - An object containing the properties for sending the email.
+   * @return {void} This function does not return anything.
+   */
   leidySanchez() {
-    mailSend(mailUser.leidySanchez, mailUser.gestionDocumental, mailUser.dianaOrtiz);
+    const { leidySanchez, gestionDocumental, dianaOrtiz } = mailUser;
+    mailSend(leidySanchez, gestionDocumental, dianaOrtiz);
   },
+  /**
+   * Sends an email to Camila Gonzalez with the given mailUser properties.
+   *
+   * @param {object} mailUser - An object containing the properties for sending the email.
+   * @return {void} This function does not return anything.
+   */
   camilaGonzalez() {
-    mailSend(mailUser.camilaGonzalez, mailUser.gestionDocumental, mailUser.dianaOrtiz);
+    const { camilaGonzalez, gestionDocumental, dianaOrtiz } = mailUser;
+    mailSend(camilaGonzalez, gestionDocumental, dianaOrtiz);
   },
+  /**
+   * Sends an email to Natalia Guerrero with the given mailUser properties.
+   *
+   * @param {object} mailUser - An object containing the properties for sending the email.
+   * @return {void} This function does not return anything.
+   */
   nataliaGuerrero() {
-    mailSend(mailUser.nataliaGuerrero, mailUser.gestionDocumental, mailUser.dianaOrtiz);
+    const { nataliaGuerrero, gestionDocumental, dianaOrtiz } = mailUser;
+    mailSend(nataliaGuerrero, gestionDocumental, dianaOrtiz);
   },
+  /**
+   * Sends an email to Diana Perdomo with the given mailUser properties.
+   *
+   * @param {object} mailUser - An object containing the properties for sending the email.
+   * @return {void} This function does not return anything.
+   */
   dianaPerdomo() {
-    mailSend(mailUser.dianaPerdomo, mailUser.gestionDocumental, mailUser.dianaOrtiz);
+    const { dianaPerdomo, gestionDocumental, dianaOrtiz } = mailUser;
+    mailSend(dianaPerdomo, gestionDocumental, dianaOrtiz);
   },
+  /**
+   * Sends an email to Katherine Sanchez with the given mailUser properties.
+   *
+   * @param {object} mailUser - An object containing the properties for sending the email.
+   * @return {void} This function does not return anything.
+   */
   katherineSanchez() {
-    mailSend(mailUser.katherineSanchez, mailUser.gestionDocumental, mailUser.dianaOrtiz);
+    const { katherineSanchez, gestionDocumental, dianaOrtiz } = mailUser;
+    mailSend(katherineSanchez, gestionDocumental, dianaOrtiz);
   },
+  /**
+   * Sends an email to Juan Avila with the given mailUser properties.
+   *
+   * @param {object} mailUser - An object containing the properties for sending the email.
+   * @return {void} This function does not return anything.
+   */
   juanAvila() {
-    mailSend(mailUser.juanAvila, mailUser.gestionDocumental, mailUser.dianaOrtiz);
+    const { juanAvila, gestionDocumental, dianaOrtiz } = mailUser;
+    mailSend(juanAvila, gestionDocumental, dianaOrtiz);
   },
+  /**
+   * Sends an email to Monica Marroquin with the given mailUser properties.
+   *
+   * @param {object} mailUser - An object containing the properties for sending the email.
+   * @return {void} This function does not return anything.
+   */
   monicaMarroquin() {
-    mailSend(mailUser.monicaMarroquin, mailUser.gestionDocumental, mailUser.dianaOrtiz);
+    const { monicaMarroquin, gestionDocumental, dianaOrtiz } = mailUser;
+    mailSend(monicaMarroquin, gestionDocumental, dianaOrtiz);
   }
 }
 
@@ -58,16 +107,20 @@ const mailSend = (manager, group, director) => {
  * @return {void} does not return a value
  */
 function onOpen(e) {
-  SpreadsheetApp.getUi()
-    .createMenu('GESTORES DB')
-    .addItem('Leidy Sanchez', `mailToSend.leidySanchez`)
-    .addItem('Camila Gonzalez', 'mailToSend.camilaGonzalez')
-    .addItem('Natalia Guerrero', 'mailToSend.nataliaGuerrero')
-    .addItem('Diana Perdomo', 'mailToSend.dianaPerdomo')
-    .addItem('Katherine Sanchez', 'mailToSend.katherineSanchez')
-    .addItem('Juan Avila', 'mailToSend.juanAvila')
-    .addItem('Monica Marroquin', 'mailToSend.monicaMarroquin')
-    .addToUi();
+  const menu = SpreadsheetApp.getUi().createMenu('GESTORES DB');
+  const recipients = {
+    'Leidy Sanchez': 'mailToSend.leidySanchez',
+    'Camila Gonzalez': 'mailToSend.camilaGonzalez',
+    'Natalia Guerrero': 'mailToSend.nataliaGuerrero',
+    'Diana Perdomo': 'mailToSend.dianaPerdomo',
+    'Katherine Sanchez': 'mailToSend.katherineSanchez',
+    'Juan Avila': 'mailToSend.juanAvila',
+    'Monica Marroquin': 'mailToSend.monicaMarroquin'
+  };
+  for (const [name, recipient] of Object.entries(recipients)) {
+    menu.addItem(name, recipient);
+  }
+  menu.addToUi();
 }
 
 /**
@@ -76,19 +129,20 @@ function onOpen(e) {
  * @return {void} 
  */
 function Auto_Increment() {
-  const spreadsheet = SpreadsheetApp.getActive();
-  const row = spreadsheet.getActiveCell().getRow();
-  const column = spreadsheet.getActiveCell().getColumn();
+  const sheet = SpreadsheetApp.getActiveSheet();
+  const cell = sheet.getActiveCell();
+  const row = cell.getRow();
+  const column = cell.getColumn();
+  
+  if (column !== 2 || sheet.getRange(row, 2).isBlank()) return;
 
-  if (spreadsheet.getActiveSheet().getRange(row, 2).getValue() != "" && column == 2) {
-    const data_value = spreadsheet.getActiveSheet().getRange((row - 1), 3).getValue();
-    const split = data_value.toString().split("-");
-    const au = parseInt(split[1]) + 1;
-    spreadsheet.getActiveSheet().getRange(row, 3).setValue(`ICS-${("0000" + au).slice(-4)}`);
-    spreadsheet.getActiveSheet().getRange(row, 4).setValue("PENDIENTE");
-    Filtro(row);
-  }
-};
+  const data_value = sheet.getRange(row - 1, 3).getValue();
+  const [, au] = data_value.toString().split('-');
+  const incremented = parseInt(au, 10) + 1;
+  sheet.getRange(row, 3).setValue(`ICS-${('0000' + incremented).slice(-4)}`);
+  sheet.getRange(row, 4).setValue('PENDIENTE');
+  applyFilterAndBorder(row);
+}
 
 /**
  * Sends an email with the information of a generated order to the email address listed in the corresponding row of the spreadsheet.
@@ -99,54 +153,48 @@ function enviarCorreo() {
   const spreadsheet = SpreadsheetApp.getActive();
   const date = new Date();
   const hour = date.getHours();
-  let hi;
-  let text = "";
+  const emailCell = spreadsheet.getActiveCell().offset(0, 2);
 
+  let greeting;
   if (hour >= 0 && hour < 12) {
-    hi = "Buenos dias";
+    greeting = "Buenos dias";
   } else if (hour >= 12 && hour < 18) {
-    hi = "Buenas tardes";
+    greeting = "Buenas tardes";
   } else if (hour >= 18 && hour <= 23) {
-    hi = "Buenas noches";
+    greeting = "Buenas noches";
   }
 
-  if (spreadsheet.getActiveCell().getColumn() == 4 && spreadsheet.getActiveCell().getValue() == "ENTREGADO") {
-    const msg = spreadsheet.getActiveCell().offset(0, 3).getValue();
-    if (msg) {
-      const separateSplit = msg.toString().split("*");
-
-      let list = "<ul>"
-      separateSplit.map(item => {
-        if (item) {
-          list += `<li>${item}</li>`;
-        }
-      });
-      list += "</ul>";
-
-      text = `<b style='color:red'>Importante:</b><br>${list}`;
+  const activeCellValue = spreadsheet.getActiveCell().getValue();
+  if (spreadsheet.getActiveCell().getColumn() === 4 && activeCellValue === "ENTREGADO") {
+    const message = spreadsheet.getActiveCell().offset(0, 3).getValue();
+    let text = "";
+    if (message) {
+      const separateSplit = message.toString().split("*");
+      const list = separateSplit
+        .filter(item => item)
+        .map(item => `<li>${item}</li>`)
+        .join("");
+      text = `<b style='color:red'>Importante:</b><br><ul>${list}</ul>`;
     }
-    const signature = Gmail.Users.Settings.SendAs.list("me").sendAs.filter(function (account) { if (account.isDefault) { return true } })[0].signature;
+
+    const signature = Gmail.Users.Settings.SendAs.list("me")
+      .sendAs.filter(account => account.isDefault)[0].signature;
 
     MailApp.sendEmail({
-      to: spreadsheet.getActiveCell().offset(0, 2).getValue(),
-      /*to: "ower.campos@soandes.co",*/
+      to: emailCell.getValue(),
       subject: spreadsheet.getActiveCell().offset(0, -2).getValue(),
-      htmlBody: hi + "<br><br>Se generó la orden número (" +
-        spreadsheet.getActiveCell().offset(0, -1).getValue() +
-        ")  para el informe del cliente " + spreadsheet.getActiveCell().offset(0, -2).getValue() +
-        ". por favor validar.<br><br>" + text + "<br><br>" + signature
+      htmlBody: `${greeting}<br><br>Se generó la orden número (${spreadsheet.getActiveCell().offset(0, -1).getValue()}) para el informe del cliente ${spreadsheet.getActiveCell().offset(0, -2).getValue()}. por favor validar.<br><br>${text}<br><br>${signature}`,
     });
 
-    SpreadsheetApp.getUi().alert("Correo Enviado Satisfactoriamente")
-
+    SpreadsheetApp.getUi().alert("Correo Enviado Satisfactoriamente");
   }
 }
 
 /**
- * Applies a filter to a specific range in the active sheet and adds a border to it.
+ * Filters a specific range in the active sheet and adds a border to it.
  *
- * @param {number} row - The number of rows to include in the filter range
- * @return {void} - Does not return anything
+ * @param {number} rows - The number of rows to include in the filter range.
+ * @return {void}
  */
 function Filtro(row) {
   const spreadsheet = SpreadsheetApp.getActive();
