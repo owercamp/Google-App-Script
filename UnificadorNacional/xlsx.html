@@ -1,0 +1,111 @@
+<script>
+
+  document.getElementById('excelForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    console.log('enviando');
+
+    const fileInput = document.getElementById('excelFile');
+    const file = fileInput.files[0];
+    const fileReader = new FileReader();
+    const informationPatient = new Object();
+
+    /**
+     ** Reads the content of a file and processes the data using the XLSX library.
+     ** 
+     ** Parameters:
+     ** - event: The event object containing the result of the file reading operation.
+     ** 
+     ** Returns: None
+     */
+    fileReader.onload = function (event) {
+      const data = event.target.result;
+      const workbook = XLSX.read(data, { type: 'binary' });
+      const numberSheets = workbook.SheetNames.length;
+      const resultSocio = [], resultEmo = [], resultDiag = [], resultAudio = [], resultEmphasis = [], resultOpto = [], resultVisio = [];
+
+      for (let x = 0; x < numberSheets; x++) {
+        try {
+          switch (workbook.SheetNames[x]) {
+            case 'EMO':
+              console.log(`Emo`)
+              break;
+            case 'AUDIO':
+              console.log(`Audio`)
+              break;
+            case 'OPTO':
+              console.log(`Opto`)
+              break;
+            case 'ESPIRO':
+              console.log(`Espiro`)
+              break;
+            case 'VISIO':
+              console.log(`Visio`)
+              break;
+            case 'OSTEO':
+              console.log(`Osteo`)
+              break;
+            case 'COMPLEMENTARIOS', 'COMPLEMENTARIO':
+              console.log(`Complementario`)
+              break;
+            case 'PSICOTECNICA', 'PSICOLOGIA':
+              console.log(`Psicologia`)
+              break;
+            case 'PSICOSENSOMETRICA', 'PSICOMOTRIZ':
+              console.log(`Psicomotriz`)
+              break;
+            default:
+              const sheetName = workbook.SheetNames[x];
+              const worksheet = workbook.Sheets[sheetName];
+
+              const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+
+              if (jsonData[0]) {
+                const headerRow = jsonData[0].map(element => { return element.replace(/\s+/g, "_").toString() });
+                for (let i = 1; i < jsonData.length; i++) {
+                  const row = jsonData[i];
+                  const obj = {};
+
+                  for (let j = 0; j < headerRow.length; j++) {
+                    obj[headerRow[j]] = row[j];
+                  }
+
+                  if (obj['NOMBRE_EMPRESA'] !== undefined) {
+                    const socio = informationSocioEmography(obj);
+                    resultSocio.push(socio);
+                    const emo = occupationalMedicalExamination(obj);
+                    resultEmo.push(emo);
+                    const diag = occupationalMedicalDiag(obj);
+                    resultDiag.push(diag);
+                    const emphasis = occupationalMedicalEmphasis(obj);
+                    resultEmphasis.push(emphasis);
+                    const audio = audiometry(obj);
+                    resultAudio.push(audio);
+                    const opto = optometry(obj);
+                    resultOpto.push(opto);
+                    const visio = visiometrics(obj);
+                    resultVisio.push(visio);
+                  }
+                }
+              }
+              break;
+          }
+          informationPatient.socioEmoGraphy = resultSocio;
+          informationPatient.emoRisk = resultEmo;
+          informationPatient.emoDiag = resultDiag;
+          informationPatient.emoEmphasis = resultEmphasis;
+          informationPatient.audiometry = resultAudio;
+          informationPatient.optometry = resultOpto;
+          informationPatient.visiometrics = resultVisio;
+
+        } catch (err) {
+          console.log(`Error => ${err.message}`);
+        }
+      }
+
+      console.log(informationPatient);
+    };
+
+    fileReader.readAsBinaryString(file);
+  });
+
+</script>

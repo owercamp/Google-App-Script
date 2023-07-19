@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <base target="_top">
+  <?!= include('css'); ?>
+</head>
+
+<body class="container">
+  <h1>Almacenamiento nacional</h1>
+
+  <form id="excelForm">
+    <input type="file" id="excelFile" accept=".xlsx">
+    <input type="submit" value="Almacenar">
+  </form>
+
+  <?!= include('js'); ?>
+  <?!= include('models'); ?>
+  <?!= include('xlsx'); ?>
+</body>
+
+</html>

@@ -1,0 +1,1093 @@
+<script>
+  /**
+  **  Creates a socio-emographic object based on the provided data.
+  **  
+  **  Parameters:
+  **  - data: an object containing the socio-emographic information.
+  **  
+  **  Returns:
+  **  - sociography: an object with the extracted socio-emographic information.
+  **
+  **  Throws:
+  **  If an error occurs during the execution of the function, an error message is logged to the console
+  **/
+  const informationSocioEmography = (data) => {
+    const sociography = new Object()
+
+    try {
+      for (const element in data) {
+        switch (element.trim().toUpperCase().toString()) {
+          case 'NOMBRE_EMPRESA':
+            sociography.contractedName = (data[element].trim()) ? data[element].trim() : ""; /** Nombre Contrato o Empresa **/
+            break;
+          case 'ORIGEN':
+            sociography.origin = (data[element].trim()) ? data[element].trim() : ""; /** Origen **/
+            break;
+          case 'DESTINO':
+            sociography.destiny = (data[element].trim()) ? data[element].trim() : ""; /** Destino **/
+            break;
+          case 'CIUDAD':
+            sociography.city = (data[element].trim()) ? data[element].trim() : ""; /** Ciudad **/
+            break;
+          case 'INGRESO', 'NUMERO_DE_FACTURA':
+            sociography.income = (data[element]) ? data[element] : ""; /** Ingreso **/
+            break;
+          case 'TIPO_EXAMEN':
+            sociography.examType = (data[element].trim()) ? data[element].trim() : ""; /** Tipo de Examen **/
+            break;
+          case 'FECHA_DE_ATENCION':
+            sociography.date = (data[element]) ? data[element] : ""; /** Fecha **/
+            break;
+          case 'PACIENTE':
+            sociography.patient = (data[element].trim()) ? data[element].trim() : ""; /** Paciente **/
+            break;
+          case 'NRO_IDENFICACION':
+            sociography.numberIdentification = (data[element]) ? data[element] : ""; /** Numero Identificación **/
+            break;
+          case 'EDADREC':
+            sociography.age = (data[element]) ? data[element] : ""; /** Edad **/
+            break;
+          case 'ESTRATO':
+            sociography.stratum = (data[element]) ? data[element] : ""; /** Estrato **/
+            break;
+          case 'GENERO':
+            sociography.gender = (data[element].trim()) ? data[element].trim() : ""; /** Genero **/
+            break;
+          case 'NRO_HIJOS':
+            sociography.numberOfChildren = (data[element]) ? data[element] : ""; /** Numero de Hijos **/
+            break;
+          case 'RAZA':
+            sociography.race = (data[element].trim()) ? data[element].trim() : ""; /** raza **/
+            break;
+          case 'ESTADO_CIVIL':
+            sociography.civilStatus = (data[element].trim()) ? data[element].trim() : ""; /** Estado Civil **/
+            break;
+          case 'ESCOLARIDAD':
+            sociography.scholarship = (data[element].trim()) ? data[element].trim() : ""; /** Escolaridad **/
+            break;
+          case 'CARGO':
+            sociography.post = (data[element].trim()) ? data[element].trim() : ""; /** cargo **/
+            break;
+          case 'ANTIGUEDAD':
+            sociography.durationWorking = (data[element]) ? data[element] : ""; /** duracion laboral **/
+            break;
+        }
+      }
+
+      return sociography;
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
+  /**
+  **  Creates a exam medical occupational object based on the provided data.
+  **  
+  **  Parameters:
+  **  - data: an object containing the exam medical occupational information.
+  **  
+  **  Returns:
+  **  - occupational: an object with the extracted exam medical occupational information.
+  **
+  **  Throws:
+  **  If an error occurs during the execution of the function, an error message is logged to the console
+  **/
+  const occupationalMedicalExamination = (data) => {
+    const occupational = new Object()
+
+    try {
+      for (const element in data) {
+        switch (element.trim().toUpperCase().toString()) {
+          /** Riesgos Biologicos **/
+          case 'RIESGO_BIOLOGICO_/_BACTERIAS':
+            occupational.riesgosBiologicosFluidos = (data[element] !== undefined) ? 1 : 0; /** Fluidos **/
+            break;
+          case 'RIESGO_BIOLOGICO_/_HONGOS':
+            occupational.riesgosBiologicosHongos = (data[element] !== undefined) ? 1 : 0; /** Hongos **/
+            break;
+          case 'RIESGO_BIOLOGICO_/_MORDEDURAS':
+            occupational.riesgosBiologicosMordeduras = (data[element] !== undefined) ? 1 : 0; /** Mordeduras **/
+            break;
+          case 'RIESGO_BIOLOGICO_/_PARASITOS':
+            occupational.riesgosBiologicosParasitos = (data[element] !== undefined) ? 1 : 0; /** Parasitos **/
+            break;
+          case 'RIESGO_BIOLOGICO_/_PICADURAS':
+            occupational.riesgosBiologicosPicaduras = (data[element] !== undefined) ? 1 : 0; /** Picaduras **/
+            break;
+          case 'RIESGO_BIOLOGICO_/_RICKETSIAS':
+            occupational.riesgosBiologicosRicketsias = (data[element] !== undefined) ? 1 : 0; /** Ricketsias **/
+            break;
+          case 'RIESGO_BIOLOGICO_/_VIRUS':
+            occupational.riesgosBiologicosVirus = (data[element] !== undefined) ? 1 : 0; /** Virus **/
+            break;
+          case 'OTROS_RIESGOS_BIOLOGICOS':
+            occupational.riesgosBiologicosOtrosBiologicos = (data[element] !== undefined) ? data[element].toUpperCase() : "NO REFIERE"; /** Otros **/
+            break;
+          /** Riesgos Fenomenos Naturales **/
+          case 'FENOMENOS_NATURALES_/_DERRUMBE':
+            occupational.fenomenosNaturalesDerrumbe = (data[element] !== undefined) ? 1 : 0; /** Derrumbe **/
+            break;
+          case 'FENOMENOS_NATURALES_/_INUNDACION':
+            occupational.fenomenosNaturalesInundacion = (data[element] !== undefined) ? 1 : 0; /** Inundacion **/
+            break;
+          case 'FENOMENOS_NATURALES_/_PRECIPITACIONES':
+            occupational.fenomenosNaturalesPrecipitaciones = (data[element] !== undefined) ? 1 : 0; /** Precipitaciones **/
+            break;
+          case 'FENOMENOS_NATURALES_/_SISMO':
+            occupational.fenomenosNaturalesSismo = (data[element] !== undefined) ? 1 : 0; /** Sismo **/
+            break;
+          case 'FENOMENOS_NATURALES_/_TERREMOTO':
+            occupational.fenomenosNaturalesTerremoto = (data[element] !== undefined) ? 1 : 0; /** Terremoto **/
+            break;
+          case 'FENOMENOS_NATURALES_/_VENDAVAL':
+            occupational.fenomenosNaturalesVendaval = (data[element] !== undefined) ? 1 : 0; /** Vendaval **/
+            break;
+          case 'FENOMENOS_NATURALES_/_OTROS_NATURALES':
+            occupational.fenomenosNaturalesOtrosNaturales = (data[element] !== undefined) ? data[element].toUpperCase() : "NO REFIERE"; /** Otros **/
+            break;
+          /** Riesgos Biomecanicos **/
+          case 'RIESGO_BIOMECANICO_ESFUERZO':
+            occupational.riesgosBiomecanicosEsfuerzo = (data[element] !== undefined) ? 1 : 0; /** Esfuerzo **/
+            break;
+          case 'RIESGO_BIOMECANICO_MANIPULACION_CARGA':
+            occupational.riesgosBiomecanicosManipulacionCarga = (data[element] !== undefined) ? 1 : 0; /** Manipulacion de carga **/
+            break;
+          case 'RIESGO_BIOMECANICO_MOVREPETITIVO':
+            occupational.riesgosBiomecanicosMovRepetitivo = (data[element] !== undefined) ? 1 : 0; /** Movimiento repetitivo **/
+            break;
+          case 'RIESGO_BIOMECANICO_POSTURA':
+            occupational.riesgosBiomecanicosPostura = (data[element] !== undefined) ? 1 : 0; /** Postura **/
+            break;
+          case 'OTROS_RIESGOS_BIOMECANICOS':
+            occupational.riesgosBiomecanicosOtrosBiomecanicos = (data[element] !== undefined) ? data[element].toUpperCase() : "NO REFIERE"; /** Otros **/
+            break;
+          /** Riesgos Fisicos **/
+          case 'RIESGO_FISICO_/_ILUMINACION':
+            occupational.riesgosFisicosIluminacion = (data[element] !== undefined) ? 1 : 0; /** Iluminacion **/
+            break;
+          case 'RIESGO_FISICO_/_PRES_ATMOSFERICA':
+            occupational.riesgosFisicosPresAtmosferica = (data[element] !== undefined) ? 1 : 0; /** Presion Atmosferica **/
+            break;
+          case 'RIESGO_FISICO_/_RAD_IONIZANTES':
+            occupational.riesgosFisicosRadIonizantes = (data[element] !== undefined) ? 1 : 0; /** Radiacion Ionizantes **/
+            break;
+          case 'RIESGO_FISICO_/_RAD_NO_IONIZANTES':
+            occupational.riesgosFisicosRadNoIonizantes = (data[element] !== undefined) ? 1 : 0; /** Radiacion No Ionizantes **/
+            break;
+          case 'RIESGO_FISICO_/_RUIDO':
+            occupational.riesgosFisicosRuido = (data[element] !== undefined) ? 1 : 0; /** Ruido **/
+            break;
+          case 'RIESGO_FISICO_/_TEMP_EXTREMAS':
+            occupational.riesgosFisicosTemperaturaExtremas = (data[element] !== undefined) ? 1 : 0; /** Temperatura Extremas **/
+            break;
+          case 'RIESGO_FISICO_/_VIBRACION':
+            occupational.riesgosFisicosVibracion = (data[element] !== undefined) ? 1 : 0; /** Vibracion **/
+            break;
+          case 'RIESGO_DE_OTROS_FACTORES_FISICOS':
+            occupational.riesgosFisicosOtrosFisicos = (data[element] !== undefined) ? data[element].toUpperCase() : "NO REFIERE"; /** Otros **/
+            break;
+          /** Riesgos Psicologicos **/
+          case 'RIESGO_PSICO_/_CARACT_DEL_GRUPO':
+            occupational.riesgosPsicosCaractDelGrupo = (data[element] !== undefined) ? 1 : 0; /** Caracteristicas del grupo **/
+            break;
+          case 'RIESGO_PSICO_/_CARACT_ORGANIZACION':
+            occupational.riesgosPsicosCaractOrganizacion = (data[element] !== undefined) ? 1 : 0; /** Caracteristicas organizacion **/
+            break;
+          case 'RIESGO_PSICO_/_CONDICIONES':
+            occupational.riesgosPsicosCondiciones = (data[element] !== undefined) ? 1 : 0; /** Caracteristicas de condiciones **/
+            break;
+          case 'RIESGO_PSICO_/_GESTION_ORGANIZACIONAL':
+            occupational.riesgosPsicosGestionOrganizacional = (data[element] !== undefined) ? 1 : 0; /** Caracteristicas de gestion organizacional **/
+            break;
+          case 'RIESGO_PSICO_/_INTERFACES_TAREA':
+            occupational.riesgosPsicosInterfasesTarea = (data[element] !== undefined) ? 1 : 0; /** Caracteristicas de interfaces de tarea **/
+            break;
+          case 'RIESGO_PSICO_/_JORNADA':
+            occupational.riesgosPsicosJornada = (data[element] !== undefined) ? 1 : 0; /** Caracteristicas de jornada **/
+            break;
+          case 'OTROS_PSICO_LABORAL':
+            occupational.riesgosPsicosOtrosLaboral = (data[element] !== undefined) ? data[element].toUpperCase() : "NO REFIERE"; /** Otros **/
+            break;
+          /** riesgos Quimicos **/
+          case 'RIESGO_QUIMICO_/GASES':
+            occupational.riesgosQuimicosGases = (data[element] !== undefined) ? 1 : 0; /** Gases **/
+            break;
+          case 'RIESGO_QUIMICO_/MATERIAL_PARTICULADO':
+            occupational.riesgosQuimicosMaterialParticulado = (data[element] !== undefined) ? 1 : 0; /** Material Particulado **/
+            break;
+          case 'RIESGO_QUIMICO_/_FIBRAS':
+            occupational.riesgosQuimicosFibras = (data[element] !== undefined) ? 1 : 0; /** Fibras **/
+            break;
+          case 'RIESGO_QUIMICO_/_HUMOS':
+            occupational.riesgosQuimicosHumos = (data[element] !== undefined) ? 1 : 0; /** Humos **/
+            break;
+          case 'RIESGO_QUIMICO_/_LIQUIDOS':
+            occupational.riesgosQuimicosLiquidos = (data[element] !== undefined) ? 1 : 0; /** Liquidos **/
+            break;
+          case 'RIESGO_QUIMICO_/_POLVOS':
+            occupational.riesgosQuimicosPolvos = (data[element] !== undefined) ? 1 : 0; /** Polvos **/
+            break;
+          case 'RIESGO_QUIMICO_/_VAPORES':
+            occupational.riesgosQuimicosVapores = (data[element] !== undefined) ? 1 : 0; /** Vapores **/
+            break;
+          case 'OTROS_RIESGOS_QUIMICOS':
+            occupational.riesgosQuimicosOtrosQuimicos = (data[element] !== undefined) ? data[element].toUpperCase() : "NO REFIERE"; /** Otros **/
+            break;
+          /** Condiciones de Seguridad **/
+          case 'CONDICIONES_DE_SEGURIDAD_/_ACC_DE_TRANSITO':
+            occupational.condicionesDeSeguridadAccDeTransito = (data[element] !== undefined) ? 1 : 0; /** Acciones de transporte **/
+            break;
+          case 'CONDICIONES_DE_SEGURIDAD_/_ELECTRICOS':
+            occupational.condicionesDeSeguridadElectricos = (data[element] !== undefined) ? 1 : 0; /** Electricos **/
+            break;
+          case 'CONDICIONES_DE_SEGURIDAD_/_ESPACIOS_CONFINADOS':
+            occupational.condicionesDeSeguridadEspaciosConfinados = (data[element] !== undefined) ? 1 : 0; /** Espacios Confinados **/
+            break;
+          case 'CONDICIONES_DE_SEGURIDAD_/_LOCATIVO':
+            occupational.condicionesDeSeguridadLocativo = (data[element] !== undefined) ? 1 : 0; /** Locativo **/
+            break;
+          case 'CONDICIONES_DE_SEGURIDAD_/_MECANICOS':
+            occupational.condicionesDeSeguridadMecanicos = (data[element] !== undefined) ? 1 : 0; /** Mecanicos **/
+            break;
+          case 'CONDICIONES_DE_SEGURIDAD_/_PUBLICOS':
+            occupational.condicionesDeSeguridadPublicos = (data[element] !== undefined) ? 1 : 0; /** Publicos **/
+            break;
+          case 'CONDICIONES_DE_SEGURIDAD_/_TECNOLOGICO':
+            occupational.condicionesDeSeguridadTecnologico = (data[element] !== undefined) ? 1 : 0; /** Tecnologico **/
+            break;
+          case 'CONDICIONES_DE_SEGURIDAD_/_TRABAJO_EN_ALTURAS':
+            occupational.condicionesDeSeguridadTrabajoEnAlturas = (data[element] !== undefined) ? 1 : 0; /** Trabajo en alturas **/
+            break;
+          case 'CONDICIONES_DE_SEGURIDAD_/_OTROS_DE_SEGURIDAD':
+            occupational.condicionesDeSeguridadOtrosDeSeguridad = (data[element] !== undefined) ? data[element].toUpperCase() : "NO REFIERE"; /** Otros **/
+            break;
+          case 'FECHA_ACCIDENTE':
+            occupational.fechaAccidente = (data[element] !== undefined) ? data[element] : ""; /** Fecha **/
+            break;
+          case 'ACCIDENTE_PASO_EN_EMPRESA':
+            occupational.accidentePasoEmpresa = (data[element] !== undefined) ? data[element] : ""; /** Accidente **/
+            break;
+          case 'TIPO_ACCIDENTE':
+            occupational.tipoAccidente = (data[element] !== undefined) ? data[element] : ""; /** Tipo Accidente **/
+            break;
+          case 'NATURALEZA_LESION':
+            occupational.naturalezaLesion = (data[element] !== undefined) ? data[element] : ""; /** Naturaleza Lesion **/
+            break;
+          case 'PARTE_AFECTADA':
+            occupational.parteAfectada = (data[element] !== undefined) ? data[element] : ""; /** Parte afectada **/
+            break;
+          case 'INCAPACIDAD':
+            occupational.incapacidad = (data[element] !== undefined) ? data[element] : ""; /** Incapacidad **/
+            break;
+          case 'SECUELAS':
+            occupational.secuelas = (data[element] !== undefined) ? data[element] : ""; /** Secuelas **/
+            break;
+          case 'NOMBRE_ENFERMEDAD':
+            occupational.nombreEnfermedad = (data[element] !== undefined) ? data[element] : ""; /** Nombre Enfermedad **/
+            break;
+          case 'ETAPA':
+            occupational.etapa = (data[element] !== undefined) ? data[element] : ""; /** Etapa **/
+            break;
+          case 'OBSERVACIONES_DE_ENFERMEDAD':
+            occupational.observacionesEnfermedad = (data[element] !== undefined) ? data[element] : ""; /** Observaciones de Enfermedad **/
+            break;
+          case 'ACT__FISICA':
+            occupational.actFisica = (data[element] !== undefined) ? data[element] : ""; /** Act Fisica **/
+            break;
+          case 'FUMA':
+            occupational.fuma = (data[element] !== undefined) ? data[element] : ""; /** Fuma **/
+            break;
+          case 'CONSUMO_DE_ALCOHOL':
+            occupational.consumoAlcohol = (data[element] !== undefined) ? data[element] : ""; /** Consumo Alcohol **/
+            break;
+          case 'PESO':
+            occupational.peso = (data[element] !== undefined) ? data[element] : ""; /** Peso **/
+            break;
+          case 'TALLA':
+            occupational.talla = (data[element] !== undefined) ? data[element] : ""; /** Talla **/
+            break;
+          case 'IMC2':
+            occupational.imc2 = (data[element] !== undefined) ? data[element] : ""; /** IMC2 **/
+            break;
+          case 'CLASIFICACION_IMC':
+            occupational.clasificacionImc = (data[element] !== undefined) ? data[element] : ""; /** Clasificacion IMC **/
+            break;
+          case 'TENSION_ARTERIAL':
+            occupational.tensionArterial = (data[element] !== undefined) ? data[element] : ""; /** Tension Arterial **/
+            break;
+          case 'FREC__CARDIACA':
+            occupational.frecCardiaca = (data[element] !== undefined) ? data[element] : ""; /** Frec Cardiaca **/
+            break;
+          case 'FREC__RESPIRATORIA':
+            occupational.frecRespiratoria = (data[element] !== undefined) ? data[element] : ""; /** Frec Respiratoria **/
+            break;
+          case 'PERIMETRO_ABDOMINAL':
+            occupational.perimetroAbdominal = (data[element] !== undefined) ? data[element] : ""; /** Perimetro Abdominal **/
+            break;
+          case 'LATERALIDAD':
+            occupational.lateralidad = (data[element] !== undefined) ? data[element] : ""; /** Lateralidad **/
+            break;
+        }
+      }
+
+      return occupational;
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
+  /**
+   ** Generates a new object with diagnostics data from the input data object.
+   ** 
+   ** Parameters:
+   ** - data: An object containing the data to be processed.
+   ** 
+   ** Returns:
+   ** An object with diagnostics data where the keys are filtered from the input data object based on certain
+   ** conditions and the corresponding values are converted to uppercase. 
+   ** If an element in the input data object is undefined, the corresponding value in the output object is an empty string.
+   **
+   ** Throws:
+   ** If an error occurs during the execution of the function, an error message is logged to the console.
+  */
+  const occupationalMedicalDiag = (data) => {
+    const diag = new Object();
+    const dataDiag = Object.keys(data).filter(element => (!element.includes("DIAG_REL/") && (element.includes("DIAG_REL") || element.includes("DIAG_PPAL"))));
+
+    try {
+      for (const element in data) {
+        for (const iterator of dataDiag) {
+          if (element === iterator) {
+            diag[iterator] = (data[element] !== undefined) ? data[element].toUpperCase() : "";
+          }
+        }
+      }
+      return diag;
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
+  /**
+  ** Generates a new object with emphasis values from the given data object.
+  **
+  ** Parameters:
+  ** - data: The data object to extract emphasis values from.
+  **
+  ** Returns:
+  ** - An object with emphasis values.
+  **
+  ** Throws:
+  ** - Will catch and log any errors that occur during execution.
+  */
+  const occupationalMedicalEmphasis = (data) => {
+    const emphasis = new Object()
+    const dataEmphasis = Object.keys(data).filter(element => (element.includes("ENFASIS")));
+
+    try {
+      for (const element in data) {
+        for (const iterator of dataEmphasis) {
+          if (element === iterator) {
+            emphasis[iterator] = (data[element] !== undefined) ? data[element].toUpperCase() : "";
+          }
+        }
+      }
+      return emphasis;
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
+  /**
+  ** Generates a new object based on the provided data.
+  ** The generated object contains different properties
+  ** based on the elements of the data object.
+  **
+  ** Parameters:
+  ** - data: An object containing the data to be processed.
+  **
+  ** Returns:
+  ** - An object with properties based on the elements of the data object.
+  */
+  const audiometry = (data) => {
+    const audio = new Object();
+
+    try {
+      for (const element in data) {
+        switch (element.toUpperCase().toString()) {
+          case "EPP_ESPECIFICO_/_AUDITIVO":
+            audio.eppEspecificoAuditivo = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "EPP_ESPECIFICO_/_AUDITIVO_COPA":
+            audio.eppEspecificoAuditivoCopa = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "EPP_ESPECIFICO_/_AUDITIVO_INSERCION":
+            audio.eppEspecificoAuditivoInsercion = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "EPP_ESPECIFICO_/_AUDITIVO_DOBLE":
+            audio.eppEspecificoAuditivoDoble = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "PABELLON_AURIC__OIDO_DER__":
+            audio.pabellonAuricoidoDer = (data[element] !== undefined) ? data[element].toUpperCase() : "NORMAL";
+            break;
+          case "PABELLON_AURIC__OIDO_DER__OBS":
+            audio.pabellonAuricoidoDerObs = (data[element] !== undefined) ? data[element].toUpperCase() : "SIN HALLAZGOS";
+            break;
+          case "PABELLON_AURIC__OIDO_IZQ__":
+            audio.pabellonAuricoidoIzq = (data[element] !== undefined) ? data[element].toUpperCase() : "NORMAL";
+            break;
+          case "PABELLON_AURIC__OIDO_IZQ__OBS":
+            audio.pabellonAuricoidoIzqObs = (data[element] !== undefined) ? data[element].toUpperCase() : "SIN HALLAZGOS";
+          case "CONDUCTO_AUDIT__OIDO_DER_":
+            audio.conductoAuditoidoDer = (data[element] !== undefined) ? data[element].toUpperCase() : "NORMAL";
+            break;
+          case "CONDUCTO_AUDIT__OIDO_DER__OBS":
+            audio.conductoAuditoidoDerObs = (data[element] !== undefined) ? data[element].toUpperCase() : "SIN HALLAZGOS";
+            break;
+          case "CONDUCTO_AUDIT__OIDO_IZQ_":
+            audio.conductoAuditoidoIzq = (data[element] !== undefined) ? data[element].toUpperCase() : "NORMAL";
+            break;
+          case "CONDUCTO_AUDIT__OIDO_IZQ__OBS":
+            audio.conductoAuditoidoIzqObs = (data[element] !== undefined) ? data[element].toUpperCase() : "SIN HALLAZGOS";
+            break;
+          case "MEMBRANA_TIMP__OIDO_DER":
+            audio.membranaTimpoidoDer = (data[element] !== undefined) ? data[element].toUpperCase() : "NORMAL";
+            break;
+          case "MEMBRANA_TIMP__OIDO_DER__OBS":
+            audio.membranaTimpoidoDerObs = (data[element] !== undefined) ? data[element].toUpperCase() : "SIN HALLAZGOS";
+            break;
+          case "MEMBRANA_TIMP__OIDO_IZQ":
+            audio.membranaTimpoidoIzq = (data[element] !== undefined) ? data[element].toUpperCase() : "NORMAL";
+            break;
+          case "MEMBRANA_TIMP__OIDO_IZQ__OBS":
+            audio.membranaTimpoidoIzqObs = (data[element] !== undefined) ? data[element].toUpperCase() : "SIN HALLAZGOS";
+            break;
+          case "TIPO_DE_EXAMEN":
+            audio.tipoDeExamen = (data[element] !== undefined) ? data[element].toUpperCase() : "AUDIOMETRIA DE TONOS PUROS AEREOS Y OSEOS CON ENMASCARAMIENTO [AUDIOMETRIA TONAL]";
+            break;
+          case "OD_500":
+            audio.od500 = (data[element] !== undefined) ? data[element] : 0;
+            break;
+          case "OD_1000":
+            audio.od1000 = (data[element] !== undefined) ? data[element] : 0;
+            break;
+          case "OD_2000":
+            audio.od2000 = (data[element] !== undefined) ? data[element] : 0;
+            break;
+          case "OD_3000":
+            audio.od3000 = (data[element] !== undefined) ? data[element] : 0;
+            break;
+          case "OD_4000":
+            audio.od4000 = (data[element] !== undefined) ? data[element] : 0;
+            break;
+          case "OD_6000":
+            audio.od6000 = (data[element] !== undefined) ? data[element] : 0;
+            break;
+          case "OD_8000":
+            audio.od8000 = (data[element] !== undefined) ? data[element] : 0;
+            break;
+          case "OI_500":
+            audio.oi500 = (data[element] !== undefined) ? data[element] : 0;
+            break;
+          case "OI_1000":
+            audio.oi1000 = (data[element] !== undefined) ? data[element] : 0;
+            break;
+          case "OI_2000":
+            audio.oi2000 = (data[element] !== undefined) ? data[element] : 0;
+            break;
+          case "OI_3000":
+            audio.oi3000 = (data[element] !== undefined) ? data[element] : 0;
+            break;
+          case "OI_4000":
+            audio.oi4000 = (data[element] !== undefined) ? data[element] : 0;
+            break;
+          case "OI_6000":
+            audio.oi6000 = (data[element] !== undefined) ? data[element] : 0;
+            break;
+          case "OI_8000":
+            audio.oi8000 = (data[element] !== undefined) ? data[element] : 0;
+            break;
+          case "CONTROL_SEGUN_PVE":
+            audio.controlSegunPve = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "CONFIRMATORIA":
+            audio.confirmatoria = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "REMISION_ORL":
+            audio.remisionOrl = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "PRUEBAS_COMPLEMENTARIAS":
+            audio.pruebasComplementarias = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "LIMPIEZA_DE_OIDO":
+            audio.limpiezaDeOido = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "LIMPIEZA_OD":
+            audio.limpiezaOd = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "LIMPIEZA_OI":
+            audio.limpiezaOi = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "REPOSO_AUDITIVO_EXTRALAB":
+            audio.reposoAuditivoExtralab = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "ROTAR_DIADEMA_TELEFONICA":
+            audio.rotarDiaadematelefonica = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "CONDUCIR_CON_VENTANAS_CERRADAS":
+            audio.conducirConVentanasCerradas = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "USO_DE_EPP_AUDITIVO":
+            audio.usoDeEppAuditivo = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "CONTROLES_MENSUALES":
+            audio.controlesMensuales = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "CONTROLES_BIMESTRALES":
+            audio.controlesBimestrales = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "CONTROLES_TRIMESTRALES":
+            audio.controlesTrimestrales = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "CONTROLES_6_MESES":
+            audio.controles6Meses = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "CONTROLES_1_AÑO":
+            audio.controles1Anio = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "DIAG_PPAL":
+            audio.diagPpal = (data[element] !== undefined) ? data[element].toUpperCase() : "SIN DATO";
+            break;
+          case "DIAG_INTERNO":
+            audio.diagInterno = (data[element] !== undefined) ? data[element].toUpperCase() : "SIN DATO";
+            break;
+          case "DIAG_GATI-SO":
+            audio.diagGatiSo = (data[element] !== undefined) ? data[element].toUpperCase() : "SIN DATO";
+            break;
+        }
+      }
+
+      return audio;
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
+  /**
+  ** Generates a new object based on the provided data.
+  ** The generated object contains different properties
+  ** based on the elements of the data object.
+  **
+  ** Parameters:
+  ** - data: An object containing the data to be processed.
+  **
+  ** Returns:
+  ** - An object with properties based on the elements of the data object.
+  */
+  const optometry = (data) => {
+    const opto = new Object();
+
+    try {
+      for (const element in data) {
+        switch (element.toUpperCase().toString()) {
+          case "VISIO/ANT__LABORAL_ILUMINACION_INADECUADA":
+            opto.visioAntLaboralIluminacionInadecuada = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "VISIO/ANT__LABORAL_USUARIO_COMPUTADOR":
+            opto.visioAntLaboralUsuarioComputador = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "VISIO/ANT__LABORAL_VISIO_RADIACIONES_UV":
+            opto.visioAntLaboralVisioRadiacionesUv = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "VISIO/ANT__LABORAL_CAMBIOS_TEMPERATURA":
+            opto.visioAntLaboralCambiosTemperatura = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "VISIO/ANT__LABORAL_MALA_VENTILACION":
+            opto.visioAntLaboralMalaventilacion = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "VISIO/ANT__LABORAL_GASES_TOXICOS":
+            opto.visioAntLaboralGasesToxicos = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "SINTOMAS_FOTOFOBIA":
+            opto.sintomasFotofobia = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "SINTOMAS_OJO_ROJO":
+            opto.sintomasOjoRojo = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "SINTOMAS_LAGRIMEO":
+            opto.sintomasLagrimeo = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "SINTOMAS_VISION_BORROSA":
+            opto.sintomasVisionBorrosa = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "SINTOMAS_ARDOR":
+            opto.sintomasArdor = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "SINTOMAS_VISION_DOBLE":
+            opto.sintomasVisionDoble = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "SINTOMAS_CANSANCIO":
+            opto.sintomasCansancio = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "SINTOMAS_MALA_VISION_CERCANA":
+            opto.sintomasMalavisionCercana = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "SINTOMAS_DOLOR":
+            opto.sintomasDolor = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "SINTOMAS_MALA_VISON_LEJANA":
+            opto.sintomasMalavisionLejana = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "SINTOMAS_SECRECION":
+            opto.sintomasSecrecion = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "SINTOMAS_CEFALEA":
+            opto.sintomasCefalea = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "OTROS_SINTOMAS":
+            opto.otrosSintomas = (data[element] !== undefined) ? data[element].toUpperCase() : "NO REFIERE";
+            break;
+          case "CABEZA_-_PARPADOS":
+            opto.cabezaParpados = (data[element] !== undefined) ? data[element].toUpperCase() : "NORMAL";
+            break;
+          case "CABEZA_-_PARPADOS_OBS":
+            opto.cabezaParpadosObs = (data[element] !== undefined) ? data[element].toUpperCase() : "SIN HALLAZGOS";
+            break;
+          case "CABEZA_-_CONJUNTIVAS":
+            opto.cabezaConjuntivas = (data[element] !== undefined) ? data[element].toUpperCase() : "NORMAL";
+            break;
+          case "CABEZA_-_OBS_CONJUNTIVAS":
+            opto.cabezaConjuntivasObs = (data[element] !== undefined) ? data[element].toUpperCase() : "SIN HALLAZGOS";
+            break;
+          case "CABEZA_-_ESCLERAS":
+            opto.cabezaEscleras = (data[element] !== undefined) ? data[element].toUpperCase() : "NORMAL";
+            break;
+          case "CABEZA_-_OBS_ESCLERAS":
+            opto.cabezaEsclerasObs = (data[element] !== undefined) ? data[element].toUpperCase() : "SIN HALLAZGOS";
+            break;
+          case "CABEZA_-_PUPILAS":
+            opto.cabezaPupillas = (data[element] !== undefined) ? data[element].toUpperCase() : "NORMAL";
+            break;
+          case "CABEZA_-_PUPILAS_OBS":
+            opto.cabezaPupillasObs = (data[element] !== undefined) ? data[element].toUpperCase() : "SIN HALLAZGOS";
+            break;
+          case "MOT/OCUL_COVERT_TEST_LEJOS":
+            opto.motOculCovertTestLejos = (data[element] !== undefined) ? data[element].toUpperCase() : "SIN DATO";
+            break;
+          case "MOT/OCUL_COVERT_TEST_CERCA":
+            opto.motOculCovertTestCerca = (data[element] !== undefined) ? data[element].toUpperCase() : "SIN DATO";
+            break;
+          case "ESTADO_DE_CORRECCION":
+            opto.estadoDeCorreccion = (data[element] !== undefined) ? data[element].toUpperCase() : "SIN DATO";
+            break;
+          case "PATOLOGIA_OCULAR":
+            opto.patologiaOcular = (data[element] !== undefined) ? data[element].toUpperCase() : 0;
+            break;
+          case "DIAG_PPAL":
+            opto.diagPpal = (data[element] !== undefined) ? data[element].toUpperCase() : "SIN DATO";
+            break;
+          case "DIAG_OBS":
+            opto.diagObs = (data[element] !== undefined) ? data[element] : 0;
+            break;
+          case "DIAG_REL/1":
+            opto.diagRel1 = (data[element] !== undefined) ? data[element] : 0;
+            break;
+          case "DIAG_REL/2":
+            opto.diagRel2 = (data[element] !== undefined) ? data[element] : 0;
+            break;
+          case "DIAG_REL/3":
+            opto.diagRel3 = (data[element] !== undefined) ? data[element] : 0;
+            break;
+          case "REC_CORRECCION_VISUAL_PARA_TRABAJAR":
+            opto.recCorreccionVisualParaTrabajar = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "REC_USO_AR_VIDEO_TRMINAL":
+            opto.recUsoArVideoTerminal = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "REC_USO_DE_LENTES_DE_PROTECCION_SOLAR":
+            opto.recUsoDeLentesDeProteccionSolar = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "REC_USO_EPP_VISUAL":
+            opto.recUsoEppVisual = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "REC_PAUSAS_ACTIVAS":
+            opto.recPausasActivas = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "REC_USO_RX_VISION_PROXIMA":
+            opto.recUsoRxVisionProxima = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "REC_USO_RX_DESCANSO":
+            opto.recUsoRxDescanso = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "REC_USO_PERMANENTE_RX_OPTICA":
+            opto.recUsoPermanenteRxOptica = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "REC_PYP":
+            opto.recPyp = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "REC_LUBRICANTE_OCULAR":
+            opto.recLubricanteOcular = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "RECOMENDACIONES_OBS":
+            opto.recomendacionesObs = (data[element] !== undefined) ? data[element].toUpperCase() : "SIN DATO";
+            break;
+          case "REM__VALORACION_OFTALM_":
+            opto.remValoracionOftalm = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "REM__TOPOGRAFIA_CORNEAL":
+            opto.remTopografiaCornea = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "REM__TRATAM__ORTOPTICA":
+            opto.remTratamientoOrtop = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "REM__TEST_FARNSWORTH":
+            opto.remTestFarnsworth = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "REALIZAR_PRUEBA_AMBULATORIA":
+            opto.realizarPruebaAmbulatoria = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "REMISIONES_OBS":
+            opto.remisionesObs = (data[element] !== undefined) ? data[element].toUpperCase() : "SIN DATO";
+            break;
+          case "CONTROLES_MENSUAL":
+            opto.controlesMensual = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "CONTROLES_BIMESTRALES":
+            opto.controlesBimestrales = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "CONTROLES_TRIMESTRAL":
+            opto.controlesTrimestrales = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "CONTROLES_6_MESES":
+            opto.controles6Meses = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "CONTROLES_1_AÑO":
+            opto.controles1Anio = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "CONTROLES_CONFIRMATORIA":
+            opto.controlesConfirmatoria = (data[element] !== undefined) ? 1 : 0;
+            break;
+        }
+      }
+
+      return opto;
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
+  /**
+  ** Generates a new object based on the provided data.
+  ** The generated object contains different properties
+  ** based on the elements of the data object.
+  **
+  ** Parameters:
+  ** - data: An object containing the data to be processed.
+  **
+  ** Returns:
+  ** - An object with properties based on the elements of the data object.
+  */
+  const visiometrics = (data) => {
+    const visio = new Object();
+
+    try {
+      for (const element in data) {
+        switch (element.toUpperCase().toString()) {
+          case "VISIO/ANT__LABORAL_ILUMINACION_INADECUADA":
+            visio.iluminacionInade = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "VISIO/ANT__LABORALVISIO_RADIACIONES_UV":
+            visio.radiacionesUv = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "VISIO/ANT__LABORAL_MALA_VENTILACION":
+            visio.malaVentilacion = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "VISIO/ANT__LABORAL_GASES_TOXICOS":
+            visio.gasesToxicos = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "SINTOMAS_FOTOFOBIA":
+            visio.sintomasFotofobia = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "SINTOMAS_OJO_ROJO":
+            visio.sintomasOjoRojo = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "SINTOMAS_LAGRIMEO":
+            visio.sintomasLagrimeno = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "SINTOMAS_VISION_BORROSA":
+            visio.sintomasVisionBorrosa = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "SINTOMAS_ARDOR":
+            visio.sintomasArdor = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "SINTOMAS_VISION_DOBLE":
+            visio.sintomasVisionDoble = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "SINTOMAS_CANSANCIO":
+            visio.sintomasCansancio = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "SINTOMAS_MALA_VISION_CERCANA":
+            visio.sintomasMalaVisionCercana = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "SINTOMAS_DOLOR":
+            visio.sintomasDolor = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "SINTOMAS_MALA_VISON_LEJANA":
+            visio.sintomasMalaVisionLejana = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "SINTOMAS_SECRECION":
+            visio.sintomasSecrecion = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "SINTOMAS_CEFALEA":
+            visio.sintomasCefalea = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "OTROS_SINTOMAS":
+            visio.otrosSintomas = (data[element] !== undefined) ? data[element].toUpperCase() : "SIN DATO";
+            break;
+          case "CABEZA_-_PARPADOS":
+            visio.cabezaParpados = (data[element] !== undefined) ? data[element].toUpperCase() : "NORMAL";
+            break;
+          case "CABEZA_-_PARPADOS_OBS":
+            visio.cabezaParpadosObs = (data[element] !== undefined) ? data[element].toUpperCase() : "SIN HALLAZGOS";
+            break;
+          case "CABEZA_-_CONJUNTIVAS":
+            visio.cabezaConjuntivas = (data[element] !== undefined) ? data[element].toUpperCase() : "NORMAL";
+            break;
+          case "CABEZA_-_OBS_CONJUNTIVAS":
+            visio.cabezaConjuntivasObs = (data[element] !== undefined) ? data[element].toUpperCase() : "SIN HALLAZGOS";
+            break;
+          case "CABEZA_-_ESCLERAS":
+            visio.cabezaEscleras = (data[element] !== undefined) ? data[element].toUpperCase() : "NORMAL";
+            break;
+          case "CABEZA_-_OBS_ESCLERAS":
+            visio.cabezaEsclerasObs = (data[element] !== undefined) ? data[element].toUpperCase() : "SIN HALLAZGOS";
+            break;
+          case "CABEZA_-_PUPILAS":
+            visio.cabezaPupillas = (data[element] !== undefined) ? data[element].toUpperCase() : "NORMAL";
+            break;
+          case "CABEZA_-_PUPILAS_OBS":
+            visio.cabezaPupillasObs = (data[element] !== undefined) ? data[element].toUpperCase() : "SIN HALLAZGOS";
+            break;
+          case "IMP/DIAG_VL_OD_NORMAL", "IMP/DIAG_VL0OD_NORMAL":
+            visio.impVlOdNormal = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "IMP/DIAG_VL_OI_NORMAL", "IMP/DIAG_VL0OI_NORMAL":
+            visio.impVlOiNormal = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "IMP/DIAG_VP_OD_NORMAL", "IMP/DIAG_VP0OD_NORMAL":
+            visio.impVpOdNormal = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "IMP/DIAG_VP_OI_NORMAL", "IMP/DIAG_VP0OI_NORMAL":
+            visio.impVpOiNormal = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "IMP/DIAG_VL_OD_DISMINUIDO", "IMP/DIAG_VL0OD_DISMINUIDO":
+            visio.impVlOdDisminuido = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "IMP/DIAG_VL_OI_DISMINUIDO", "IMP/DIAG_VL0OI_DISMINUIDO":
+            visio.impVlOiDisminuido = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "IMP/DIAG_VP_OD_DISMINUIDO", "IMP/DIAG_VP0OD_DISMINUIDO":
+            visio.impVpOdDisminuido = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "IMP/DIAG_VP_OI_DISMINUIDO", "IMP/DIAG_VP0OI_DISMINUIDO":
+            visio.impVpOiDisminuido = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "IMP/DIAG_VL_OD_NORMAL_RX", "IMP/DIAG_VL0OD_NORMAL_RX":
+            visio.impVlOdNormalRx = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "IMP/DIAG_VL_OI_NORMAL_RX", "IMP/DIAG_VL0OI_NORMAL_RX":
+            visio.impVlOiNormalRx = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "IMP/DIAG_VP_OD_NORMAL_RX", "IMP/DIAG_VP0OD_NORMAL_RX":
+            visio.impVpOdNormalRx = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "IMP/DIAG_VP_OI_NORMAL_RX", "IMP/DIAG_VP0OI_NORMAL_RX":
+            visio.impVpOiNormalRx = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "IMP/DIAG_VL_OD_DISMINUIDO_RX", "IMP/DIAG_VL0OD_DISMINUIDO_RX":
+            visio.impVlOdDisminuidoRx = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "IMP/DIAG_VL_OI_DISMINUIDO_RX", "IMP/DIAG_VL0OI_DISMINUIDO_RX":
+            visio.impVlOiDisminuidoRx = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "IMP/DIAG_VP_OD_DISMINUIDO_RX", "IMP/DIAG_VP0OD_DISMINUIDO_RX":
+            visio.impVpOdDisminuidoRx = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "IMP/DIAG_VP_OI_DISMINUIDO_RX", "IMP/DIAG_VP0OI_DISMINUIDO_RX":
+            visio.impVpOiDisminuidoRx = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "IMP/DIAG_OBS":
+            visio.impDiagObs = (data[element] !== undefined) ? data[element].toUpperCase() : "NO REFIERE";
+            break;
+          case "REC_CORRECCION_VISUAL_PARA_TRABAJAR":
+            visio.recCorrecionVisualParaTrabajar = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "REC_USO_RX_PARA_VISION_PROX":
+            visio.recUsoRxParaVisionProx = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "REC_USO_AR_VIDEO_TRMINAL":
+            visio.recUsoArVideoTrmina = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "REC_USO_RX_DESCANSO":
+            visio.recUsoRxDescanso = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "REC_USO_LENTES_PROT__SOLAR":
+            visio.recUsoLentesProt__Solar = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "REC_USO_PERMANENTE_RX_OPTICA":
+            visio.recUsoPermanenteRxOptica = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "REC_USO_EPP_VISUAL":
+            visio.recUsoEppVisual = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "REC_PYP":
+            visio.recPyp = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "REC_PAUSAS_ACTIVAS":
+            visio.recPausasActivas = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "REC_LUBRICANTE_OCULAR":
+            visio.recLubricanteOcular = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "RECOMENDACIONES_OBS":
+            visio.recomendacionesObs = (data[element] !== undefined) ? data[element].toUpperCase() : "NO REFIERE";
+            break;
+          case "REM__VALORACION_OFTALM_":
+            visio.remValoracionOftalm_ = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "REM__VALORACION_OPTO__COMPLETA":
+            visio.remValoracionOpto__Completa = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "REM__TOPOGRAFIA_CORNEAL":
+            visio.remTopografiaCornea = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "REM__TRATAM__ORTOPTICA":
+            visio.remTratam__Ortoptica = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "REM__TEST_FARNSWORTH":
+            visio.remTestFarnsworth = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "REALIZAR_PRUEBA_AMBULATORIA":
+            visio.realizarPruebaAmbulatoria = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "OTRAS_REMISIONES":
+            visio.otrosRemisiones = (data[element] !== undefined) ? data[element].toUpperCase() : "NO REFIERE";
+            break;
+          case "CONTROL_MENSUAL":
+            visio.controlMensual = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "CONTROLES_BIMESTRALES":
+            visio.controlesBimestrales = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "CONTROL_TRIMESTRAL":
+            visio.controlTrimestral = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "CONTROL_6_MESES":
+            visio.control6Meses = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "CONTROL_1_AÑO":
+            visio.control1Ano = (data[element] !== undefined) ? 1 : 0;
+            break;
+          case "CONTROL_CONFIRMATORIA":
+            visio.controlConfirmatoria = (data[element] !== undefined) ? 1 : 0;
+            break;
+        }
+      }
+
+      return visio;
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
+  /**
+   * @typedef {Object} spirometry
+   * *information about the spirometry(spirometria)
+   */
+  class spirometry {
+    constructor() {
+
+    }
+  }
+
+  /**
+   * @typedef {Object} osteometry
+   * *information about the osteometry(osteometria)
+   */
+  class osteometry {
+    constructor() {
+
+    }
+  }
+
+  /**
+   * @typedef {Object} complementary
+   * *information about the complementary(complementarios)
+   */
+  class complementary {
+    constructor() {
+
+    }
+  }
+
+  /**
+   * @typedef {Object} insomniaTest
+   * *information about the insomniaTest(test de insomnio)
+   */
+  class insomniaTest {
+    constructor() {
+
+    }
+  }
+
+  /**
+   * @typedef {Object} respiratoryAssessment
+   * *information about the respiratoryAssessment(valoracion respiratoria)
+   */
+  class respiratoryAssessment {
+    constructor() {
+
+    }
+  }
+
+  /**
+   * @typedef {Object} psychotechnic
+   * *information about the psychotechnic(psicotecnica)
+   */
+  class psychotechnic {
+    constructor() {
+
+    }
+  }
+
+  /**
+   * @typedef {Object} psychosensometric
+   * *information about the psychosensometric(psicosensometria)
+   */
+  class psychosensometric {
+    constructor() {
+
+    }
+  }
+
+  /**
+   * @typedef {Object} laboratory
+   * *information about the laboratory(laboratorio)
+   */
+  class laboratory {
+    constructor() {
+
+    }
+  }
+
+  /**
+   * @typedef {Object} framinghamTest
+   * *information about the framinghamTest(test de framingham)
+   */
+  class framinghamTest {
+    constructor() {
+
+    }
+  }
+
+</script>
