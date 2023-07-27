@@ -20,3 +20,14 @@ function doGet() {
 function include(file){
   return HtmlService.createHtmlOutputFromFile(file).getContent();
 }
+
+function insertData(data) {
+
+  try {
+    const information = JSON.parse(data);
+    Logger.log(information);
+    return "OK";
+  } catch (error) {
+    return error.message;
+  }
+}

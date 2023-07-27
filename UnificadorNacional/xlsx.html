@@ -21,7 +21,7 @@
       const data = event.target.result;
       const workbook = XLSX.read(data, { type: 'binary' });
       const numberSheets = workbook.SheetNames.length;
-      const resultSocio = [], resultEmo = [], resultDiag = [], resultAudio = [], resultEmphasis = [], resultOpto = [], resultVisio = [];
+      const resultEmo = [],resultAudio = [], resultOpto = [], resultVisio = [], resultSpiro = [], resultOsteo = [], resultComplementary = [], resultPsychology = [], resultPsychosensometric = [];
 
       for (let x = 0; x < numberSheets; x++) {
         try {
@@ -70,39 +70,86 @@
                   }
 
                   if (obj['NOMBRE_EMPRESA'] !== undefined) {
-                    const socio = informationSocioEmography(obj);
-                    resultSocio.push(socio);
                     const emo = occupationalMedicalExamination(obj);
-                    resultEmo.push(emo);
-                    const diag = occupationalMedicalDiag(obj);
-                    resultDiag.push(diag);
-                    const emphasis = occupationalMedicalEmphasis(obj);
-                    resultEmphasis.push(emphasis);
+                    if (emo) {
+                      resultEmo.push(emo);
+                    }
                     const audio = audiometry(obj);
-                    resultAudio.push(audio);
+                    if (audio) {
+                      resultAudio.push(audio);
+                    }
                     const opto = optometry(obj);
-                    resultOpto.push(opto);
+                    if (opto) {
+                      resultOpto.push(opto);
+                    }
                     const visio = visiometrics(obj);
-                    resultVisio.push(visio);
+                    if (visio) {
+                      resultVisio.push(visio);
+                    }
+                    const osteo = osteometry(obj);
+                    if (osteo) {
+                      resultOsteo.push(osteo);
+                    }
+                    const spiro = spirometry(obj);
+                    if (spiro) {
+                      resultSpiro.push(spiro);
+                    }
+                    const supplementary = complementary(obj);
+                    if (supplementary) {
+                      resultComplementary.push(supplementary);
+                    }
+                    const psychology = psychotechnic(obj);
+                    if (psychology) {
+                      resultPsychology.push(psychology);
+                    }
+                    const psychosensome = psychosensometric(obj);
+                    if (psychosensome) {
+                      resultPsychosensometric.push(psychosensome);
+                    }
                   }
                 }
               }
               break;
           }
-          informationPatient.socioEmoGraphy = resultSocio;
-          informationPatient.emoRisk = resultEmo;
-          informationPatient.emoDiag = resultDiag;
-          informationPatient.emoEmphasis = resultEmphasis;
-          informationPatient.audiometry = resultAudio;
-          informationPatient.optometry = resultOpto;
-          informationPatient.visiometrics = resultVisio;
+
+          if (resultEmo.length > 0) {
+            informationPatient.emo = resultEmo;
+          }
+          if (resultAudio > 0) {
+            informationPatient.audiometry = resultAudio;
+          }
+          if (resultOpto.length > 0) {
+            informationPatient.optometry = resultOpto;
+          }
+          if (resultVisio.length > 0) {
+            informationPatient.visiometrics = resultVisio;
+          }
+          if (resultSpiro.length > 0) {
+            informationPatient.spirometry = resultSpiro;
+          }
+          if (resultOsteo.length > 0) {
+            informationPatient.osteometry = resultOsteo;
+          }
+          if (resultComplementary.length > 0) {
+            informationPatient.complementary = resultComplementary;
+          }
+          if (resultPsychology.length > 0) {
+            informationPatient.psychology = resultPsychology;
+          }
+          if (resultPsychosensometric.length > 0) {
+            informationPatient.psychosensometric = resultPsychosensometric;
+          }
 
         } catch (err) {
           console.log(`Error => ${err.message}`);
         }
       }
 
-      console.log(informationPatient);
+      const json = JSON.stringify(informationPatient);
+      google.script.run.withSuccessHandler(element => {
+        console.log(element);
+      })
+      .insertData(json);
     };
 
     fileReader.readAsBinaryString(file);
