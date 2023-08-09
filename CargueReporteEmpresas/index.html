@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <base target="_top">
+  <?!= include('css'); ?>
+</head>
+
+<body class="container-fluid bg-primary-subtle 100vh">
+  <nav class="navbar bg-body-tertiary">
+    <div class="container">
+      <a class="navbar-brand" href="https://sites.google.com/soandes.co/soandes/inicio">
+        <img class="rounded"
+          src="https://lh5.googleusercontent.com/9RkRlNof7f5aOtbKtFHA2UOdL39ZIO-txBzJsNkdEzf45eryMdOT-75oVt_i1K8Qs2nUvQ=w16383"
+          alt="Soandes" height="50">
+      </a>
+      <div id="title">Informe Atención</div>
+    </div>
+    <hr style="margin: 0 3rem;">
+  </nav>
+  <div class="container-lg container-md container-sm container p-2">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary rounded">
+      <div class="container-fluid">
+        <b class="text-dark py-1 mx-3">Filtro: </b>
+        <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="years">
+          <option>Seleccione...</option>
+          <!-- cargue dinamico -->
+        </select>
+      </div>
+    </nav>
+
+    <div class="sample">
+      <div class="container-fluid d-flex mt-2">
+        <div class="h-100 mx-2" style="width: 60%!important;">
+          <canvas id="patientChart" width="6" height="4" style="margin-top: 4% !important;"></canvas>
+        </div>
+        <div class="m-auto" style="width: 40%!important;">
+          <table class="table text-center table-hover table-secondary table-sm table-striped align-middle w-100"
+            style="margin: auto!important;" id="patient">
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="sample">
+      <div class="container-fluid d-flex mt-2">
+        <div class="h-100 mx-2" style="width: 60%!important;">
+          <canvas id="reportChart" width="4" height="4"></canvas>
+        </div>
+        <div class="m-auto" style="width: 40%!important;">
+          <table class="table text-center table-hover table-secondary table-sm table-striped align-middle w-100"
+            style="margin: auto!important;" id="report">
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="sample">
+      <div class="container-fluid d-flex mt-2">
+        <div class="h-100 mx-2" style="width: 60%!important;">
+          <canvas id="allDataChart" width="4" height="4"></canvas>
+        </div>
+        <div class="m-auto" style="width: 40%!important;">
+          <table class="table text-center table-hover table-secondary table-sm table-striped align-middle w-100"
+            style="margin: auto!important;" id="report">
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="container d-flex mt-2 justify-content-evenly">
+      <a href="#" id="prev" class="display btn btn-outline-secondary btn-sm"><i
+          class="fa-solid fa-circle-chevron-left"></i>
+        Anterior</a>
+      <a href="#" id="next" class="display btn btn-outline-primary btn-sm">Siguiente
+        <i class="fa-solid fa-circle-chevron-right"></i></a>
+    </div>
+  </div>
+
+  <?!= include('js'); ?>
+  <?!= include('search'); ?>
+  <?!= include('months'); ?>
+</body>
+
+</html>

@@ -163,26 +163,29 @@
       for (const element in data) {
         switch (element.trim().toUpperCase().toString()) {
           /** Riesgos Biologicos **/
+          case 'RIESGO_BIOLOGICO_/_VIRUS':
+            occupational.riesgosBiologicosVirus = (data[element] !== undefined) ? 1 : 0; /** Virus **/
+            break;
           case 'RIESGO_BIOLOGICO_/_BACTERIAS':
-            occupational.riesgosBiologicosFluidos = (data[element] !== undefined) ? 1 : 0; /** Fluidos **/
+            occupational.riesgosBiologicosBacterias = (data[element] !== undefined) ? 1 : 0; /** Bacterias **/
             break;
           case 'RIESGO_BIOLOGICO_/_HONGOS':
             occupational.riesgosBiologicosHongos = (data[element] !== undefined) ? 1 : 0; /** Hongos **/
             break;
-          case 'RIESGO_BIOLOGICO_/_MORDEDURAS':
-            occupational.riesgosBiologicosMordeduras = (data[element] !== undefined) ? 1 : 0; /** Mordeduras **/
+          case 'RIESGO_BIOLOGICO_/_RICKETSIAS':
+            occupational.riesgosBiologicosRicketsias = (data[element] !== undefined) ? 1 : 0; /** Ricketsias **/
             break;
           case 'RIESGO_BIOLOGICO_/_PARASITOS':
             occupational.riesgosBiologicosParasitos = (data[element] !== undefined) ? 1 : 0; /** Parasitos **/
             break;
+          case 'RIESGO_BIOLOGICO_/_FLUIDOS':
+            occupational.riesgosBiologicosFluidos = (data[element] !== undefined) ? 1 : 0; /** Fluidos **/
+            break;
           case 'RIESGO_BIOLOGICO_/_PICADURAS':
             occupational.riesgosBiologicosPicaduras = (data[element] !== undefined) ? 1 : 0; /** Picaduras **/
             break;
-          case 'RIESGO_BIOLOGICO_/_RICKETSIAS':
-            occupational.riesgosBiologicosRicketsias = (data[element] !== undefined) ? 1 : 0; /** Ricketsias **/
-            break;
-          case 'RIESGO_BIOLOGICO_/_VIRUS':
-            occupational.riesgosBiologicosVirus = (data[element] !== undefined) ? 1 : 0; /** Virus **/
+          case 'RIESGO_BIOLOGICO_/_MORDEDURAS':
+            occupational.riesgosBiologicosMordeduras = (data[element] !== undefined) ? 1 : 0; /** Mordeduras **/
             break;
           case 'OTROS_RIESGOS_BIOLOGICOS':
             occupational.riesgosBiologicosOtrosBiologicos = (data[element] !== undefined) ? data[element].toUpperCase() : "NO REFIERE"; /** Otros **/

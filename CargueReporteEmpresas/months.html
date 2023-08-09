@@ -1,0 +1,274 @@
+<script>
+  window.addEventListener('load', sigad);
+  window.addEventListener('load', initial);
+
+
+  // Generate a random color in RGBA format.
+  //
+  // Returns:
+  // - The randomly generated color in the format "rgba(r, g, b, alpha)".
+  function getRandomColor() {
+
+    const r = Math.floor(Math.random() * 200);
+    const g = Math.floor(Math.random() * 200);
+    const b = Math.floor(Math.random() * 200);
+    const color = [];
+
+    const alpha = 0.2;
+
+    const rgba = `rgba(${r}, ${g}, ${b}, ${alpha})`;
+    const rgb = `rgb(${r}, ${g}, ${b})`;
+
+    color[0] = rgba;
+    color[1] = rgb;
+    return color;
+  }
+
+  // A function comment for the given function body.
+  function sigad() {
+    google.script.run.withSuccessHandler(months => {
+      months.forEach(month => {
+        $('#years').append(`<option value="${month}">${month}</option>`);
+      })
+    })
+      .getSigad();
+  }
+
+  function initial() {
+    google.script.run.withSuccessHandler(clientInformation => {
+
+      // config datatable
+      const columnsPatient = [], columnsNumbersPatient = [];
+      const columnsReport = [], columnsNumbersReport = [];
+      for (const iterator of clientInformation[0]) {
+        if (iterator !== "" && !iterator.includes("Reportes")) {
+          const title = { title: iterator };
+          columnsNumbersPatient.push(clientInformation[0].indexOf(iterator));
+          columnsPatient.push(title);
+        }
+      }
+      for (const iterator of clientInformation[0]) {
+        if (iterator !== "" && !iterator.includes("Pacientes")) {
+          const title = { title: iterator };
+          columnsNumbersReport.push(clientInformation[0].indexOf(iterator));
+          columnsReport.push(title);
+        }
+      }
+
+      const dataPatient = [], dataReport = [];
+      for (let index = 1; index < clientInformation.length; index++) {
+        const valuesPatient = []
+        for (const iterator of columnsNumbersPatient) {
+          valuesPatient.push(clientInformation[index][iterator]);
+        }
+        dataPatient.push(valuesPatient);
+      }
+      for (let index = 1; index < clientInformation.length; index++) {
+        const valuesReport = [];
+        for (const iterator of columnsNumbersReport) {
+          valuesReport.push(clientInformation[index][iterator]);
+        }
+        dataReport.push(valuesReport);
+      }
+
+      $("#patient").DataTable({
+        dom: "ftipr",
+        responsive: true,
+        columns: columnsPatient,
+        data: dataPatient,
+        ordering: false,
+        pageLength: 10,
+        columnDefs: [
+          {
+            orderable: false, targets: 0,
+          },
+          {
+            className: "dt-center", targets: "_all",
+          }
+        ],
+        language: {
+          url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json',
+        },
+      });
+
+      $("#report").DataTable({
+        dom: "ftipr",
+        responsive: true,
+        columns: columnsReport,
+        data: dataReport,
+        ordering: false,
+        pageLength: 10,
+        columnDefs: [
+          {
+            orderable: false, targets: 0,
+          },
+          {
+            className: "dt-center", targets: "_all",
+          }
+        ],
+        language: {
+          url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json',
+        },
+      });
+
+      // config chartjs
+      const patient = document.getElementById('patientChart');
+      const report = document.getElementById('reportChart');
+      const allData = document.getElementById('allDataChart');
+
+      const months = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+
+      const datasetPatient = [], datasetReport = [], datasetReportAll = [];
+      for (let number = 1; number < clientInformation[0].length - 1; number++) {
+        if (clientInformation[0][number].includes("Pacientes")) {
+          const dataMonth = [], period = new Object()
+          let color = '';
+          for (let index = 1; index < clientInformation.length; index++) {
+            dataMonth.push(clientInformation[index][number]);
+            color = getRandomColor();
+          }
+          period.label = clientInformation[0][number];
+          period.data = dataMonth;
+          period.fill = true;
+          period.backgroundColor = color[0];
+          period.borderColor = color[1];
+          period.borderWidth = 1;
+          period.pointStyle = 'rectRot';
+          period.pointRadius = 6;
+          datasetPatient.push(period);
+        }
+      }
+      for (let number = 1; number < clientInformation[0].length - 1; number++) {
+        if (clientInformation[0][number].includes("Reportes")) {
+          const dataMonth = [], period = new Object()
+          let color = '';
+          for (let index = 1; index < clientInformation.length; index++) {
+            dataMonth.push(clientInformation[index][number]);
+            color = getRandomColor();
+          }
+          period.label = clientInformation[0][number];
+          period.data = dataMonth;
+          period.fill = true;
+          period.backgroundColor = color[0];
+          period.borderColor = color[1];
+          period.borderWidth = 1;
+          period.barPercentage = 0.5;
+          period.barThickness = 6;
+          period.maxBarThickness = 8;
+          period.minBarLength = 2;
+          datasetReport.push(period);
+        }
+      }
+
+      // console.log(clientInformation);
+      for (let index = 1; index < clientInformation.length; index++) {
+        months.map(month => {
+          if (condition) {
+            
+          }
+        })
+        const element = clientInformation[index];
+        console.log(element);
+      }
+
+      new Chart(patient, {
+        type: 'line',
+        data: {
+          labels: months,
+          datasets: datasetPatient
+        },
+        options: {
+          plugins: {
+            title: {
+              display: true,
+              text: 'Reporte Pacientes Atendidos',
+              font: {
+                weight: 'bold',
+                size: 20,
+                color: '#212f3c'
+              }
+            }
+          },
+          animations: {
+            tension: {
+              duration: 1000,
+              easing: 'linear',
+              from: 0.3,
+              to: 0,
+              loop: true
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          },
+          interaction: {
+            intersect: false,
+            mode: 'index',
+          }
+        }
+      });
+
+      new Chart(report, {
+        type: 'radar',
+        data: {
+          labels: months,
+          datasets: datasetReport
+        },
+        options: {
+          plugins: {
+            title: {
+              display: true,
+              text: 'Reporte Informes Cargados',
+              font: {
+                weight: 'bold',
+                size: 20,
+                color: '#212f3c'
+              }
+            }
+          },
+          animations: {
+            tension: {
+              duration: 1000,
+              easing: 'linear',
+              from: 0.3,
+              to: 0,
+              loop: true
+            }
+          },
+          scales: {
+            r: {
+              angleLines: {
+                display: false
+              },
+              suggestedMin: 50,
+              suggestedMax: 100
+            }
+          },
+          interaction: {
+            intersect: false,
+            mode: 'index',
+          }
+        }
+      });
+
+
+      new Chart(allData, {
+        type: 'line',
+        data: {
+          labels: months,
+          datasets: datasetReportAll
+        }
+      });
+
+
+
+
+
+
+
+    })
+      .getClientInformation();
+  }
+</script>

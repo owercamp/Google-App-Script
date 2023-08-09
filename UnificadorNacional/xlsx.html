@@ -145,11 +145,10 @@
         }
       }
 
-      const json = JSON.stringify(informationPatient);
       google.script.run.withSuccessHandler(element => {
         console.log(element);
       })
-      .insertData(json);
+      .insertData(informationPatient);
     };
 
     fileReader.readAsBinaryString(file);

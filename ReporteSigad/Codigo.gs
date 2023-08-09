@@ -1,3 +1,8 @@
+/**
+ * A description of the entire function.
+ *
+ * @return {Object} The evaluated output of the template.
+ */
 function doGet() {
   let template = HtmlService.createTemplateFromFile('Index');
   let output = template.evaluate();
@@ -5,10 +10,21 @@ function doGet() {
   return output;
 }
 
+/**
+ * Includes the content of a specified file.
+ *
+ * @param {string} filename - The name of the file to include.
+ * @return {string} The content of the specified file.
+ */
 function include(filename) {
   return HtmlService.createHtmlOutputFromFile(filename).getContent();
 }
 
+/**
+ * Opens an informe by creating an HTML output and displaying it in a modal dialog.
+ *
+ * @return {HtmlOutput} The HTML output of the informe.
+ */
 function abrirInforme() {
   var html = HtmlService.createHtmlOutput('<html>'
     + '<script>' +
@@ -21,6 +37,16 @@ function abrirInforme() {
   SpreadsheetApp.getUi().showModalDialog(html, "Abriendo Informe");
 }
 
+/**
+ * Returns an array of years, infoYears, colors, and backgrounds based on the given yearSelect.
+ *
+ * @param {type} yearSelect - The selected year to filter the data. If not provided, all years will be included.
+ * @return {type} response - An array containing the following:
+ *                          - years: An array of unique years.
+ *                          - infoYears: An array of counts for each year.
+ *                          - colors: An array of randomly generated colors in the format 'rgb(red, green, blue)'.
+ *                          - backgrounds: An array of randomly generated background colors in the format 'rgba(red, green, blue, alpha)'.
+ */
 function getYears(yearSelect) {
   let years = [];
   let response = [];
@@ -87,6 +113,12 @@ function getYears(yearSelect) {
   return response;
 }
 
+/**
+ * Retrieves information about cities based on the provided year.
+ *
+ * @param {number} year - The year to filter the cities by.
+ * @return {Array} An array containing information about the cities, including the city names, the number of registrations, colors, and backgrounds.
+ */
 function getCities(year) {
   let cities = [];
   let register = [];
@@ -151,6 +183,12 @@ function getCities(year) {
   return infoCities;
 }
 
+/**
+ * Retrieves information about companies based on the given year.
+ *
+ * @param {number} year - The year to filter the companies by.
+ * @return {Array} An array containing information about the companies, including their names, the number of times they appear in the dataset, and color and background values for visualization purposes.
+ */
 function getCompanies(year) {
   let companies = [];
   let register = [];

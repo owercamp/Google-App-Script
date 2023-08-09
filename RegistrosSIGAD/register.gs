@@ -96,8 +96,12 @@ const mailToSend = {
  * @return {void} This function does not return a value.
  */
 const mailSend = (manager, group, director) => {
-  const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
-  spreadsheet.getActiveSheet().getActiveCell().setValue(`${manager}, ${group}, ${director}`);
+  try {
+    const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+    spreadsheet.getActiveSheet().getActiveCell().setValue(`${manager}, ${group}, ${director}`);
+  } catch (error) {
+    Logger.log(`${error.name}: ${error.message}`);
+  }
 }
 
 /**
@@ -107,20 +111,24 @@ const mailSend = (manager, group, director) => {
  * @return {void} does not return a value
  */
 function onOpen(e) {
-  const menu = SpreadsheetApp.getUi().createMenu('GESTORES DB');
-  const recipients = {
-    'Leidy Sanchez': 'mailToSend.leidySanchez',
-    'Camila Gonzalez': 'mailToSend.camilaGonzalez',
-    'Natalia Guerrero': 'mailToSend.nataliaGuerrero',
-    'Diana Perdomo': 'mailToSend.dianaPerdomo',
-    'Katherine Sanchez': 'mailToSend.katherineSanchez',
-    'Juan Avila': 'mailToSend.juanAvila',
-    'Monica Marroquin': 'mailToSend.monicaMarroquin'
-  };
-  for (const [name, recipient] of Object.entries(recipients)) {
-    menu.addItem(name, recipient);
+  try {
+    const menu = SpreadsheetApp.getUi().createMenu('GESTORES DB');
+    const recipients = {
+      'Leidy Sanchez': 'mailToSend.leidySanchez',
+      'Camila Gonzalez': 'mailToSend.camilaGonzalez',
+      'Natalia Guerrero': 'mailToSend.nataliaGuerrero',
+      'Diana Perdomo': 'mailToSend.dianaPerdomo',
+      'Katherine Sanchez': 'mailToSend.katherineSanchez',
+      'Juan Avila': 'mailToSend.juanAvila',
+      'Monica Marroquin': 'mailToSend.monicaMarroquin'
+    };
+    for (const [name, recipient] of Object.entries(recipients)) {
+      menu.addItem(name, recipient);
+    }
+    menu.addToUi();
+  } catch (error) {
+    Logger.log(`${error.name}: ${error.message}`);
   }
-  menu.addToUi();
 }
 
 /**
@@ -129,19 +137,23 @@ function onOpen(e) {
  * @return {void} 
  */
 function Auto_Increment() {
-  const sheet = SpreadsheetApp.getActiveSheet();
-  const cell = sheet.getActiveCell();
-  const row = cell.getRow();
-  const column = cell.getColumn();
-  
-  if (column !== 2 || sheet.getRange(row, 2).isBlank()) return;
+  try {
+    const sheet = SpreadsheetApp.getActiveSheet();
+    const cell = sheet.getActiveCell();
+    const row = cell.getRow();
+    const column = cell.getColumn();
 
-  const data_value = sheet.getRange(row - 1, 3).getValue();
-  const [, au] = data_value.toString().split('-');
-  const incremented = parseInt(au, 10) + 1;
-  sheet.getRange(row, 3).setValue(`ICS-${('0000' + incremented).slice(-4)}`);
-  sheet.getRange(row, 4).setValue('PENDIENTE');
-  applyFilterAndBorder(row);
+    if (column !== 2 || sheet.getRange(row, 2).isBlank()) return;
+
+    const data_value = sheet.getRange(row - 1, 3).getValue();
+    const [, au] = data_value.toString().split('-');
+    const incremented = parseInt(au, 10) + 1;
+    sheet.getRange(row, 3).setValue(`ICS-${('0000' + incremented).slice(-4)}`);
+    sheet.getRange(row, 4).setValue('PENDIENTE');
+    applyFilterAndBorder(row);
+  } catch (error) {
+    Logger.log(`${error.name}: ${error.message}`);
+  }
 }
 
 /**
@@ -150,43 +162,48 @@ function Auto_Increment() {
  * @return {void} No return value.
  */
 function enviarCorreo() {
-  const spreadsheet = SpreadsheetApp.getActive();
-  const date = new Date();
-  const hour = date.getHours();
-  const emailCell = spreadsheet.getActiveCell().offset(0, 2);
+  try {
+    const spreadsheet = SpreadsheetApp.getActive();
+    const date = new Date();
+    const hour = date.getHours();
+    const emailCell = spreadsheet.getActiveCell().offset(0, 2);
 
-  let greeting;
-  if (hour >= 0 && hour < 12) {
-    greeting = "Buenos dias";
-  } else if (hour >= 12 && hour < 18) {
-    greeting = "Buenas tardes";
-  } else if (hour >= 18 && hour <= 23) {
-    greeting = "Buenas noches";
-  }
-
-  const activeCellValue = spreadsheet.getActiveCell().getValue();
-  if (spreadsheet.getActiveCell().getColumn() === 4 && activeCellValue === "ENTREGADO") {
-    const message = spreadsheet.getActiveCell().offset(0, 3).getValue();
-    let text = "";
-    if (message) {
-      const separateSplit = message.toString().split("*");
-      const list = separateSplit
-        .filter(item => item)
-        .map(item => `<li>${item}</li>`)
-        .join("");
-      text = `<b style='color:red'>Importante:</b><br><ul>${list}</ul>`;
+    let greeting;
+    if (hour >= 0 && hour < 12) {
+      greeting = "Buenos dias";
+    } else if (hour >= 12 && hour < 18) {
+      greeting = "Buenas tardes";
+    } else if (hour >= 18 && hour <= 23) {
+      greeting = "Buenas noches";
     }
 
-    const signature = Gmail.Users.Settings.SendAs.list("me")
-      .sendAs.filter(account => account.isDefault)[0].signature;
+    const activeCellValue = spreadsheet.getActiveCell().getValue();
+    if (spreadsheet.getActiveCell().getColumn() === 4 && activeCellValue === "ENTREGADO") {
+      const message = spreadsheet.getActiveCell().offset(0, 3).getValue();
+      let text = "";
+      if (message) {
+        const separateSplit = message.toString().split("*");
+        const list = separateSplit
+          .filter(item => item)
+          .map(item => `<li>${item}</li>`)
+          .join("");
+        text = `<b style='color:red'>Importante:</b><br><ul>${list}</ul>`;
+      }
 
-    MailApp.sendEmail({
-      to: emailCell.getValue(),
-      subject: spreadsheet.getActiveCell().offset(0, -2).getValue(),
-      htmlBody: `${greeting}<br><br>Se generó la orden número (${spreadsheet.getActiveCell().offset(0, -1).getValue()}) para el informe del cliente ${spreadsheet.getActiveCell().offset(0, -2).getValue()}. por favor validar.<br><br>${text}<br><br>${signature}`,
-    });
+      const signature = Gmail.Users.Settings.SendAs.list("me")
+        .sendAs.filter(account => account.isDefault)[0].signature;
 
-    SpreadsheetApp.getUi().alert("Correo Enviado Satisfactoriamente");
+      MailApp.sendEmail({
+        to: emailCell.getValue(),
+        subject: spreadsheet.getActiveCell().offset(0, -2).getValue(),
+        htmlBody: `${greeting}<br><br>Se generó la orden número (${spreadsheet.getActiveCell().offset(0, -1).getValue()}) para el informe del cliente ${spreadsheet.getActiveCell().offset(0, -2).getValue()}. por favor validar.<br><br>${text}<br><br>${signature}`,
+      });
+
+      SpreadsheetApp.getUi().alert("Correo Enviado Satisfactoriamente");
+    }
+  } catch (error) {
+    Logger.log(`${error.name}: ${error.message}`);
+    SpreadsheetApp.getUi().alert("Ejecución Terminada");
   }
 }
 
@@ -197,9 +214,13 @@ function enviarCorreo() {
  * @return {void}
  */
 function Filtro(row) {
-  const spreadsheet = SpreadsheetApp.getActive();
-  spreadsheet.getActiveSheet().getFilter().remove();
-  spreadsheet.getRange('B2:G' + row).activate();
-  spreadsheet.getRange('B2:G' + row).createFilter();
-  spreadsheet.getActiveRangeList().setBorder(true, true, true, true, true, true, '#000000', SpreadsheetApp.BorderStyle.SOLID);
+  try {
+    const spreadsheet = SpreadsheetApp.getActive();
+    spreadsheet.getActiveSheet().getFilter().remove();
+    spreadsheet.getRange('B2:G' + row).activate();
+    spreadsheet.getRange('B2:G' + row).createFilter();
+    spreadsheet.getActiveRangeList().setBorder(true, true, true, true, true, true, '#000000', SpreadsheetApp.BorderStyle.SOLID);
+  } catch (error) {
+    Logger.log(`${error.name}: ${error.message}`);
+  }
 }
