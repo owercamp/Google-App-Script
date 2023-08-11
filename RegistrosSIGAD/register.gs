@@ -136,7 +136,7 @@ function onOpen(e) {
  *
  * @return {void} 
  */
-function Auto_Increment() {
+function auto_Increment() {
   try {
     const sheet = SpreadsheetApp.getActiveSheet();
     const cell = sheet.getActiveCell();
@@ -213,7 +213,7 @@ function enviarCorreo() {
  * @param {number} rows - The number of rows to include in the filter range.
  * @return {void}
  */
-function Filtro(row) {
+function applyFilterAndBorder(row) {
   try {
     const spreadsheet = SpreadsheetApp.getActive();
     spreadsheet.getActiveSheet().getFilter().remove();
