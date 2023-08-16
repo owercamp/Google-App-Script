@@ -388,6 +388,15 @@
           case 'LATERALIDAD':
             occupational.lateralidad = (data[element] !== undefined) ? data[element] : ""; /** Lateralidad **/
             break;
+          case 'OBS_DIAGS':
+            occupational.observacionesDiags = (data[element] !== undefined) ? data[element] : "NO REFIERE"; /** Observaciones Diags **/
+            break;
+          case 'CONCEPTO_DE_EVALUACION':
+            occupational.conceptoDeEvaluacion = (data[element] !== undefined) ? data[element] : ""; /** Concepto de Evaluacion **/
+            break;
+          case 'OBSERVACIONES_DEL_CONCEPTO':
+            occupational.observacionesConcepto = (data[element] !== undefined) ? data[element] : "NO REFIERE"; /** Observaciones del Concepto **/
+            break;            
         }
       }
 
