@@ -396,7 +396,10 @@
             break;
           case 'OBSERVACIONES_DEL_CONCEPTO':
             occupational.observacionesConcepto = (data[element] !== undefined) ? data[element] : "NO REFIERE"; /** Observaciones del Concepto **/
-            break;            
+            break;
+          case 'RECOMENDACIONES_ESPECIFICAS':
+            occupational.recomendacionesEspecificas = (data[element] !== undefined) ? data[element] : ""; /** Recomendaciones Especificas **/
+            break;         
         }
       }
 
