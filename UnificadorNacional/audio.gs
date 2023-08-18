@@ -1,4 +1,3 @@
-
 function insertAudio(data, sheetName, spreadsheet) {
   const rowRegister = spreadsheet.getSheetByName(sheetName);
   const arrayData = [];
