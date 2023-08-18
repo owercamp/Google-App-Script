@@ -35,9 +35,14 @@ function insertData(data) {
             Logger.log(response);
           }
           break;
-        case "audio":
+        case "audiometry":
           for (const audio of information[iterator]) {
             const response = insertAudio(audio, "AUDIO", spreadsheet);
+            Logger.log(response);
+          }
+        case "optometry":
+          for (const opto of information[iterator]) {
+            const response = insertOpto(opto, "OPTO", spreadsheet);
             Logger.log(response);
           }
       }
