@@ -596,7 +596,7 @@
         }
       }
 
-      if (Object.entries(audio).length > 0) {
+      if (Object.entries(audio).length > 0 && (audio.oi500 != "" || audio.oi1000 != "" || audio.oi2000 != "" || audio.oi3000 != "" || audio.oi4000 != "" || audio.oi6000 != "" || audio.oi8000 != "" || audio.od500 != "" || audio.od1000 != "" || audio.od2000 != "" || audio.od3000 != "" || audio.od4000 != "" || audio.od6000 != "" || audio.od8000 != "")) {
         const socio_emography = informationSocioEmography(data);
 
         const audioInformation = {
@@ -809,7 +809,7 @@
         }
       }
 
-      if (Object.entries(opto).length > 0) {
+      if (Object.entries(opto).length > 0 && (opto.estadoDeCorreccion != "" || opto.patologiaOcular != "" || opto.diagPpal != "" || opto.diagRel1 != "" || opto.diagRel2 != "" || opto.diagRel3 != "")) {
         const socio_emography = informationSocioEmography(data);
 
         const optoInformation = {
@@ -1043,7 +1043,7 @@
         }
       }
 
-      if (Object.entries(visio).length > 0) {
+      if (Object.entries(visio).length > 0 && (visio.impVlOdNormal != "" || visio.impVlOiNormal != "" || visio.impVpOdNormal != "" || visio.impVpOiNormal != "" || visio.impVlOdDisminuido != "" || visio.impVlOiDisminuido != "" || visio.impVpOdDisminuido != "" || visio.impVpOiDisminuido != "" || visio.impVlOdNormalRx != "" || visio.impVlOiNormalRx != "" || visio.impVpOdNormalRx != "" || visio.impVpOiNormalRx != "" || visio.impVlOdDisminuidoRx != "" || visio.impVlOiDisminuidoRx != "" || visio.impVpOdDisminuidoRx != "" || visio.impVpOiDisminuidoRx != "")) {
         const socio_emography = informationSocioEmography(data);
 
         const visioInformation = {
@@ -1280,7 +1280,7 @@
         }
       }
 
-      if (Object.entries(spiro).length > 0) {
+      if (Object.entries(spiro).length > 0 && (spiro.interpretacion != "" || spiro.tipoGrado != "" || spiro.resultadoEspiroMetria != "")) {
         const socio_emography = informationSocioEmography(data);
 
         const spiroInformation = {
@@ -1788,7 +1788,7 @@
         }
       }
 
-      if (Object.entries(psychotec).length > 0) {
+      if (Object.entries(psychotec).length > 0 && psychotec.pruebaPsicotecnica != "") {
         const socio_emography = informationSocioEmography(data);
 
         const psychotechnicInformation = {
@@ -1863,7 +1863,7 @@
         }
       }
 
-      if (Object.entries(psychosenso).length > 0) {
+      if (Object.entries(psychosenso).length > 0 && psychosenso.pruebaPsicoSensometrica != "") {
         const socio_emography = informationSocioEmography(data);
 
         const psychosensometricInformation = {
