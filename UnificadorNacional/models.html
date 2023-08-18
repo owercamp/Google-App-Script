@@ -164,166 +164,166 @@
         switch (element.trim().toUpperCase().toString()) {
           /** Riesgos Biologicos **/
           case 'RIESGO_BIOLOGICO_/_VIRUS':
-            occupational.riesgosBiologicosVirus = (data[element] !== undefined) ? 1 : 0; /** Virus **/
+            occupational.riesgosBiologicosVirus = (data[element] !== undefined) ? data[element] : 0; /** Virus **/
             break;
           case 'RIESGO_BIOLOGICO_/_BACTERIAS':
-            occupational.riesgosBiologicosBacterias = (data[element] !== undefined) ? 1 : 0; /** Bacterias **/
+            occupational.riesgosBiologicosBacterias = (data[element] !== undefined) ? data[element] : 0; /** Bacterias **/
             break;
           case 'RIESGO_BIOLOGICO_/_HONGOS':
-            occupational.riesgosBiologicosHongos = (data[element] !== undefined) ? 1 : 0; /** Hongos **/
+            occupational.riesgosBiologicosHongos = (data[element] !== undefined) ? data[element] : 0; /** Hongos **/
             break;
           case 'RIESGO_BIOLOGICO_/_RICKETSIAS':
-            occupational.riesgosBiologicosRicketsias = (data[element] !== undefined) ? 1 : 0; /** Ricketsias **/
+            occupational.riesgosBiologicosRicketsias = (data[element] !== undefined) ? data[element] : 0; /** Ricketsias **/
             break;
           case 'RIESGO_BIOLOGICO_/_PARASITOS':
-            occupational.riesgosBiologicosParasitos = (data[element] !== undefined) ? 1 : 0; /** Parasitos **/
+            occupational.riesgosBiologicosParasitos = (data[element] !== undefined) ? data[element] : 0; /** Parasitos **/
             break;
           case 'RIESGO_BIOLOGICO_/_FLUIDOS':
-            occupational.riesgosBiologicosFluidos = (data[element] !== undefined) ? 1 : 0; /** Fluidos **/
+            occupational.riesgosBiologicosFluidos = (data[element] !== undefined) ? data[element] : 0; /** Fluidos **/
             break;
           case 'RIESGO_BIOLOGICO_/_PICADURAS':
-            occupational.riesgosBiologicosPicaduras = (data[element] !== undefined) ? 1 : 0; /** Picaduras **/
+            occupational.riesgosBiologicosPicaduras = (data[element] !== undefined) ? data[element] : 0; /** Picaduras **/
             break;
           case 'RIESGO_BIOLOGICO_/_MORDEDURAS':
-            occupational.riesgosBiologicosMordeduras = (data[element] !== undefined) ? 1 : 0; /** Mordeduras **/
+            occupational.riesgosBiologicosMordeduras = (data[element] !== undefined) ? data[element] : 0; /** Mordeduras **/
             break;
           case 'OTROS_RIESGOS_BIOLOGICOS':
             occupational.riesgosBiologicosOtrosBiologicos = (data[element] !== undefined) ? data[element].toUpperCase() : "NO REFIERE"; /** Otros **/
             break;
           /** Riesgos Fenomenos Naturales **/
           case 'FENOMENOS_NATURALES_/_DERRUMBE':
-            occupational.fenomenosNaturalesDerrumbe = (data[element] !== undefined) ? 1 : 0; /** Derrumbe **/
+            occupational.fenomenosNaturalesDerrumbe = (data[element] !== undefined) ? data[element] : 0; /** Derrumbe **/
             break;
           case 'FENOMENOS_NATURALES_/_INUNDACION':
-            occupational.fenomenosNaturalesInundacion = (data[element] !== undefined) ? 1 : 0; /** Inundacion **/
+            occupational.fenomenosNaturalesInundacion = (data[element] !== undefined) ? data[element] : 0; /** Inundacion **/
             break;
           case 'FENOMENOS_NATURALES_/_PRECIPITACIONES':
-            occupational.fenomenosNaturalesPrecipitaciones = (data[element] !== undefined) ? 1 : 0; /** Precipitaciones **/
+            occupational.fenomenosNaturalesPrecipitaciones = (data[element] !== undefined) ? data[element] : 0; /** Precipitaciones **/
             break;
           case 'FENOMENOS_NATURALES_/_SISMO':
-            occupational.fenomenosNaturalesSismo = (data[element] !== undefined) ? 1 : 0; /** Sismo **/
+            occupational.fenomenosNaturalesSismo = (data[element] !== undefined) ? data[element] : 0; /** Sismo **/
             break;
           case 'FENOMENOS_NATURALES_/_TERREMOTO':
-            occupational.fenomenosNaturalesTerremoto = (data[element] !== undefined) ? 1 : 0; /** Terremoto **/
+            occupational.fenomenosNaturalesTerremoto = (data[element] !== undefined) ? data[element] : 0; /** Terremoto **/
             break;
           case 'FENOMENOS_NATURALES_/_VENDAVAL':
-            occupational.fenomenosNaturalesVendaval = (data[element] !== undefined) ? 1 : 0; /** Vendaval **/
+            occupational.fenomenosNaturalesVendaval = (data[element] !== undefined) ? data[element] : 0; /** Vendaval **/
             break;
           case 'FENOMENOS_NATURALES_/_OTROS_NATURALES':
             occupational.fenomenosNaturalesOtrosNaturales = (data[element] !== undefined) ? data[element].toUpperCase() : "NO REFIERE"; /** Otros **/
             break;
           /** Riesgos Biomecanicos **/
           case 'RIESGO_BIOMECANICO_ESFUERZO':
-            occupational.riesgosBiomecanicosEsfuerzo = (data[element] !== undefined) ? 1 : 0; /** Esfuerzo **/
+            occupational.riesgosBiomecanicosEsfuerzo = (data[element] !== undefined) ? data[element] : 0; /** Esfuerzo **/
             break;
           case 'RIESGO_BIOMECANICO_MANIPULACION_CARGA':
-            occupational.riesgosBiomecanicosManipulacionCarga = (data[element] !== undefined) ? 1 : 0; /** Manipulacion de carga **/
+            occupational.riesgosBiomecanicosManipulacionCarga = (data[element] !== undefined) ? data[element] : 0; /** Manipulacion de carga **/
             break;
           case 'RIESGO_BIOMECANICO_MOVREPETITIVO':
-            occupational.riesgosBiomecanicosMovRepetitivo = (data[element] !== undefined) ? 1 : 0; /** Movimiento repetitivo **/
+            occupational.riesgosBiomecanicosMovRepetitivo = (data[element] !== undefined) ? data[element] : 0; /** Movimiento repetitivo **/
             break;
           case 'RIESGO_BIOMECANICO_POSTURA':
-            occupational.riesgosBiomecanicosPostura = (data[element] !== undefined) ? 1 : 0; /** Postura **/
+            occupational.riesgosBiomecanicosPostura = (data[element] !== undefined) ? data[element] : 0; /** Postura **/
             break;
           case 'OTROS_RIESGOS_BIOMECANICOS':
             occupational.riesgosBiomecanicosOtrosBiomecanicos = (data[element] !== undefined) ? data[element].toUpperCase() : "NO REFIERE"; /** Otros **/
             break;
           /** Riesgos Fisicos **/
           case 'RIESGO_FISICO_/_ILUMINACION':
-            occupational.riesgosFisicosIluminacion = (data[element] !== undefined) ? 1 : 0; /** Iluminacion **/
+            occupational.riesgosFisicosIluminacion = (data[element] !== undefined) ? data[element] : 0; /** Iluminacion **/
             break;
           case 'RIESGO_FISICO_/_PRES_ATMOSFERICA':
-            occupational.riesgosFisicosPresAtmosferica = (data[element] !== undefined) ? 1 : 0; /** Presion Atmosferica **/
+            occupational.riesgosFisicosPresAtmosferica = (data[element] !== undefined) ? data[element] : 0; /** Presion Atmosferica **/
             break;
           case 'RIESGO_FISICO_/_RAD_IONIZANTES':
-            occupational.riesgosFisicosRadIonizantes = (data[element] !== undefined) ? 1 : 0; /** Radiacion Ionizantes **/
+            occupational.riesgosFisicosRadIonizantes = (data[element] !== undefined) ? data[element] : 0; /** Radiacion Ionizantes **/
             break;
           case 'RIESGO_FISICO_/_RAD_NO_IONIZANTES':
-            occupational.riesgosFisicosRadNoIonizantes = (data[element] !== undefined) ? 1 : 0; /** Radiacion No Ionizantes **/
+            occupational.riesgosFisicosRadNoIonizantes = (data[element] !== undefined) ? data[element] : 0; /** Radiacion No Ionizantes **/
             break;
           case 'RIESGO_FISICO_/_RUIDO':
-            occupational.riesgosFisicosRuido = (data[element] !== undefined) ? 1 : 0; /** Ruido **/
+            occupational.riesgosFisicosRuido = (data[element] !== undefined) ? data[element] : 0; /** Ruido **/
             break;
           case 'RIESGO_FISICO_/_TEMP_EXTREMAS':
-            occupational.riesgosFisicosTemperaturaExtremas = (data[element] !== undefined) ? 1 : 0; /** Temperatura Extremas **/
+            occupational.riesgosFisicosTemperaturaExtremas = (data[element] !== undefined) ? data[element] : 0; /** Temperatura Extremas **/
             break;
           case 'RIESGO_FISICO_/_VIBRACION':
-            occupational.riesgosFisicosVibracion = (data[element] !== undefined) ? 1 : 0; /** Vibracion **/
+            occupational.riesgosFisicosVibracion = (data[element] !== undefined) ? data[element] : 0; /** Vibracion **/
             break;
           case 'RIESGO_DE_OTROS_FACTORES_FISICOS':
             occupational.riesgosFisicosOtrosFisicos = (data[element] !== undefined) ? data[element].toUpperCase() : "NO REFIERE"; /** Otros **/
             break;
           /** Riesgos Psicologicos **/
           case 'RIESGO_PSICO_/_CARACT_DEL_GRUPO':
-            occupational.riesgosPsicosCaractDelGrupo = (data[element] !== undefined) ? 1 : 0; /** Caracteristicas del grupo **/
+            occupational.riesgosPsicosCaractDelGrupo = (data[element] !== undefined) ? data[element] : 0; /** Caracteristicas del grupo **/
             break;
           case 'RIESGO_PSICO_/_CARACT_ORGANIZACION':
-            occupational.riesgosPsicosCaractOrganizacion = (data[element] !== undefined) ? 1 : 0; /** Caracteristicas organizacion **/
+            occupational.riesgosPsicosCaractOrganizacion = (data[element] !== undefined) ? data[element] : 0; /** Caracteristicas organizacion **/
             break;
           case 'RIESGO_PSICO_/_CONDICIONES':
-            occupational.riesgosPsicosCondiciones = (data[element] !== undefined) ? 1 : 0; /** Caracteristicas de condiciones **/
+            occupational.riesgosPsicosCondiciones = (data[element] !== undefined) ? data[element] : 0; /** Caracteristicas de condiciones **/
             break;
           case 'RIESGO_PSICO_/_GESTION_ORGANIZACIONAL':
-            occupational.riesgosPsicosGestionOrganizacional = (data[element] !== undefined) ? 1 : 0; /** Caracteristicas de gestion organizacional **/
+            occupational.riesgosPsicosGestionOrganizacional = (data[element] !== undefined) ? data[element] : 0; /** Caracteristicas de gestion organizacional **/
             break;
           case 'RIESGO_PSICO_/_INTERFACES_TAREA':
-            occupational.riesgosPsicosInterfasesTarea = (data[element] !== undefined) ? 1 : 0; /** Caracteristicas de interfaces de tarea **/
+            occupational.riesgosPsicosInterfasesTarea = (data[element] !== undefined) ? data[element] : 0; /** Caracteristicas de interfaces de tarea **/
             break;
           case 'RIESGO_PSICO_/_JORNADA':
-            occupational.riesgosPsicosJornada = (data[element] !== undefined) ? 1 : 0; /** Caracteristicas de jornada **/
+            occupational.riesgosPsicosJornada = (data[element] !== undefined) ? data[element] : 0; /** Caracteristicas de jornada **/
             break;
           case 'OTROS_PSICO_LABORAL':
             occupational.riesgosPsicosOtrosLaboral = (data[element] !== undefined) ? data[element].toUpperCase() : "NO REFIERE"; /** Otros **/
             break;
           /** riesgos Quimicos **/
           case 'RIESGO_QUIMICO_/GASES':
-            occupational.riesgosQuimicosGases = (data[element] !== undefined) ? 1 : 0; /** Gases **/
+            occupational.riesgosQuimicosGases = (data[element] !== undefined) ? data[element] : 0; /** Gases **/
             break;
           case 'RIESGO_QUIMICO_/MATERIAL_PARTICULADO':
-            occupational.riesgosQuimicosMaterialParticulado = (data[element] !== undefined) ? 1 : 0; /** Material Particulado **/
+            occupational.riesgosQuimicosMaterialParticulado = (data[element] !== undefined) ? data[element] : 0; /** Material Particulado **/
             break;
           case 'RIESGO_QUIMICO_/_FIBRAS':
-            occupational.riesgosQuimicosFibras = (data[element] !== undefined) ? 1 : 0; /** Fibras **/
+            occupational.riesgosQuimicosFibras = (data[element] !== undefined) ? data[element] : 0; /** Fibras **/
             break;
           case 'RIESGO_QUIMICO_/_HUMOS':
-            occupational.riesgosQuimicosHumos = (data[element] !== undefined) ? 1 : 0; /** Humos **/
+            occupational.riesgosQuimicosHumos = (data[element] !== undefined) ? data[element] : 0; /** Humos **/
             break;
           case 'RIESGO_QUIMICO_/_LIQUIDOS':
-            occupational.riesgosQuimicosLiquidos = (data[element] !== undefined) ? 1 : 0; /** Liquidos **/
+            occupational.riesgosQuimicosLiquidos = (data[element] !== undefined) ? data[element] : 0; /** Liquidos **/
             break;
           case 'RIESGO_QUIMICO_/_POLVOS':
-            occupational.riesgosQuimicosPolvos = (data[element] !== undefined) ? 1 : 0; /** Polvos **/
+            occupational.riesgosQuimicosPolvos = (data[element] !== undefined) ? data[element] : 0; /** Polvos **/
             break;
           case 'RIESGO_QUIMICO_/_VAPORES':
-            occupational.riesgosQuimicosVapores = (data[element] !== undefined) ? 1 : 0; /** Vapores **/
+            occupational.riesgosQuimicosVapores = (data[element] !== undefined) ? data[element] : 0; /** Vapores **/
             break;
           case 'OTROS_RIESGOS_QUIMICOS':
             occupational.riesgosQuimicosOtrosQuimicos = (data[element] !== undefined) ? data[element].toUpperCase() : "NO REFIERE"; /** Otros **/
             break;
           /** Condiciones de Seguridad **/
           case 'CONDICIONES_DE_SEGURIDAD_/_ACC_DE_TRANSITO':
-            occupational.condicionesDeSeguridadAccDeTransito = (data[element] !== undefined) ? 1 : 0; /** Acciones de transporte **/
+            occupational.condicionesDeSeguridadAccDeTransito = (data[element] !== undefined) ? data[element] : 0; /** Acciones de transporte **/
             break;
           case 'CONDICIONES_DE_SEGURIDAD_/_ELECTRICOS':
-            occupational.condicionesDeSeguridadElectricos = (data[element] !== undefined) ? 1 : 0; /** Electricos **/
+            occupational.condicionesDeSeguridadElectricos = (data[element] !== undefined) ? data[element] : 0; /** Electricos **/
             break;
           case 'CONDICIONES_DE_SEGURIDAD_/_ESPACIOS_CONFINADOS':
-            occupational.condicionesDeSeguridadEspaciosConfinados = (data[element] !== undefined) ? 1 : 0; /** Espacios Confinados **/
+            occupational.condicionesDeSeguridadEspaciosConfinados = (data[element] !== undefined) ? data[element] : 0; /** Espacios Confinados **/
             break;
           case 'CONDICIONES_DE_SEGURIDAD_/_LOCATIVO':
-            occupational.condicionesDeSeguridadLocativo = (data[element] !== undefined) ? 1 : 0; /** Locativo **/
+            occupational.condicionesDeSeguridadLocativo = (data[element] !== undefined) ? data[element] : 0; /** Locativo **/
             break;
           case 'CONDICIONES_DE_SEGURIDAD_/_MECANICOS':
-            occupational.condicionesDeSeguridadMecanicos = (data[element] !== undefined) ? 1 : 0; /** Mecanicos **/
+            occupational.condicionesDeSeguridadMecanicos = (data[element] !== undefined) ? data[element] : 0; /** Mecanicos **/
             break;
           case 'CONDICIONES_DE_SEGURIDAD_/_PUBLICOS':
-            occupational.condicionesDeSeguridadPublicos = (data[element] !== undefined) ? 1 : 0; /** Publicos **/
+            occupational.condicionesDeSeguridadPublicos = (data[element] !== undefined) ? data[element] : 0; /** Publicos **/
             break;
           case 'CONDICIONES_DE_SEGURIDAD_/_TECNOLOGICO':
-            occupational.condicionesDeSeguridadTecnologico = (data[element] !== undefined) ? 1 : 0; /** Tecnologico **/
+            occupational.condicionesDeSeguridadTecnologico = (data[element] !== undefined) ? data[element] : 0; /** Tecnologico **/
             break;
           case 'CONDICIONES_DE_SEGURIDAD_/_TRABAJO_EN_ALTURAS':
-            occupational.condicionesDeSeguridadTrabajoEnAlturas = (data[element] !== undefined) ? 1 : 0; /** Trabajo en alturas **/
+            occupational.condicionesDeSeguridadTrabajoEnAlturas = (data[element] !== undefined) ? data[element] : 0; /** Trabajo en alturas **/
             break;
           case 'CONDICIONES_DE_SEGURIDAD_/_OTROS_DE_SEGURIDAD':
             occupational.condicionesDeSeguridadOtrosDeSeguridad = (data[element] !== undefined) ? data[element].toUpperCase() : "NO REFIERE"; /** Otros **/
@@ -445,16 +445,16 @@
       for (const element in data) {
         switch (element.trim().toUpperCase().toString()) {
           case "EPP_ESPECIFICO_/_AUDITIVO":
-            audio.eppEspecificoAuditivo = (data[element] !== undefined) ? 1 : 0; /** Auditivo **/
+            audio.eppEspecificoAuditivo = (data[element] !== undefined) ? data[element] : 0; /** Auditivo **/
             break;
           case "EPP_ESPECIFICO_/_AUDITIVO_COPA":
-            audio.eppEspecificoAuditivoCopa = (data[element] !== undefined) ? 1 : 0; /** Auditivo Copa **/
+            audio.eppEspecificoAuditivoCopa = (data[element] !== undefined) ? data[element] : 0; /** Auditivo Copa **/
             break;
           case "EPP_ESPECIFICO_/_AUDITIVO_INSERCION":
-            audio.eppEspecificoAuditivoInsercion = (data[element] !== undefined) ? 1 : 0; /** Auditivo Insercion **/
+            audio.eppEspecificoAuditivoInsercion = (data[element] !== undefined) ? data[element] : 0; /** Auditivo Insercion **/
             break;
           case "EPP_ESPECIFICO_/_AUDITIVO_DOBLE":
-            audio.eppEspecificoAuditivoDoble = (data[element] !== undefined) ? 1 : 0; /** Auditivo Doble **/
+            audio.eppEspecificoAuditivoDoble = (data[element] !== undefined) ? data[element] : 0; /** Auditivo Doble **/
             break;
           case "PABELLON_AURIC__OIDO_DER__":
             audio.pabellonAuricoidoDer = (data[element] !== undefined) ? data[element].toUpperCase() : "NORMAL"; /** Pabellon Auricular Oido Derecho Normal **/
@@ -537,52 +537,52 @@
             audio.oi8000 = (data[element] !== undefined) ? data[element] : 0; /** OI 8000 **/
             break;
           case "CONTROL_SEGUN_PVE":
-            audio.controlSegunPve = (data[element] !== undefined) ? 1 : 0; /** Control Segun PVE **/
+            audio.controlSegunPve = (data[element] !== undefined) ? data[element] : 0; /** Control Segun PVE **/
             break;
           case "CONFIRMATORIA":
-            audio.confirmatoria = (data[element] !== undefined) ? 1 : 0; /** Confirmatoria **/
+            audio.confirmatoria = (data[element] !== undefined) ? data[element] : 0; /** Confirmatoria **/
             break;
           case "REMISION_ORL":
-            audio.remisionOrl = (data[element] !== undefined) ? 1 : 0; /** Remision Orl **/
+            audio.remisionOrl = (data[element] !== undefined) ? data[element] : 0; /** Remision Orl **/
             break;
           case "PRUEBAS_COMPLEMENTARIAS":
-            audio.pruebasComplementarias = (data[element] !== undefined) ? 1 : 0; /** Pruebas Complementarias **/
+            audio.pruebasComplementarias = (data[element] !== undefined) ? data[element] : 0; /** Pruebas Complementarias **/
             break;
           case "LIMPIEZA_DE_OIDO":
-            audio.limpiezaDeOido = (data[element] !== undefined) ? 1 : 0; /** Limpieza de Oido **/
+            audio.limpiezaDeOido = (data[element] !== undefined) ? data[element] : 0; /** Limpieza de Oido **/
             break;
           case "LIMPIEZA_OD":
-            audio.limpiezaOd = (data[element] !== undefined) ? 1 : 0; /** Limpieza Od **/
+            audio.limpiezaOd = (data[element] !== undefined) ? data[element] : 0; /** Limpieza Od **/
             break;
           case "LIMPIEZA_OI":
-            audio.limpiezaOi = (data[element] !== undefined) ? 1 : 0; /** Limpieza Oi **/
+            audio.limpiezaOi = (data[element] !== undefined) ? data[element] : 0; /** Limpieza Oi **/
             break;
           case "REPOSO_AUDITIVO_EXTRALAB":
-            audio.reposoAuditivoExtralab = (data[element] !== undefined) ? 1 : 0; /** Reposo Auditivo Extralab **/
+            audio.reposoAuditivoExtralab = (data[element] !== undefined) ? data[element] : 0; /** Reposo Auditivo Extralab **/
             break;
           case "ROTAR_DIADEMA_TELEFONICA":
-            audio.rotarDiaadematelefonica = (data[element] !== undefined) ? 1 : 0; /** Rotar Diaadematelefonica **/
+            audio.rotarDiaadematelefonica = (data[element] !== undefined) ? data[element] : 0; /** Rotar Diaadematelefonica **/
             break;
           case "CONDUCIR_CON_VENTANAS_CERRADAS":
-            audio.conducirConVentanasCerradas = (data[element] !== undefined) ? 1 : 0; /** Conducir Con Ventanas Cerradas **/
+            audio.conducirConVentanasCerradas = (data[element] !== undefined) ? data[element] : 0; /** Conducir Con Ventanas Cerradas **/
             break;
           case "USO_DE_EPP_AUDITIVO":
-            audio.usoDeEppAuditivo = (data[element] !== undefined) ? 1 : 0; /** Uso De Epp Auditivo **/
+            audio.usoDeEppAuditivo = (data[element] !== undefined) ? data[element] : 0; /** Uso De Epp Auditivo **/
             break;
           case "CONTROLES_MENSUALES":
-            audio.controlesMensuales = (data[element] !== undefined) ? 1 : 0; /** Controles Mensuales **/
+            audio.controlesMensuales = (data[element] !== undefined) ? data[element] : 0; /** Controles Mensuales **/
             break;
           case "CONTROLES_BIMESTRALES":
-            audio.controlesBimestrales = (data[element] !== undefined) ? 1 : 0; /** Controles Bimestrales **/
+            audio.controlesBimestrales = (data[element] !== undefined) ? data[element] : 0; /** Controles Bimestrales **/
             break;
           case "CONTROLES_TRIMESTRALES":
-            audio.controlesTrimestrales = (data[element] !== undefined) ? 1 : 0; /** Controles Trimestrales **/
+            audio.controlesTrimestrales = (data[element] !== undefined) ? data[element] : 0; /** Controles Trimestrales **/
             break;
           case "CONTROLES_6_MESES":
-            audio.controles6Meses = (data[element] !== undefined) ? 1 : 0; /** Controles 6 Meses **/
+            audio.controles6Meses = (data[element] !== undefined) ? data[element] : 0; /** Controles 6 Meses **/
             break;
           case "CONTROLES_1_AÑO":
-            audio.controles1Anio = (data[element] !== undefined) ? 1 : 0; /** Controles 1 Anio **/
+            audio.controles1Anio = (data[element] !== undefined) ? data[element] : 0; /** Controles 1 Anio **/
             break;
           case "DIAG_PPAL":
             audio.diagPpal = (data[element] !== undefined) ? data[element].toUpperCase() : "SIN DATO"; /** Diagnostico Ppal **/
@@ -630,58 +630,58 @@
       for (const element in data) {
         switch (element.trim().toUpperCase().toString()) {
           case "VISIO/ANT__LABORAL_ILUMINACION_INADECUADA":
-            opto.visioAntLaboralIluminacionInadecuada = (data[element] !== undefined) ? 1 : 0; /** Visio Ant Laboral Iluminacion Inadecuada **/
+            opto.visioAntLaboralIluminacionInadecuada = (data[element] !== undefined) ? data[element] : 0; /** Visio Ant Laboral Iluminacion Inadecuada **/
             break;
           case "VISIO/ANT__LABORAL_USUARIO_COMPUTADOR":
-            opto.visioAntLaboralUsuarioComputador = (data[element] !== undefined) ? 1 : 0; /** Visio Ant Laboral Usuario Computador **/
+            opto.visioAntLaboralUsuarioComputador = (data[element] !== undefined) ? data[element] : 0; /** Visio Ant Laboral Usuario Computador **/
             break;
           case "VISIO/ANT__LABORAL_VISIO_RADIACIONES_UV":
-            opto.visioAntLaboralVisioRadiacionesUv = (data[element] !== undefined) ? 1 : 0; /** Visio Ant Laboral Visio Radiaciones UV **/
+            opto.visioAntLaboralVisioRadiacionesUv = (data[element] !== undefined) ? data[element] : 0; /** Visio Ant Laboral Visio Radiaciones UV **/
             break;
           case "VISIO/ANT__LABORAL_CAMBIOS_TEMPERATURA":
-            opto.visioAntLaboralCambiosTemperatura = (data[element] !== undefined) ? 1 : 0; /** Visio Ant Laboral Cambios Temperatura **/
+            opto.visioAntLaboralCambiosTemperatura = (data[element] !== undefined) ? data[element] : 0; /** Visio Ant Laboral Cambios Temperatura **/
             break;
           case "VISIO/ANT__LABORAL_MALA_VENTILACION":
-            opto.visioAntLaboralMalaventilacion = (data[element] !== undefined) ? 1 : 0; /** Visio Ant Laboral Malaventilacion **/
+            opto.visioAntLaboralMalaventilacion = (data[element] !== undefined) ? data[element] : 0; /** Visio Ant Laboral Malaventilacion **/
             break;
           case "VISIO/ANT__LABORAL_GASES_TOXICOS":
-            opto.visioAntLaboralGasesToxicos = (data[element] !== undefined) ? 1 : 0; /** Visio Ant Laboral Gases Toxicos **/
+            opto.visioAntLaboralGasesToxicos = (data[element] !== undefined) ? data[element] : 0; /** Visio Ant Laboral Gases Toxicos **/
             break;
           case "SINTOMAS_FOTOFOBIA":
-            opto.sintomasFotofobia = (data[element] !== undefined) ? 1 : 0; /** Sintomas Fotofobia **/
+            opto.sintomasFotofobia = (data[element] !== undefined) ? data[element] : 0; /** Sintomas Fotofobia **/
             break;
           case "SINTOMAS_OJO_ROJO":
-            opto.sintomasOjoRojo = (data[element] !== undefined) ? 1 : 0; /** Sintomas Ojo Rojo **/
+            opto.sintomasOjoRojo = (data[element] !== undefined) ? data[element] : 0; /** Sintomas Ojo Rojo **/
             break;
           case "SINTOMAS_LAGRIMEO":
-            opto.sintomasLagrimeo = (data[element] !== undefined) ? 1 : 0; /** Sintomas Lagrimeo **/
+            opto.sintomasLagrimeo = (data[element] !== undefined) ? data[element] : 0; /** Sintomas Lagrimeo **/
             break;
           case "SINTOMAS_VISION_BORROSA":
-            opto.sintomasVisionBorrosa = (data[element] !== undefined) ? 1 : 0; /** Sintomas Vision Borrosa **/
+            opto.sintomasVisionBorrosa = (data[element] !== undefined) ? data[element] : 0; /** Sintomas Vision Borrosa **/
             break;
           case "SINTOMAS_ARDOR":
-            opto.sintomasArdor = (data[element] !== undefined) ? 1 : 0; /** Sintomas Ardor **/
+            opto.sintomasArdor = (data[element] !== undefined) ? data[element] : 0; /** Sintomas Ardor **/
             break;
           case "SINTOMAS_VISION_DOBLE":
-            opto.sintomasVisionDoble = (data[element] !== undefined) ? 1 : 0; /** Sintomas Vision Doble **/
+            opto.sintomasVisionDoble = (data[element] !== undefined) ? data[element] : 0; /** Sintomas Vision Doble **/
             break;
           case "SINTOMAS_CANSANCIO":
-            opto.sintomasCansancio = (data[element] !== undefined) ? 1 : 0; /** Sintomas Cansancio **/
+            opto.sintomasCansancio = (data[element] !== undefined) ? data[element] : 0; /** Sintomas Cansancio **/
             break;
           case "SINTOMAS_MALA_VISION_CERCANA":
-            opto.sintomasMalavisionCercana = (data[element] !== undefined) ? 1 : 0; /** Sintomas Malavision Cercana **/
+            opto.sintomasMalavisionCercana = (data[element] !== undefined) ? data[element] : 0; /** Sintomas Malavision Cercana **/
             break;
           case "SINTOMAS_DOLOR":
-            opto.sintomasDolor = (data[element] !== undefined) ? 1 : 0; /** Sintomas Dolor **/
+            opto.sintomasDolor = (data[element] !== undefined) ? data[element] : 0; /** Sintomas Dolor **/
             break;
           case "SINTOMAS_MALA_VISON_LEJANA":
-            opto.sintomasMalavisionLejana = (data[element] !== undefined) ? 1 : 0; /** Sintomas Malavision Lejana **/
+            opto.sintomasMalavisionLejana = (data[element] !== undefined) ? data[element] : 0; /** Sintomas Malavision Lejana **/
             break;
           case "SINTOMAS_SECRECION":
-            opto.sintomasSecrecion = (data[element] !== undefined) ? 1 : 0; /** Sintomas Secrecion **/
+            opto.sintomasSecrecion = (data[element] !== undefined) ? data[element] : 0; /** Sintomas Secrecion **/
             break;
           case "SINTOMAS_CEFALEA":
-            opto.sintomasCefalea = (data[element] !== undefined) ? 1 : 0; /** Sintomas Cefalea **/
+            opto.sintomasCefalea = (data[element] !== undefined) ? data[element] : 0; /** Sintomas Cefalea **/
             break;
           case "OTROS_SINTOMAS":
             opto.otrosSintomas = (data[element] !== undefined) ? data[element].toUpperCase() : "NO REFIERE"; /** Otros Sintomas **/
@@ -738,73 +738,73 @@
             opto.diagRel3 = (data[element] !== undefined) ? data[element] : 0; /** Diag Rel 3 **/
             break;
           case "REC_CORRECCION_VISUAL_PARA_TRABAJAR":
-            opto.recCorreccionVisualParaTrabajar = (data[element] !== undefined) ? 1 : 0; /** Rec Correccion Visual Para Trabajar **/
+            opto.recCorreccionVisualParaTrabajar = (data[element] !== undefined) ? data[element] : 0; /** Rec Correccion Visual Para Trabajar **/
             break;
           case "REC_USO_AR_VIDEO_TRMINAL":
-            opto.recUsoArVideoTerminal = (data[element] !== undefined) ? 1 : 0; /** Rec Uso Ar Video Terminal **/
+            opto.recUsoArVideoTerminal = (data[element] !== undefined) ? data[element] : 0; /** Rec Uso Ar Video Terminal **/
             break;
           case "REC_USO_DE_LENTES_DE_PROTECCION_SOLAR":
-            opto.recUsoDeLentesDeProteccionSolar = (data[element] !== undefined) ? 1 : 0; /** Rec Uso De Lentes De Proteccion Solar **/
+            opto.recUsoDeLentesDeProteccionSolar = (data[element] !== undefined) ? data[element] : 0; /** Rec Uso De Lentes De Proteccion Solar **/
             break;
           case "REC_USO_EPP_VISUAL":
-            opto.recUsoEppVisual = (data[element] !== undefined) ? 1 : 0; /** Rec Uso Epp Visual **/
+            opto.recUsoEppVisual = (data[element] !== undefined) ? data[element] : 0; /** Rec Uso Epp Visual **/
             break;
           case "REC_PAUSAS_ACTIVAS":
-            opto.recPausasActivas = (data[element] !== undefined) ? 1 : 0; /** Rec Pausas Activas **/
+            opto.recPausasActivas = (data[element] !== undefined) ? data[element] : 0; /** Rec Pausas Activas **/
             break;
           case "REC_USO_RX_VISION_PROXIMA":
-            opto.recUsoRxVisionProxima = (data[element] !== undefined) ? 1 : 0; /** Rec Uso Rx Vision Proxima **/
+            opto.recUsoRxVisionProxima = (data[element] !== undefined) ? data[element] : 0; /** Rec Uso Rx Vision Proxima **/
             break;
           case "REC_USO_RX_DESCANSO":
-            opto.recUsoRxDescanso = (data[element] !== undefined) ? 1 : 0; /** Rec Uso Rx Descanso **/
+            opto.recUsoRxDescanso = (data[element] !== undefined) ? data[element] : 0; /** Rec Uso Rx Descanso **/
             break;
           case "REC_USO_PERMANENTE_RX_OPTICA":
-            opto.recUsoPermanenteRxOptica = (data[element] !== undefined) ? 1 : 0; /** Rec Uso Permanente Rx Optica **/
+            opto.recUsoPermanenteRxOptica = (data[element] !== undefined) ? data[element] : 0; /** Rec Uso Permanente Rx Optica **/
             break;
           case "REC_PYP":
-            opto.recPyp = (data[element] !== undefined) ? 1 : 0; /** Rec Pyp **/
+            opto.recPyp = (data[element] !== undefined) ? data[element] : 0; /** Rec Pyp **/
             break;
           case "REC_LUBRICANTE_OCULAR":
-            opto.recLubricanteOcular = (data[element] !== undefined) ? 1 : 0; /** Rec Lubricante Ocular **/
+            opto.recLubricanteOcular = (data[element] !== undefined) ? data[element] : 0; /** Rec Lubricante Ocular **/
             break;
           case "RECOMENDACIONES_OBS":
             opto.recomendacionesObs = (data[element] !== undefined) ? data[element].toUpperCase() : "SIN DATO"; /** Recomendaciones Obs **/
             break;
           case "REM__VALORACION_OFTALM_":
-            opto.remValoracionOftalm = (data[element] !== undefined) ? 1 : 0; /** Rem Valoracion Oftalm **/
+            opto.remValoracionOftalm = (data[element] !== undefined) ? data[element] : 0; /** Rem Valoracion Oftalm **/
             break;
           case "REM__TOPOGRAFIA_CORNEAL":
-            opto.remTopografiaCornea = (data[element] !== undefined) ? 1 : 0; /** Rem Topografia Cornea **/
+            opto.remTopografiaCornea = (data[element] !== undefined) ? data[element] : 0; /** Rem Topografia Cornea **/
             break;
           case "REM__TRATAM__ORTOPTICA":
-            opto.remTratamientoOrtop = (data[element] !== undefined) ? 1 : 0; /** Rem Tratamiento Ortop **/
+            opto.remTratamientoOrtop = (data[element] !== undefined) ? data[element] : 0; /** Rem Tratamiento Ortop **/
             break;
           case "REM__TEST_FARNSWORTH":
-            opto.remTestFarnsworth = (data[element] !== undefined) ? 1 : 0; /** Rem Test Farnsworth **/
+            opto.remTestFarnsworth = (data[element] !== undefined) ? data[element] : 0; /** Rem Test Farnsworth **/
             break;
           case "REALIZAR_PRUEBA_AMBULATORIA":
-            opto.realizarPruebaAmbulatoria = (data[element] !== undefined) ? 1 : 0; /** Realizar Prueba Ambulatoria **/
+            opto.realizarPruebaAmbulatoria = (data[element] !== undefined) ? data[element] : 0; /** Realizar Prueba Ambulatoria **/
             break;
           case "REMISIONES_OBS":
             opto.remisionesObs = (data[element] !== undefined) ? data[element].toUpperCase() : "SIN DATO"; /** Remisiones Obs **/
             break;
           case "CONTROLES_MENSUAL":
-            opto.controlesMensual = (data[element] !== undefined) ? 1 : 0; /** Controles Mensual **/
+            opto.controlesMensual = (data[element] !== undefined) ? data[element] : 0; /** Controles Mensual **/
             break;
           case "CONTROLES_BIMESTRALES":
-            opto.controlesBimestrales = (data[element] !== undefined) ? 1 : 0; /** Controles Bimestrales **/
+            opto.controlesBimestrales = (data[element] !== undefined) ? data[element] : 0; /** Controles Bimestrales **/
             break;
           case "CONTROLES_TRIMESTRAL":
-            opto.controlesTrimestrales = (data[element] !== undefined) ? 1 : 0; /** Controles Trimestrales **/
+            opto.controlesTrimestrales = (data[element] !== undefined) ? data[element] : 0; /** Controles Trimestrales **/
             break;
           case "CONTROLES_6_MESES":
-            opto.controles6Meses = (data[element] !== undefined) ? 1 : 0; /** Controles 6 Meses **/
+            opto.controles6Meses = (data[element] !== undefined) ? data[element] : 0; /** Controles 6 Meses **/
             break;
           case "CONTROLES_1_AÑO":
-            opto.controles1Anio = (data[element] !== undefined) ? 1 : 0; /** Controles 1 Anio **/
+            opto.controles1Anio = (data[element] !== undefined) ? data[element] : 0; /** Controles 1 Anio **/
             break;
           case "CONTROLES_CONFIRMATORIA":
-            opto.controlesConfirmatoria = (data[element] !== undefined) ? 1 : 0; /** Controles Confirmatoria **/
+            opto.controlesConfirmatoria = (data[element] !== undefined) ? data[element] : 0; /** Controles Confirmatoria **/
             break;
         }
       }
@@ -843,52 +843,52 @@
       for (const element in data) {
         switch (element.trim().toUpperCase().toString()) {
           case "VISIO/ANT__LABORAL_ILUMINACION_INADECUADA":
-            visio.iluminacionInade = (data[element] !== undefined) ? 1 : 0; /** Iluminacion Inadecuada **/
+            visio.iluminacionInade = (data[element] !== undefined) ? data[element] : 0; /** Iluminacion Inadecuada **/
             break;
           case "VISIO/ANT__LABORALVISIO_RADIACIONES_UV":
-            visio.radiacionesUv = (data[element] !== undefined) ? 1 : 0; /** Radiaciones UV **/
+            visio.radiacionesUv = (data[element] !== undefined) ? data[element] : 0; /** Radiaciones UV **/
             break;
           case "VISIO/ANT__LABORAL_MALA_VENTILACION":
-            visio.malaVentilacion = (data[element] !== undefined) ? 1 : 0; /** Mala Ventilacion **/
+            visio.malaVentilacion = (data[element] !== undefined) ? data[element] : 0; /** Mala Ventilacion **/
             break;
           case "VISIO/ANT__LABORAL_GASES_TOXICOS":
-            visio.gasesToxicos = (data[element] !== undefined) ? 1 : 0; /** Gases Toxicos **/
+            visio.gasesToxicos = (data[element] !== undefined) ? data[element] : 0; /** Gases Toxicos **/
             break;
           case "SINTOMAS_FOTOFOBIA":
-            visio.sintomasFotofobia = (data[element] !== undefined) ? 1 : 0; /** Sintomas Fotofobia **/
+            visio.sintomasFotofobia = (data[element] !== undefined) ? data[element] : 0; /** Sintomas Fotofobia **/
             break;
           case "SINTOMAS_OJO_ROJO":
-            visio.sintomasOjoRojo = (data[element] !== undefined) ? 1 : 0; /** Sintomas Ojo Rojo **/
+            visio.sintomasOjoRojo = (data[element] !== undefined) ? data[element] : 0; /** Sintomas Ojo Rojo **/
             break;
           case "SINTOMAS_LAGRIMEO":
-            visio.sintomasLagrimeno = (data[element] !== undefined) ? 1 : 0; /** Sintomas Lagrimeno **/
+            visio.sintomasLagrimeno = (data[element] !== undefined) ? data[element] : 0; /** Sintomas Lagrimeno **/
             break;
           case "SINTOMAS_VISION_BORROSA":
-            visio.sintomasVisionBorrosa = (data[element] !== undefined) ? 1 : 0; /** Sintomas Vision Borrosa **/
+            visio.sintomasVisionBorrosa = (data[element] !== undefined) ? data[element] : 0; /** Sintomas Vision Borrosa **/
             break;
           case "SINTOMAS_ARDOR":
-            visio.sintomasArdor = (data[element] !== undefined) ? 1 : 0; /** Sintomas Ardor **/
+            visio.sintomasArdor = (data[element] !== undefined) ? data[element] : 0; /** Sintomas Ardor **/
             break;
           case "SINTOMAS_VISION_DOBLE":
-            visio.sintomasVisionDoble = (data[element] !== undefined) ? 1 : 0; /** Sintomas Vision Doble **/
+            visio.sintomasVisionDoble = (data[element] !== undefined) ? data[element] : 0; /** Sintomas Vision Doble **/
             break;
           case "SINTOMAS_CANSANCIO":
-            visio.sintomasCansancio = (data[element] !== undefined) ? 1 : 0; /** Sintomas Cansancio **/
+            visio.sintomasCansancio = (data[element] !== undefined) ? data[element] : 0; /** Sintomas Cansancio **/
             break;
           case "SINTOMAS_MALA_VISION_CERCANA":
-            visio.sintomasMalaVisionCercana = (data[element] !== undefined) ? 1 : 0; /** Sintomas Mala Vision Cercana **/
+            visio.sintomasMalaVisionCercana = (data[element] !== undefined) ? data[element] : 0; /** Sintomas Mala Vision Cercana **/
             break;
           case "SINTOMAS_DOLOR":
-            visio.sintomasDolor = (data[element] !== undefined) ? 1 : 0; /** Sintomas Dolor **/
+            visio.sintomasDolor = (data[element] !== undefined) ? data[element] : 0; /** Sintomas Dolor **/
             break;
           case "SINTOMAS_MALA_VISON_LEJANA":
-            visio.sintomasMalaVisionLejana = (data[element] !== undefined) ? 1 : 0; /** Sintomas Mala Vision Lejana **/
+            visio.sintomasMalaVisionLejana = (data[element] !== undefined) ? data[element] : 0; /** Sintomas Mala Vision Lejana **/
             break;
           case "SINTOMAS_SECRECION":
-            visio.sintomasSecrecion = (data[element] !== undefined) ? 1 : 0; /** Sintomas Secrecion **/
+            visio.sintomasSecrecion = (data[element] !== undefined) ? data[element] : 0; /** Sintomas Secrecion **/
             break;
           case "SINTOMAS_CEFALEA":
-            visio.sintomasCefalea = (data[element] !== undefined) ? 1 : 0; /** Sintomas Cefalea **/
+            visio.sintomasCefalea = (data[element] !== undefined) ? data[element] : 0; /** Sintomas Cefalea **/
             break;
           case "OTROS_SINTOMAS":
             visio.otrosSintomas = (data[element] !== undefined) ? data[element].toUpperCase() : "SIN DATO"; /** Otros Sintomas **/
@@ -918,127 +918,127 @@
             visio.cabezaPupillasObs = (data[element] !== undefined) ? data[element].toUpperCase() : "SIN HALLAZGOS"; /** Cabecera Pupillas Obs **/
             break;
           case "IMP/DIAG_VL_OD_NORMAL", "IMP/DIAG_VL0OD_NORMAL":
-            visio.impVlOdNormal = (data[element] !== undefined) ? 1 : 0; /** Imp Vl Od Normal **/
+            visio.impVlOdNormal = (data[element] !== undefined) ? data[element] : 0; /** Imp Vl Od Normal **/
             break;
           case "IMP/DIAG_VL_OI_NORMAL", "IMP/DIAG_VL0OI_NORMAL":
-            visio.impVlOiNormal = (data[element] !== undefined) ? 1 : 0; /** Imp Vl Od Normal **/
+            visio.impVlOiNormal = (data[element] !== undefined) ? data[element] : 0; /** Imp Vl Od Normal **/
             break;
           case "IMP/DIAG_VP_OD_NORMAL", "IMP/DIAG_VP0OD_NORMAL":
-            visio.impVpOdNormal = (data[element] !== undefined) ? 1 : 0; /** Imp Vp Od Normal **/
+            visio.impVpOdNormal = (data[element] !== undefined) ? data[element] : 0; /** Imp Vp Od Normal **/
             break;
           case "IMP/DIAG_VP_OI_NORMAL", "IMP/DIAG_VP0OI_NORMAL":
-            visio.impVpOiNormal = (data[element] !== undefined) ? 1 : 0; /** Imp Vp Od Normal **/
+            visio.impVpOiNormal = (data[element] !== undefined) ? data[element] : 0; /** Imp Vp Od Normal **/
             break;
           case "IMP/DIAG_VL_OD_DISMINUIDO", "IMP/DIAG_VL0OD_DISMINUIDO":
-            visio.impVlOdDisminuido = (data[element] !== undefined) ? 1 : 0; /** Imp Vl Od Disminuido **/
+            visio.impVlOdDisminuido = (data[element] !== undefined) ? data[element] : 0; /** Imp Vl Od Disminuido **/
             break;
           case "IMP/DIAG_VL_OI_DISMINUIDO", "IMP/DIAG_VL0OI_DISMINUIDO":
-            visio.impVlOiDisminuido = (data[element] !== undefined) ? 1 : 0; /** Imp Vl Od Disminuido **/
+            visio.impVlOiDisminuido = (data[element] !== undefined) ? data[element] : 0; /** Imp Vl Od Disminuido **/
             break;
           case "IMP/DIAG_VP_OD_DISMINUIDO", "IMP/DIAG_VP0OD_DISMINUIDO":
-            visio.impVpOdDisminuido = (data[element] !== undefined) ? 1 : 0; /** Imp Vp Od Disminuido **/
+            visio.impVpOdDisminuido = (data[element] !== undefined) ? data[element] : 0; /** Imp Vp Od Disminuido **/
             break;
           case "IMP/DIAG_VP_OI_DISMINUIDO", "IMP/DIAG_VP0OI_DISMINUIDO":
-            visio.impVpOiDisminuido = (data[element] !== undefined) ? 1 : 0; /** Imp Vp Od Disminuido **/
+            visio.impVpOiDisminuido = (data[element] !== undefined) ? data[element] : 0; /** Imp Vp Od Disminuido **/
             break;
           case "IMP/DIAG_VL_OD_NORMAL_RX", "IMP/DIAG_VL0OD_NORMAL_RX":
-            visio.impVlOdNormalRx = (data[element] !== undefined) ? 1 : 0; /** Imp Vl Od Normal Rx **/
+            visio.impVlOdNormalRx = (data[element] !== undefined) ? data[element] : 0; /** Imp Vl Od Normal Rx **/
             break;
           case "IMP/DIAG_VL_OI_NORMAL_RX", "IMP/DIAG_VL0OI_NORMAL_RX":
-            visio.impVlOiNormalRx = (data[element] !== undefined) ? 1 : 0; /** Imp Vl Od Normal Rx **/
+            visio.impVlOiNormalRx = (data[element] !== undefined) ? data[element] : 0; /** Imp Vl Od Normal Rx **/
             break;
           case "IMP/DIAG_VP_OD_NORMAL_RX", "IMP/DIAG_VP0OD_NORMAL_RX":
-            visio.impVpOdNormalRx = (data[element] !== undefined) ? 1 : 0; /** Imp Vp Od Normal Rx **/
+            visio.impVpOdNormalRx = (data[element] !== undefined) ? data[element] : 0; /** Imp Vp Od Normal Rx **/
             break;
           case "IMP/DIAG_VP_OI_NORMAL_RX", "IMP/DIAG_VP0OI_NORMAL_RX":
-            visio.impVpOiNormalRx = (data[element] !== undefined) ? 1 : 0; /** Imp Vp Od Normal Rx **/
+            visio.impVpOiNormalRx = (data[element] !== undefined) ? data[element] : 0; /** Imp Vp Od Normal Rx **/
             break;
           case "IMP/DIAG_VL_OD_DISMINUIDO_RX", "IMP/DIAG_VL0OD_DISMINUIDO_RX":
-            visio.impVlOdDisminuidoRx = (data[element] !== undefined) ? 1 : 0; /** Imp Vl Od Disminuido Rx **/
+            visio.impVlOdDisminuidoRx = (data[element] !== undefined) ? data[element] : 0; /** Imp Vl Od Disminuido Rx **/
             break;
           case "IMP/DIAG_VL_OI_DISMINUIDO_RX", "IMP/DIAG_VL0OI_DISMINUIDO_RX":
-            visio.impVlOiDisminuidoRx = (data[element] !== undefined) ? 1 : 0; /** Imp Vl Od Disminuido Rx **/
+            visio.impVlOiDisminuidoRx = (data[element] !== undefined) ? data[element] : 0; /** Imp Vl Od Disminuido Rx **/
             break;
           case "IMP/DIAG_VP_OD_DISMINUIDO_RX", "IMP/DIAG_VP0OD_DISMINUIDO_RX":
-            visio.impVpOdDisminuidoRx = (data[element] !== undefined) ? 1 : 0; /** Imp Vp Od Disminuido Rx **/
+            visio.impVpOdDisminuidoRx = (data[element] !== undefined) ? data[element] : 0; /** Imp Vp Od Disminuido Rx **/
             break;
           case "IMP/DIAG_VP_OI_DISMINUIDO_RX", "IMP/DIAG_VP0OI_DISMINUIDO_RX":
-            visio.impVpOiDisminuidoRx = (data[element] !== undefined) ? 1 : 0; /** Imp Vp Od Disminuido Rx **/
+            visio.impVpOiDisminuidoRx = (data[element] !== undefined) ? data[element] : 0; /** Imp Vp Od Disminuido Rx **/
             break;
           case "IMP/DIAG_OBS":
             visio.impDiagObs = (data[element] !== undefined) ? data[element].toUpperCase() : "NO REFIERE"; /** Imp Diag Obs **/
             break;
           case "REC_CORRECCION_VISUAL_PARA_TRABAJAR":
-            visio.recCorrecionVisualParaTrabajar = (data[element] !== undefined) ? 1 : 0; /** Rec Correcion Visual Para Trabajar **/
+            visio.recCorrecionVisualParaTrabajar = (data[element] !== undefined) ? data[element] : 0; /** Rec Correcion Visual Para Trabajar **/
             break;
           case "REC_USO_RX_PARA_VISION_PROX":
-            visio.recUsoRxParaVisionProx = (data[element] !== undefined) ? 1 : 0; /** Rec Uso Rx Para Vision Prox **/
+            visio.recUsoRxParaVisionProx = (data[element] !== undefined) ? data[element] : 0; /** Rec Uso Rx Para Vision Prox **/
             break;
           case "REC_USO_AR_VIDEO_TRMINAL":
-            visio.recUsoArVideoTrmina = (data[element] !== undefined) ? 1 : 0; /** Rec Uso Ar Video Trmina **/
+            visio.recUsoArVideoTrmina = (data[element] !== undefined) ? data[element] : 0; /** Rec Uso Ar Video Trmina **/
             break;
           case "REC_USO_RX_DESCANSO":
-            visio.recUsoRxDescanso = (data[element] !== undefined) ? 1 : 0; /** Rec Uso Rx Descanso **/
+            visio.recUsoRxDescanso = (data[element] !== undefined) ? data[element] : 0; /** Rec Uso Rx Descanso **/
             break;
           case "REC_USO_LENTES_PROT__SOLAR":
-            visio.recUsoLentesProt__Solar = (data[element] !== undefined) ? 1 : 0; /** Rec Uso Lentes Prot__Solar **/
+            visio.recUsoLentesProt__Solar = (data[element] !== undefined) ? data[element] : 0; /** Rec Uso Lentes Prot__Solar **/
             break;
           case "REC_USO_PERMANENTE_RX_OPTICA":
-            visio.recUsoPermanenteRxOptica = (data[element] !== undefined) ? 1 : 0; /** Rec Uso Permanente Rx Optica **/
+            visio.recUsoPermanenteRxOptica = (data[element] !== undefined) ? data[element] : 0; /** Rec Uso Permanente Rx Optica **/
             break;
           case "REC_USO_EPP_VISUAL":
-            visio.recUsoEppVisual = (data[element] !== undefined) ? 1 : 0; /** Rec Uso Epp Visual **/
+            visio.recUsoEppVisual = (data[element] !== undefined) ? data[element] : 0; /** Rec Uso Epp Visual **/
             break;
           case "REC_PYP":
-            visio.recPyp = (data[element] !== undefined) ? 1 : 0; /** Rec Pyp **/
+            visio.recPyp = (data[element] !== undefined) ? data[element] : 0; /** Rec Pyp **/
             break;
           case "REC_PAUSAS_ACTIVAS":
-            visio.recPausasActivas = (data[element] !== undefined) ? 1 : 0; /** Rec Pausas Activas **/
+            visio.recPausasActivas = (data[element] !== undefined) ? data[element] : 0; /** Rec Pausas Activas **/
             break;
           case "REC_LUBRICANTE_OCULAR":
-            visio.recLubricanteOcular = (data[element] !== undefined) ? 1 : 0; /** Rec Lubricante Ocular **/
+            visio.recLubricanteOcular = (data[element] !== undefined) ? data[element] : 0; /** Rec Lubricante Ocular **/
             break;
           case "RECOMENDACIONES_OBS":
             visio.recomendacionesObs = (data[element] !== undefined) ? data[element].toUpperCase() : "NO REFIERE"; /** Recomendaciones Obs **/
             break;
           case "REM__VALORACION_OFTALM_":
-            visio.remValoracionOftalm_ = (data[element] !== undefined) ? 1 : 0; /** Rem Valoracion Oftalm_ **/
+            visio.remValoracionOftalm_ = (data[element] !== undefined) ? data[element] : 0; /** Rem Valoracion Oftalm_ **/
             break;
           case "REM__VALORACION_OPTO__COMPLETA":
-            visio.remValoracionOpto__Completa = (data[element] !== undefined) ? 1 : 0; /** Rem Valoracion Opto__Completa **/
+            visio.remValoracionOpto__Completa = (data[element] !== undefined) ? data[element] : 0; /** Rem Valoracion Opto__Completa **/
             break;
           case "REM__TOPOGRAFIA_CORNEAL":
-            visio.remTopografiaCornea = (data[element] !== undefined) ? 1 : 0; /** Rem Topografia Cornea **/
+            visio.remTopografiaCornea = (data[element] !== undefined) ? data[element] : 0; /** Rem Topografia Cornea **/
             break;
           case "REM__TRATAM__ORTOPTICA":
-            visio.remTratam__Ortoptica = (data[element] !== undefined) ? 1 : 0; /** Rem Tratam__Ortoptica **/
+            visio.remTratam__Ortoptica = (data[element] !== undefined) ? data[element] : 0; /** Rem Tratam__Ortoptica **/
             break;
           case "REM__TEST_FARNSWORTH":
-            visio.remTestFarnsworth = (data[element] !== undefined) ? 1 : 0; /** Rem Test Farnsworth **/
+            visio.remTestFarnsworth = (data[element] !== undefined) ? data[element] : 0; /** Rem Test Farnsworth **/
             break;
           case "REALIZAR_PRUEBA_AMBULATORIA":
-            visio.realizarPruebaAmbulatoria = (data[element] !== undefined) ? 1 : 0; /** Realizar Prueba Ambulatoria **/
+            visio.realizarPruebaAmbulatoria = (data[element] !== undefined) ? data[element] : 0; /** Realizar Prueba Ambulatoria **/
             break;
           case "OTRAS_REMISIONES":
             visio.otrosRemisiones = (data[element] !== undefined) ? data[element].toUpperCase() : "NO REFIERE"; /** Otras Remisiones **/
             break;
           case "CONTROL_MENSUAL":
-            visio.controlMensual = (data[element] !== undefined) ? 1 : 0; /** Control Mensual **/
+            visio.controlMensual = (data[element] !== undefined) ? data[element] : 0; /** Control Mensual **/
             break;
           case "CONTROLES_BIMESTRALES":
-            visio.controlesBimestrales = (data[element] !== undefined) ? 1 : 0; /** Controles Bimestrales **/
+            visio.controlesBimestrales = (data[element] !== undefined) ? data[element] : 0; /** Controles Bimestrales **/
             break;
           case "CONTROL_TRIMESTRAL":
-            visio.controlTrimestral = (data[element] !== undefined) ? 1 : 0; /** Control Trimestral **/
+            visio.controlTrimestral = (data[element] !== undefined) ? data[element] : 0; /** Control Trimestral **/
             break;
           case "CONTROL_6_MESES":
-            visio.control6Meses = (data[element] !== undefined) ? 1 : 0; /** Control 6 Meses **/
+            visio.control6Meses = (data[element] !== undefined) ? data[element] : 0; /** Control 6 Meses **/
             break;
           case "CONTROL_1_AÑO":
-            visio.control1Ano = (data[element] !== undefined) ? 1 : 0; /** Control 1 Año **/
+            visio.control1Ano = (data[element] !== undefined) ? data[element] : 0; /** Control 1 Año **/
             break;
           case "CONTROL_CONFIRMATORIA":
-            visio.controlConfirmatoria = (data[element] !== undefined) ? 1 : 0; /** Control Confirmatoria **/
+            visio.controlConfirmatoria = (data[element] !== undefined) ? data[element] : 0; /** Control Confirmatoria **/
             break;
         }
       }
@@ -1077,52 +1077,52 @@
       for (const element in data) {
         switch (element.trim().toUpperCase().toString()) {
           case "ALEGIAS":
-            spiro.alegias = (data[element] !== undefined) ? 1 : 0; /** Alegias **/
+            spiro.alegias = (data[element] !== undefined) ? data[element] : 0; /** Alegias **/
             break;
           case "ALERGIAS_OBS":
             spiro.alergiasObs = (data[element] !== undefined) ? data[element].toUpperCase() : "NO REFIERE"; /** Alergias Obs **/
             break;
           case "TUBERCULOSIS":
-            spiro.tuberculosis = (data[element] !== undefined) ? 1 : 0; /** Tuberculosis **/
+            spiro.tuberculosis = (data[element] !== undefined) ? data[element] : 0; /** Tuberculosis **/
             break;
           case "TOS_CRONICA":
-            spiro.tosCronica = (data[element] !== undefined) ? 1 : 0; /** Tos Cronica **/
+            spiro.tosCronica = (data[element] !== undefined) ? data[element] : 0; /** Tos Cronica **/
             break;
           case "GRIPAS_FRECUENTES":
-            spiro.gripasFrecuentes = (data[element] !== undefined) ? 1 : 0; /** Gripas Freuentes **/
+            spiro.gripasFrecuentes = (data[element] !== undefined) ? data[element] : 0; /** Gripas Freuentes **/
             break;
           case "FARINGITIS":
-            spiro.faringitis = (data[element] !== undefined) ? 1 : 0; /** Faringitis **/
+            spiro.faringitis = (data[element] !== undefined) ? data[element] : 0; /** Faringitis **/
             break;
           case "FARINGOAMIGDALITIS":
-            spiro.faringoamigdalitis = (data[element] !== undefined) ? 1 : 0; /** Faringoamigdalitis **/
+            spiro.faringoamigdalitis = (data[element] !== undefined) ? data[element] : 0; /** Faringoamigdalitis **/
             break;
           case "RINITIS":
-            spiro.rinitis = (data[element] !== undefined) ? 1 : 0; /** Rinitis **/
+            spiro.rinitis = (data[element] !== undefined) ? data[element] : 0; /** Rinitis **/
             break;
           case "SINUSITIS":
-            spiro.sinusitis = (data[element] !== undefined) ? 1 : 0; /** Sinusitis **/
+            spiro.sinusitis = (data[element] !== undefined) ? data[element] : 0; /** Sinusitis **/
             break;
           case "CX_TORAX":
-            spiro.cxTorax = (data[element] !== undefined) ? 1 : 0; /** CX Torax **/
+            spiro.cxTorax = (data[element] !== undefined) ? data[element] : 0; /** CX Torax **/
             break;
           case "CX_TORAX_OBS":
             spiro.cxToraxObs = (data[element] !== undefined) ? data[element].toUpperCase() : "NO REFIERE"; /** CX Torax Obs **/
             break;
           case "ASMA_BRONQUIAL":
-            spiro.asmaBronquial = (data[element] !== undefined) ? 1 : 0; /** Asma Bronquial **/
+            spiro.asmaBronquial = (data[element] !== undefined) ? data[element] : 0; /** Asma Bronquial **/
             break;
           case "BRONQUITIS":
-            spiro.bronquitis = (data[element] !== undefined) ? 1 : 0; /** Bronquitis **/
+            spiro.bronquitis = (data[element] !== undefined) ? data[element] : 0; /** Bronquitis **/
             break;
           case "NEUMONIA":
-            spiro.neumonia = (data[element] !== undefined) ? 1 : 0; /** Neumonia **/
+            spiro.neumonia = (data[element] !== undefined) ? data[element] : 0; /** Neumonia **/
             break;
           case "TRAUMA_COSTAL":
-            spiro.trumaCostal = (data[element] !== undefined) ? 1 : 0; /** Trauma Costal **/
+            spiro.trumaCostal = (data[element] !== undefined) ? data[element] : 0; /** Trauma Costal **/
             break;
           case "CANCER":
-            spiro.cancer = (data[element] !== undefined) ? 1 : 0; /** Cancer **/
+            spiro.cancer = (data[element] !== undefined) ? data[element] : 0; /** Cancer **/
             break;
           case "CANCER_OBS":
             spiro.cancerObs = (data[element] !== undefined) ? data[element].toUpperCase() : "NO REFIERE"; /** Cancer Obs **/
@@ -1131,34 +1131,34 @@
             spiro.otrosRespiratorios = (data[element] !== undefined) ? data[element].toUpperCase() : "NO REFIERE"; /** Otros Respiratorios **/
             break;
           case "RIESGO_QUIMICO_/_POLVOS":
-            spiro.riesgoQuimicoPolvos = (data[element] !== undefined) ? 1 : 0; /** Riesgo Quimico_/_Polvos **/
+            spiro.riesgoQuimicoPolvos = (data[element] !== undefined) ? data[element] : 0; /** Riesgo Quimico_/_Polvos **/
             break;
           case "RIESGO_QUIMICO_/_FIBRAS":
-            spiro.riesgoQuimicoFibras = (data[element] !== undefined) ? 1 : 0; /** Riesgo Quimico_/_Fibras **/
+            spiro.riesgoQuimicoFibras = (data[element] !== undefined) ? data[element] : 0; /** Riesgo Quimico_/_Fibras **/
             break;
           case "RIESGO_QUIMICO_/_LIQUIDOS":
-            spiro.riesgoQuimicoLiquidos = (data[element] !== undefined) ? 1 : 0; /** Riesgo Quimico_/_Liquidos **/
+            spiro.riesgoQuimicoLiquidos = (data[element] !== undefined) ? data[element] : 0; /** Riesgo Quimico_/_Liquidos **/
             break;
           case "RIESGO_QUIMICO_/GASES":
-            spiro.riesgoQuimicoGases = (data[element] !== undefined) ? 1 : 0; /** Riesgo Quimico_/Gases **/
+            spiro.riesgoQuimicoGases = (data[element] !== undefined) ? data[element] : 0; /** Riesgo Quimico_/Gases **/
             break;
           case "RIESGO_QUIMICO_/_VAPORES":
-            spiro.riesgoQuimicoVapos = (data[element] !== undefined) ? 1 : 0; /** Riesgo Quimico_/_Vapos **/
+            spiro.riesgoQuimicoVapos = (data[element] !== undefined) ? data[element] : 0; /** Riesgo Quimico_/_Vapos **/
             break;
           case "RIESGO_QUIMICO_/_HUMOS":
-            spiro.riesgoQuimicoHumos = (data[element] !== undefined) ? 1 : 0; /** Riesgo Quimico_/_HUMOS **/
+            spiro.riesgoQuimicoHumos = (data[element] !== undefined) ? data[element] : 0; /** Riesgo Quimico_/_HUMOS **/
             break;
           case "RIESGO_QUIMICO_/MATERIAL_PARTICULADO":
-            spiro.riesgoQuimicoMaterialParticulado = (data[element] !== undefined) ? 1 : 0; /** Riesgo Quimico_/MATERIAL_PARTICULADO **/
+            spiro.riesgoQuimicoMaterialParticulado = (data[element] !== undefined) ? data[element] : 0; /** Riesgo Quimico_/MATERIAL_PARTICULADO **/
             break;
           case "OTROS_RIESGOS_QUIMICOS":
             spiro.otrosRiesgosQuimicos = (data[element] !== undefined) ? data[element].toUpperCase() : "NO REFIERE"; /** Otros Riesgos Quimicos **/
             break;
           case "EPP_ESPECIFICO_/_TAPABOCA":
-            spiro.eppEspecificoTapaboca = (data[element] !== undefined) ? 1 : 0; /** Epp Especifico_/_Tapaboca **/
+            spiro.eppEspecificoTapaboca = (data[element] !== undefined) ? data[element] : 0; /** Epp Especifico_/_Tapaboca **/
             break;
           case "EPP_ESPECIFICO_/_RESPIRADOR":
-            spiro.eppEspecificoRespirador = (data[element] !== undefined) ? 1 : 0; /** Epp Especifico_/_Respirador **/
+            spiro.eppEspecificoRespirador = (data[element] !== undefined) ? data[element] : 0; /** Epp Especifico_/_Respirador **/
             break;
           case "ACT__FISICA":
             spiro.actFisica = (data[element] !== undefined) ? data[element].toUpperCase() : ""; /** Act Fisica **/
@@ -1233,46 +1233,46 @@
             spiro.resultadoEspiroMetria = (data[element] !== undefined) ? data[element].toUpperCase() : ""; /** Resultado Espiro Metria **/
             break;
           case "REC/GRALES_DEJAR_DE_FUMAR":
-            spiro.recGralesDejarDeFumar = (data[element] !== undefined) ? 1 : 0; /** Rec Grales Dejar De Fumar **/
+            spiro.recGralesDejarDeFumar = (data[element] !== undefined) ? data[element] : 0; /** Rec Grales Dejar De Fumar **/
             break;
           case "REC/GRALES_CONTINUAR_CONTROLES_EPS":
-            spiro.recGralesContinuarControlesEps = (data[element] !== undefined) ? 1 : 0; /** Rec Grales Continuar Controles EPS **/
+            spiro.recGralesContinuarControlesEps = (data[element] !== undefined) ? data[element] : 0; /** Rec Grales Continuar Controles EPS **/
             break;
           case "REC/GRALES_BAJAR_DE_PESO":
-            spiro.recGralesBajarDePeso = (data[element] !== undefined) ? 1 : 0; /** Rec Grales Bajar De Peso **/
+            spiro.recGralesBajarDePeso = (data[element] !== undefined) ? data[element] : 0; /** Rec Grales Bajar De Peso **/
             break;
           case "REC/GRALES_TOMAR_RAYOS_X_TORAX":
-            spiro.recGralesTomarRayosXTorax = (data[element] !== undefined) ? 1 : 0; /** Rec Grales Tomar Rayos X Torax **/
+            spiro.recGralesTomarRayosXTorax = (data[element] !== undefined) ? data[element] : 0; /** Rec Grales Tomar Rayos X Torax **/
             break;
           case "REC/GRALES_REALIZAR_EJERC__3X_SEMANA":
-            spiro.recGralesRealizarEjerc3XSemana = (data[element] !== undefined) ? 1 : 0; /** Rec Grales Realizar Ejerc 3X Semana **/
+            spiro.recGralesRealizarEjerc3XSemana = (data[element] !== undefined) ? data[element] : 0; /** Rec Grales Realizar Ejerc 3X Semana **/
             break;
           case "REC/GRALES_VALORAC__EPS_X_NEUMOLOGIA":
-            spiro.recGralesValoracEPSXNeumologia = (data[element] !== undefined) ? 1 : 0; /** Rec Grales Valorac EPS X Neumologia **/
+            spiro.recGralesValoracEPSXNeumologia = (data[element] !== undefined) ? data[element] : 0; /** Rec Grales Valorac EPS X Neumologia **/
             break;
           case "REC/LAB_UTILIZAR_EPR":
-            spiro.recLabUtilizarEpr = (data[element] !== undefined) ? 1 : 0; /** Rec Lab Utilizar EPR **/
+            spiro.recLabUtilizarEpr = (data[element] !== undefined) ? data[element] : 0; /** Rec Lab Utilizar EPR **/
             break;
           case "REC/LAB_INGRESAR_SVE":
-            spiro.recLabIngresarSve = (data[element] !== undefined) ? 1 : 0; /** Rec Lab Ingresar SVE **/
+            spiro.recLabIngresarSve = (data[element] !== undefined) ? data[element] : 0; /** Rec Lab Ingresar SVE **/
             break;
           case "CONTROLES_MENSUAL":
-            spiro.controlesMensual = (data[element] !== undefined) ? 1 : 0; /** Controles Mensual **/
+            spiro.controlesMensual = (data[element] !== undefined) ? data[element] : 0; /** Controles Mensual **/
             break;
           case "CONTROLES_BIMESTRALES":
-            spiro.controlesBimestrales = (data[element] !== undefined) ? 1 : 0; /** Controles Bimestrales **/
+            spiro.controlesBimestrales = (data[element] !== undefined) ? data[element] : 0; /** Controles Bimestrales **/
             break;
           case "CONTROLES_TRIMESTRAL":
-            spiro.controlesTrimestral = (data[element] !== undefined) ? 1 : 0; /** Controles Trimestral **/
+            spiro.controlesTrimestral = (data[element] !== undefined) ? data[element] : 0; /** Controles Trimestral **/
             break;
           case "CONTROLES_SEMESTRAL":
-            spiro.controlesSemestral = (data[element] !== undefined) ? 1 : 0; /** Controles Semestral **/
+            spiro.controlesSemestral = (data[element] !== undefined) ? data[element] : 0; /** Controles Semestral **/
             break;
           case "CONTROLES_ANUAL":
-            spiro.controlesAnual = (data[element] !== undefined) ? 1 : 0; /** Controles Anual **/
+            spiro.controlesAnual = (data[element] !== undefined) ? data[element] : 0; /** Controles Anual **/
             break;
           case "CONTROLES_CONFIRMATORIA":
-            spiro.controlesConfirmatoria = (data[element] !== undefined) ? 1 : 0; /** Controles Confirmatoria **/
+            spiro.controlesConfirmatoria = (data[element] !== undefined) ? data[element] : 0; /** Controles Confirmatoria **/
             break;
           case "TECNICA_ACEPTABLE":
             spiro.tecnicaAceptable = (data[element] !== undefined) ? data[element].toUpperCase() : ""; /** TECNICA ACEPTABLE **/
@@ -1314,103 +1314,103 @@
       for (const element in data) {
         switch (element.trim().toUpperCase().toString()) {
           case "CERVICALGIA":
-            osteo.cervicalgia = (data[element] !== undefined) ? 1 : 0; /** Cervicalgia **/
+            osteo.cervicalgia = (data[element] !== undefined) ? data[element] : 0; /** Cervicalgia **/
             break;
           case "CERVICALGIA_OBS":
             osteo.cervicalgiaObs = (data[element] !== undefined) ? data[element].toUpperCase() : "NO REFIERE"; /** Cervicalgia Obs **/
             break;
           case "EPICONDILITIS":
-            osteo.epicondilitis = (data[element] !== undefined) ? 1 : 0; /** Epicondilitis **/
+            osteo.epicondilitis = (data[element] !== undefined) ? data[element] : 0; /** Epicondilitis **/
             break;
           case "EPICONDILITIS_OBS":
             osteo.epicondilitisObs = (data[element] !== undefined) ? data[element].toUpperCase() : "NO REFIERE"; /** Epicondilitis Obs **/
             break;
           case "LUMBALGIA":
-            osteo.lumbalgia = (data[element] !== undefined) ? 1 : 0; /** Lumbalgia **/
+            osteo.lumbalgia = (data[element] !== undefined) ? data[element] : 0; /** Lumbalgia **/
             break;
           case "LUMBALGIA_OBS":
             osteo.lumbalgiaObs = (data[element] !== undefined) ? data[element].toUpperCase() : "NO REFIERE"; /** Lumbalgia Obs **/
             break;
           case "S__TUNEL_CARPO":
-            osteo.sTunelCarpo = (data[element] !== undefined) ? 1 : 0; /** S__Tunel Carpo **/
+            osteo.sTunelCarpo = (data[element] !== undefined) ? data[element] : 0; /** S__Tunel Carpo **/
             break;
           case "S__TUNEL_CARPO_OBS":
             osteo.sTunelCarpoObs = (data[element] !== undefined) ? data[element].toUpperCase() : "NO REFIERE"; /** S__Tunel Carpo Obs **/
             break;
           case "FRACTURAS":
-            osteo.fracturas = (data[element] !== undefined) ? 1 : 0; /** Fracturas **/
+            osteo.fracturas = (data[element] !== undefined) ? data[element] : 0; /** Fracturas **/
             break;
           case "FRACTURAS_OBS":
             osteo.fracturasObs = (data[element] !== undefined) ? data[element].toUpperCase() : "NO REFIERE"; /** Fracturas Obs **/
             break;
           case "TENDINITIS":
-            osteo.tendinitis = (data[element] !== undefined) ? 1 : 0; /** Tendinitis **/
+            osteo.tendinitis = (data[element] !== undefined) ? data[element] : 0; /** Tendinitis **/
             break;
           case "TENDINITIS_OBS":
             osteo.tendinitisObs = (data[element] !== undefined) ? data[element].toUpperCase() : "NO REFIERE"; /** Tendinitis Obs **/
             break;
           case "LESION_EN_MENISCOS":
-            osteo.lesionEnMeniscos = (data[element] !== undefined) ? 1 : 0; /** Lesion En Meniscos **/
+            osteo.lesionEnMeniscos = (data[element] !== undefined) ? data[element] : 0; /** Lesion En Meniscos **/
             break;
           case "LESION_EN_MENISCOS_OBS":
             osteo.lesionEnMeniscosObs = (data[element] !== undefined) ? data[element].toUpperCase() : "NO REFIERE"; /** Lesion En Meniscos Obs **/
             break;
           case "ESGUINCES":
-            osteo.esguinces = (data[element] !== undefined) ? 1 : 0; /** Esguinces **/
+            osteo.esguinces = (data[element] !== undefined) ? data[element] : 0; /** Esguinces **/
             break;
           case "ESGUINCES_OBS":
             osteo.esguincesObs = (data[element] !== undefined) ? data[element].toUpperCase() : "NO REFIERE"; /** Esguinces Obs **/
             break;
           case "HOMBRO_DOLOROSO":
-            osteo.hombroDoloroso = (data[element] !== undefined) ? 1 : 0; /** Hombro Doloroso **/
+            osteo.hombroDoloroso = (data[element] !== undefined) ? data[element] : 0; /** Hombro Doloroso **/
             break;
           case "HOMBRO_DOLOROSO_OBS":
             osteo.hombroDolorosoObs = (data[element] !== undefined) ? data[element].toUpperCase() : "NO REFIERE"; /** Hombro Doloroso Obs **/
             break;
           case "RADICULOPATIA":
-            osteo.radiculopatia = (data[element] !== undefined) ? 1 : 0; /** Radiculopatia **/
+            osteo.radiculopatia = (data[element] !== undefined) ? data[element] : 0; /** Radiculopatia **/
             break;
           case "RADICULOPATIA_OBS":
             osteo.radiculopatiaObs = (data[element] !== undefined) ? data[element].toUpperCase() : "NO REFIERE"; /** Radiculopatia Obs **/
             break;
           case "BURSITIS":
-            osteo.bursitis = (data[element] !== undefined) ? 1 : 0; /** Bursitis **/
+            osteo.bursitis = (data[element] !== undefined) ? data[element] : 0; /** Bursitis **/
             break;
           case "BURSITIS_OBS":
             osteo.bursitisObs = (data[element] !== undefined) ? data[element].toUpperCase() : "NO REFIERE"; /** Bursitis Obs **/
             break;
           case "ARTROSIS":
-            osteo.artrosis = (data[element] !== undefined) ? 1 : 0; /** Artrosis **/
+            osteo.artrosis = (data[element] !== undefined) ? data[element] : 0; /** Artrosis **/
             break;
           case "ARTROSIS_OBS":
             osteo.artrosisObs = (data[element] !== undefined) ? data[element].toUpperCase() : "NO REFIERE"; /** Artrosis Obs **/
             break;
           case "ESCOLIOSIS":
-            osteo.escoliosis = (data[element] !== undefined) ? 1 : 0; /** Escoliosis **/
+            osteo.escoliosis = (data[element] !== undefined) ? data[element] : 0; /** Escoliosis **/
             break;
           case "ESCOLIOSIS_OBS":
             osteo.escoliosisObs = (data[element] !== undefined) ? data[element].toUpperCase() : "NO REFIERE"; /** Escoliosis Obs **/
             break;
           case "RETRACCIONES_MUSCULARES":
-            osteo.retraccionesMusculares = (data[element] !== undefined) ? 1 : 0; /** Retracciones Musculares **/
+            osteo.retraccionesMusculares = (data[element] !== undefined) ? data[element] : 0; /** Retracciones Musculares **/
             break;
           case "RETRACCIONES_MUSCULARES_OBS":
             osteo.retraccionesMuscularesObs = (data[element] !== undefined) ? data[element].toUpperCase() : "NO REFIERE"; /** Retracciones Musculares Obs **/
             break;
           case "MALFORMACIONES":
-            osteo.malformaciones = (data[element] !== undefined) ? 1 : 0; /** Malformaciones **/
+            osteo.malformaciones = (data[element] !== undefined) ? data[element] : 0; /** Malformaciones **/
             break;
           case "MALFORMACIONES_OBS":
             osteo.malformacionesObs = (data[element] !== undefined) ? data[element].toUpperCase() : "NO REFIERE"; /** Malformaciones Obs **/
             break;
           case "DISCOPATIAS":
-            osteo.discopatias = (data[element] !== undefined) ? 1 : 0; /** Discopatias **/
+            osteo.discopatias = (data[element] !== undefined) ? data[element] : 0; /** Discopatias **/
             break;
           case "DISCOPATIAS_OBS":
             osteo.discopatiasObs = (data[element] !== undefined) ? data[element].toUpperCase() : "NO REFIERE"; /** Discopatias Obs **/
             break;
           case "FIBROMALGIA":
-            osteo.fibromalgia = (data[element] !== undefined) ? 1 : 0; /** Fibromalgia **/
+            osteo.fibromalgia = (data[element] !== undefined) ? data[element] : 0; /** Fibromalgia **/
             break;
           case "FIBROMALGIA_OBS":
             osteo.fibromalgiaObs = (data[element] !== undefined) ? data[element].toUpperCase() : "NO REFIERE"; /** Fibromalgia Obs **/
@@ -1444,34 +1444,34 @@
             osteo.diagRel3 = (data[element] !== undefined) ? data[element].toUpperCase() : 0; /** DIAG__REL_3 **/
             break;
           case "REC/PERS_ACT__FISICA_CARDIO_3X/SEMANA":
-            osteo.recPersActFisicaCardio3xSemana = (data[element] !== undefined) ? 1 : 0; /** REC/PERS_ACT__FISICA_CARDIO_3X/SEMANA **/
+            osteo.recPersActFisicaCardio3xSemana = (data[element] !== undefined) ? data[element] : 0; /** REC/PERS_ACT__FISICA_CARDIO_3X/SEMANA **/
             break;
           case "REC/PERS_FORT__15_REPETICIONES/3_SERIES":
-            osteo.recPersFort15Repeticiones3Series = (data[element] !== undefined) ? 1 : 0; /** REC/PERS_FORT__15_REPETICIONES/3_SERIES **/
+            osteo.recPersFort15Repeticiones3Series = (data[element] !== undefined) ? data[element] : 0; /** REC/PERS_FORT__15_REPETICIONES/3_SERIES **/
             break;
           case "REC/PERS_EJERC__ESTIRAMIENTO_20_SEG":
-            osteo.recPersEjercEstiramiento20Seg = (data[element] !== undefined) ? 1 : 0; /** REC/PERS_EJERC__ESTIRAMIENTO_20_SEG **/
+            osteo.recPersEjercEstiramiento20Seg = (data[element] !== undefined) ? data[element] : 0; /** REC/PERS_EJERC__ESTIRAMIENTO_20_SEG **/
             break;
           case "REC/PERS_AUTOCUIDADO":
-            osteo.recPersAutocuidado = (data[element] !== undefined) ? 1 : 0; /** REC/PERS_AUTOCUIDADO **/
+            osteo.recPersAutocuidado = (data[element] !== undefined) ? data[element] : 0; /** REC/PERS_AUTOCUIDADO **/
             break;
           case "REC/PERS_SEGUIMIENTO_MEDICO":
-            osteo.recPersSeguimientoMedico = (data[element] !== undefined) ? 1 : 0; /** REC/PERS_SEGUIMIENTO_MEDICO **/
+            osteo.recPersSeguimientoMedico = (data[element] !== undefined) ? data[element] : 0; /** REC/PERS_SEGUIMIENTO_MEDICO **/
             break;
           case "REC/OCUP_SVE_PREVENSION_LESIONES":
-            osteo.recOcupSvePrevensionLesiones = (data[element] !== undefined) ? 1 : 0; /** REC/OCUP_SVE_PREVENSION_LESIONES **/
+            osteo.recOcupSvePrevensionLesiones = (data[element] !== undefined) ? data[element] : 0; /** REC/OCUP_SVE_PREVENSION_LESIONES **/
             break;
           case "REC/OCUP_MANIPULACION_DE_CARGA":
-            osteo.recOcupManipulacionDeCarga = (data[element] !== undefined) ? 1 : 0; /** REC/OCUP_MANIPULACION_DE_CARGA **/
+            osteo.recOcupManipulacionDeCarga = (data[element] !== undefined) ? data[element] : 0; /** REC/OCUP_MANIPULACION_DE_CARGA **/
             break;
           case "REC/OCUP_PAUSAS_ACTIVAS":
-            osteo.recOcupPausasActivas = (data[element] !== undefined) ? 1 : 0; /** REC/OCUP_PAUSAS_ACTIVAS **/
+            osteo.recOcupPausasActivas = (data[element] !== undefined) ? data[element] : 0; /** REC/OCUP_PAUSAS_ACTIVAS **/
             break;
           case "REC/OCUP_ANALISIS_ERGONOMICOS":
-            osteo.recOcupAnalisisErgonomicos = (data[element] !== undefined) ? 1 : 0; /** REC/OCUP_ANALISIS_ERGONOMICOS **/
+            osteo.recOcupAnalisisErgonomicos = (data[element] !== undefined) ? data[element] : 0; /** REC/OCUP_ANALISIS_ERGONOMICOS **/
             break;
           case "REC/OCUP_EVITAR_POSTURAS_FORZADAS":
-            osteo.recOcupEvidarPosturasForzadas = (data[element] !== undefined) ? 1 : 0; /** REC/OCUP_EVITAR_POSTURAS_FORZADAS **/
+            osteo.recOcupEvidarPosturasForzadas = (data[element] !== undefined) ? data[element] : 0; /** REC/OCUP_EVITAR_POSTURAS_FORZADAS **/
             break;
           case "RECOM__OCUPACIONALES":
             osteo.recomOcupacionales = (data[element] !== undefined) ? data[element].toUpperCase() : ""; /** RECOM__OCUPACIONALES **/
@@ -1843,22 +1843,22 @@
             psychosenso.diagnosticoRel3 = (data[element] !== undefined) ? data[element] : 0;
             break;
           case "CONTROLES_MENSUALES":
-            psychosenso.controlesMensuales = (data[element] !== undefined) ? 1 : 0;
+            psychosenso.controlesMensuales = (data[element] !== undefined) ? data[element] : 0;
             break;
           case "CONTROLES_BIMENSUAL":
-            psychosenso.controlesBimensual = (data[element] !== undefined) ? 1 : 0;
+            psychosenso.controlesBimensual = (data[element] !== undefined) ? data[element] : 0;
             break;
           case "CONTROLES_TRIMESTRALES":
-            psychosenso.controlesTrimestrales = (data[element] !== undefined) ? 1 : 0;
+            psychosenso.controlesTrimestrales = (data[element] !== undefined) ? data[element] : 0;
             break;
           case "CONTROLES_6_MESES":
-            psychosenso.controles6Meses = (data[element] !== undefined) ? 1 : 0;
+            psychosenso.controles6Meses = (data[element] !== undefined) ? data[element] : 0;
             break;
           case "CONTROLES_1_AÑO":
-            psychosenso.controles1Ano = (data[element] !== undefined) ? 1 : 0;
+            psychosenso.controles1Ano = (data[element] !== undefined) ? data[element] : 0;
             break;
           case "CONTROLES_CONFIRMATORIA":
-            psychosenso.controlesConfirmatoria = (data[element] !== undefined) ? 1 : 0;
+            psychosenso.controlesConfirmatoria = (data[element] !== undefined) ? data[element] : 0;
             break;
         }
       }
