@@ -31,8 +31,8 @@ function insertData(data) {
       switch (iterator) {
         case "emo":
           for (const emo of information[iterator]) {
-            insertEmo(emo, "EMO", spreadsheet);
-            return emo;
+            const response = insertEmo(emo, "EMO", spreadsheet);
+            Logger.log(response);
           }
           break;
       }
