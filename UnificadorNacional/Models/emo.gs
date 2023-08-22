@@ -1,3 +1,10 @@
+/**
+ * Inserts emo data into a spreadsheet.
+ *
+ * @param {Object} data - the data to be inserted
+ * @param {string} sheetName - the name of the sheet to insert the data into
+ * @param {Spreadsheet} spreadsheet - the spreadsheet to insert the data into
+ */
 function insertEmo(data, sheetName, spreadsheet) {
   const rowRegister = spreadsheet.getSheetByName(sheetName);
   const arrayData = [];
@@ -382,7 +389,9 @@ function insertEmo(data, sheetName, spreadsheet) {
       }
     }
 
-    /** Calculates the IMC, N Children, ageRange and durationWorking **/
+    /** 
+     * Calculates the IMC, N Children, ageRange and durationWorking 
+     */
     const age = ageRange(arrayData[9]);
     arrayData[10] = age;
     const childrens = numberChildrens(arrayData[13]);
@@ -395,6 +404,7 @@ function insertEmo(data, sheetName, spreadsheet) {
 
     rowRegister.appendRow(arrayData)
     return 'ok';
+    
   } catch (error) {
     Logger.log(error.message);
   }
