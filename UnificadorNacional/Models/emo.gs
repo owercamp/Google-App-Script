@@ -62,163 +62,163 @@ function insertEmo(data, sheetName, spreadsheet) {
           arrayData[20] = data[iterator];
           break;
         case 'riesgosFisicosRuido':
-          arrayData[22] = data[iterator];
+          arrayData[22] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'riesgosFisicosIluminacion':
-          arrayData[23] = data[iterator];
+          arrayData[23] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'riesgosFisicosVibracion':
-          arrayData[24] = data[iterator];
+          arrayData[24] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'riesgosFisicosTemperaturaExtremas':
-          arrayData[25] = data[iterator];
+          arrayData[25] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'riesgosFisicosPresAtmosferica':
-          arrayData[26] = data[iterator];
+          arrayData[26] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'riesgosFisicosRadIonizantes':
-          arrayData[27] = data[iterator];
+          arrayData[27] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'riesgosFisicosRadNoIonizantes':
-          arrayData[28] = data[iterator];
+          arrayData[28] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'riesgosFisicosOtrosFisicos':
-          arrayData[29] = data[iterator];
+          arrayData[29] = (data[iterator]) ? data[iterator] : "NO REFIERE";
           break;
         case 'riesgosBiologicosVirus':
-          arrayData[30] = data[iterator];
+          arrayData[30] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'riesgosBiologicosBacterias':
-          arrayData[31] = data[iterator];
+          arrayData[31] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'riesgosBiologicosHongos':
-          arrayData[32] = data[iterator];
+          arrayData[32] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'riesgosBiologicosRicketsias':
-          arrayData[33] = data[iterator];
+          arrayData[33] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'riesgosBiologicosParasitos':
-          arrayData[34] = data[iterator];
+          arrayData[34] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'riesgosBiologicosFluidos':
-          arrayData[35] = data[iterator];
+          arrayData[35] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'riesgosBiologicosPicaduras':
-          arrayData[36] = data[iterator];
+          arrayData[36] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'riesgosBiologicosMordeduras':
-          arrayData[37] = data[iterator];
+          arrayData[37] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'riesgosBiologicosOtrosBiologicos':
-          arrayData[38] = data[iterator];
+          arrayData[38] = (data[iterator]) ? data[iterator] : "NO REFEIERE";
           break;
         case 'riesgosQuimicosPolvos':
-          arrayData[39] = data[iterator];
+          arrayData[39] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'riesgosQuimicosFibras':
-          arrayData[40] = data[iterator];
+          arrayData[40] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'riesgosQuimicosLiquidos':
-          arrayData[41] = data[iterator];
+          arrayData[41] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'riesgosQuimicosGases':
-          arrayData[42] = data[iterator];
+          arrayData[42] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'riesgosQuimicosVapores':
-          arrayData[43] = data[iterator];
+          arrayData[43] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'riesgosQuimicosHumos':
-          arrayData[44] = data[iterator];
+          arrayData[44] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'riesgosQuimicosMaterialParticulado':
-          arrayData[45] = data[iterator];
+          arrayData[45] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'riesgosQuimicosOtrosQuimicos':
-          arrayData[46] = data[iterator];
+          arrayData[46] = (data[iterator]) ? data[iterator] : "NO REFIERE";
           break;
         case 'riesgosPsicosGestionOrganizacional':
-          arrayData[47] = data[iterator];
+          arrayData[47] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'riesgosPsicosCaractDelGrupo':
-          arrayData[48] = data[iterator];
+          arrayData[48] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'riesgosPsicosInterfasesTarea':
-          arrayData[49] = data[iterator];
+          arrayData[49] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'riesgosPsicosCaractOrganizacion':
-          arrayData[50] = data[iterator];
+          arrayData[50] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'riesgosPsicosCondiciones':
-          arrayData[51] = data[iterator];
+          arrayData[51] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'riesgosPsicosJornada':
-          arrayData[52] = data[iterator];
+          arrayData[52] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'riesgosPsicosOtrosLaboral':
-          arrayData[53] = data[iterator];
+          arrayData[53] = (data[iterator]) ? data[iterator] : "NO REFIERE";
           break;
         case 'riesgosBiomecanicosPostura':
-          arrayData[54] = data[iterator];
+          arrayData[54] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'riesgosBiomecanicosEsfuerzo':
-          arrayData[55] = data[iterator];
+          arrayData[55] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'riesgosBiomecanicosMovRepetitivo':
-          arrayData[56] = data[iterator];
+          arrayData[56] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'riesgosBiomecanicosManipulacionCarga':
-          arrayData[57] = data[iterator];
+          arrayData[57] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'riesgosBiomecanicosOtrosBiomecanicos':
-          arrayData[58] = data[iterator];
+          arrayData[58] = (data[iterator]) ? data[iterator] : "NO REFIERE";
           break;
         case 'condicionesDeSeguridadMecanicos':
-          arrayData[59] = data[iterator];
+          arrayData[59] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'condicionesDeSeguridadElectricos':
-          arrayData[60] = data[iterator];
+          arrayData[60] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'condicionesDeSeguridadLocativo':
-          arrayData[61] = data[iterator];
+          arrayData[61] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'condicionesDeSeguridadTecnologico':
-          arrayData[62] = data[iterator];
+          arrayData[62] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'condicionesDeSeguridadAccDeTransito':
-          arrayData[63] = data[iterator];
+          arrayData[63] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'condicionesDeSeguridadPublicos':
-          arrayData[64] = data[iterator];
+          arrayData[64] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'condicionesDeSeguridadTrabajoEnAlturas':
-          arrayData[65] = data[iterator];
+          arrayData[65] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'condicionesDeSeguridadEspaciosConfinados':
-          arrayData[66] = data[iterator];
+          arrayData[66] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'condicionesDeSeguridadOtrosDeSeguridad':
-          arrayData[67] = data[iterator];
+          arrayData[67] = (data[iterator]) ? data[iterator] : "NO REFIERE";
           break;
         case 'fenomenosNaturalesSismo':
-          arrayData[68] = data[iterator];
+          arrayData[68] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'fenomenosNaturalesTerremoto':
-          arrayData[69] = data[iterator];
+          arrayData[69] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'fenomenosNaturalesVendaval':
-          arrayData[70] = data[iterator];
+          arrayData[70] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'fenomenosNaturalesInundacion':
-          arrayData[71] = data[iterator];
+          arrayData[71] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'fenomenosNaturalesDerrumbe':
-          arrayData[72] = data[iterator];
+          arrayData[72] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'fenomenosNaturalesPrecipitaciones':
-          arrayData[73] = data[iterator];
+          arrayData[73] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'fenomenosNaturalesOtrosNaturales':
-          arrayData[74] = data[iterator];
+          arrayData[74] = (data[iterator]) ? data[iterator] : "NO REFIERE";
           break;
         case 'fechaAccidente':
           arrayData[75] = data[iterator];
