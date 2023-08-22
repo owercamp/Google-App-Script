@@ -163,7 +163,7 @@ function imc2(weight, size) {
  */
 function ptaInfo(...rest) {
   
-  const sum = 0;
+  let sum = 0;
   rest.forEach(element => {
     sum += (element) ? element : 0;
   });
