@@ -175,3 +175,18 @@ function ptaInfo(...rest) {
   
 }
 
+/**
+ * Calculates the sum of all the given numbers.
+ *
+ * @param {...number} rest - The numbers to be added.
+ * @return {number} The sum of the given numbers.
+ */
+function diagnosticsImp(...rest) {
+  let sum = 0;
+
+  rest.forEach(element => {
+    sum+=element;
+  });
+  return sum;
+}
+
