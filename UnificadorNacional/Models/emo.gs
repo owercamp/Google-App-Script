@@ -318,7 +318,6 @@ function insertEmo(data, sheetName, spreadsheet) {
         case 'emphasis':
           const emphas = data[iterator];
           let arrayDataEmp = 120, arrayDataEmpConcept = 121, arrayDataEmpObs = 122;
-          arrayData.fill('NO APLICA', arrayDataEmp, 147);
           const emps = Object.keys(emphas).filter(emp => (!emp.includes("CONCEPTO") && !emp.includes("OBSERVACIONES")));
           const concepts = Object.keys(emphas).filter(concept => concept.includes("CONCEPTO"));
           const observations = Object.keys(emphas).filter(obs => obs.includes("OBSERVACIONES"));
@@ -336,6 +335,10 @@ function insertEmo(data, sheetName, spreadsheet) {
               max--;
             }
           }
+          for (let index = max; index > 0; index--) {
+            arrayData[arrayDataEmp] = "NO APLICA";
+            arrayDataEmp += 3;
+          }
 
           /** Creates the array for the concepts emphasis **/
           max = 9;
@@ -349,6 +352,10 @@ function insertEmo(data, sheetName, spreadsheet) {
               arrayDataEmpConcept += 3;
               max--;
             }
+          }
+          for (let index = max; index > 0; index--) {
+            arrayData[arrayDataEmpConcept] = "NO APLICA";
+            arrayDataEmpConcept += 3;
           }
 
           /** Creates the array for the observations emphasis **/
@@ -364,8 +371,10 @@ function insertEmo(data, sheetName, spreadsheet) {
               max--;
             }
           }
-
-          
+          for (let index = max; index > 0; index--) {
+            arrayData[arrayDataEmpObs] = "NO APLICA";
+            arrayDataEmpObs += 3;
+          }         
           break;
         case 'recomendacionesEspecificas':
           arrayData[147] = data[iterator];
