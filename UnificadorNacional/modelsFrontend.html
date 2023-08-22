@@ -495,46 +495,46 @@
             audio.tipoDeExamen = (data[element] !== undefined) ? data[element].toUpperCase() : "AUDIOMETRIA DE TONOS PUROS AEREOS Y OSEOS CON ENMASCARAMIENTO [AUDIOMETRIA TONAL]"; /** Tipo de Examen **/
             break;
           case "OD_500":
-            audio.od500 = (data[element] !== undefined) ? data[element] : 0; /** OD 500 **/
+            audio.od500 = data[element]; /** OD 500 **/
             break;
           case "OD_1000":
-            audio.od1000 = (data[element] !== undefined) ? data[element] : 0; /** OD 1000 **/
+            audio.od1000 = data[element]; /** OD 1000 **/
             break;
           case "OD_2000":
-            audio.od2000 = (data[element] !== undefined) ? data[element] : 0; /** OD 2000 **/
+            audio.od2000 = data[element]; /** OD 2000 **/
             break;
           case "OD_3000":
-            audio.od3000 = (data[element] !== undefined) ? data[element] : 0; /** OD 3000 **/
+            audio.od3000 = data[element]; /** OD 3000 **/
             break;
           case "OD_4000":
-            audio.od4000 = (data[element] !== undefined) ? data[element] : 0; /** OD 4000 **/
+            audio.od4000 = data[element]; /** OD 4000 **/
             break;
           case "OD_6000":
-            audio.od6000 = (data[element] !== undefined) ? data[element] : 0; /** OD 6000 **/
+            audio.od6000 = data[element]; /** OD 6000 **/
             break;
           case "OD_8000":
-            audio.od8000 = (data[element] !== undefined) ? data[element] : 0; /** OD 8000 **/
+            audio.od8000 = data[element]; /** OD 8000 **/
             break;
           case "OI_500":
-            audio.oi500 = (data[element] !== undefined) ? data[element] : 0; /** OI 500 **/
+            audio.oi500 = data[element]; /** OI 500 **/
             break;
           case "OI_1000":
-            audio.oi1000 = (data[element] !== undefined) ? data[element] : 0; /** OI 1000 **/
+            audio.oi1000 = data[element]; /** OI 1000 **/
             break;
           case "OI_2000":
-            audio.oi2000 = (data[element] !== undefined) ? data[element] : 0; /** OI 2000 **/
+            audio.oi2000 = data[element]; /** OI 2000 **/
             break;
           case "OI_3000":
-            audio.oi3000 = (data[element] !== undefined) ? data[element] : 0; /** OI 3000 **/
+            audio.oi3000 = data[element]; /** OI 3000 **/
             break;
           case "OI_4000":
-            audio.oi4000 = (data[element] !== undefined) ? data[element] : 0; /** OI 4000 **/
+            audio.oi4000 = data[element]; /** OI 4000 **/
             break;
           case "OI_6000":
-            audio.oi6000 = (data[element] !== undefined) ? data[element] : 0; /** OI 6000 **/
+            audio.oi6000 = data[element]; /** OI 6000 **/
             break;
           case "OI_8000":
-            audio.oi8000 = (data[element] !== undefined) ? data[element] : 0; /** OI 8000 **/
+            audio.oi8000 = data[element]; /** OI 8000 **/
             break;
           case "CONTROL_SEGUN_PVE":
             audio.controlSegunPve = (data[element] !== undefined) ? data[element] : 0; /** Control Segun PVE **/
@@ -585,18 +585,18 @@
             audio.controles1Anio = (data[element] !== undefined) ? data[element] : 0; /** Controles 1 Anio **/
             break;
           case "DIAG_PPAL":
-            audio.diagPpal = (data[element] !== undefined) ? data[element].toUpperCase() : "SIN DATO"; /** Diagnostico Ppal **/
+            audio.diagPpal = data[element]; /** Diagnostico Ppal **/
             break;
           case "DIAG_INTERNO":
-            audio.diagInterno = (data[element] !== undefined) ? data[element].toUpperCase() : "SIN DATO"; /** Diagnostico Interno **/
+            audio.diagInterno = data[element]; /** Diagnostico Interno **/
             break;
           case "DIAG_GATI-SO":
-            audio.diagGatiSo = (data[element] !== undefined) ? data[element].toUpperCase() : "SIN DATO"; /** Diagnostico Gati-SO **/
+            audio.diagGatiSo = data[element]; /** Diagnostico Gati-SO **/
             break;
         }
       }
 
-      if (Object.entries(audio).length > 0 && (audio.oi500 != "" || audio.oi1000 != "" || audio.oi2000 != "" || audio.oi3000 != "" || audio.oi4000 != "" || audio.oi6000 != "" || audio.oi8000 != "" || audio.od500 != "" || audio.od1000 != "" || audio.od2000 != "" || audio.od3000 != "" || audio.od4000 != "" || audio.od6000 != "" || audio.od8000 != "")) {
+      if (Object.entries(audio).length > 0 && ((audio.oi500 != undefined && audio.oi500 != "") || (audio.oi1000 != undefined && audio.oi1000 != "") || (audio.oi2000 != undefined && audio.oi2000 != "") || (audio.oi3000 != undefined && audio.oi3000 != "") || (audio.oi4000 != undefined && audio.oi4000 != "") || (audio.oi6000 != undefined && audio.oi6000 != "") || (audio.oi8000 != undefined && audio.oi8000 != "") || (audio.od500 != undefined && audio.od500 != "") || (audio.od1000 != undefined && audio.od1000 != "") || (audio.od2000 != undefined && audio.od2000 != "") || (audio.od3000 != undefined && audio.od3000 != "") || (audio.od4000 != undefined && audio.od4000 != "") || (audio.od6000 != undefined && audio.od6000 != "") || (audio.od8000 != undefined && audio.od8000 != ""))) {
         const socio_emography = informationSocioEmography(data);
 
         const audioInformation = {
@@ -717,25 +717,25 @@
             opto.motOculCovertTestCerca = (data[element] !== undefined) ? data[element].toUpperCase() : "SIN DATO"; /** Mot Ocul Covert Test Cerca **/
             break;
           case "ESTADO_DE_CORRECCION":
-            opto.estadoDeCorreccion = (data[element] !== undefined) ? data[element].toUpperCase() : "SIN DATO"; /** Estado de Correccion **/
+            opto.estadoDeCorreccion = (data[element] !== undefined) ? data[element].toUpperCase() : ""; /** Estado de Correccion **/
             break;
           case "PATOLOGIA_OCULAR":
-            opto.patologiaOcular = (data[element] !== undefined) ? data[element].toUpperCase() : 0; /** Patologia Ocular **/
+            opto.patologiaOcular = (data[element] !== undefined) ? data[element].toUpperCase() : "0"; /** Patologia Ocular **/
             break;
           case "DIAG_PPAL":
-            opto.diagPpal = (data[element] !== undefined) ? data[element].toUpperCase() : "SIN DATO"; /** Diag Ppal **/
+            opto.diagPpal = (data[element] !== undefined) ? data[element].toUpperCase() : ""; /** Diag Ppal **/
             break;
           case "DIAG_OBS":
-            opto.diagObs = (data[element] !== undefined) ? data[element] : 0; /** Diag Obs **/
+            opto.diagObs = (data[element] !== undefined) ? data[element] : ""; /** Diag Obs **/
             break;
           case "DIAG_REL/1":
-            opto.diagRel1 = (data[element] !== undefined) ? data[element] : 0; /** Diag Rel 1 **/
+            opto.diagRel1 = (data[element] !== undefined) ? data[element] : ""; /** Diag Rel 1 **/
             break;
           case "DIAG_REL/2":
-            opto.diagRel2 = (data[element] !== undefined) ? data[element] : 0; /** Diag Rel 2 **/
+            opto.diagRel2 = (data[element] !== undefined) ? data[element] : ""; /** Diag Rel 2 **/
             break;
           case "DIAG_REL/3":
-            opto.diagRel3 = (data[element] !== undefined) ? data[element] : 0; /** Diag Rel 3 **/
+            opto.diagRel3 = (data[element] !== undefined) ? data[element] : ""; /** Diag Rel 3 **/
             break;
           case "REC_CORRECCION_VISUAL_PARA_TRABAJAR":
             opto.recCorreccionVisualParaTrabajar = (data[element] !== undefined) ? data[element] : 0; /** Rec Correccion Visual Para Trabajar **/
