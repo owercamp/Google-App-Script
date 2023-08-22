@@ -1,3 +1,10 @@
+/**
+ * Inserts audio data into a spreadsheet.
+ *
+ * @param {object} data - The audio data to be inserted.
+ * @param {string} sheetName - The name of the sheet to insert the data into.
+ * @param {object} spreadsheet - The spreadsheet object.
+ */
 function insertAudio(data, sheetName, spreadsheet) {
   const rowRegister = spreadsheet.getSheetByName(sheetName);
   const arrayData = [];
@@ -213,7 +220,9 @@ function insertAudio(data, sheetName, spreadsheet) {
       }
     }
 
-    /** Calculates the ageRange **/
+    /** 
+     * Calculates the ageRange, working, ptaOD and ptaOI 
+     */
     const age = ageRange(arrayData[9]);
     arrayData[10] = age;
     const working = numberWorking(arrayData[18]);
@@ -224,7 +233,8 @@ function insertAudio(data, sheetName, spreadsheet) {
     arrayData[52] = ptaOI.toFixed(2);
 
     rowRegister.appendRow(arrayData);
-
+    return "ok";
+    
   } catch (error) {
     Logger.log(error.message);
   }
