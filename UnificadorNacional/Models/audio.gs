@@ -61,16 +61,16 @@ function insertAudio(data, sheetName, spreadsheet) {
           arrayData[18] = data[iterator];
           break;
         case 'eppEspecificoAuditivo':
-          arrayData[20] = data[iterator];
+          arrayData[20] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'eppEspecificoAuditivoCopa':
-          arrayData[21] = data[iterator];
+          arrayData[21] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'eppEspecificoAuditivoInsercion':
-          arrayData[22] = data[iterator];
+          arrayData[22] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'eppEspecificoAuditivoDoble':
-          arrayData[23] = data[iterator];
+          arrayData[23] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'pabellonAuricoidoDer':
           arrayData[24] = data[iterator];
@@ -154,37 +154,37 @@ function insertAudio(data, sheetName, spreadsheet) {
           arrayData[51] = data[iterator];
           break;
         case 'controlSegunPve':
-          arrayData[53] = data[iterator];
+          arrayData[53] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'confirmatoria':
-          arrayData[54] = data[iterator];
+          arrayData[54] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'remisionOrl':
-          arrayData[55] = data[iterator];
+          arrayData[55] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'pruebasComplementarias':
-          arrayData[56] = data[iterator];
+          arrayData[56] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'limpiezaDeOido':
-          arrayData[57] = data[iterator];
+          arrayData[57] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'limpiezaOd':
-          arrayData[58] = data[iterator];
+          arrayData[58] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'limpiezaOi':
-          arrayData[59] = data[iterator];
+          arrayData[59] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'reposoAuditivoExtralab':
-          arrayData[60] = data[iterator];
+          arrayData[60] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'rotarDiaadematelefonica':
-          arrayData[61] = data[iterator];
+          arrayData[61] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'conducirConVentanasCerradas':
-          arrayData[62] = data[iterator];
+          arrayData[62] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'usoDeEppAuditivo':
-          arrayData[63] = data[iterator];
+          arrayData[63] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'controlesMensuales':
           arrayData[64] = data[iterator];
