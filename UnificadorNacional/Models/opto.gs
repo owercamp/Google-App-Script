@@ -1,3 +1,10 @@
+/**
+ * Inserts opto data into a spreadsheet.
+ *
+ * @param {Object} data - the data to be inserted
+ * @param {string} sheetName - the name of the sheet to insert the data into
+ * @param {Spreadsheet} spreadsheet - the spreadsheet to insert the data into
+ */
 function insertOpto(data, sheetName, spreadsheet) {
   const rowRegister = spreadsheet.getSheetByName(sheetName);
   const arrayData = [];
@@ -240,13 +247,17 @@ function insertOpto(data, sheetName, spreadsheet) {
       }
     }
 
-    /** Calculates the ageRange and numberWorking **/
+    /** 
+     * Calculates the ageRange and numberWorking 
+     */
     const age = ageRange(arrayData[9]);
     arrayData[10] = age;
     const working = numberWorking(arrayData[18]);
     arrayData[19] = working;
 
     rowRegister.appendRow(arrayData);
+    return "ok";
+    
   } catch (error) {
     Logger.log(error.message);
   }
