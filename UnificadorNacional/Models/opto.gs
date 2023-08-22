@@ -61,61 +61,61 @@ function insertOpto(data, sheetName, spreadsheet) {
           arrayData[18] = data[iterator];
           break;
         case 'visioAntLaboralIluminacionInadecuada':
-          arrayData[20] = data[iterator];
+          arrayData[20] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'visioAntLaboralUsuarioComputador':
-          arrayData[21] = data[iterator];
+          arrayData[21] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'visioAntLaboralVisioRadiacionesUv':
-          arrayData[22] = data[iterator];
+          arrayData[22] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'visioAntLaboralCambiosTemperatura':
-          arrayData[23] = data[iterator];
+          arrayData[23] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'visioAntLaboralMalaventilacion':
-          arrayData[24] = data[iterator];
+          arrayData[24] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'visioAntLaboralGasesToxicos':
-          arrayData[25] = data[iterator];
+          arrayData[25] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'sintomasFotofobia':
-          arrayData[26] = data[iterator];
+          arrayData[26] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'sintomasOjoRojo':
-          arrayData[27] = data[iterator];
+          arrayData[27] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'sintomasLagrimeo':
-          arrayData[28] = data[iterator];
+          arrayData[28] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'sintomasVisionBorrosa':
-          arrayData[29] = data[iterator];
+          arrayData[29] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'sintomasArdor':
-          arrayData[30] = data[iterator];
+          arrayData[30] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'sintomasVisionDoble':
-          arrayData[31] = data[iterator];
+          arrayData[31] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'sintomasCansancio':
-          arrayData[32] = data[iterator];
+          arrayData[32] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'sintomasMalavisionCercana':
-          arrayData[33] = data[iterator];
+          arrayData[33] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'sintomasDolor':
-          arrayData[34] = data[iterator];
+          arrayData[34] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'sintomasMalavisionLejana':
-          arrayData[35] = data[iterator];
+          arrayData[35] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'sintomasSecrecion':
-          arrayData[36] = data[iterator];
+          arrayData[36] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'sintomasCefalea':
-          arrayData[37] = data[iterator];
+          arrayData[37] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'otrosSintomas':
-          arrayData[38] = data[iterator];
+          arrayData[38] = (data[iterator]) ? data[iterator] : "NO REFIERE";
           break;
         case 'cabezaParpados':
           arrayData[39] = data[iterator];
@@ -169,55 +169,55 @@ function insertOpto(data, sheetName, spreadsheet) {
           arrayData[55] = data[iterator];
           break;
         case 'recCorreccionVisualParaTrabajar':
-          arrayData[56] = data[iterator];
+          arrayData[56] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'recUsoArVideoTerminal':
-          arrayData[57] = data[iterator];
+          arrayData[57] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'recUsoDeLentesDeProteccionSolar':
-          arrayData[58] = data[iterator];
+          arrayData[58] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'recUsoEppVisual':
-          arrayData[59] = data[iterator];
+          arrayData[59] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'recPausasActivas':
-          arrayData[60] = data[iterator];
+          arrayData[60] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'recUsoRxVisionProxima':
-          arrayData[61] = data[iterator];
+          arrayData[61] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'recUsoRxDescanso':
-          arrayData[62] = data[iterator];
+          arrayData[62] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'recUsoPermanenteRxOptica':
-          arrayData[63] = data[iterator];
+          arrayData[63] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'recPyp':
-          arrayData[64] = data[iterator];
+          arrayData[64] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'recLubricanteOcular':
-          arrayData[65] = data[iterator];
+          arrayData[65] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'recomendacionesObs':
-          arrayData[66] = data[iterator];
+          arrayData[66] = (data[iterator]) ? data[iterator] : "NO REFIERE";
           break;
         case 'remValoracionOftalm':
-          arrayData[67] = data[iterator];
+          arrayData[67] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'remTopografiaCornea':
-          arrayData[68] = data[iterator];
+          arrayData[68] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'remTratamientoOrtop':
-          arrayData[69] = data[iterator];
+          arrayData[69] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'remTestFarnsworth':
-          arrayData[70] = data[iterator];
+          arrayData[70] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'realizarPruebaAmbulatoria':
-          arrayData[71] = data[iterator];
+          arrayData[71] = (data[iterator]) ? data[iterator] : 0;
           break;
         case 'remisionesObs':
-          arrayData[72] = data[iterator];
+          arrayData[72] = (data[iterator]) ? data[iterator] : "NO REFIERE";
           break;
         case 'controlesMensual':
           arrayData[73] = data[iterator];
