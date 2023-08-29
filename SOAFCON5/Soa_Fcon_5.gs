@@ -1,30 +1,4 @@
 /**
- * Retrieves the currently active cell in the spreadsheet and logs its row and column.
- *
- * @return {void} This function does not return anything.
- */
-function props() {
-  const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
-  const row = spreadsheet.getActiveCell().getRow();
-  const column = spreadsheet.getActiveCell().getColumn();
-  console.log(`fila => ${row}, Columna => ${column}`)
-}
-
-/**
- * Selects the previous sheet in the active spreadsheet and activates cell A1.
- *
- * @return {void} Nothing is returned.
- */
-function selectSheet() {
-  const spreadsheet = SpreadsheetApp.getActive();
-  spreadsheet.getRange('A1').activate();
-  const previousSheetIndex = spreadsheet.getActiveSheet().getIndex() - 1;
-  if (previousSheetIndex <= 0) { previousSheetIndex = spreadsheet.getSheets().length; }
-  spreadsheet.setActiveSheet(spreadsheet.getSheets()[previousSheetIndex - 1], true);
-  spreadsheet.getRange('A1').activate();
-};
-
-/**
  * Retrieves the active spreadsheet and cell, as well as the active sheet name, then checks if the current 
  * active cell is in column 1, has a value, and if the active sheet name is "GESTOR". If all are true, call the 
  * providers function with the value of the active cell and row as parameters, and set the value of the cell 
@@ -34,12 +8,13 @@ function selectSheet() {
  */
 function list() {
   const spreadsheet = SpreadsheetApp.getActive();
-  const column = spreadsheet.getActiveCell().getColumn();
-  const row = spreadsheet.getActiveCell().getRow();
+  const activeCell = spreadsheet.getActiveCell();
+  const column = activeCell.getColumn();
+  const row = activeCell.getRow();
   const name = spreadsheet.getActiveSheet().getName();
 
-  if (column == 1 && spreadsheet.getActiveCell().getValue() != "" && name == "GESTOR") {
-    providers(spreadsheet.getActiveCell().getValue(), row);
+  if (column === 1 && activeCell.getValue() && name === "GESTOR") {
+    providers(activeCell.getValue(), row);
     spreadsheet.getActiveSheet().getRange(row, 21).setValue('INTRAMURAL');
   }
 }
@@ -59,8 +34,8 @@ function providers(city, row) {
   const values = rows.getValues().filter(e => (e[0] != "") ? e : "");
   const name = spreadsheet.getActiveSheet().getName();
 
-  if (name != "ESTADISTICA" && name != "DATA" && name != "GRUPOS") {
-    for (var i = 0; i < values.length; ++i) {
+  if (!["ESTADISTICA", "DATA", "GRUPOS"].includes(name)) {
+    for (let i = 0; i < values.length; ++i) {
       if (values[i][0] == city && values[i][0] != "") {
         list_providers.push(values[i][1]);
       }
@@ -75,42 +50,43 @@ function providers(city, row) {
 }
 
 /**
- * Retrieves a list of medicals based on the city and type of medical
- * selected in the "GESTOR" sheet. The list is populated in the corresponding
- * cell of the "GESTOR" sheet and is validated against a master list of 
- * medicals in the "DATA" sheet. If there are no valid medicals for the 
- * selected city and type, the cell is cleared of any previous validation.
+ * Generates a function comment for the given function body.
  *
- * @return {void}
+ * @param {type} paramName - description of parameter
+ * @return {type} description of return value
  */
 function medicals() {
   const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
-  const row = spreadsheet.getActiveCell().getRow();
-  const column = spreadsheet.getActiveCell().getColumn();
-  const name = spreadsheet.getActiveSheet().getName();
-  const city = spreadsheet.getActiveSheet().getRange(row, 1).getValue();
+  const activeSheet = spreadsheet.getActiveSheet();
+  const row = activeSheet.getActiveCell().getRow();
+  const column = activeSheet.getActiveCell().getColumn();
+  const name = activeSheet.getName();
+  const city = activeSheet.getRange(row, 1).getValue();
 
-  if (column == 3 && name == "GESTOR") {
-    const list_medicals = [];
-    const spreadsheet2 = SpreadsheetApp.getActiveSpreadsheet();
-    const sheet = spreadsheet2.getSheetByName("DATA");
-    const rows = sheet.getRange(2, 12, sheet.getLastRow(), 3);
-    const values = rows.getValues().filter(e => (e[0] != "") ? e : "");
+  if (column === 3 && name === "GESTOR") {
+    const listMedicals = [];
+    const sheet = spreadsheet.getSheetByName("DATA");
+    const dataRange = sheet.getRange(2, 12, sheet.getLastRow() - 1, 3);
+    const values = dataRange.getValues().filter(([c, , ]) => c !== "");
 
-    for (var i = 0; i < values.length; ++i) {
-      if (values[i][0] == city && values[i][1] == spreadsheet.getActiveSheet().getRange(row, 3).getValue()) {
-        list_medicals.push(values[i][2]);
+    values.forEach(([c, t, m]) => {
+      if (c === city && t === spreadsheet.getActiveSheet().getRange(row, 3).getValue()) {
+        listMedicals.push(m);
       }
-    }
+    });
 
-    const medical = SpreadsheetApp.getActive();
-    if (list_medicals.length > 0) {
-      medical.getActiveSheet().getRange(row, 19).setDataValidation(SpreadsheetApp.newDataValidation()
+    const activeSpreadsheet = SpreadsheetApp.getActive();
+    const activeSheet = activeSpreadsheet.getActiveSheet();
+    const cellRange = activeSheet.getRange(row, 19);
+
+    if (listMedicals.length > 0) {
+      const newDataValidation = SpreadsheetApp.newDataValidation()
         .setAllowInvalid(false)
-        .requireValueInList(list_medicals, true)
-        .build());
+        .requireValueInList(listMedicals, true)
+        .build();
+      cellRange.setDataValidation(newDataValidation);
     } else {
-      medical.getActiveSheet().getRange(row, 19).clearDataValidations();
+      cellRange.clearDataValidations();
     }
   }
 }
@@ -122,36 +98,39 @@ function medicals() {
  */
 function familys() {
   const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
-  const row = spreadsheet.getActiveCell().getRow();
-  const column = spreadsheet.getActiveCell().getColumn();
-  const values = spreadsheet.getActiveCell().getValue();
+  const activeCell = spreadsheet.getActiveCell();
+  const row = activeCell.getRow();
+  const column = activeCell.getColumn();
+  const values = activeCell.getValue();
   const name = spreadsheet.getActiveSheet().getName();
 
-  if (column == 36 && name == "GESTOR") {
-    let pos1 = values.toString().indexOf("(");
-    let pos2 = values.toString().indexOf(")");
-    let valuesInternals = values.toString().slice(pos1 + 1, pos2);
-    let splitValues = valuesInternals.toString().split("-");
-    let arrayColumns = spreadsheet.getRangeByName('Headers').getValues();
-    spreadsheet.getActiveSheet().getRange(row, 37).setValue(""); // OPTOMETRIA
-    spreadsheet.getActiveSheet().getRange(row, 38).setValue(""); // VISIOMETRIA
-    spreadsheet.getActiveSheet().getRange(row, 41).setValue(""); // ESPIROMETRIA
-    spreadsheet.getActiveSheet().getRange(row, 39).setValue(""); // AUDIOMETRIA
-    spreadsheet.getActiveSheet().getRange(row, 88).setValue(""); // HCG
-    spreadsheet.getActiveSheet().getRange(row, 92).setValue(""); // RH
-    spreadsheet.getActiveSheet().getRange(row, 50).setValue(""); // OSTEOMUSCULAR
-
-
-    splitValues.forEach(e => {
-      arrayColumns[0].forEach(j => {
-        let search = validate(e.trim());
-        if (search == j.toString().trim()) {
-          let ubi = arrayColumns[0].indexOf(j.toString().trim());
-          let col = column + ubi + 1;
-          spreadsheet.getActiveSheet().getRange(row, col).setValue("x");
-        }
+  if (column === 36 && name === "GESTOR") {
+    const headersRange = spreadsheet.getRangeByName('Headers');
+    const arrayColumns = headersRange.getValues();
+    try {
+      const rangeValues = values.toString().match(/\(([^)]+)\)/)[1];
+      const splitValues = rangeValues.toString().split("-");
+      const rangeSheet = spreadsheet.getActiveSheet();
+      const range = rangeSheet.getRange(row, 37, 1, 56);
+  
+      range.clearContent();
+  
+      splitValues.forEach(e => {
+        arrayColumns[0].forEach((j, index) => {
+          const search = validate(e.trim());
+          if (search === j.toString().trim()) {
+            const col = column + index + 1;
+            rangeSheet.getRange(row, col).setValue("x");
+          }
+        });
       });
-    });
+    } catch (error) {
+      const rangeSheet = spreadsheet.getActiveSheet();
+      const range = rangeSheet.getRange(row, 37, 1, 56);
+  
+      range.clearContent();
+      Logger.log(error.message);
+    }
   }
 }
 
