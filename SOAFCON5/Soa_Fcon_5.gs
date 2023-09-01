@@ -302,31 +302,34 @@ function laboratoryActive() {
 }
 
 /**
- * Executes actions based on the value of a cell in a Google Sheets spreadsheet.
+ * Generates the function comment for the given function body.
  *
- * @return {void} No return value.
+ * @return {undefined} No return value
  */
 function covidActive() {
   const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
-  const row = spreadsheet.getActiveCell().getRow();
-  const column = spreadsheet.getActiveCell().getColumn();
-  const name = spreadsheet.getActiveSheet().getName();
+  const activeSheet = spreadsheet.getActiveSheet();
+  const activeCell = spreadsheet.getActiveCell();
+  const row = activeCell.getRow();
+  const column = activeCell.getColumn();
+  const name = activeSheet.getName();
 
-  if (column == 32 && name == "GESTOR") {
-    spreadsheet.getActiveSheet().getRange(row, 159).setValue("");
-    spreadsheet.getActiveSheet().getRange(row, 142).setValue("");
-    spreadsheet.getActiveSheet().getRange(row, 143).setValue("");
+  // Define a mapping of column names to target columns
+  const columnMapping = {
+    "PRUEBA CONFIRMATORIA PCR": 142,
+    "PRUEBA RAPIDA ANTIGENOS": 143,
+    "PRUEBA RAPIDA ANTICUERPOS (INMUNOGLOBULINA IGM- IGG)": 159
+  }
 
-    switch (spreadsheet.getActiveSheet().getRange(row, column).getValue()) {
-      case "PRUEBA RAPIDA ANTICUERPOS (INMUNOGLOBULINA IGM- IGG)":
-        spreadsheet.getActiveSheet().getRange(row, 159).setValue("x");
-        break;
-      case "PRUEBA CONFIRMATORIA PCR":
-        spreadsheet.getActiveSheet().getRange(row, 142).setValue("x");
-        break;
-      case "PRUEBA RAPIDA ANTIGENOS":
-        spreadsheet.getActiveSheet().getRange(row, 143).setValue("x");
-        break;
+  if (column === 32 && name === "GESTOR") {
+    activeSheet.getRange(row, 159, 1, 1).clearContent();
+    activeSheet.getRange(row, 142, 1, 2).clearContent();
+    const columnName = activeSheet.getRange(row, column).getValue();
+    const targetColumn = columnMapping[columnName];
+
+    if (targetColumn !== undefined) {
+      const currentValue = activeSheet.getRange(row, targetColumn).getValue().toString().toUpperCase();
+      activeSheet.getRange(row, targetColumn).setValue(currentValue === "X" ? "" : "x");
     }
   }
 }
