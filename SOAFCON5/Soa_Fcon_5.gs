@@ -334,36 +334,37 @@ function covidActive() {
   }
 }
 
+
 /**
- * Updates the value of a cell in the active Google Sheets spreadsheet based on the conditions specified.
+ * Checks if the vaccine is active and updates the corresponding cell value.
  *
  * @return {void} No return value.
  */
 function vaccineActive() {
   const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
-  const row = spreadsheet.getActiveCell().getRow();
-  const column = spreadsheet.getActiveCell().getColumn();
-  const name = spreadsheet.getActiveSheet().getName();
+  const activeSheet = spreadsheet.getActiveSheet();
+  const activeCell = spreadsheet.getActiveCell();
+  const row = activeCell.getRow();
+  const column = activeCell.getColumn();
+  const name = activeSheet.getName();
 
-  if (column == 31 && name == "GESTOR") {
-    switch (spreadsheet.getActiveSheet().getRange(row, column).getValue()) {
-      case "VACUNACION CONTRA HEPATITIS A":
-        (spreadsheet.getActiveSheet().getRange(row, 141).getValue().toString().toUpperCase() == "X") ? spreadsheet.getActiveSheet().getRange(row, 141).setValue("") : spreadsheet.getActiveSheet().getRange(row, 141).setValue("x");
-        break;
-      case "VACUNACION CONTRA HEPATITIS B":
-        (spreadsheet.getActiveSheet().getRange(row, 139).getValue().toString().toUpperCase() == "X") ? spreadsheet.getActiveSheet().getRange(row, 139).setValue("") : spreadsheet.getActiveSheet().getRange(row, 139).setValue("x");
-        break;
-      case "VACUNACION CONTRA FIEBRE AMARILLA":
-        (spreadsheet.getActiveSheet().getRange(row, 138).getValue().toString().toUpperCase() == "X") ? spreadsheet.getActiveSheet().getRange(row, 138).setValue("") : spreadsheet.getActiveSheet().getRange(row, 138).setValue("x");
-        break;
-      case "VACUNACION CONTRA INFLUENZA":
-        (spreadsheet.getActiveSheet().getRange(row, 140).getValue().toString().toUpperCase() == "X") ? spreadsheet.getActiveSheet().getRange(row, 140).setValue("") : spreadsheet.getActiveSheet().getRange(row, 140).setValue("x");
-        break;
-      case "ADMINISTRACION DE ANTITOXINA TETANICA SOD":
-        (spreadsheet.getActiveSheet().getRange(row, 137).getValue().toString().toUpperCase() == "X") ? spreadsheet.getActiveSheet().getRange(row, 137).setValue("") : spreadsheet.getActiveSheet().getRange(row, 137).setValue("x");
-        break;
-      case "FIEBRE TIFOIDEA":
-        (spreadsheet.getActiveSheet().getRange(row, 278).getValue().toString().toUpperCase() == "X") ? spreadsheet.getActiveSheet().getRange(row, 278).setValue("") : spreadsheet.getActiveSheet().getRange(row, 278).setValue("x");
+  // Define a mapping of column names to target columns
+  const columnMapping = {
+    "VACUNACION CONTRA HEPATITIS A": 141,
+    "VACUNACION CONTRA HEPATITIS B": 139,
+    "VACUNACION CONTRA FIEBRE AMARILLA": 138,
+    "VACUNACION CONTRA INFLUENZA": 140,
+    "ADMINISTRACION DE ANTITOXINA TETANICA SOD": 137,
+    "FIEBRE TIFOIDEA": 278
+  }
+
+  if (column === 31 && name === "GESTOR") {
+    const columnName = activeSheet.getRange(row, column).getValue();
+    const targetColumn = columnMapping[columnName];
+
+    if (targetColumn !== undefined) {
+      const currentValue = activeSheet.getRange(row, targetColumn).getValue().toString().toUpperCase();
+      activeSheet.getRange(row, targetColumn).setValue(currentValue === "X" ? "" : "x");
     }
   }
 }
