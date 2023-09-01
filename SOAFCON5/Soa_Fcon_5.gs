@@ -135,29 +135,20 @@ function familys() {
 }
 
 /**
- * Validates a given value and returns a specific string based on the input.
+ * Maps a value to its corresponding description based on a predefined mapping.
  *
- * @param {string} value - The value to be validated.
- * @return {string} A string based on the input value or the same input value if it doesn't match any case.
+ * @param {string} value - The value to be mapped.
+ * @return {string} The corresponding description if it exists in the mapping, otherwise the original value.
  */
 function validate(value) {
-  switch (value) {
-    case "AUDIOMETRIA":
-      return "AUDIOMETRIA DE TONOS PUROS AEREOS Y OSEOS CON ENMASCARAMIENTO";
-      break;
-    case "OSTEOMUSCULAR":
-      return "EXAMEN OSTEOMUSCULAR POR FISIOTERAPIA";
-      break;
-    case "RH":
-      return "HEMOCLASIFICACION SISTEMA ABO DIRECTA POR MICROTECNICA_RH";
-      break;
-    case "HCG":
-      return "GONADOTROPINA CORIONICA  EN ORINA O SUERO_HCG";
-      break;
-    default:
-      return value;
-      break;
-  }
+  const mapping = {
+    "AUDIOMETRIA": "AUDIOMETRIA DE TONOS PUROS AEREOS Y OSEOS CON ENMASCARAMIENTO",
+    "OSTEOMUSCULAR": "EXAMEN OSTEOMUSCULAR POR FISIOTERAPIA",
+    "RH": "HEMOCLASIFICACION SISTEMA ABO DIRECTA POR MICROTECNICA_RH",
+    "HCG": "GONADOTROPINA CORIONICA  EN ORINA O SUERO_HCG"
+  };
+
+  return mapping[value] || value;
 }
 
 /**
