@@ -447,45 +447,32 @@ function emphasisActive() {
   }
 }
 
-/**
- * Updates a Google Spreadsheet with checked values based on the selected exam type.
- *
- * @return {void} This function does not return anything.
- */
 function checkedExam() {
   const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
-  const activeExam = spreadsheet.getActiveCell().getValue();
-  const row = spreadsheet.getActiveCell().getRow();
-  const column = spreadsheet.getActiveCell().getColumn();
-  const name = spreadsheet.getActiveSheet().getName();
+  const activeSheet = spreadsheet.getActiveSheet();
+  const activeCell = spreadsheet.getActiveCell();
+  const row = activeCell.getRow();
+  const column = activeCell.getColumn();
+  const name = activeSheet.getName();
+
+  // Define a mapping of column names to target columns
+  const columnMapping = {
+    "PRE-INGRESO": 22,
+    "EGRESO": 23,
+    "POST INCAPACIDAD": 24,
+    "PERIODICO": 25,
+    "PERIODICO CON SEGUIMIENTO": 26,
+    "TRABAJO ESPECIAL": 27
+  }
 
   if (column == 8 && name == "GESTOR") {
-    spreadsheet.getActiveSheet().getRange(row, 22).setValue("");
-    spreadsheet.getActiveSheet().getRange(row, 25).setValue("");
-    spreadsheet.getActiveSheet().getRange(row, 23).setValue("");
-    spreadsheet.getActiveSheet().getRange(row, 24).setValue("");
-    spreadsheet.getActiveSheet().getRange(row, 27).setValue("");
-    spreadsheet.getActiveSheet().getRange(row, 26).setValue("");
+    activeSheet.getRange(row, 22, 1, 6).clearContent();
+    const columnName = activeSheet.getRange(row, column).getValue();
+    const targetColumn = columnMapping[columnName];
 
-    switch (activeExam) {
-      case "PRE-INGRESO":
-        spreadsheet.getActiveSheet().getRange(row, 22).setValue("x");
-        break;
-      case "PERIODICO":
-        spreadsheet.getActiveSheet().getRange(row, 25).setValue("x");
-        break;
-      case "EGRESO":
-        spreadsheet.getActiveSheet().getRange(row, 23).setValue("x");
-        break;
-      case "POST INCAPACIDAD":
-        spreadsheet.getActiveSheet().getRange(row, 24).setValue("x");
-        break;
-      case "TRABAJO ESPECIAL":
-        spreadsheet.getActiveSheet().getRange(row, 27).setValue("x");
-        break;
-      case "PERIODICO CON SEGUIMIENTO":
-        spreadsheet.getActiveSheet().getRange(row, 26).setValue("x");
-        break;
+    if (targetColumn !== undefined) {
+      const currentValue = activeSheet.getRange(row, targetColumn).getValue().toString().toUpperCase();
+      activeSheet.getRange(row, targetColumn).setValue(currentValue === "X" ? "" : "x");
     }
   }
 }
