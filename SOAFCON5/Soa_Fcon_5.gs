@@ -194,35 +194,34 @@ function diagnoseActive() {
 }
 
 /**
- * Sets the value of certain cells based on the active cell's content.
+ * Executes when the "drugsActive" function is called.
  *
- * @return {void} This function does not return anything.
+ * @return {undefined} Does not return a value.
  */
 function drugsActive() {
   const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
-  const row = spreadsheet.getActiveCell().getRow();
-  const column = spreadsheet.getActiveCell().getColumn();
-  const name = spreadsheet.getActiveSheet().getName();
+  const activeSheet = spreadsheet.getActiveSheet();
+  const activeCell = spreadsheet.getActiveCell();
+  const row = activeCell.getRow();
+  const column = activeCell.getColumn();
+  const name = activeSheet.getName();
 
-  if (column == 34 && name == "GESTOR") {
-    spreadsheet.getActiveSheet().getRange(row, 135).setValue("");
-    spreadsheet.getActiveSheet().getRange(row, 136).setValue("");
-    spreadsheet.getActiveSheet().getRange(row, 133).setValue("");
-    spreadsheet.getActiveSheet().getRange(row, 134).setValue("");
+  // Define a mapping of column names to target columns
+  const columnMapping = {
+    "2 SUSTANCIAS": 135,
+    "3 SUSTANCIAS": 136,
+    "5 SUSTANCIAS": 133,
+    "10 SUSTANCIAS": 134
+  }
 
-    switch (spreadsheet.getActiveSheet().getRange(row, column).getValue()) {
-      case "2 SUSTANCIAS":
-        spreadsheet.getActiveSheet().getRange(row, 135).setValue("x");
-        break;
-      case "3 SUSTANCIAS":
-        spreadsheet.getActiveSheet().getRange(row, 136).setValue("x");
-        break;
-      case "5 SUSTANCIAS":
-        spreadsheet.getActiveSheet().getRange(row, 133).setValue("x");
-        break;
-      case "10 SUSTANCIAS":
-        spreadsheet.getActiveSheet().getRange(row, 134).setValue("x");
-        break;
+  if (column === 34 && name === "GESTOR") {
+    activeSheet.getRange(row, 133, 1, 4).clearContent();
+    const columnName = activeSheet.getRange(row, column).getValue();
+    const targetColumn = columnMapping[columnName];
+
+    if (targetColumn !== undefined) {
+      const currentValue = activeSheet.getRange(row, targetColumn).getValue().toString().toUpperCase();
+      activeSheet.getRange(row, targetColumn).setValue(currentValue === "X" ? "" : "x");
     }
   }
 }
