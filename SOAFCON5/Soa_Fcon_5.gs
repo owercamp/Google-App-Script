@@ -67,7 +67,7 @@ function medicals() {
     const listMedicals = [];
     const sheet = spreadsheet.getSheetByName("DATA");
     const dataRange = sheet.getRange(2, 12, sheet.getLastRow() - 1, 3);
-    const values = dataRange.getValues().filter(([c, , ]) => c !== "");
+    const values = dataRange.getValues().filter(([c, ,]) => c !== "");
 
     values.forEach(([c, t, m]) => {
       if (c === city && t === spreadsheet.getActiveSheet().getRange(row, 3).getValue()) {
@@ -112,9 +112,9 @@ function familys() {
       const splitValues = rangeValues.toString().split("-");
       const rangeSheet = spreadsheet.getActiveSheet();
       const range = rangeSheet.getRange(row, 37, 1, 56);
-  
+
       range.clearContent();
-  
+
       splitValues.forEach(e => {
         arrayColumns[0].forEach((j, index) => {
           const search = validate(e.trim());
@@ -127,7 +127,7 @@ function familys() {
     } catch (error) {
       const rangeSheet = spreadsheet.getActiveSheet();
       const range = rangeSheet.getRange(row, 37, 1, 56);
-  
+
       range.clearContent();
       Logger.log(error.message);
     }
@@ -603,7 +603,7 @@ function listExams() {
   const row = spreadsheet.getActiveSheet().getActiveCell().getRow();
   const column = spreadsheet.getActiveSheet().getActiveCell().getColumn();
 
-  SpreadsheetApp.getActive().toast("Realizando consulta por favor espere","Consulta");
+  SpreadsheetApp.getActive().toast("Realizando consulta por favor espere", "Consulta");
 
   const spreadsheet2 = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("ORDEN");
   spreadsheet2.getRange('B14').activate();
@@ -644,5 +644,5 @@ function listExams() {
       sheet.getActiveCell().offset(1, 0).activate();
     })
   }
-    SpreadsheetApp.getActive().toast("Consulta finalizada","Correcto");
+  SpreadsheetApp.getActive().toast("Consulta finalizada", "Correcto");
 }
