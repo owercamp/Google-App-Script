@@ -63,12 +63,11 @@ function medicals() {
   const name = activeSheet.getName();
   const city = activeSheet.getRange(row, 1).getValue();
 
-  if (column == 3 && name == "GESTOR") {
-    const list_medicals = [];
-    const spreadsheet2 = SpreadsheetApp.getActiveSpreadsheet();
-    const sheet = spreadsheet2.getSheetByName("DATA");
-    const rows = sheet.getRange(2, 12, sheet.getLastRow(), 3);
-    const values = rows.getValues().filter(e => (e[0] != "") ? e : "");
+  if (column === 3 && name === "GESTOR") {
+    const listMedicals = [];
+    const sheet = spreadsheet.getSheetByName("DATA");
+    const dataRange = sheet.getRange(2, 12, sheet.getLastRow() - 1, 3);
+    const values = dataRange.getValues().filter(([c, ,]) => c !== "");
 
     values.forEach(([c, t, m]) => {
       if (c === city && t === spreadsheet.getActiveSheet().getRange(row, 3).getValue()) {
@@ -113,9 +112,9 @@ function familys() {
       const splitValues = rangeValues.toString().split("-");
       const rangeSheet = spreadsheet.getActiveSheet();
       const range = rangeSheet.getRange(row, 37, 1, 56);
-  
+
       range.clearContent();
-  
+
       splitValues.forEach(e => {
         arrayColumns[0].forEach((j, index) => {
           const search = validate(e.trim());
@@ -128,7 +127,7 @@ function familys() {
     } catch (error) {
       const rangeSheet = spreadsheet.getActiveSheet();
       const range = rangeSheet.getRange(row, 37, 1, 56);
-  
+
       range.clearContent();
       Logger.log(error.message);
     }
