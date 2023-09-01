@@ -152,63 +152,43 @@ function validate(value) {
 }
 
 /**
- * This function diagnoses the active cell in a Google Sheets spreadsheet by checking if it is in column 35 of the
- * "GESTOR" sheet. If it is, the function checks the value of the cell and sets the value of a corresponding cell in
- * the same row to either "x" or an empty string based on the value of the cell. The corresponding cells are determined
- * by a switch statement that checks the value of the active cell.
+ * Diagnose the active spreadsheet cell.
  *
- * @return {void} This function does not return anything.
+ * @return {undefined} undefined
  */
 function diagnoseActive() {
   const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
-  const row = spreadsheet.getActiveCell().getRow();
-  const column = spreadsheet.getActiveCell().getColumn();
-  const name = spreadsheet.getActiveSheet().getName();
+  const activeSheet = spreadsheet.getActiveSheet();
+  const activeCell = spreadsheet.getActiveCell();
+  const row = activeCell.getRow();
+  const column = activeCell.getColumn();
+  const name = activeSheet.getName();
 
-  if (column == 35 && name == "GESTOR") {
-    switch (spreadsheet.getActiveSheet().getRange(row, column).getValue()) {
-      case "RADIOGRAFIA DE COLUMNA LUMBOSACRA":
-        (spreadsheet.getActiveSheet().getRange(row, 144).getValue().toString().toUpperCase() == "X") ? spreadsheet.getActiveSheet().getRange(row, 144).setValue("") : spreadsheet.getActiveSheet().getRange(row, 144).setValue("x");
-        break;
-      case "ELECTROCARDIOGRAMA DE RITMO O DE SUPERFICIE SOD_EKG":
-        (spreadsheet.getActiveSheet().getRange(row, 145).getValue().toString().toUpperCase() == "X") ? spreadsheet.getActiveSheet().getRange(row, 145).setValue("") : spreadsheet.getActiveSheet().getRange(row, 145).setValue("x");
-        break;
-      case "RADIOGRAFIA DE RODILLAS COMPARATIVAS POSICION VERTICAL":
-        (spreadsheet.getActiveSheet().getRange(row, 146).getValue().toString().toUpperCase() == "X") ? spreadsheet.getActiveSheet().getRange(row, 146).setValue("") : spreadsheet.getActiveSheet().getRange(row, 146).setValue("x");
-        break;
-      case "RADIOGRAFIA DE TORAX":
-        (spreadsheet.getActiveSheet().getRange(row, 147).getValue().toString().toUpperCase() == "X") ? spreadsheet.getActiveSheet().getRange(row, 147).setValue("") : spreadsheet.getActiveSheet().getRange(row, 147).setValue("x");
-        break;
-      case "RADIOGRAFIA DE TORAX CON LECTURA ILO":
-        (spreadsheet.getActiveSheet().getRange(row, 148).getValue().toString().toUpperCase() == "X") ? spreadsheet.getActiveSheet().getRange(row, 148).setValue("") : spreadsheet.getActiveSheet().getRange(row, 148).setValue("x");
-        break;
-      case "RESONANCIA MAGNETICA DE COLUMNA LUMBOSACRA SIMPLE":
-        (spreadsheet.getActiveSheet().getRange(row, 149).getValue().toString().toUpperCase() == "X") ? spreadsheet.getActiveSheet().getRange(row, 149).setValue("") : spreadsheet.getActiveSheet().getRange(row, 149).setValue("x");
-        break;
-      case "TAC COLUMNA LUMBOSACRA":
-        (spreadsheet.getActiveSheet().getRange(row, 150).getValue().toString().toUpperCase() == "X") ? spreadsheet.getActiveSheet().getRange(row, 150).setValue("") : spreadsheet.getActiveSheet().getRange(row, 150).setValue("x");
-        break;
-      case "RADIOGRAFIA DE COLUMNA DORSAL":
-        (spreadsheet.getActiveSheet().getRange(row, 151).getValue().toString().toUpperCase() == "X") ? spreadsheet.getActiveSheet().getRange(row, 151).setValue("") : spreadsheet.getActiveSheet().getRange(row, 151).setValue("x");
-        break;
-      case "ELECTROCARDIOGRAFIA DINAMICA (HOLTER)_EKG HOLTER":
-        (spreadsheet.getActiveSheet().getRange(row, 152).getValue().toString().toUpperCase() == "X") ? spreadsheet.getActiveSheet().getRange(row, 152).setValue("") : spreadsheet.getActiveSheet().getRange(row, 152).setValue("x");
-        break;
-      case "RADIOGRAFIA DE COLUMNA CERVICAL":
-        (spreadsheet.getActiveSheet().getRange(row, 153).getValue().toString().toUpperCase() == "X") ? spreadsheet.getActiveSheet().getRange(row, 153).setValue("") : spreadsheet.getActiveSheet().getRange(row, 153).setValue("x");
-        break;
-      case "RADIOGRAFIA DE COLUMNA DORSOLUMBAR":
-        (spreadsheet.getActiveSheet().getRange(row, 154).getValue().toString().toUpperCase() == "X") ? spreadsheet.getActiveSheet().getRange(row, 154).setValue("") : spreadsheet.getActiveSheet().getRange(row, 154).setValue("x");
-        break;
-      case "ELECTROENCEFALOGRAMA CONVENCIONAL_EEG":
-        (spreadsheet.getActiveSheet().getRange(row, 155).getValue().toString().toUpperCase() == "X") ? spreadsheet.getActiveSheet().getRange(row, 155).setValue("") : spreadsheet.getActiveSheet().getRange(row, 155).setValue("x");
-        break;
-      case "RADIOGRAFIA DE PIE (AP,LATERAL)":
-        (spreadsheet.getActiveSheet().getRange(row, 156).getValue().toString().toUpperCase() == "X") ? spreadsheet.getActiveSheet().getRange(row, 156).setValue("") : spreadsheet.getActiveSheet().getRange(row, 156).setValue("x");
-        break;
-      case "RADIOGRAFIA DE COLUMNA UNION CERVICO DORSAL":
-        (spreadsheet.getActiveSheet().getRange(row, 157).getValue().toString().toUpperCase() == "X") ? spreadsheet.getActiveSheet().getRange(row, 157).setValue("") : spreadsheet.getActiveSheet().getRange(row, 157).setValue("x");
-        break;
+  // Define a mapping of column names to target columns
+  const columnMapping = {
+    "RADIOGRAFIA DE COLUMNA LUMBOSACRA": 144,
+    "ELECTROCARDIOGRAMA DE RITMO O DE SUPERFICIE SOD_EKG": 145,
+    "RADIOGRAFIA DE RODILLAS COMPARATIVAS POSICION VERTICAL": 146,
+    "RADIOGRAFIA DE TORAX": 147,
+    "RADIOGRAFIA DE TORAX CON LECTURA ILO": 148,
+    "RESONANCIA MAGNETICA DE COLUMNA LUMBOSACRA SIMPLE": 149,
+    "TAC COLUMNA LUMBOSACRA": 150,
+    "RADIOGRAFIA DE COLUMNA DORSAL": 151,
+    "ELECTROCARDIOGRAFIA DINAMICA (HOLTER)_EKG HOLTER": 152,
+    "RADIOGRAFIA DE COLUMNA CERVICAL": 153,
+    "RADIOGRAFIA DE COLUMNA DORSOLUMBAR": 154,
+    "ELECTROENCEFALOGRAMA CONVENCIONAL_EEG": 155,
+    "RADIOGRAFIA DE PIE (AP,LATERAL)": 156,
+    "RADIOGRAFIA DE COLUMNA UNION CERVICO DORSAL": 157
+  };
+
+  if (column === 35 && name === "GESTOR") {
+    const columnName = activeSheet.getRange(row, column).getValue();
+    const targetColumn = columnMapping[columnName];
+
+    if (targetColumn !== undefined) {
+      const currentValue = activeSheet.getRange(row, targetColumn).getValue().toString().toUpperCase();
+      activeSheet.getRange(row, targetColumn).setValue(currentValue === "X" ? "" : "x");
     }
   }
 }
