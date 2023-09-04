@@ -89,27 +89,19 @@ function numberChildrens(childrens) {
 }
 
 /**
- * Determines the working status based on the given number.
+ * Determines the working years based on the given number.
  *
- * @param {number} number - The number to determine the working status.
- * @return {string} The working status based on the given number.
+ * @param {number} number - The number to determine the working years.
+ * @return {string} The working years category.
  */
 function numberWorking(number) {
-  if (!number) {
-    return 'SIN DATO';
-  } else if (number < 1) {
-    return '1 MENOS DE 1 AÑO';
-  } else if (number >= 1 && number <= 5) {
-    return '2 DE 1 A 5 AÑOS';
-  } else if (number >= 6 && number <= 10) {
-    return '3 DE 6 A 10 AÑOS';
-  } else if (number >= 11 && number <= 15) {
-    return '4 DE 11 A 15 AÑOS';
-  } else if (number >= 16) {
-    return 'MAS DE 16 AÑOS';
-  } else if (number == 'SIN DATO' || number == 'SIN DATOS') {
-    return 'SIN DATO';
-  }
+  if (!number) return 'SIN DATO';
+  if (number < 1) return '1 MENOS DE 1 AÑO';
+  if (number >= 1 && number <= 5) return '2 DE 1 A 5 AÑOS';
+  if (number >= 6 && number <= 10) return '3 DE 6 A 10 AÑOS';
+  if (number >= 11 && number <= 15) return '4 DE 11 A 15 AÑOS';
+  if (number >= 16) return 'MAS DE 16 AÑOS';
+  if (number == 'SIN DATO' || number == 'SIN DATOS') return 'SIN DATO';
 }
 
 /**
