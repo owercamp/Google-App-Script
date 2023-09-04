@@ -162,14 +162,8 @@ function imc2(weight, size) {
  * @return {number} The average of the given numbers.
  */
 function ptaInfo(...rest) {
-  
-  let sum = 0;
-  rest.forEach(element => {
-    sum += (element) ? element : 0;
-  });
-
+  const sum = rest.reduce((acc, element) => acc + element, 0);
   return sum / rest.length;
-  
 }
 
 /**
