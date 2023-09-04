@@ -167,8 +167,120 @@ function insertEspiro(data, sheetName, spreadsheet) {
         case 'talla':
           arrayData[55] = data[iterator];
           break;
+        case 'fvcPredDiag':
+          arrayData[58] = data[iterator];
+          break;
+        case 'fvcTeorDiag':
+          arrayData[59] = data[iterator];
+          break;
+        case 'fev1PredDiag':
+          arrayData[60] = data[iterator];
+          break;
+        case 'fev1TeorDiag':
+          arrayData[61] = data[iterator];
+          break;
+        case 'fev1FvcPredDiag':
+          arrayData[62] = data[iterator];
+          break;
+        case 'fev1FvcTeorDiag':
+          arrayData[63] = data[iterator];
+          break;
+        case 'pefPredDiag':
+          arrayData[64] = data[iterator];
+          break;
+        case 'pefTeorDiag':
+          arrayData[65] = data[iterator];
+          break;
+        case 'fef2575PredDiag':
+          arrayData[66] = data[iterator];
+          break;
+        case 'fef2575TeorDiag':
+          arrayData[67] = data[iterator];
+          break;
+        case 'diagPpal':
+          arrayData[68] = data[iterator];
+          break;
+        case 'diagObs':
+          arrayData[69] = data[iterator];
+          break;
+        case 'diagRel1':
+          arrayData[70] = data[iterator];
+          break;
+        case 'diagRel2':
+          arrayData[71] = data[iterator];
+          break;
+        case 'diagRel3':
+          arrayData[72] = data[iterator];
+          break;
+        case 'tipoInterpretacion':
+          arrayData[73] = data[iterator];
+          break;
+        case 'tipoGrado':
+          arrayData[74] = data[iterator];
+          break;
+        case 'resultadoEspiroMetria':
+          arrayData[75] = data[iterator];
+          break;
+        case 'recGralesDejarDeFumar':
+          arrayData[76] = data[iterator];
+          break;
+        case 'recGralesContinuarControlesEps':
+          arrayData[77] = data[iterator];
+          break;
+        case 'recGralesBajarDePeso':
+          arrayData[78] = data[iterator];
+          break;
+        case 'recGralesTomarRayosXTorax':
+          arrayData[79] = data[iterator];
+          break;
+        case 'recGralesRealizarEjerc3XSemana':
+          arrayData[80] = data[iterator];
+          break;
+        case 'recGralesValoracEPSXNeumologia':
+          arrayData[81] = data[iterator];
+          break;
+        case 'recLabUtilizarEpr':
+          arrayData[82] = data[iterator];
+          break;
+        case 'recLabIngresarSve':
+          arrayData[83] = data[iterator];
+          break;
+        case 'controlesMensual':
+          arrayData[84] = data[iterator];
+          break;
+        case 'controlesBimestrales':
+          arrayData[85] = data[iterator];
+          break;
+        case 'controlesTrimestral':
+          arrayData[86] = data[iterator];
+          break;
+        case 'controlesSemestral':
+          arrayData[87] = data[iterator];
+          break;
+        case 'controlesAnual':
+          arrayData[88] = data[iterator];
+          break;
+        case 'controlesConfirmatoria':
+          arrayData[89] = data[iterator];
+          break;
+        case 'tecnicaAceptable':
+          arrayData[90] = data[iterator];
+          break;
       }
     }
+
+    const age = ageRange(arrayData[9]);
+    arrayData[10] = age;
+    const working = numberWorking(arrayData[18]);
+    arrayData[19] = working;
+
+    const imc = imc2(arrayData[54], arrayData[55]);
+    arrayData[56] = imc[0].toFixed(2);
+    arrayData[57] = imc[1];
+
+    rowRegister.appendRow(arrayData);
+    return "ok";
+
   } catch (error) {
     Logger.log(error.message);
   }
