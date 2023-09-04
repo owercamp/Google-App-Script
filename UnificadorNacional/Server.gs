@@ -179,11 +179,6 @@ function ptaInfo(...rest) {
  * @return {number} The sum of the given numbers.
  */
 function diagnosticsImp(...rest) {
-  let sum = 0;
-
-  rest.forEach(element => {
-    sum+=element;
-  });
-  return sum;
+  return rest.reduce((sum, element) => sum + element, 0);
 }
 
