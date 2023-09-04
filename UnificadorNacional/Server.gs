@@ -129,30 +129,30 @@ function numberWorking(number) {
  * The IMC value is at index 0 and the category is at index 1.
  */
 function imc2(weight, size) {
-  const dataIMC = [];
   if (!weight || !size) {
     return '';
-  } else {
-    dataIMC[0] = weight / Math.pow(size, 2);
-
-    if (dataIMC[0] < 18.5) {
-      dataIMC[1] = '1 PESO BAJO';
-    } else if (dataIMC[0] >= 18.5 && dataIMC[0] < 25) {
-      dataIMC[1] = '2 NORMAL';
-    } else if (dataIMC[0] >= 25 && dataIMC[0] < 30) {
-      dataIMC[1] = '3 SOBREPESO';
-    } else if (dataIMC[0] >= 30 && dataIMC[0] < 35) {
-      dataIMC[1] = '4 OBESIDAD GRADO I';
-    } else if (dataIMC[0] >= 35 && dataIMC[0] < 40) {
-      dataIMC[1] = '5 OBESIDAD GRADO II';
-    } else if (dataIMC[0] >= 40 && dataIMC[0] < 50) {
-      dataIMC[1] = '6 OBESIDAD GRADO III';
-    } else {
-      dataIMC[1] = 'CAMPO SIN VALOR';
-    }
-
-    return dataIMC;
   }
+
+  const imc = weight / (size * size);
+  let category = '';
+
+  if (imc < 18.5) {
+    category = '1 PESO BAJO';
+  } else if (imc < 25) {
+    category = '2 NORMAL';
+  } else if (imc < 30) {
+    category = '3 SOBREPESO';
+  } else if (imc < 35) {
+    category = '4 OBESIDAD GRADO I';
+  } else if (imc < 40) {
+    category = '5 OBESIDAD GRADO II';
+  } else if (imc < 50) {
+    category = '6 OBESIDAD GRADO III';
+  } else {
+    category = 'CAMPO SIN VALOR';
+  }
+
+  return [imc, category];
 }
 
 /**
