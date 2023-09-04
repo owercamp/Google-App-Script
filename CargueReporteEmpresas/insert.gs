@@ -96,7 +96,6 @@ const informations = {
 function onOpen(e) {
   const menu = SpreadsheetApp.getUi().createMenu('Visualizar Reporte');
   let recipients = {}
-  Logger.log(Session.getActiveUser());
   if (Session.getActiveUser() == 'ower.campos@soandes.co') {
     recipients = {
     'Reporte Graficas': 'informations.openGraph',
@@ -107,7 +106,7 @@ function onOpen(e) {
       'graficas': 'informations.openGraph'
     }
   }
-  for (const [name, recipient] of Object.entries(recipients)) {
+  for (const [name, recipient] of Object.entries(recipients).sort()) {
     menu.addItem(name, recipient);
   }
   menu.addToUi();
