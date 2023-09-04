@@ -57,25 +57,17 @@ function insertData(data) {
 /**
  * Determines the age range based on the given age.
  *
- * @param {number} age - The age to determine the age range for.
- * @return {string} The age range corresponding to the given age.
+ * @param {number} age - The age to determine the range for.
+ * @return {string} The corresponding age range.
  */
 function ageRange(age) {
-  if (age <= 19) {
-    return '0 MENOR O IGUAL A 19 AÑOS';
-  } else if (age >= 20 && age <= 29) {
-    return '1 DE 20 A 29 AÑOS';
-  } else if (age >= 30 && age <= 39) {
-    return '2 DE 30 A 39 AÑOS';
-  } else if (age >= 40 && age <= 49) {
-    return '3 DE 40 A 49 AÑOS';
-  } else if (age >= 50 && age <= 59) {
-    return '4 DE 50 A 59 AÑOS';
-  } else if (age >= 60 && age <= 91) {
-    return '60 O MAS AÑOS';
-  } else if (age >= 91) {
-    return 'VALOR NO VALIDO';
-  }
+  if (age <= 19) return '0 MENOR O IGUAL A 19 AÑOS';
+  if (age <= 29) return '1 DE 20 A 29 AÑOS';
+  if (age <= 39) return '2 DE 30 A 39 AÑOS';
+  if (age <= 49) return '3 DE 40 A 49 AÑOS';
+  if (age <= 59) return '4 DE 50 A 59 AÑOS';
+  if (age <= 91) return '60 O MAS AÑOS';
+  return 'VALOR NO VALIDO';
 }
 
 /**
