@@ -1178,6 +1178,12 @@
           case "INTERPRETACION":
             spiro.interpretacion = (data[element] !== undefined) ? data[element].toUpperCase() : ""; /** Interpretacion **/
             break;
+          case 'PESO':
+            spiro.peso = (data[element] !== undefined) ? data[element] : ""; /** Peso **/
+            break;
+          case 'TALLA':
+            spiro.talla = (data[element] !== undefined) ? data[element] : ""; /** Talla **/
+            break;
           case "FVC_PRED_DIAG_":
             spiro.fvcPredDiag = (data[element] !== undefined) ? data[element] : ""; /** FVC Pred Diag **/
             break;
