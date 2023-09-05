@@ -1,4 +1,28 @@
 
+class emoGraph {
+  constructor(contractedName = "", origin = "", destiny = "", city = "", income = "", examType = "", date = "", patient = "", numberIdentification = "", age = "", range_age = "", stratum = "", gender = "", numberOfChildren = "", race = "", civilStatus = "", scholarship = "", post = "", durationWorking = "", antiquity = "") {
+    this.contractedName = contractedName; // CONTRATO
+    this.origin = origin; // ORIGEN
+    this.destiny = destiny; // DESTINO
+    this.city = city; // CIUDAD
+    this.income = income; // INGRESO
+    this.examType = examType; // TIPO EXAMEN
+    this.date = date; // FECHA
+    this.patient = patient; // PACIENTE
+    this.numberIdentification = numberIdentification; // NUMERO DE IDENTIFICACION
+    this.age = age; // EDAD
+    this.range_age = range_age; // RANGO EDAD
+    this.stratum = stratum; // ESTRATO
+    this.gender = gender; // GENERO
+    this.numberOfChildren = numberOfChildren; // NUMERO DE HIJOS
+    this.race = race; // RAZA
+    this.civilStatus = civilStatus; // ESTADO CIVIL
+    this.scholarship = scholarship; // ESCOLARIDAD
+    this.post = post; // CARGO
+    this.durationWorking = durationWorking; // DURACION DE TRABAJO
+    this.antiquity = antiquity; // ANTIGUEDAD
+  }
+}
 /**
  * Retrieves the content to be displayed when the web app is accessed.
  *
