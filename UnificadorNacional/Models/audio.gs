@@ -1,17 +1,123 @@
+class audio {
+  constructor(contractedName = "", origin = "", destiny = "", city = "", income = "", examType = "", date = "", patient = "", numberIdentification = "", age = "", range_age = "", stratum = "", gender = "", numberOfChildren = "", race = "", civilStatus = "", scholarship = "", post = "", durationWorking = "", antiquity = "", eppEspecificoAuditivo = 0, eppEspecificoAuditivoCopa = 0, eppEspecificoAuditivoInsercion = 0, eppEspecificoAuditivoDoble = 0, pabellonAuricoidoDer = "NORMAL", pabellonAuricoidoDerObs = "SIN HALLAZGOS", pabellonAuricoidoIzq = "NORMAL", pabellonAuricoidoIzqObs = "SIN HALLAZGOS", conductoAuditoidoDer = "NORMAL", conductoAuditoidoDerObs = "SIN HALLAZGOS", conductoAuditoidoIzq = "NORMAL", conductoAuditoidoIzqObs = "SIN HALLAZGOS", membranaTimpoidoDer = "NORMAL", membranaTimpoidoDerObs = "SIN HALLAZGOS", membranaTimpoidoIzq = "NORMAL", membranaTimpoidoIzqObs = "SIN HALLAZGOS", tipoDeExamen = "VIA AEREA", od500 = 0, od1000 = 0, od2000 = 0, od3000 = 0, od4000 = 0, od6000 = 0, od8000 = 0, ptaOD = 0, oi500 = 0, oi1000 = 0, oi2000 = 0, oi3000 = 0, oi4000 = 0, oi6000 = 0, oi8000 = 0, ptaOI = 0, controlSegunPve = 0, confirmatoria = 0, remisionOrl = 0, pruebasComplementarias = 0, limpiezaDeOido = 0, limpiezaOd = 0, limpiezaOi = 0, reposoAuditivoExtralab = 0, rotarDiaadematelefonica = 0, conducirConVentanasCerradas = 0, usoDeEppAuditivo = 0, controlesMensuales = 0, controlesBimestrales = 0, controlesTrimestrales = 0, controles6Meses = 0, controles1Anio = 0, diagPpal = "", diagInterno = "", diagGatiSo = "") {
+    this.contractedName = contractedName; // CONTRATO
+    this.origin = origin; // ORIGEN
+    this.destiny = destiny; // DESTINO
+    this.city = city; // CIUDAD
+    this.income = income; // INGRESO
+    this.examType = examType; // TIPO EXAMEN
+    this.date = date; // FECHA
+    this.patient = patient; // PACIENTE
+    this.numberIdentification = numberIdentification; // NUMERO DE IDENTIFICACION
+    this.age = age; // EDAD
+    this.range_age = range_age; // RANGO EDAD
+    this.stratum = stratum; // ESTRATO
+    this.gender = gender; // GENERO
+    this.numberOfChildren = numberOfChildren; // NUMERO DE HIJOS
+    this.race = race; // RAZA
+    this.civilStatus = civilStatus; // ESTADO CIVIL
+    this.scholarship = scholarship; // ESCOLARIDAD
+    this.post = post; // CARGO
+    this.durationWorking = durationWorking; // DURACION DE TRABAJO
+    this.antiquity = antiquity; // ANTIGUEDAD
+    this.eppEspecificoAuditivo = eppEspecificoAuditivo; // EPP ESPECIFICO AUDITIVO
+    this.eppEspecificoAuditivoCopa = eppEspecificoAuditivoCopa; // EPP ESPECIFICO AUDITIVO COPA
+    this.eppEspecificoAuditivoInsercion = eppEspecificoAuditivoInsercion; // EPP ESPECIFICO AUDITIVO INSERCION
+    this.eppEspecificoAuditivoDoble = eppEspecificoAuditivoDoble; // EPP ESPECIFICO AUDITIVO DOBLE
+    this.pabellonAuricoidoDer = pabellonAuricoidoDer; // PABELLON AURICOIDO DER
+    this.pabellonAuricoidoDerObs = pabellonAuricoidoDerObs; // PABELLON AURICOIDO DER OBS
+    this.pabellonAuricoidoIzq = pabellonAuricoidoIzq; // PABELLON AURICOIDO IZQ
+    this.pabellonAuricoidoIzqObs = pabellonAuricoidoIzqObs; // PABELLON AURICOIDO IZQ OBS
+    this.conductoAuditoidoDer = conductoAuditoidoDer; // CONDUCTO AUDITOIDO DER
+    this.conductoAuditoidoDerObs = conductoAuditoidoDerObs; // CONDUCTO AUDITOIDO DER OBS
+    this.conductoAuditoidoIzq = conductoAuditoidoIzq; // CONDUCTO AUDITOIDO IZQ
+    this.conductoAuditoidoIzqObs = conductoAuditoidoIzqObs; // CONDUCTO AUDITOIDO IZQ OBS
+    this.membranaTimpoidoDer = membranaTimpoidoDer; // MEMBRANA TIMPOIDO DER
+    this.membranaTimpoidoDerObs = membranaTimpoidoDerObs; // MEMBRANA TIMPOIDO DER OBS
+    this.membranaTimpoidoIzq = membranaTimpoidoIzq; // MEMBRANA TIMPOIDO IZQ
+    this.membranaTimpoidoIzqObs = membranaTimpoidoIzqObs; // MEMBRANA TIMPOIDO IZQ OBS
+    this.tipoDeExamen = tipoDeExamen; // TIPO DE EXAMEN
+    this.od500 = od500; // OD500
+    this.od1000 = od1000; // OD1000
+    this.od2000 = od2000; // OD2000
+    this.od3000 = od3000; // OD3000
+    this.od4000 = od4000; // OD4000
+    this.od6000 = od6000; // OD6000
+    this.od8000 = od8000; // OD8000
+    this.ptaOD = ptaOD; // PTA OD
+    this.oi500 = oi500; // OI500
+    this.oi1000 = oi1000; // OI1000
+    this.oi2000 = oi2000; // OI2000
+    this.oi3000 = oi3000; // OI3000
+    this.oi4000 = oi4000; // OI4000
+    this.oi6000 = oi6000; // OI6000
+    this.oi8000 = oi8000; // OI8000
+    this.ptaOI = ptaOI; // PTA OI
+    this.controlSegunPve = controlSegunPve; // CONTROL SEGUN PVE
+    this.confirmatoria = confirmatoria; // CONFIRMATORIA
+    this.remisionOrl = remisionOrl; // REMISION ORL
+    this.pruebasComplementarias = pruebasComplementarias; // PRUEBAS COMPLEMENTARIAS
+    this.limpiezaDeOido = limpiezaDeOido; // LIMPIEZA DE OIDO
+    this.limpiezaOd = limpiezaOd; // LIMPIEZA OD
+    this.limpiezaOi = limpiezaOi; // LIMPIEZA OI
+    this.reposoAuditivoExtralab = reposoAuditivoExtralab; // REPOSO AUDITIVO EXTRALAB
+    this.rotarDiaadematelefonica = rotarDiaadematelefonica; // ROTAR DIADEMATELEFONICA
+    this.conducirConVentanasCerradas = conducirConVentanasCerradas; // CONDUCIR CON VENTANAS CERRADAS
+    this.usoDeEppAuditivo = usoDeEppAuditivo; // USO DE EPP AUDITIVO
+    this.controlesMensuales = controlesMensuales; // CONTROLES MENSUALES
+    this.controlesBimestrales = controlesBimestrales; // CONTROLES BIMESTRALES
+    this.controlesTrimestrales = controlesTrimestrales; // CONTROLES TRIMESTRALES
+    this.controles6Meses = controles6Meses; // CONTROLES 6 MESES
+    this.controles1Anio = controles1Anio; // CONTROLES 1 ANIO
+    this.diagPpal = diagPpal; // DIAGNOSTICO PPAL
+    this.diagInterno = diagInterno; // DIAGNOSTICO INTERNO
+    this.diagGatiSo = diagGatiSo; // DIAGNOSTICO GATI SO
+  }
+
+  /**
+   * Registers the given information to the specified sheetName in the provided spreadsheet.
+   *
+   * @param {info} info - The information to be registered.
+   * @param {string} sheetName - The name of the sheet to register the information to.
+   * @param {spreadsheet} spreadsheet - The spreadsheet object to register the information in.
+   * @return {type} The result of the registration process.
+   */
+  static Register(info, sheetName, spreadsheet) {
+    return this.registerAudio(info, sheetName, spreadsheet);
+  }
+  /**
+   * Registers audio data to a spreadsheet.
+   *
+   * @param {object} data - The audio data to be registered.
+   * @param {string} sheetName - The name of the sheet to register the data in.
+   * @param {object} spreadsheet - The spreadsheet object to register the data in.
+   * @return {string} The result of the registration ("ok" if successful).
+   */
+  static registerAudio(data, sheetName, spreadsheet) {
+    const rowRegister = spreadsheet.getSheetByName(sheetName);
+    try {
+      rowRegister.appendRow(Object.values(data));
+      return "ok";
+    } catch (error) {
+      Logger.log(error.message);
+    }
+  };
+
+}
+
 /**
  * Inserts audio data into a spreadsheet.
  *
- * @param {object} data - The audio data to be inserted.
- * @param {string} sheetName - The name of the sheet to insert the data into.
- * @param {object} spreadsheet - The spreadsheet object.
+ * @param {Object} data - the audio data to be inserted
+ * @param {string} sheetName - the name of the sheet in the spreadsheet
+ * @param {Spreadsheet} spreadsheet - the spreadsheet to insert the data into
+ * @return {string} - a message indicating the success of the operation
  */
 function insertAudio(data, sheetName, spreadsheet) {
-  const rowRegister = spreadsheet.getSheetByName(sheetName);
   const arrayData = [];
 
   try {
     for (const iterator of Object.keys(data)) {
-
       switch (iterator) {
         case 'contractedName':
           arrayData[0] = data[iterator];
@@ -68,16 +174,16 @@ function insertAudio(data, sheetName, spreadsheet) {
           arrayData[18] = data[iterator];
           break;
         case 'eppEspecificoAuditivo':
-          arrayData[20] = (data[iterator]) ? data[iterator] : 0;
+          arrayData[20] = data[iterator];
           break;
         case 'eppEspecificoAuditivoCopa':
-          arrayData[21] = (data[iterator]) ? data[iterator] : 0;
+          arrayData[21] = data[iterator];
           break;
         case 'eppEspecificoAuditivoInsercion':
-          arrayData[22] = (data[iterator]) ? data[iterator] : 0;
+          arrayData[22] = data[iterator];
           break;
         case 'eppEspecificoAuditivoDoble':
-          arrayData[23] = (data[iterator]) ? data[iterator] : 0;
+          arrayData[23] = data[iterator];
           break;
         case 'pabellonAuricoidoDer':
           arrayData[24] = data[iterator];
@@ -161,37 +267,37 @@ function insertAudio(data, sheetName, spreadsheet) {
           arrayData[51] = data[iterator];
           break;
         case 'controlSegunPve':
-          arrayData[53] = (data[iterator]) ? data[iterator] : 0;
+          arrayData[53] = data[iterator];
           break;
         case 'confirmatoria':
-          arrayData[54] = (data[iterator]) ? data[iterator] : 0;
+          arrayData[54] = data[iterator];
           break;
         case 'remisionOrl':
-          arrayData[55] = (data[iterator]) ? data[iterator] : 0;
+          arrayData[55] = data[iterator];
           break;
         case 'pruebasComplementarias':
-          arrayData[56] = (data[iterator]) ? data[iterator] : 0;
+          arrayData[56] = data[iterator];
           break;
         case 'limpiezaDeOido':
-          arrayData[57] = (data[iterator]) ? data[iterator] : 0;
+          arrayData[57] = data[iterator];
           break;
         case 'limpiezaOd':
-          arrayData[58] = (data[iterator]) ? data[iterator] : 0;
+          arrayData[58] = data[iterator];
           break;
         case 'limpiezaOi':
-          arrayData[59] = (data[iterator]) ? data[iterator] : 0;
+          arrayData[59] = data[iterator];
           break;
         case 'reposoAuditivoExtralab':
-          arrayData[60] = (data[iterator]) ? data[iterator] : 0;
+          arrayData[60] = data[iterator];
           break;
         case 'rotarDiaadematelefonica':
-          arrayData[61] = (data[iterator]) ? data[iterator] : 0;
+          arrayData[61] = data[iterator];
           break;
         case 'conducirConVentanasCerradas':
-          arrayData[62] = (data[iterator]) ? data[iterator] : 0;
+          arrayData[62] = data[iterator];
           break;
         case 'usoDeEppAuditivo':
-          arrayData[63] = (data[iterator]) ? data[iterator] : 0;
+          arrayData[63] = data[iterator];
           break;
         case 'controlesMensuales':
           arrayData[64] = data[iterator];
@@ -232,11 +338,11 @@ function insertAudio(data, sheetName, spreadsheet) {
     const ptaOI = ptaInfo(arrayData[45], arrayData[46], arrayData[47], arrayData[48]);
     arrayData[52] = ptaOI.toFixed(2);
 
-    rowRegister.appendRow(arrayData);
-    return "ok";
-    
+    const register = new audio(...arrayData);
+    audio.Register(register, sheetName, spreadsheet);
+    return "Success";
   } catch (error) {
-    Logger.log(error.message);
+    Logger.log(`Error: ${error.message}`);
   }
 }
 
