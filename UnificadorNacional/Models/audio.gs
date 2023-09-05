@@ -1,25 +1,6 @@
-class audio {
+class audio extends emoGraph {
   constructor(contractedName = "", origin = "", destiny = "", city = "", income = "", examType = "", date = "", patient = "", numberIdentification = "", age = "", range_age = "", stratum = "", gender = "", numberOfChildren = "", race = "", civilStatus = "", scholarship = "", post = "", durationWorking = "", antiquity = "", eppEspecificoAuditivo = 0, eppEspecificoAuditivoCopa = 0, eppEspecificoAuditivoInsercion = 0, eppEspecificoAuditivoDoble = 0, pabellonAuricoidoDer = "NORMAL", pabellonAuricoidoDerObs = "SIN HALLAZGOS", pabellonAuricoidoIzq = "NORMAL", pabellonAuricoidoIzqObs = "SIN HALLAZGOS", conductoAuditoidoDer = "NORMAL", conductoAuditoidoDerObs = "SIN HALLAZGOS", conductoAuditoidoIzq = "NORMAL", conductoAuditoidoIzqObs = "SIN HALLAZGOS", membranaTimpoidoDer = "NORMAL", membranaTimpoidoDerObs = "SIN HALLAZGOS", membranaTimpoidoIzq = "NORMAL", membranaTimpoidoIzqObs = "SIN HALLAZGOS", tipoDeExamen = "VIA AEREA", od500 = 0, od1000 = 0, od2000 = 0, od3000 = 0, od4000 = 0, od6000 = 0, od8000 = 0, ptaOD = 0, oi500 = 0, oi1000 = 0, oi2000 = 0, oi3000 = 0, oi4000 = 0, oi6000 = 0, oi8000 = 0, ptaOI = 0, controlSegunPve = 0, confirmatoria = 0, remisionOrl = 0, pruebasComplementarias = 0, limpiezaDeOido = 0, limpiezaOd = 0, limpiezaOi = 0, reposoAuditivoExtralab = 0, rotarDiaadematelefonica = 0, conducirConVentanasCerradas = 0, usoDeEppAuditivo = 0, controlesMensuales = 0, controlesBimestrales = 0, controlesTrimestrales = 0, controles6Meses = 0, controles1Anio = 0, diagPpal = "", diagInterno = "", diagGatiSo = "") {
-    this.contractedName = contractedName; // CONTRATO
-    this.origin = origin; // ORIGEN
-    this.destiny = destiny; // DESTINO
-    this.city = city; // CIUDAD
-    this.income = income; // INGRESO
-    this.examType = examType; // TIPO EXAMEN
-    this.date = date; // FECHA
-    this.patient = patient; // PACIENTE
-    this.numberIdentification = numberIdentification; // NUMERO DE IDENTIFICACION
-    this.age = age; // EDAD
-    this.range_age = range_age; // RANGO EDAD
-    this.stratum = stratum; // ESTRATO
-    this.gender = gender; // GENERO
-    this.numberOfChildren = numberOfChildren; // NUMERO DE HIJOS
-    this.race = race; // RAZA
-    this.civilStatus = civilStatus; // ESTADO CIVIL
-    this.scholarship = scholarship; // ESCOLARIDAD
-    this.post = post; // CARGO
-    this.durationWorking = durationWorking; // DURACION DE TRABAJO
-    this.antiquity = antiquity; // ANTIGUEDAD
+    super(contractedName, origin, destiny, city, income, examType, date, patient, numberIdentification, age, range_age, stratum, gender, numberOfChildren, race, civilStatus, scholarship, post, durationWorking, antiquity);
     this.eppEspecificoAuditivo = eppEspecificoAuditivo; // EPP ESPECIFICO AUDITIVO
     this.eppEspecificoAuditivoCopa = eppEspecificoAuditivoCopa; // EPP ESPECIFICO AUDITIVO COPA
     this.eppEspecificoAuditivoInsercion = eppEspecificoAuditivoInsercion; // EPP ESPECIFICO AUDITIVO INSERCION
