@@ -157,18 +157,6 @@ class emo {
   }
 
   /**
-   * Registers the provided info into the given spreadsheet with the specified sheet name.
-   *
-   * @param {type} info - the information to be registered
-   * @param {type} sheetName - the name of the sheet to register the info in
-   * @param {type} spreadsheet - the spreadsheet to register the info in
-   * @return {type} the result of registering the info
-   */
-  static Register(info, sheetName, spreadsheet) {
-    return this.registerEmo(info, sheetName, spreadsheet);
-  }
-
-  /**
    * Register Emo.
    *
    * @param {Object} data - The data to be registered.
@@ -589,7 +577,7 @@ function insertEmo(data, sheetName, spreadsheet) {
     arrayData[91] = imc[1];
 
     const register = new emo(...arrayData);
-    emo.Register(register, sheetName, spreadsheet);
+    emo.registerEmo(register, sheetName, spreadsheet);
     return 'success';
   } catch (error) {
     Logger.log(error.message);
