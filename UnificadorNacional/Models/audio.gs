@@ -56,17 +56,6 @@ class audio extends emoGraph {
   }
 
   /**
-   * Registers the given information to the specified sheetName in the provided spreadsheet.
-   *
-   * @param {info} info - The information to be registered.
-   * @param {string} sheetName - The name of the sheet to register the information to.
-   * @param {spreadsheet} spreadsheet - The spreadsheet object to register the information in.
-   * @return {type} The result of the registration process.
-   */
-  static Register(info, sheetName, spreadsheet) {
-    return this.registerAudio(info, sheetName, spreadsheet);
-  }
-  /**
    * Registers audio data to a spreadsheet.
    *
    * @param {object} data - The audio data to be registered.
@@ -78,7 +67,7 @@ class audio extends emoGraph {
     const rowRegister = spreadsheet.getSheetByName(sheetName);
     try {
       rowRegister.appendRow(Object.values(data));
-      return "ok";
+      return "success";
     } catch (error) {
       Logger.log(error.message);
     }
@@ -320,7 +309,7 @@ function insertAudio(data, sheetName, spreadsheet) {
     arrayData[52] = ptaOI.toFixed(2);
 
     const register = new audio(...arrayData);
-    audio.Register(register, sheetName, spreadsheet);
+    audio.registerAudio(register, sheetName, spreadsheet);
     return "Success";
   } catch (error) {
     Logger.log(`Error: ${error.message}`);
