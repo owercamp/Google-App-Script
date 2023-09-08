@@ -3,58 +3,58 @@ class audio extends emoGraph {
     contractedName = "", origin = "", destiny = "", city = "", income = "", examType = "", date = "", patient = "", numberIdentification = "", age = "", range_age = "", stratum = "", gender = "", numberOfChildren = "", race = "", civilStatus = "", scholarship = "", post = "", durationWorking = "", antiquity = "", eppEspecificoAuditivo = 0, eppEspecificoAuditivoCopa = 0, eppEspecificoAuditivoInsercion = 0, eppEspecificoAuditivoDoble = 0, pabellonAuricoidoDer = "NORMAL", pabellonAuricoidoDerObs = "SIN HALLAZGOS", pabellonAuricoidoIzq = "NORMAL", pabellonAuricoidoIzqObs = "SIN HALLAZGOS", conductoAuditoidoDer = "NORMAL", conductoAuditoidoDerObs = "SIN HALLAZGOS", conductoAuditoidoIzq = "NORMAL", conductoAuditoidoIzqObs = "SIN HALLAZGOS", membranaTimpoidoDer = "NORMAL", membranaTimpoidoDerObs = "SIN HALLAZGOS", membranaTimpoidoIzq = "NORMAL", membranaTimpoidoIzqObs = "SIN HALLAZGOS", tipoDeExamen = "VIA AEREA", od500 = 0, od1000 = 0, od2000 = 0, od3000 = 0, od4000 = 0, od6000 = 0, od8000 = 0, ptaOD = 0, oi500 = 0, oi1000 = 0, oi2000 = 0, oi3000 = 0, oi4000 = 0, oi6000 = 0, oi8000 = 0, ptaOI = 0, controlSegunPve = 0, confirmatoria = 0, remisionOrl = 0, pruebasComplementarias = 0, limpiezaDeOido = 0, limpiezaOd = 0, limpiezaOi = 0, reposoAuditivoExtralab = 0, rotarDiaadematelefonica = 0, conducirConVentanasCerradas = 0, usoDeEppAuditivo = 0, controlesMensuales = 0, controlesBimestrales = 0, controlesTrimestrales = 0, controles6Meses = 0, controles1Anio = 0, diagPpal = "", diagInterno = "", diagGatiSo = ""
   ) {
     super(contractedName, origin, destiny, city, income, examType, date, patient, numberIdentification, age, range_age, stratum, gender, numberOfChildren, race, civilStatus, scholarship, post, durationWorking, antiquity);
-    this.eppEspecificoAuditivo = eppEspecificoAuditivo; // EPP ESPECIFICO AUDITIVO
-    this.eppEspecificoAuditivoCopa = eppEspecificoAuditivoCopa; // EPP ESPECIFICO AUDITIVO COPA
-    this.eppEspecificoAuditivoInsercion = eppEspecificoAuditivoInsercion; // EPP ESPECIFICO AUDITIVO INSERCION
-    this.eppEspecificoAuditivoDoble = eppEspecificoAuditivoDoble; // EPP ESPECIFICO AUDITIVO DOBLE
-    this.pabellonAuricoidoDer = pabellonAuricoidoDer; // PABELLON AURICOIDO DER
-    this.pabellonAuricoidoDerObs = pabellonAuricoidoDerObs; // PABELLON AURICOIDO DER OBS
-    this.pabellonAuricoidoIzq = pabellonAuricoidoIzq; // PABELLON AURICOIDO IZQ
-    this.pabellonAuricoidoIzqObs = pabellonAuricoidoIzqObs; // PABELLON AURICOIDO IZQ OBS
-    this.conductoAuditoidoDer = conductoAuditoidoDer; // CONDUCTO AUDITOIDO DER
-    this.conductoAuditoidoDerObs = conductoAuditoidoDerObs; // CONDUCTO AUDITOIDO DER OBS
-    this.conductoAuditoidoIzq = conductoAuditoidoIzq; // CONDUCTO AUDITOIDO IZQ
-    this.conductoAuditoidoIzqObs = conductoAuditoidoIzqObs; // CONDUCTO AUDITOIDO IZQ OBS
-    this.membranaTimpoidoDer = membranaTimpoidoDer; // MEMBRANA TIMPOIDO DER
-    this.membranaTimpoidoDerObs = membranaTimpoidoDerObs; // MEMBRANA TIMPOIDO DER OBS
-    this.membranaTimpoidoIzq = membranaTimpoidoIzq; // MEMBRANA TIMPOIDO IZQ
-    this.membranaTimpoidoIzqObs = membranaTimpoidoIzqObs; // MEMBRANA TIMPOIDO IZQ OBS
-    this.tipoDeExamen = tipoDeExamen; // TIPO DE EXAMEN
-    this.od500 = od500; // OD500
-    this.od1000 = od1000; // OD1000
-    this.od2000 = od2000; // OD2000
-    this.od3000 = od3000; // OD3000
-    this.od4000 = od4000; // OD4000
-    this.od6000 = od6000; // OD6000
-    this.od8000 = od8000; // OD8000
-    this.ptaOD = ptaOD; // PTA OD
-    this.oi500 = oi500; // OI500
-    this.oi1000 = oi1000; // OI1000
-    this.oi2000 = oi2000; // OI2000
-    this.oi3000 = oi3000; // OI3000
-    this.oi4000 = oi4000; // OI4000
-    this.oi6000 = oi6000; // OI6000
-    this.oi8000 = oi8000; // OI8000
-    this.ptaOI = ptaOI; // PTA OI
-    this.controlSegunPve = controlSegunPve; // CONTROL SEGUN PVE
-    this.confirmatoria = confirmatoria; // CONFIRMATORIA
-    this.remisionOrl = remisionOrl; // REMISION ORL
-    this.pruebasComplementarias = pruebasComplementarias; // PRUEBAS COMPLEMENTARIAS
-    this.limpiezaDeOido = limpiezaDeOido; // LIMPIEZA DE OIDO
-    this.limpiezaOd = limpiezaOd; // LIMPIEZA OD
-    this.limpiezaOi = limpiezaOi; // LIMPIEZA OI
-    this.reposoAuditivoExtralab = reposoAuditivoExtralab; // REPOSO AUDITIVO EXTRALAB
-    this.rotarDiaadematelefonica = rotarDiaadematelefonica; // ROTAR DIADEMATELEFONICA
-    this.conducirConVentanasCerradas = conducirConVentanasCerradas; // CONDUCIR CON VENTANAS CERRADAS
-    this.usoDeEppAuditivo = usoDeEppAuditivo; // USO DE EPP AUDITIVO
-    this.controlesMensuales = controlesMensuales; // CONTROLES MENSUALES
-    this.controlesBimestrales = controlesBimestrales; // CONTROLES BIMESTRALES
-    this.controlesTrimestrales = controlesTrimestrales; // CONTROLES TRIMESTRALES
-    this.controles6Meses = controles6Meses; // CONTROLES 6 MESES
-    this.controles1Anio = controles1Anio; // CONTROLES 1 ANIO
-    this.diagPpal = diagPpal; // DIAGNOSTICO PPAL
-    this.diagInterno = diagInterno; // DIAGNOSTICO INTERNO
-    this.diagGatiSo = diagGatiSo; // DIAGNOSTICO GATI SO
+    this.eppEspecificoAuditivo = eppEspecificoAuditivo;
+    this.eppEspecificoAuditivoCopa = eppEspecificoAuditivoCopa;
+    this.eppEspecificoAuditivoInsercion = eppEspecificoAuditivoInsercion;
+    this.eppEspecificoAuditivoDoble = eppEspecificoAuditivoDoble;
+    this.pabellonAuricoidoDer = pabellonAuricoidoDer;
+    this.pabellonAuricoidoDerObs = pabellonAuricoidoDerObs;
+    this.pabellonAuricoidoIzq = pabellonAuricoidoIzq;
+    this.pabellonAuricoidoIzqObs = pabellonAuricoidoIzqObs;
+    this.conductoAuditoidoDer = conductoAuditoidoDer;
+    this.conductoAuditoidoDerObs = conductoAuditoidoDerObs;
+    this.conductoAuditoidoIzq = conductoAuditoidoIzq;
+    this.conductoAuditoidoIzqObs = conductoAuditoidoIzqObs;
+    this.membranaTimpoidoDer = membranaTimpoidoDer;
+    this.membranaTimpoidoDerObs = membranaTimpoidoDerObs;
+    this.membranaTimpoidoIzq = membranaTimpoidoIzq;
+    this.membranaTimpoidoIzqObs = membranaTimpoidoIzqObs;
+    this.tipoDeExamen = tipoDeExamen;
+    this.od500 = od500;
+    this.od1000 = od1000;
+    this.od2000 = od2000;
+    this.od3000 = od3000;
+    this.od4000 = od4000;
+    this.od6000 = od6000;
+    this.od8000 = od8000;
+    this.ptaOD = ptaOD;
+    this.oi500 = oi500;
+    this.oi1000 = oi1000;
+    this.oi2000 = oi2000;
+    this.oi3000 = oi3000;
+    this.oi4000 = oi4000;
+    this.oi6000 = oi6000;
+    this.oi8000 = oi8000;
+    this.ptaOI = ptaOI;
+    this.controlSegunPve = controlSegunPve;
+    this.confirmatoria = confirmatoria;
+    this.remisionOrl = remisionOrl;
+    this.pruebasComplementarias = pruebasComplementarias;
+    this.limpiezaDeOido = limpiezaDeOido;
+    this.limpiezaOd = limpiezaOd;
+    this.limpiezaOi = limpiezaOi;
+    this.reposoAuditivoExtralab = reposoAuditivoExtralab;
+    this.rotarDiaadematelefonica = rotarDiaadematelefonica;
+    this.conducirConVentanasCerradas = conducirConVentanasCerradas;
+    this.usoDeEppAuditivo = usoDeEppAuditivo;
+    this.controlesMensuales = controlesMensuales;
+    this.controlesBimestrales = controlesBimestrales;
+    this.controlesTrimestrales = controlesTrimestrales;
+    this.controles6Meses = controles6Meses;
+    this.controles1Anio = controles1Anio;
+    this.diagPpal = diagPpal;
+    this.diagInterno = diagInterno;
+    this.diagGatiSo = diagGatiSo;
   }
 
   /**
@@ -69,7 +69,7 @@ class audio extends emoGraph {
     const rowRegister = spreadsheet.getSheetByName(sheetName);
     try {
       rowRegister.appendRow(Object.values(data));
-      return "success";
+      return "Success";
     } catch (error) {
       Logger.log(error.message);
     }
@@ -311,8 +311,8 @@ function insertAudio(data, sheetName, spreadsheet) {
     arrayData[52] = ptaOI.toFixed(2);
 
     const register = new audio(...arrayData);
-    audio.registerAudio(register, sheetName, spreadsheet);
-    return "Success";
+    const response = audio.registerAudio(register, sheetName, spreadsheet);
+    return response;
   } catch (error) {
     Logger.log(`Error: ${error.message}`);
   }
