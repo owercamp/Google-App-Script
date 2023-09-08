@@ -64,12 +64,12 @@ class emo {
     this.riesgosBiomecanicosEsfuerzo = riesgosBiomecanicosEsfuerzo;
     this.riesgosBiomecanicosMovRepetitivo = riesgosBiomecanicosMovRepetitivo;
     this.riesgosBiomecanicosOtrosRiesgos = riesgosBiomecanicosOtrosBiomecanicos;
-    this.riesgosBiomecanicosManipulacionCarga = riesgosBiomecanicosManipulacionCarga;Carga
+    this.riesgosBiomecanicosManipulacionCarga = riesgosBiomecanicosManipulacionCarga;
     this.condicionesDeSeguridadMecanicos = condicionesDeSeguridadMecanicos;
     this.condicionesDeSeguridadElectricos = condicionesDeSeguridadElectricos;
     this.condicionesDeSeguridadLocativo = condicionesDeSeguridadLocativo;
     this.condicionesDeSeguridadTecnologico = condicionesDeSeguridadTecnologico;
-    this.condicionesDeSeguridadAccDeTransito = condicionesDeSeguridadAccDeTransito;Transito
+    this.condicionesDeSeguridadAccDeTransito = condicionesDeSeguridadAccDeTransito;
     this.condicionesDeSeguridadPublicos = condicionesDeSeguridadPublicos;
     this.condicionesDeSeguridadTrabajoEnAlturas = condicionesDeSeguridadTrabajoEnAlturas;
     this.condicionesDeSeguridadEspaciosConfinados = condicionesDeSeguridadEspaciosConfinados;
