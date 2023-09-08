@@ -1,3 +1,87 @@
+class opto extends emoGraph {
+  constructor(
+    contractedName = "", origin = "", destiny = "", city = "", income = "", examType = "", date = "", patient = "", numberIdentification = "", age = "", range_age = "", stratum = "", gender = "", numberOfChildren = "", race = "", civilStatus = "", scholarship = "", post = "", durationWorking = "", antiquity = "", visioAntLaboralIluminacionInadecuada = 0, visioAntLaboralUsuarioComputador = 0, visioAntLaboralVisioRadiacionesUv = 0, visioAntLaboralCambiosTemperatura = 0, visioAntLaboralMalaventilacion = 0, visioAntLaboralGasesToxicos = 0, sintomasFotofobia = 0, sintomasOjoRojo = 0, sintomasLagrimeo = 0, sintomasVisionBorrosa = 0, sintomasArdor = 0, sintomasVisionDoble = 0, sintomasCansancio = 0, sintomasMalavisionCercana = 0, sintomasDolor = 0, sintomasMalavisionLejana = 0, sintomasSecrecion = 0, sintomasCefalea = 0, otrosSintomas = "NO REFIERE", cabezaParpados = "", cabezaParpadosObs = "", cabezaConjuntivas = "", cabezaConjuntivasObs = "", cabezaEscleras = "", cabezaEsclerasObs = "", cabezaPupillas = "", cabezaPupillasObs = "", motOculCovertTestLejos = "", motOculCovertTestCerca = "", estadoDeCorreccion = "", patologiaOcular = "", diagPpal = "", diagObs = "", diagRel1 = "", diagRel2 = "", diagRel3 = "", recCorreccionVisualParaTrabajar = 0, recUsoArVideoTerminal = 0, recUsoDeLentesDeProteccionSolar = 0, recUsoEppVisual = 0, recPausasActivas = 0, recUsoRxVisionProxima = 0, recUsoRxDescanso = 0, recUsoPermanenteRxOptica = 0, recPyp = 0, recLubricanteOcular = 0, recomendacionesObs = "NO REFIERE", remValoracionOftalm = 0, remTopografiaCornea = 0, remTratamientoOrtop = 0, remTestFarnsworth = 0, realizarPruebaAmbulatoria = 0, remisionesObs = "NO REFIERE", controlesMensual = 0, controlesBimestrales = 0, controlesTrimestrales = 0, controles6Meses = 0, controles1Anio = 0, controlesConfirmatoria = 0
+  ) {
+    super(contractedName, origin, destiny, city, income, examType, date, patient, numberIdentification, age, range_age, stratum, gender, numberOfChildren, race, civilStatus, scholarship, post, durationWorking, antiquity);
+    this.visioAntLaboralIluminacionInadecuada = visioAntLaboralIluminacionInadecuada;
+    this.visioAntLaboralUsuarioComputador = visioAntLaboralUsuarioComputador;
+    this.visioAntLaboralVisioRadiacionesUv = visioAntLaboralVisioRadiacionesUv;
+    this.visioAntLaboralCambiosTemperatura = visioAntLaboralCambiosTemperatura;
+    this.visioAntLaboralMalaventilacion = visioAntLaboralMalaventilacion;
+    this.visioAntLaboralGasesToxicos = visioAntLaboralGasesToxicos;
+    this.sintomasFotofobia = sintomasFotofobia;
+    this.sintomasOjoRojo = sintomasOjoRojo;
+    this.sintomasLagrimeo = sintomasLagrimeo;
+    this.sintomasVisionBorrosa = sintomasVisionBorrosa;
+    this.sintomasArdor = sintomasArdor;
+    this.sintomasVisionDoble = sintomasVisionDoble;
+    this.sintomasCansancio = sintomasCansancio;
+    this.sintomasMalavisionCercana = sintomasMalavisionCercana;
+    this.sintomasDolor = sintomasDolor;
+    this.sintomasMalavisionLejana = sintomasMalavisionLejana;
+    this.sintomasSecrecion = sintomasSecrecion;
+    this.sintomasCefalea = sintomasCefalea;
+    this.otrosSintomas = otrosSintomas;
+    this.cabezaParpados = cabezaParpados;
+    this.cabezaParpadosObs = cabezaParpadosObs;
+    this.cabezaConjuntivas = cabezaConjuntivas;
+    this.cabezaConjuntivasObs = cabezaConjuntivasObs;
+    this.cabezaEscleras = cabezaEscleras;
+    this.cabezaEsclerasObs = cabezaEsclerasObs;
+    this.cabezaPupillas = cabezaPupillas;
+    this.cabezaPupillasObs = cabezaPupillasObs;
+    this.motOculCovertTestLejos = motOculCovertTestLejos;
+    this.motOculCovertTestCerca = motOculCovertTestCerca;
+    this.estadoDeCorreccion = estadoDeCorreccion;
+    this.patologiaOcular = patologiaOcular;
+    this.diagPpal = diagPpal;
+    this.diagObs = diagObs;
+    this.diagRel1 = diagRel1;
+    this.diagRel2 = diagRel2;
+    this.diagRel3 = diagRel3;
+    this.recCorreccionVisualParaTrabajar = recCorreccionVisualParaTrabajar;
+    this.recUsoArVideoTerminal = recUsoArVideoTerminal;
+    this.recUsoDeLentesDeProteccionSolar = recUsoDeLentesDeProteccionSolar;
+    this.recUsoEppVisual = recUsoEppVisual;
+    this.recPausasActivas = recPausasActivas;
+    this.recUsoRxVisionProxima = recUsoRxVisionProxima;
+    this.recUsoRxDescanso = recUsoRxDescanso;
+    this.recUsoPermanenteRxOptica = recUsoPermanenteRxOptica;
+    this.recPyp = recPyp;
+    this.recLubricanteOcular = recLubricanteOcular;
+    this.recomendacionesObs = recomendacionesObs;
+    this.remValoracionOftalm = remValoracionOftalm;
+    this.remTopografiaCornea = remTopografiaCornea;
+    this.remTratamientoOrtop = remTratamientoOrtop;
+    this.remTestFarnsworth = remTestFarnsworth;
+    this.realizarPruebaAmbulatoria = realizarPruebaAmbulatoria;
+    this.remisionesObs = remisionesObs;
+    this.controlesMensual = controlesMensual;
+    this.controlesBimestrales = controlesBimestrales;
+    this.controlesTrimestrales = controlesTrimestrales;
+    this.controles6Meses = controles6Meses;
+    this.controles1Anio = controles1Anio;
+    this.controlesConfirmatoria = controlesConfirmatoria;
+  }
+
+  /**
+   * Registers the opto data into the specified sheet of the given spreadsheet.
+   *
+   * @param {any} data - The data to be registered.
+   * @param {string} sheetName - The name of the sheet to register the data in.
+   * @param {object} spreadsheet - The spreadsheet object.
+   * @return {string} Returns "Success" if the data is successfully registered.
+   */
+  static registerOpto(data, sheetName, spreadsheet) {
+    const rowRegister = spreadsheet.getSheetByName(sheetName);
+    try {
+      rowRegister.appendRow(Object.values(data));
+      return "Success";
+    } catch (error) {
+      Logger.log(error.message);
+    }
+  }
+}
 /**
  * Inserts opto data into a spreadsheet.
  *
@@ -6,12 +90,10 @@
  * @param {Spreadsheet} spreadsheet - the spreadsheet to insert the data into
  */
 function insertOpto(data, sheetName, spreadsheet) {
-  const rowRegister = spreadsheet.getSheetByName(sheetName);
   const arrayData = [];
 
   try {
     for (const iterator of Object.keys(data)) {
-
       switch (iterator) {
         case 'contractedName':
           arrayData[0] = data[iterator];
@@ -68,61 +150,61 @@ function insertOpto(data, sheetName, spreadsheet) {
           arrayData[18] = data[iterator];
           break;
         case 'visioAntLaboralIluminacionInadecuada':
-          arrayData[20] = (data[iterator]) ? data[iterator] : 0;
+          arrayData[20] = data[iterator];
           break;
         case 'visioAntLaboralUsuarioComputador':
-          arrayData[21] = (data[iterator]) ? data[iterator] : 0;
+          arrayData[21] = data[iterator];
           break;
         case 'visioAntLaboralVisioRadiacionesUv':
-          arrayData[22] = (data[iterator]) ? data[iterator] : 0;
+          arrayData[22] = data[iterator];
           break;
         case 'visioAntLaboralCambiosTemperatura':
-          arrayData[23] = (data[iterator]) ? data[iterator] : 0;
+          arrayData[23] = data[iterator];
           break;
         case 'visioAntLaboralMalaventilacion':
-          arrayData[24] = (data[iterator]) ? data[iterator] : 0;
+          arrayData[24] = data[iterator];
           break;
         case 'visioAntLaboralGasesToxicos':
-          arrayData[25] = (data[iterator]) ? data[iterator] : 0;
+          arrayData[25] = data[iterator];
           break;
         case 'sintomasFotofobia':
-          arrayData[26] = (data[iterator]) ? data[iterator] : 0;
+          arrayData[26] = data[iterator];
           break;
         case 'sintomasOjoRojo':
-          arrayData[27] = (data[iterator]) ? data[iterator] : 0;
+          arrayData[27] = data[iterator];
           break;
         case 'sintomasLagrimeo':
-          arrayData[28] = (data[iterator]) ? data[iterator] : 0;
+          arrayData[28] = data[iterator];
           break;
         case 'sintomasVisionBorrosa':
-          arrayData[29] = (data[iterator]) ? data[iterator] : 0;
+          arrayData[29] = data[iterator];
           break;
         case 'sintomasArdor':
-          arrayData[30] = (data[iterator]) ? data[iterator] : 0;
+          arrayData[30] = data[iterator];
           break;
         case 'sintomasVisionDoble':
-          arrayData[31] = (data[iterator]) ? data[iterator] : 0;
+          arrayData[31] = data[iterator];
           break;
         case 'sintomasCansancio':
-          arrayData[32] = (data[iterator]) ? data[iterator] : 0;
+          arrayData[32] = data[iterator];
           break;
         case 'sintomasMalavisionCercana':
-          arrayData[33] = (data[iterator]) ? data[iterator] : 0;
+          arrayData[33] = data[iterator];
           break;
         case 'sintomasDolor':
-          arrayData[34] = (data[iterator]) ? data[iterator] : 0;
+          arrayData[34] = data[iterator];
           break;
         case 'sintomasMalavisionLejana':
-          arrayData[35] = (data[iterator]) ? data[iterator] : 0;
+          arrayData[35] = data[iterator];
           break;
         case 'sintomasSecrecion':
-          arrayData[36] = (data[iterator]) ? data[iterator] : 0;
+          arrayData[36] = data[iterator];
           break;
         case 'sintomasCefalea':
-          arrayData[37] = (data[iterator]) ? data[iterator] : 0;
+          arrayData[37] = data[iterator];
           break;
         case 'otrosSintomas':
-          arrayData[38] = (data[iterator]) ? data[iterator] : "NO REFIERE";
+          arrayData[38] = data[iterator];
           break;
         case 'cabezaParpados':
           arrayData[39] = data[iterator];
@@ -176,55 +258,55 @@ function insertOpto(data, sheetName, spreadsheet) {
           arrayData[55] = data[iterator];
           break;
         case 'recCorreccionVisualParaTrabajar':
-          arrayData[56] = (data[iterator]) ? data[iterator] : 0;
+          arrayData[56] = data[iterator];
           break;
         case 'recUsoArVideoTerminal':
-          arrayData[57] = (data[iterator]) ? data[iterator] : 0;
+          arrayData[57] = data[iterator];
           break;
         case 'recUsoDeLentesDeProteccionSolar':
-          arrayData[58] = (data[iterator]) ? data[iterator] : 0;
+          arrayData[58] = data[iterator];
           break;
         case 'recUsoEppVisual':
-          arrayData[59] = (data[iterator]) ? data[iterator] : 0;
+          arrayData[59] = data[iterator];
           break;
         case 'recPausasActivas':
-          arrayData[60] = (data[iterator]) ? data[iterator] : 0;
+          arrayData[60] = data[iterator];
           break;
         case 'recUsoRxVisionProxima':
-          arrayData[61] = (data[iterator]) ? data[iterator] : 0;
+          arrayData[61] = data[iterator];
           break;
         case 'recUsoRxDescanso':
-          arrayData[62] = (data[iterator]) ? data[iterator] : 0;
+          arrayData[62] = data[iterator];
           break;
         case 'recUsoPermanenteRxOptica':
-          arrayData[63] = (data[iterator]) ? data[iterator] : 0;
+          arrayData[63] = data[iterator];
           break;
         case 'recPyp':
-          arrayData[64] = (data[iterator]) ? data[iterator] : 0;
+          arrayData[64] = data[iterator];
           break;
         case 'recLubricanteOcular':
-          arrayData[65] = (data[iterator]) ? data[iterator] : 0;
+          arrayData[65] = data[iterator];
           break;
         case 'recomendacionesObs':
-          arrayData[66] = (data[iterator]) ? data[iterator] : "NO REFIERE";
+          arrayData[66] = data[iterator];
           break;
         case 'remValoracionOftalm':
-          arrayData[67] = (data[iterator]) ? data[iterator] : 0;
+          arrayData[67] = data[iterator];
           break;
         case 'remTopografiaCornea':
-          arrayData[68] = (data[iterator]) ? data[iterator] : 0;
+          arrayData[68] = data[iterator];
           break;
         case 'remTratamientoOrtop':
-          arrayData[69] = (data[iterator]) ? data[iterator] : 0;
+          arrayData[69] = data[iterator];
           break;
         case 'remTestFarnsworth':
-          arrayData[70] = (data[iterator]) ? data[iterator] : 0;
+          arrayData[70] = data[iterator];
           break;
         case 'realizarPruebaAmbulatoria':
-          arrayData[71] = (data[iterator]) ? data[iterator] : 0;
+          arrayData[71] = data[iterator];
           break;
         case 'remisionesObs':
-          arrayData[72] = (data[iterator]) ? data[iterator] : "NO REFIERE";
+          arrayData[72] = data[iterator];
           break;
         case 'controlesMensual':
           arrayData[73] = data[iterator];
@@ -255,9 +337,10 @@ function insertOpto(data, sheetName, spreadsheet) {
     const working = numberWorking(arrayData[18]);
     arrayData[19] = working;
 
-    rowRegister.appendRow(arrayData);
-    return "ok";
-    
+    const register = new opto(...arrayData);
+    const response = opto.registerOpto(register, sheetName, spreadsheet);
+    return response;
+
   } catch (error) {
     Logger.log(error.message);
   }
