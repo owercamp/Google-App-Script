@@ -186,6 +186,6 @@ function ptaInfo(...rest) {
  * @return {number} The sum of the given numbers.
  */
 function diagnosticsImp(...rest) {
-  return rest.reduce((sum, element) => sum + element, 0);
+  return rest.reduce((sum, element) => sum + parseInt(element), 0);
 }
 
