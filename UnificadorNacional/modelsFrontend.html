@@ -399,7 +399,7 @@
             break;
           case 'RECOMENDACIONES_ESPECIFICAS':
             occupational.recomendacionesEspecificas = (data[element] !== undefined) ? data[element] : ""; /** Recomendaciones Especificas **/
-            break;         
+            break;
         }
       }
 
@@ -596,7 +596,24 @@
         }
       }
 
-      if (Object.entries(audio).length > 0 && ((audio.oi500 != undefined && audio.oi500 != "") || (audio.oi1000 != undefined && audio.oi1000 != "") || (audio.oi2000 != undefined && audio.oi2000 != "") || (audio.oi3000 != undefined && audio.oi3000 != "") || (audio.oi4000 != undefined && audio.oi4000 != "") || (audio.oi6000 != undefined && audio.oi6000 != "") || (audio.oi8000 != undefined && audio.oi8000 != "") || (audio.od500 != undefined && audio.od500 != "") || (audio.od1000 != undefined && audio.od1000 != "") || (audio.od2000 != undefined && audio.od2000 != "") || (audio.od3000 != undefined && audio.od3000 != "") || (audio.od4000 != undefined && audio.od4000 != "") || (audio.od6000 != undefined && audio.od6000 != "") || (audio.od8000 != undefined && audio.od8000 != ""))) {
+      if (
+        Object.entries(audio).length > 0 && (
+          ![undefined, ""].includes(audio.oi500) ||
+          ![undefined, ""].includes(audio.oi1000) ||
+          ![undefined, ""].includes(audio.oi2000) ||
+          ![undefined, ""].includes(audio.oi3000) ||
+          ![undefined, ""].includes(audio.oi4000) ||
+          ![undefined, ""].includes(audio.oi6000) ||
+          ![undefined, ""].includes(audio.oi8000) ||
+          ![undefined, ""].includes(audio.od500) ||
+          ![undefined, ""].includes(audio.od1000) ||
+          ![undefined, ""].includes(audio.od2000) ||
+          ![undefined, ""].includes(audio.od3000) ||
+          ![undefined, ""].includes(audio.od4000) ||
+          ![undefined, ""].includes(audio.od6000) ||
+          ![undefined, ""].includes(audio.od8000)
+        )
+      ) {
         const socio_emography = informationSocioEmography(data);
 
         const audioInformation = {
@@ -717,10 +734,10 @@
             opto.motOculCovertTestCerca = (data[element] !== undefined) ? data[element].toUpperCase() : "SIN DATO"; /** Mot Ocul Covert Test Cerca **/
             break;
           case "ESTADO_DE_CORRECCION":
-            opto.estadoDeCorreccion = (data[element] !== undefined) ? data[element].toUpperCase() : ""; /** Estado de Correccion **/
+            opto.estadoDeCorreccion = data[element]; /** Estado de Correccion **/
             break;
           case "PATOLOGIA_OCULAR":
-            opto.patologiaOcular = (data[element] !== undefined) ? data[element].toUpperCase() : "0"; /** Patologia Ocular **/
+            opto.patologiaOcular = data[element]; /** Patologia Ocular **/
             break;
           case "DIAG_PPAL":
             opto.diagPpal = (data[element] !== undefined) ? data[element].toUpperCase() : ""; /** Diag Ppal **/
@@ -809,7 +826,12 @@
         }
       }
 
-      if (Object.entries(opto).length > 0 && (opto.estadoDeCorreccion != "" || opto.patologiaOcular != "" || opto.diagPpal != "" || opto.diagRel1 != "" || opto.diagRel2 != "" || opto.diagRel3 != "")) {
+      if (
+        Object.entries(opto).length > 0 && (
+          ![undefined, ""].includes(opto.estadoDeCorreccion) ||
+          ![undefined, ""].includes(opto.patologiaOcular)
+        )
+      ) {
         const socio_emography = informationSocioEmography(data);
 
         const optoInformation = {
@@ -918,52 +940,52 @@
             visio.cabezaPupillasObs = (data[element] !== undefined) ? data[element].toUpperCase() : "SIN HALLAZGOS"; /** Cabecera Pupillas Obs **/
             break;
           case "IMP/DIAG_VL_OD_NORMAL", "IMP/DIAG_VL0OD_NORMAL":
-            visio.impVlOdNormal = (data[element] !== undefined) ? data[element] : 0; /** Imp Vl Od Normal **/
+            visio.impVlOdNormal = data[element]; /** Imp Vl Od Normal **/
             break;
           case "IMP/DIAG_VL_OI_NORMAL", "IMP/DIAG_VL0OI_NORMAL":
-            visio.impVlOiNormal = (data[element] !== undefined) ? data[element] : 0; /** Imp Vl Od Normal **/
+            visio.impVlOiNormal = data[element]; /** Imp Vl Od Normal **/
             break;
           case "IMP/DIAG_VP_OD_NORMAL", "IMP/DIAG_VP0OD_NORMAL":
-            visio.impVpOdNormal = (data[element] !== undefined) ? data[element] : 0; /** Imp Vp Od Normal **/
+            visio.impVpOdNormal = data[element]; /** Imp Vp Od Normal **/
             break;
           case "IMP/DIAG_VP_OI_NORMAL", "IMP/DIAG_VP0OI_NORMAL":
-            visio.impVpOiNormal = (data[element] !== undefined) ? data[element] : 0; /** Imp Vp Od Normal **/
+            visio.impVpOiNormal = data[element]; /** Imp Vp Od Normal **/
             break;
           case "IMP/DIAG_VL_OD_DISMINUIDO", "IMP/DIAG_VL0OD_DISMINUIDO":
-            visio.impVlOdDisminuido = (data[element] !== undefined) ? data[element] : 0; /** Imp Vl Od Disminuido **/
+            visio.impVlOdDisminuido = data[element]; /** Imp Vl Od Disminuido **/
             break;
           case "IMP/DIAG_VL_OI_DISMINUIDO", "IMP/DIAG_VL0OI_DISMINUIDO":
-            visio.impVlOiDisminuido = (data[element] !== undefined) ? data[element] : 0; /** Imp Vl Od Disminuido **/
+            visio.impVlOiDisminuido = data[element]; /** Imp Vl Od Disminuido **/
             break;
           case "IMP/DIAG_VP_OD_DISMINUIDO", "IMP/DIAG_VP0OD_DISMINUIDO":
-            visio.impVpOdDisminuido = (data[element] !== undefined) ? data[element] : 0; /** Imp Vp Od Disminuido **/
+            visio.impVpOdDisminuido = data[element]; /** Imp Vp Od Disminuido **/
             break;
           case "IMP/DIAG_VP_OI_DISMINUIDO", "IMP/DIAG_VP0OI_DISMINUIDO":
-            visio.impVpOiDisminuido = (data[element] !== undefined) ? data[element] : 0; /** Imp Vp Od Disminuido **/
+            visio.impVpOiDisminuido = data[element]; /** Imp Vp Od Disminuido **/
             break;
           case "IMP/DIAG_VL_OD_NORMAL_RX", "IMP/DIAG_VL0OD_NORMAL_RX":
-            visio.impVlOdNormalRx = (data[element] !== undefined) ? data[element] : 0; /** Imp Vl Od Normal Rx **/
+            visio.impVlOdNormalRx = data[element]; /** Imp Vl Od Normal Rx **/
             break;
           case "IMP/DIAG_VL_OI_NORMAL_RX", "IMP/DIAG_VL0OI_NORMAL_RX":
-            visio.impVlOiNormalRx = (data[element] !== undefined) ? data[element] : 0; /** Imp Vl Od Normal Rx **/
+            visio.impVlOiNormalRx = data[element]; /** Imp Vl Od Normal Rx **/
             break;
           case "IMP/DIAG_VP_OD_NORMAL_RX", "IMP/DIAG_VP0OD_NORMAL_RX":
-            visio.impVpOdNormalRx = (data[element] !== undefined) ? data[element] : 0; /** Imp Vp Od Normal Rx **/
+            visio.impVpOdNormalRx = data[element]; /** Imp Vp Od Normal Rx **/
             break;
           case "IMP/DIAG_VP_OI_NORMAL_RX", "IMP/DIAG_VP0OI_NORMAL_RX":
-            visio.impVpOiNormalRx = (data[element] !== undefined) ? data[element] : 0; /** Imp Vp Od Normal Rx **/
+            visio.impVpOiNormalRx = data[element]; /** Imp Vp Od Normal Rx **/
             break;
           case "IMP/DIAG_VL_OD_DISMINUIDO_RX", "IMP/DIAG_VL0OD_DISMINUIDO_RX":
-            visio.impVlOdDisminuidoRx = (data[element] !== undefined) ? data[element] : 0; /** Imp Vl Od Disminuido Rx **/
+            visio.impVlOdDisminuidoRx = data[element]; /** Imp Vl Od Disminuido Rx **/
             break;
           case "IMP/DIAG_VL_OI_DISMINUIDO_RX", "IMP/DIAG_VL0OI_DISMINUIDO_RX":
-            visio.impVlOiDisminuidoRx = (data[element] !== undefined) ? data[element] : 0; /** Imp Vl Od Disminuido Rx **/
+            visio.impVlOiDisminuidoRx = data[element]; /** Imp Vl Od Disminuido Rx **/
             break;
           case "IMP/DIAG_VP_OD_DISMINUIDO_RX", "IMP/DIAG_VP0OD_DISMINUIDO_RX":
-            visio.impVpOdDisminuidoRx = (data[element] !== undefined) ? data[element] : 0; /** Imp Vp Od Disminuido Rx **/
+            visio.impVpOdDisminuidoRx = data[element]; /** Imp Vp Od Disminuido Rx **/
             break;
           case "IMP/DIAG_VP_OI_DISMINUIDO_RX", "IMP/DIAG_VP0OI_DISMINUIDO_RX":
-            visio.impVpOiDisminuidoRx = (data[element] !== undefined) ? data[element] : 0; /** Imp Vp Od Disminuido Rx **/
+            visio.impVpOiDisminuidoRx = data[element]; /** Imp Vp Od Disminuido Rx **/
             break;
           case "IMP/DIAG_OBS":
             visio.impDiagObs = (data[element] !== undefined) ? data[element].toUpperCase() : "NO REFIERE"; /** Imp Diag Obs **/
@@ -1043,7 +1065,26 @@
         }
       }
 
-      if (Object.entries(visio).length > 0 && (visio.impVlOdNormal != "" || visio.impVlOiNormal != "" || visio.impVpOdNormal != "" || visio.impVpOiNormal != "" || visio.impVlOdDisminuido != "" || visio.impVlOiDisminuido != "" || visio.impVpOdDisminuido != "" || visio.impVpOiDisminuido != "" || visio.impVlOdNormalRx != "" || visio.impVlOiNormalRx != "" || visio.impVpOdNormalRx != "" || visio.impVpOiNormalRx != "" || visio.impVlOdDisminuidoRx != "" || visio.impVlOiDisminuidoRx != "" || visio.impVpOdDisminuidoRx != "" || visio.impVpOiDisminuidoRx != "")) {
+      if (
+        Object.entries(visio).length > 0 && (
+          ![undefined, ""].includes(visio.impVlOdNormal) ||
+          ![undefined, ""].includes(visio.impVlOiNormal) ||
+          ![undefined, ""].includes(visio.impVpOdNormal) ||
+          ![undefined, ""].includes(visio.impVpOiNormal) ||
+          ![undefined, ""].includes(visio.impVlOdDisminuido) ||
+          ![undefined, ""].includes(visio.impVlOiDisminuido) ||
+          ![undefined, ""].includes(visio.impVpOdDisminuido) ||
+          ![undefined, ""].includes(visio.impVpOiDisminuido) ||
+          ![undefined, ""].includes(visio.impVlOdNormalRx) ||
+          ![undefined, ""].includes(visio.impVlOiNormalRx) ||
+          ![undefined, ""].includes(visio.impVpOdNormalRx) ||
+          ![undefined, ""].includes(visio.impVpOiNormalRx) ||
+          ![undefined, ""].includes(visio.impVlOdDisminuidoRx) ||
+          ![undefined, ""].includes(visio.impVlOiDisminuidoRx) ||
+          ![undefined, ""].includes(visio.impVpOdDisminuidoRx) ||
+          ![undefined, ""].includes(visio.impVpOiDisminuidoRx)
+        )
+      ) {
         const socio_emography = informationSocioEmography(data);
 
         const visioInformation = {
