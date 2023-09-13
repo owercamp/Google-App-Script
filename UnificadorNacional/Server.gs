@@ -56,19 +56,24 @@ function insertData(data) {
         case "emo":
           for (const emo of information[iterator]) {
             const response = insertEmo(emo, "EMO", spreadsheet);
-            Logger.log(response);
           }
           break;
         case "audiometry":
           for (const audio of information[iterator]) {
             const response = insertAudio(audio, "AUDIO", spreadsheet);
-            Logger.log(response);
           }
+          break;
         case "optometry":
           for (const opto of information[iterator]) {
             const response = insertOpto(opto, "OPTO", spreadsheet);
+          }
+          break;
+        case "visiometrics":
+          for (const visio of information[iterator]) {
+            const response = insertVisio(visio, "VISIO", spreadsheet);
             Logger.log(response);
           }
+          break;
       }
     }
     return keys;
