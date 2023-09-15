@@ -1327,7 +1327,13 @@
         }
       }
 
-      if (Object.entries(spiro).length > 0 && (spiro.interpretacion != "" || spiro.tipoGrado != "" || spiro.resultadoEspiroMetria != "")) {
+      if (
+        Object.entries(spiro).length > 0 && (
+          ![undefined, ""].includes(spiro.tipoInterpretacion) ||
+          ![undefined, ""].includes(spiro.tipoGrado) ||
+          ![undefined, ""].includes(spiro.resultadoEspiroMetria)
+        )
+      ) {
         const socio_emography = informationSocioEmography(data);
 
         const spiroInformation = {
