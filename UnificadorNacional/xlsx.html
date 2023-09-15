@@ -158,6 +158,14 @@
       google.script.run.withSuccessHandler(element => {
         console.log(element);
         loaderPpal.classList.add('d-none');
+        Swal.fire({
+          icon: 'success',
+          title: 'Success!!',
+          showConfirmButton: false,
+          timer: 2000,
+          allowEscapeKey: false,
+          closeOnEsc: false
+        })
       })
         .insertData(informationPatient);
     };
