@@ -1,3 +1,98 @@
+class espiro extends emoGraph {
+  constructor(
+    contractedName = "", origin = "", destiny = "", city = "", income = "", examType = "", date = "", patient = "", numberIdentification = "", age = "", range_age = "", stratum = "", gender = "", numberOfChildren = "", race = "", civilStatus = "", scholarship = "", post = "", durationWorking = "", antiquity = "", alegias = 0, alergiasObs = "NO REFIERE", tuberculosis = 0, tosCronica = 0, gripasFrecuentes = 0, faringitis = 0, faringoamigdalitis = 0, rinitis = 0, sinusitis = 0, cxTorax = 0, cxToraxObs = "NO REFIERE", asmaBronquial = 0, bronquitis = 0, neumonia = 0, trumaCostal = 0, cancer = 0, cancerObs = "NO REFIERE", otrosRespiratorios = "NO REFIERE", riesgoQuimicoPolvos = 0, riesgoQuimicoFibras = 0, riesgoQuimicoLiquidos = 0, riesgoQuimicoGases = 0, riesgoQuimicoVapos = 0, riesgoQuimicoHumos = 0, riesgoQuimicoMaterialParticulado = 0, otrosRiesgosQuimicos = "NO REFIERE", eppEspecificoTapaboca = 0, eppEspecificoRespirador = 0, actFisica = "", fuma = "", cigarrillosDia = "", frecuencia = "", tiempoEnAnios = "", interpretacion = "", peso = "", talla = "", imc = "", clasiIMC =  "", fvcPredDiag = "", fvcTeorDiag = "", fev1PredDiag = "", fev1TeorDiag = "", fev1FvcPredDiag = "", pefPredDiag = "", pefTeorDiag = "", fef2575PredDiag = "", fef2575TeorDiag = "",diagPpal = "", diagObs = "", diagRel1 = "", diagRel2 = "", diagRel3 = "",tipoInterpretacion = "", tipoGrado = "", resultadoEspiroMetria = "", recGralesDejarDeFumar = 0, recGralesContinuarControlesEps = 0, recGralesBajarDePeso = 0, recGralesTomarRayosXTorax = 0, recGralesRealizarEjerc3XSemana = 0, recGralesValoracEPSXNeumologia = 0, recLabUtilizarEpr = 0, recLabIngresarSve = 0,controlesMensual = 0, controlesBimestrales = 0, controlesTrimestral = 0, controlesSemestral = 0, controlesAnual = 0, controlesConfirmatoria = 0, tecnicaAceptable = "" 
+  ) {
+    super(contractedName, origin, destiny, city, income, examType, date, patient, numberIdentification, age, range_age, stratum, gender, numberOfChildren, race, civilStatus, scholarship, post, durationWorking, antiquity);
+    this.alegias = alegias;
+    this.alergiasObs = alergiasObs;
+    this.tuberculosis = tuberculosis;
+    this.tosCronica = tosCronica;
+    this.gripasFrecuentes = gripasFrecuentes;
+    this.faringitis = faringitis;
+    this.faringoamigdalitis = faringoamigdalitis;
+    this.rinitis = rinitis;
+    this.sinusitis = sinusitis;
+    this.cxTorax = cxTorax;
+    this.cxToraxObs = cxToraxObs;
+    this.asmaBronquial = asmaBronquial;
+    this.bronquitis = bronquitis;
+    this.neumonia = neumonia;
+    this.trumaCostal = trumaCostal;
+    this.cancer = cancer;
+    this.cancerObs = cancerObs;
+    this.otrosRespiratorios = otrosRespiratorios;
+    this.riesgoQuimicoPolvos = riesgoQuimicoPolvos;
+    this.riesgoQuimicoFibras = riesgoQuimicoFibras;
+    this.riesgoQuimicoLiquidos = riesgoQuimicoLiquidos;
+    this.riesgoQuimicoGases = riesgoQuimicoGases;
+    this.riesgoQuimicoVapos = riesgoQuimicoVapos;
+    this.riesgoQuimicoHumos = riesgoQuimicoHumos;
+    this.riesgoQuimicoMaterialParticulado = riesgoQuimicoMaterialParticulado;
+    this.otrosRiesgosQuimicos = otrosRiesgosQuimicos;
+    this.eppEspecificoTapaboca = eppEspecificoTapaboca;
+    this.eppEspecificoRespirador = eppEspecificoRespirador;
+    this.actFisica = actFisica;
+    this.fuma = fuma;
+    this.cigarrillosDia = cigarrillosDia;
+    this.frecuencia = frecuencia;
+    this.tiempoEnAnios = tiempoEnAnios;
+    this.interpretacion = interpretacion;
+    this.peso = peso;
+    this.talla = talla;
+    this.imc = imc;
+    this.clasiIMC = clasiIMC;
+    this.fvcPredDiag = fvcPredDiag;
+    this.fvcTeorDiag = fvcTeorDiag;
+    this.fev1PredDiag = fev1PredDiag;
+    this.fev1TeorDiag = fev1TeorDiag;
+    this.fev1FvcPredDiag = fev1FvcPredDiag;
+    this.pefPredDiag = pefPredDiag;
+    this.pefTeorDiag = pefTeorDiag;
+    this.fef2575PredDiag = fef2575PredDiag;
+    this.fef2575TeorDiag = fef2575TeorDiag;
+    this.diagPpal = diagPpal;
+    this.diagObs = diagObs;
+    this.diagRel1 = diagRel1;
+    this.diagRel2 = diagRel2;
+    this.diagRel3 = diagRel3;
+    this.tipoInterpretacion = tipoInterpretacion;
+    this.tipoGrado = tipoGrado;
+    this.resultadoEspiroMetria = resultadoEspiroMetria;
+    this.recGralesDejarDeFumar = recGralesDejarDeFumar;
+    this.recGralesContinuarControlesEps = recGralesContinuarControlesEps;
+    this.recGralesBajarDePeso = recGralesBajarDePeso;
+    this.recGralesTomarRayosXTorax = recGralesTomarRayosXTorax;
+    this.recGralesRealizarEjerc3XSemana = recGralesRealizarEjerc3XSemana;
+    this.recGralesValoracEPSXNeumologia = recGralesValoracEPSXNeumologia;
+    this.recLabUtilizarEpr = recLabUtilizarEpr;
+    this.recLabIngresarSve = recLabIngresarSve;
+    this.controlesMensual = controlesMensual;
+    this.controlesBimestrales = controlesBimestrales;
+    this.controlesTrimestral = controlesTrimestral;
+    this.controlesSemestral = controlesSemestral;
+    this.controlesAnual = controlesAnual;
+    this.controlesConfirmatoria = controlesConfirmatoria;
+    this.tecnicaAceptable = tecnicaAceptable;
+  }
+
+  /**
+   * Registers the given data into the specified sheet in the provided spreadsheet.
+   *
+   * @param {Object} data - The data to be registered.
+   * @param {string} sheetName - The name of the sheet.
+   * @param {Spreadsheet} spreadsheet - The spreadsheet to register the data into.
+   * @return {string} Returns "Success" if the registration is successful.
+   */
+  static registerSpiro(data, sheetName, spreadsheet){
+    const rowRegister = spreadsheet.getSheetByName(sheetName);
+    try {
+      rowRegister.appendRow(Object.values(data));
+      return "Success";
+    } catch (error) {
+      Logger.log(error.message);
+    }
+  }
+}
 function insertEspiro(data, sheetName, spreadsheet) {
   const rowRegister = spreadsheet.getSheetByName(sheetName);
   const arrayData = [];
@@ -278,8 +373,9 @@ function insertEspiro(data, sheetName, spreadsheet) {
     arrayData[56] = imc[0].toFixed(2);
     arrayData[57] = imc[1];
 
-    rowRegister.appendRow(arrayData);
-    return "ok";
+    const register = new espiro(...arrayData);
+    const response = espiro.registerSpiro(register, sheetName, spreadsheet);
+    return response;
 
   } catch (error) {
     Logger.log(error.message);
