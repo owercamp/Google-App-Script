@@ -71,9 +71,13 @@ function insertData(data) {
         case "visiometrics":
           for (const visio of information[iterator]) {
             const response = insertVisio(visio, "VISIO", spreadsheet);
-            Logger.log(response);
           }
           break;
+        case "spirometry":
+          for (const spiro of information[iterator]) {
+            const response = insertEspiro(spiro, "ESPIRO", spreadsheet);
+            Logger.log(response);
+          }
       }
     }
     return keys;
