@@ -7,6 +7,11 @@
 </head>
 
 <body class="container">
+  <div class="loader-div d-none" id="loader-div">
+    <label id="title">¡¡ Procesando Información !!</label>
+    <div class="loader" id="loader"></div>
+    <span class="loaderX d-none" id="loaderX"></span>
+  </div>
   <h1>Almacenamiento nacional</h1>
 
   <form id="excelForm">
@@ -15,7 +20,7 @@
   </form>
 
   <?!= include('js'); ?>
-  <?!= include('modelsFrontend'); ?>
+  <?!= include('Frontend'); ?>
   <?!= include('xlsx'); ?>
 </body>
 
