@@ -1,8 +1,8 @@
 class opto extends emoGraph {
   constructor(
-    contractedName = "", origin = "", destiny = "", city = "", income = "", examType = "", date = "", patient = "", numberIdentification = "", age = "", range_age = "", stratum = "", gender = "", numberOfChildren = "", race = "", civilStatus = "", scholarship = "", post = "", durationWorking = "", antiquity = "", visioAntLaboralIluminacionInadecuada = 0, visioAntLaboralUsuarioComputador = 0, visioAntLaboralVisioRadiacionesUv = 0, visioAntLaboralCambiosTemperatura = 0, visioAntLaboralMalaventilacion = 0, visioAntLaboralGasesToxicos = 0, sintomasFotofobia = 0, sintomasOjoRojo = 0, sintomasLagrimeo = 0, sintomasVisionBorrosa = 0, sintomasArdor = 0, sintomasVisionDoble = 0, sintomasCansancio = 0, sintomasMalavisionCercana = 0, sintomasDolor = 0, sintomasMalavisionLejana = 0, sintomasSecrecion = 0, sintomasCefalea = 0, otrosSintomas = "ASINTOMATICO", cabezaParpados = "NORMAL", cabezaParpadosObs = "SIN HALLAZGOS", cabezaConjuntivas = "NORMAL", cabezaConjuntivasObs = "SIN HALLAZGOS", cabezaEscleras = "NORMAL", cabezaEsclerasObs = "SIN HALLAZGOS", cabezaPupillas = "NORMAL", cabezaPupillasObs = "SIN HALLAZGOS", motOculCovertTestLejos = "ORTHOFORIA", motOculCovertTestCerca = "EXOFORIA", estadoDeCorreccion = "", patologiaOcular = "", diagPpal = "", diagObs = "", diagRel1 = "", diagRel2 = "", diagRel3 = "", recCorreccionVisualParaTrabajar = 0, recUsoArVideoTerminal = 0, recUsoDeLentesDeProteccionSolar = 0, recUsoEppVisual = 0, recPausasActivas = 0, recUsoRxVisionProxima = 0, recUsoRxDescanso = 0, recUsoPermanenteRxOptica = 0, recPyp = 0, recLubricanteOcular = 0, recomendacionesObs = "NO REFIERE", remValoracionOftalm = 0, remTopografiaCornea = 0, remTratamientoOrtop = 0, remTestFarnsworth = 0, realizarPruebaAmbulatoria = 0, remisionesObs = "NO REFIERE", controlesMensual = 0, controlesBimestrales = 0, controlesTrimestrales = 0, controles6Meses = 0, controles1Anio = 0, controlesConfirmatoria = 0
+    contractedName = "", origin = "", destiny = "", city = "", income = "", examType = "", date = "", patient = "", numberIdentification = "", age = "", range_age = "", stratum = "", gender = "", numberOfChildren = "", numberOfChildrenRec = "", race = "", civilStatus = "", scholarship = "", post = "", postRec = "", durationWorking = "", antiquity = "", visioAntLaboralIluminacionInadecuada = 0, visioAntLaboralUsuarioComputador = 0, visioAntLaboralVisioRadiacionesUv = 0, visioAntLaboralCambiosTemperatura = 0, visioAntLaboralMalaventilacion = 0, visioAntLaboralGasesToxicos = 0, sintomasFotofobia = 0, sintomasOjoRojo = 0, sintomasLagrimeo = 0, sintomasVisionBorrosa = 0, sintomasArdor = 0, sintomasVisionDoble = 0, sintomasCansancio = 0, sintomasMalavisionCercana = 0, sintomasDolor = 0, sintomasMalavisionLejana = 0, sintomasSecrecion = 0, sintomasCefalea = 0, otrosSintomas = "ASINTOMATICO", cabezaParpados = "NORMAL", cabezaParpadosObs = "SIN HALLAZGOS", cabezaConjuntivas = "NORMAL", cabezaConjuntivasObs = "SIN HALLAZGOS", cabezaEscleras = "NORMAL", cabezaEsclerasObs = "SIN HALLAZGOS", cabezaPupillas = "NORMAL", cabezaPupillasObs = "SIN HALLAZGOS", motOculCovertTestLejos = "ORTHOFORIA", motOculCovertTestCerca = "EXOFORIA", estadoDeCorreccion = "", patologiaOcular = "", diagPpal = "", diagObs = 0, diagRel1 = 0, diagRel2 = 0, diagRel3 = 0, recCorreccionVisualParaTrabajar = 0, recUsoArVideoTerminal = 0, recUsoDeLentesDeProteccionSolar = 0, recUsoEppVisual = 0, recPausasActivas = 0, recUsoRxVisionProxima = 0, recUsoRxDescanso = 0, recUsoPermanenteRxOptica = 0, recPyp = 0, recLubricanteOcular = 0, recomendacionesObs = "NO REFIERE", remValoracionOftalm = 0, remTopografiaCornea = 0, remTratamientoOrtop = 0, remTestFarnsworth = 0, realizarPruebaAmbulatoria = 0, remisionesObs = "NO REFIERE", controlesMensual = 0, controlesBimestrales = 0, controlesTrimestrales = 0, controles6Meses = 0, controles1Anio = 0, controlesConfirmatoria = 0
   ) {
-    super(contractedName, origin, destiny, city, income, examType, date, patient, numberIdentification, age, range_age, stratum, gender, numberOfChildren, race, civilStatus, scholarship, post, durationWorking, antiquity);
+    super(contractedName, origin, destiny, city, income, examType, date, patient, numberIdentification, age, range_age, stratum, gender, numberOfChildren, numberOfChildrenRec, race, civilStatus, scholarship, post, postRec, durationWorking, antiquity);
     this.visioAntLaboralIluminacionInadecuada = visioAntLaboralIluminacionInadecuada;
     this.visioAntLaboralUsuarioComputador = visioAntLaboralUsuarioComputador;
     this.visioAntLaboralVisioRadiacionesUv = visioAntLaboralVisioRadiacionesUv;
@@ -135,196 +135,196 @@ function insertOpto(data, sheetName, spreadsheet) {
           arrayData[13] = data[iterator];
           break;
         case 'race':
-          arrayData[14] = data[iterator];
-          break;
-        case 'civilStatus':
           arrayData[15] = data[iterator];
           break;
-        case 'scholarship':
+        case 'civilStatus':
           arrayData[16] = data[iterator];
           break;
-        case 'post':
+        case 'scholarship':
           arrayData[17] = data[iterator];
           break;
-        case 'durationWorking':
+        case 'post':
           arrayData[18] = data[iterator];
           break;
-        case 'visioAntLaboralIluminacionInadecuada':
+        case 'durationWorking':
           arrayData[20] = data[iterator];
           break;
-        case 'visioAntLaboralUsuarioComputador':
-          arrayData[21] = data[iterator];
-          break;
-        case 'visioAntLaboralVisioRadiacionesUv':
+        case 'visioAntLaboralIluminacionInadecuada':
           arrayData[22] = data[iterator];
           break;
-        case 'visioAntLaboralCambiosTemperatura':
+        case 'visioAntLaboralUsuarioComputador':
           arrayData[23] = data[iterator];
           break;
-        case 'visioAntLaboralMalaventilacion':
+        case 'visioAntLaboralVisioRadiacionesUv':
           arrayData[24] = data[iterator];
           break;
-        case 'visioAntLaboralGasesToxicos':
+        case 'visioAntLaboralCambiosTemperatura':
           arrayData[25] = data[iterator];
           break;
-        case 'sintomasFotofobia':
+        case 'visioAntLaboralMalaventilacion':
           arrayData[26] = data[iterator];
           break;
-        case 'sintomasOjoRojo':
+        case 'visioAntLaboralGasesToxicos':
           arrayData[27] = data[iterator];
           break;
-        case 'sintomasLagrimeo':
+        case 'sintomasFotofobia':
           arrayData[28] = data[iterator];
           break;
-        case 'sintomasVisionBorrosa':
+        case 'sintomasOjoRojo':
           arrayData[29] = data[iterator];
           break;
-        case 'sintomasArdor':
+        case 'sintomasLagrimeo':
           arrayData[30] = data[iterator];
           break;
-        case 'sintomasVisionDoble':
+        case 'sintomasVisionBorrosa':
           arrayData[31] = data[iterator];
           break;
-        case 'sintomasCansancio':
+        case 'sintomasArdor':
           arrayData[32] = data[iterator];
           break;
-        case 'sintomasMalavisionCercana':
+        case 'sintomasVisionDoble':
           arrayData[33] = data[iterator];
           break;
-        case 'sintomasDolor':
+        case 'sintomasCansancio':
           arrayData[34] = data[iterator];
           break;
-        case 'sintomasMalavisionLejana':
+        case 'sintomasMalavisionCercana':
           arrayData[35] = data[iterator];
           break;
-        case 'sintomasSecrecion':
+        case 'sintomasDolor':
           arrayData[36] = data[iterator];
           break;
-        case 'sintomasCefalea':
+        case 'sintomasMalavisionLejana':
           arrayData[37] = data[iterator];
           break;
-        case 'otrosSintomas':
+        case 'sintomasSecrecion':
           arrayData[38] = data[iterator];
           break;
-        case 'cabezaParpados':
+        case 'sintomasCefalea':
           arrayData[39] = data[iterator];
           break;
-        case 'cabezaParpadosObs':
+        case 'otrosSintomas':
           arrayData[40] = data[iterator];
           break;
-        case 'cabezaConjuntivas':
+        case 'cabezaParpados':
           arrayData[41] = data[iterator];
           break;
-        case 'cabezaConjuntivasObs':
+        case 'cabezaParpadosObs':
           arrayData[42] = data[iterator];
           break;
-        case 'cabezaEscleras':
+        case 'cabezaConjuntivas':
           arrayData[43] = data[iterator];
           break;
-        case 'cabezaEsclerasObs':
+        case 'cabezaConjuntivasObs':
           arrayData[44] = data[iterator];
           break;
-        case 'cabezaPupillas':
+        case 'cabezaEscleras':
           arrayData[45] = data[iterator];
           break;
-        case 'cabezaPupillasObs':
+        case 'cabezaEsclerasObs':
           arrayData[46] = data[iterator];
           break;
-        case 'motOculCovertTestLejos':
+        case 'cabezaPupillas':
           arrayData[47] = data[iterator];
           break;
-        case 'motOculCovertTestCerca':
+        case 'cabezaPupillasObs':
           arrayData[48] = data[iterator];
           break;
-        case 'estadoDeCorreccion':
+        case 'motOculCovertTestLejos':
           arrayData[49] = data[iterator];
           break;
-        case 'patologiaOcular':
+        case 'motOculCovertTestCerca':
           arrayData[50] = data[iterator];
           break;
-        case 'diagPpal':
+        case 'estadoDeCorreccion':
           arrayData[51] = data[iterator];
           break;
-        case 'diagObs':
+        case 'patologiaOcular':
           arrayData[52] = data[iterator];
           break;
-        case 'diagRel1':
+        case 'diagPpal':
           arrayData[53] = data[iterator];
           break;
-        case 'diagRel2':
+        case 'diagObs':
           arrayData[54] = data[iterator];
           break;
-        case 'diagRel3':
+        case 'diagRel1':
           arrayData[55] = data[iterator];
           break;
-        case 'recCorreccionVisualParaTrabajar':
+        case 'diagRel2':
           arrayData[56] = data[iterator];
           break;
-        case 'recUsoArVideoTerminal':
+        case 'diagRel3':
           arrayData[57] = data[iterator];
           break;
-        case 'recUsoDeLentesDeProteccionSolar':
+        case 'recCorreccionVisualParaTrabajar':
           arrayData[58] = data[iterator];
           break;
-        case 'recUsoEppVisual':
+        case 'recUsoArVideoTerminal':
           arrayData[59] = data[iterator];
           break;
-        case 'recPausasActivas':
+        case 'recUsoDeLentesDeProteccionSolar':
           arrayData[60] = data[iterator];
           break;
-        case 'recUsoRxVisionProxima':
+        case 'recUsoEppVisual':
           arrayData[61] = data[iterator];
           break;
-        case 'recUsoRxDescanso':
+        case 'recPausasActivas':
           arrayData[62] = data[iterator];
           break;
-        case 'recUsoPermanenteRxOptica':
+        case 'recUsoRxVisionProxima':
           arrayData[63] = data[iterator];
           break;
-        case 'recPyp':
+        case 'recUsoRxDescanso':
           arrayData[64] = data[iterator];
           break;
-        case 'recLubricanteOcular':
+        case 'recUsoPermanenteRxOptica':
           arrayData[65] = data[iterator];
           break;
-        case 'recomendacionesObs':
+        case 'recPyp':
           arrayData[66] = data[iterator];
           break;
-        case 'remValoracionOftalm':
+        case 'recLubricanteOcular':
           arrayData[67] = data[iterator];
           break;
-        case 'remTopografiaCornea':
+        case 'recomendacionesObs':
           arrayData[68] = data[iterator];
           break;
-        case 'remTratamientoOrtop':
+        case 'remValoracionOftalm':
           arrayData[69] = data[iterator];
           break;
-        case 'remTestFarnsworth':
+        case 'remTopografiaCornea':
           arrayData[70] = data[iterator];
           break;
-        case 'realizarPruebaAmbulatoria':
+        case 'remTratamientoOrtop':
           arrayData[71] = data[iterator];
           break;
-        case 'remisionesObs':
+        case 'remTestFarnsworth':
           arrayData[72] = data[iterator];
           break;
-        case 'controlesMensual':
+        case 'realizarPruebaAmbulatoria':
           arrayData[73] = data[iterator];
           break;
-        case 'controlesBimestrales':
+        case 'remisionesObs':
           arrayData[74] = data[iterator];
           break;
-        case 'controlesTrimestrales':
+        case 'controlesMensual':
           arrayData[75] = data[iterator];
           break;
-        case 'controles6Meses':
+        case 'controlesBimestrales':
           arrayData[76] = data[iterator];
           break;
-        case 'controles1Anio':
+        case 'controlesTrimestrales':
           arrayData[77] = data[iterator];
           break;
-        case 'controlesConfirmatoria':
+        case 'controles6Meses':
           arrayData[78] = data[iterator];
+          break;
+        case 'controles1Anio':
+          arrayData[79] = data[iterator];
+          break;
+        case 'controlesConfirmatoria':
+          arrayData[80] = data[iterator];
           break;
       }
     }
@@ -334,10 +334,12 @@ function insertOpto(data, sheetName, spreadsheet) {
      */
     const age = ageRange(arrayData[9]);
     arrayData[10] = age;
-    const working = numberWorking(arrayData[18]);
-    arrayData[19] = working;
+    const working = numberWorking(arrayData[20]);
+    arrayData[21] = working;
 
     const register = new opto(...arrayData);
+    delete register.numberOfChildrenRec;
+    delete register.postRec;
     const response = opto.registerOpto(register, sheetName, spreadsheet);
     return response;
 
