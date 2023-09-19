@@ -1,4 +1,4 @@
-class emo {
+class emo extends emoGraph {
   constructor(
     contractedName = "", origin = "", destiny = "", city = "", income = "", examType = "", date = "", patient = "", numberIdentification = "", age = "", range_age = "", stratum = "", gender = "", numberOfChildren = "", numberOfChildrenRec = "", race = "", civilStatus = "", scholarship = "", post = "", postRec = "", durationWorking = "", antiquity = "",
     riesgosFisicosRuido = 0, riesgosFisicosIluminacion = 0, riesgosFisicosVibracion = 0, riesgosFisicosTemperaturaExtremas = 0, riesgosFisicosPresAtmosferica = 0, riesgosFisicosRadIonizantes = 0, riesgosFisicosRadNoIonizantes = 0, riesgosFisicosOtrosFisicos = "NO REFIERE", riesgosBiologicosVirus = 0, riesgosBiologicosBacterias = 0, riesgosBiologicosHongos = 0, riesgosBiologicosRicketsias = 0, riesgosBiologicosParasitos = 0, riesgosBiologicosFluidos = 0, riesgosBiologicosPicaduras = 0, riesgosBiologicosMordeduras = 0, riesgosBiologicosOtrosBiologicos = "NO REFEIERE", riesgosQuimicosPolvos = 0, riesgosQuimicosFibras = 0, riesgosQuimicosLiquidos = 0, riesgosQuimicosGases = 0, riesgosQuimicosVapores = 0, riesgosQuimicosHumos = 0, riesgosQuimicosMaterialParticulado = 0, riesgosQuimicosOtrosQuimicos = "NO REFIERE", riesgosPsicosGestionOrganizacional = 0, riesgosPsicosCaractDelGrupo = 0, riesgosPsicosInterfasesTarea = 0, riesgosPsicosCaractOrganizacion = 0, riesgosPsicosCondiciones = 0, riesgosPsicosJornada = 0, riesgosPsicosOtrosLaboral = "NO REFIERE", riesgosBiomecanicosPostura = 0, riesgosBiomecanicosEsfuerzo = 0, riesgosBiomecanicosMovRepetitivo = 0, riesgosBiomecanicosManipulacionCarga = 0, riesgosBiomecanicosOtrosBiomecanicos = "NO REFIERE", condicionesDeSeguridadMecanicos = 0, condicionesDeSeguridadElectricos = 0, condicionesDeSeguridadLocativo = 0, condicionesDeSeguridadTecnologico = 0, condicionesDeSeguridadAccDeTransito = 0, condicionesDeSeguridadPublicos = 0, condicionesDeSeguridadTrabajoEnAlturas = 0, condicionesDeSeguridadEspaciosConfinados = 0, condicionesDeSeguridadOtrosDeSeguridad = "NO REFIERE", fenomenosNaturalesSismo = 0, fenomenosNaturalesTerremoto = 0, fenomenosNaturalesVendaval = 0, fenomenosNaturalesInundacion = 0, fenomenosNaturalesDerrumbe = 0, fenomenosNaturalesPrecipitaciones = 0, fenomenosNaturalesOtrosNaturales = 0,
@@ -6,28 +6,7 @@ class emo {
     diagCodPpal = 0, diagDesPpal = 0, diagCod1 = 0, diagDes1 = 0, diagCod2 = 0, diagDes2 = 0, diagCod3 = 0, diagDes3 = 0, diagCod4 = 0, diagDes4 = 0, diagCod5 = 0, diagDes5 = 0, diagCod6 = 0, diagDes6 = 0, diagCod7 = 0, diagDes7 = 0, diagCod8 = 0, diagDes8 = 0, diagCod9 = 0, diagDes9 = 0, observacionesDiags = "", conceptoDeEvaluacion = "", observacionesConcepto = "",
     emphasis1 = "NO APLICA", emphasisConcep1 = "NO APLICA", emphasisObs1 = "NO APLICA", emphasis2 = "NO APLICA", emphasisConcep2 = "NO APLICA", emphasisObs2 = "NO APLICA", emphasis3 = "NO APLICA", emphasisConcep3 = "NO APLICA", emphasisObs3 = "NO APLICA", emphasis4 = "NO APLICA", emphasisConcep4 = "NO APLICA", emphasisObs4 = "NO APLICA", emphasis5 = "NO APLICA", emphasisConcep5 = "NO APLICA", emphasisObs5 = "NO APLICA", emphasis6 = "NO APLICA", emphasisConcep6 = "NO APLICA", emphasisObs6 = "NO APLICA", emphasis7 = "NO APLICA", emphasisConcep7 = "NO APLICA", emphasisObs7 = "NO APLICA", emphasis8 = "NO APLICA", emphasisConcep8 = "NO APLICA", emphasisObs8 = "NO APLICA", emphasis9 = "NO APLICA", emphasisConcep9 = "NO APLICA", emphasisObs9 = "NO APLICA", recomendacionesEspecificas = ""
   ) {
-    this.contractedName = contractedName;
-    this.origin = origin;
-    this.destiny = destiny;
-    this.city = city;
-    this.income = income;
-    this.examType = examType;
-    this.date = date;
-    this.patient = patient;
-    this.numberIdentification = numberIdentification;
-    this.age = age;
-    this.range_age = range_age;
-    this.stratum = stratum;
-    this.gender = gender;
-    this.numberOfChildren = numberOfChildren;
-    this.numberOfChildrenRec = numberOfChildrenRec;
-    this.race = race;
-    this.civilStatus = civilStatus;
-    this.scholarship = scholarship;
-    this.post = post;
-    this.postRec = postRec;
-    this.durationWorking = durationWorking;
-    this.antiquity = antiquity;
+    super(contractedName, origin, destiny, city, income, examType, date, patient, numberIdentification, age, range_age, stratum, gender, numberOfChildren, numberOfChildrenRec, race, civilStatus, scholarship, post, postRec, durationWorking, antiquity);
     this.riesgosFisicosRuido = riesgosFisicosRuido;
     this.riesgosFisicosIluminacion = riesgosFisicosIluminacion;
     this.riesgosFisicosVibracion = riesgosFisicosVibracion;
