@@ -1,9 +1,9 @@
 
 class visio extends emoGraph {
   constructor(
-    contractedName = "", origin = "", destiny = "", city = "", income = "", examType = "", date = "", patient = "", numberIdentification = "", age = "", range_age = "", stratum = "", gender = "", numberOfChildren = "", race = "", civilStatus = "", scholarship = "", post = "", durationWorking = "", antiquity = "", iluminacionInade = 0, radiacionesUv = 0, malaVentilacion = 0, gasesToxicos = 0, sintomasFotofobia = 0, sintomasOjoRojo = 0, sintomasLagrimeno = 0, sintomasVisionBorrosa = 0, sintomasArdor = 0, sintomasVisionDoble = 0, sintomasCansancio = 0, sintomasMalaVisionCercana = 0, sintomasDolor = 0, sintomasMalaVisionLejana = 0, sintomasSecrecion = 0, sintomasCefalea = 0, otrosSintomas = "SIN DATO", cabezaParpados = "NORMAL", cabezaParpadosObs = "SIN HALLAZGOS", cabezaConjuntivas = "NORMAL", cabezaConjuntivasObs = "SIN HALLAZGOS", cabezaEscleras = "NORMAL", cabezaEsclerasObs = "SIN HALLAZGOS", cabezaPupillas = "NORMAL", cabezaPupillasObs = "SIN HALLAZGOS", impVlOdNormal = 0, impVlOiNormal = 0, impVpOdNormal = 0, impVpOiNormal = 0, impVlOdDisminuido = 0, impVlOiDisminuido = 0, impVpOdDisminuido = 0, impVpOiDisminuido = 0, impVlOdNormalRx = 0, impVlOiNormalRx = 0, impVpOdNormalRx = 0, impVpOiNormalRx = 0, impVlOdDisminuidoRx = 0, impVlOiDisminuidoRx = 0, impVpOdDisminuidoRx = 0, impVpOiDisminuidoRx = 0, resultVisio = "", impDiagObs = "NO REFIERE", recCorrecionVisualParaTrabajar = 0, recUsoRxParaVisionProx = 0, recUsoArVideoTrmina = 0, recUsoRxDescanso = 0, recUsoLentesProt__Solar = 0, recUsoPermanenteRxOptica = 0, recUsoEppVisual = 0, recPyp = 0, recPausasActivas = 0, recLubricanteOcular = 0, recomendacionesObs = "NO REFIERE", remValoracionOftalm_ = 0, remValoracionOpto__Completa = 0, remTopografiaCornea = 0, remTratam__Ortoptica = 0, remTestFarnsworth = 0, realizarPruebaAmbulatoria = 0, otrosRemisiones = 0, controlMensual = 0, controlesBimestrales = 0, controlTrimestral = 0, control6Meses = 0, control1Ano = 0, controlConfirmatoria = 0
+    contractedName = "", origin = "", destiny = "", city = "", income = "", examType = "", date = "", patient = "", numberIdentification = "", age = "", range_age = "", stratum = "", gender = "", numberOfChildren = "", numberOfChildrenRec = "", race = "", civilStatus = "", scholarship = "", post = "", postRec = "", durationWorking = "", antiquity = "", iluminacionInade = 0, radiacionesUv = 0, malaVentilacion = 0, gasesToxicos = 0, sintomasFotofobia = 0, sintomasOjoRojo = 0, sintomasLagrimeno = 0, sintomasVisionBorrosa = 0, sintomasArdor = 0, sintomasVisionDoble = 0, sintomasCansancio = 0, sintomasMalaVisionCercana = 0, sintomasDolor = 0, sintomasMalaVisionLejana = 0, sintomasSecrecion = 0, sintomasCefalea = 0, otrosSintomas = "SIN DATO", cabezaParpados = "NORMAL", cabezaParpadosObs = "SIN HALLAZGOS", cabezaConjuntivas = "NORMAL", cabezaConjuntivasObs = "SIN HALLAZGOS", cabezaEscleras = "NORMAL", cabezaEsclerasObs = "SIN HALLAZGOS", cabezaPupillas = "NORMAL", cabezaPupillasObs = "SIN HALLAZGOS", impVlOdNormal = 0, impVlOiNormal = 0, impVpOdNormal = 0, impVpOiNormal = 0, impVlOdDisminuido = 0, impVlOiDisminuido = 0, impVpOdDisminuido = 0, impVpOiDisminuido = 0, impVlOdNormalRx = 0, impVlOiNormalRx = 0, impVpOdNormalRx = 0, impVpOiNormalRx = 0, impVlOdDisminuidoRx = 0, impVlOiDisminuidoRx = 0, impVpOdDisminuidoRx = 0, impVpOiDisminuidoRx = 0, resultVisio = "", impDiagObs = "NO REFIERE", recCorrecionVisualParaTrabajar = 0, recUsoRxParaVisionProx = 0, recUsoArVideoTrmina = 0, recUsoRxDescanso = 0, recUsoLentesProt__Solar = 0, recUsoPermanenteRxOptica = 0, recUsoEppVisual = 0, recPyp = 0, recPausasActivas = 0, recLubricanteOcular = 0, recomendacionesObs = "NO REFIERE", remValoracionOftalm_ = 0, remValoracionOpto__Completa = 0, remTopografiaCornea = 0, remTratam__Ortoptica = 0, remTestFarnsworth = 0, realizarPruebaAmbulatoria = 0, otrosRemisiones = 0, controlMensual = 0, controlesBimestrales = 0, controlTrimestral = 0, control6Meses = 0, control1Ano = 0, controlConfirmatoria = 0
   ) {
-    super(contractedName, origin, destiny, city, income, examType, date, patient, numberIdentification, age, range_age, stratum, gender, numberOfChildren, race, civilStatus, scholarship, post, durationWorking, antiquity);
+    super(contractedName, origin, destiny, city, income, examType, date, patient, numberIdentification, age, range_age, stratum, gender, numberOfChildren, numberOfChildrenRec, race, civilStatus, scholarship, post, postRec, durationWorking, antiquity);
     this.iluminacionInade = iluminacionInade;
     this.radiacionesUv = radiacionesUv;
     this.malaVentilacion = malaVentilacion;
@@ -144,217 +144,217 @@ function insertVisio(data, sheetName, spreadsheet) {
           arrayData[13] = data[iterator];
           break;
         case 'race':
-          arrayData[14] = data[iterator];
-          break;
-        case 'civilStatus':
           arrayData[15] = data[iterator];
           break;
-        case 'scholarship':
+        case 'civilStatus':
           arrayData[16] = data[iterator];
           break;
-        case 'post':
+        case 'scholarship':
           arrayData[17] = data[iterator];
           break;
-        case 'durationWorking':
+        case 'post':
           arrayData[18] = data[iterator];
           break;
-        case 'iluminacionInade':
+        case 'durationWorking':
           arrayData[20] = data[iterator];
           break;
-        case 'radiacionesUv':
-          arrayData[21] = data[iterator];
-          break;
-        case 'malaVentilacion':
+        case 'iluminacionInade':
           arrayData[22] = data[iterator];
           break;
-        case 'gasesToxicos':
+        case 'radiacionesUv':
           arrayData[23] = data[iterator];
           break;
-        case 'sintomasFotofobia':
+        case 'malaVentilacion':
           arrayData[24] = data[iterator];
           break;
-        case 'sintomasOjoRojo':
+        case 'gasesToxicos':
           arrayData[25] = data[iterator];
           break;
-        case 'sintomasLagrimeno':
+        case 'sintomasFotofobia':
           arrayData[26] = data[iterator];
           break;
-        case 'sintomasVisionBorrosa':
+        case 'sintomasOjoRojo':
           arrayData[27] = data[iterator];
           break;
-        case 'sintomasArdor':
+        case 'sintomasLagrimeno':
           arrayData[28] = data[iterator];
           break;
-        case 'sintomasVisionDoble':
+        case 'sintomasVisionBorrosa':
           arrayData[29] = data[iterator];
           break;
-        case 'sintomasCansancio':
+        case 'sintomasArdor':
           arrayData[30] = data[iterator];
           break;
-        case 'sintomasMalaVisionCercana':
+        case 'sintomasVisionDoble':
           arrayData[31] = data[iterator];
           break;
-        case 'sintomasDolor':
+        case 'sintomasCansancio':
           arrayData[32] = data[iterator];
           break;
-        case 'sintomasMalaVisionLejana':
+        case 'sintomasMalaVisionCercana':
           arrayData[33] = data[iterator];
           break;
-        case 'sintomasSecrecion':
+        case 'sintomasDolor':
           arrayData[34] = data[iterator];
           break;
-        case 'sintomasCefalea':
+        case 'sintomasMalaVisionLejana':
           arrayData[35] = data[iterator];
           break;
-        case 'otrosSintomas':
+        case 'sintomasSecrecion':
           arrayData[36] = data[iterator];
           break;
-        case 'cabezaParpados':
+        case 'sintomasCefalea':
           arrayData[37] = data[iterator];
           break;
-        case 'cabezaParpadosObs':
+        case 'otrosSintomas':
           arrayData[38] = data[iterator];
           break;
-        case 'cabezaConjuntivas':
+        case 'cabezaParpados':
           arrayData[39] = data[iterator];
           break;
-        case 'cabezaConjuntivasObs':
+        case 'cabezaParpadosObs':
           arrayData[40] = data[iterator];
           break;
-        case 'cabezaEscleras':
+        case 'cabezaConjuntivas':
           arrayData[41] = data[iterator];
           break;
-        case 'cabezaEsclerasObs':
+        case 'cabezaConjuntivasObs':
           arrayData[42] = data[iterator];
           break;
-        case 'cabezaPupillas':
+        case 'cabezaEscleras':
           arrayData[43] = data[iterator];
           break;
-        case 'cabezaPupillasObs':
+        case 'cabezaEsclerasObs':
           arrayData[44] = data[iterator];
           break;
-        case 'impVlOdNormal':
+        case 'cabezaPupillas':
           arrayData[45] = data[iterator];
           break;
-        case 'impVlOiNormal':
+        case 'cabezaPupillasObs':
           arrayData[46] = data[iterator];
           break;
-        case 'impVpOdNormal':
+        case 'impVlOdNormal':
           arrayData[47] = data[iterator];
           break;
-        case 'impVpOiNormal':
+        case 'impVlOiNormal':
           arrayData[48] = data[iterator];
           break;
-        case 'impVlOdDisminuido':
+        case 'impVpOdNormal':
           arrayData[49] = data[iterator];
           break;
-        case 'impVlOiDisminuido':
+        case 'impVpOiNormal':
           arrayData[50] = data[iterator];
           break;
-        case 'impVpOdDisminuido':
+        case 'impVlOdDisminuido':
           arrayData[51] = data[iterator];
           break;
-        case 'impVpOiDisminuido':
+        case 'impVlOiDisminuido':
           arrayData[52] = data[iterator];
           break;
-        case 'impVlOdNormalRx':
+        case 'impVpOdDisminuido':
           arrayData[53] = data[iterator];
           break;
-        case 'impVlOiNormalRx':
+        case 'impVpOiDisminuido':
           arrayData[54] = data[iterator];
           break;
-        case 'impVpOdNormalRx':
+        case 'impVlOdNormalRx':
           arrayData[55] = data[iterator];
           break;
-        case 'impVpOiNormalRx':
+        case 'impVlOiNormalRx':
           arrayData[56] = data[iterator];
           break;
-        case 'impVlOdDisminuidoRx':
+        case 'impVpOdNormalRx':
           arrayData[57] = data[iterator];
           break;
-        case 'impVlOiDisminuidoRx':
+        case 'impVpOiNormalRx':
           arrayData[58] = data[iterator];
           break;
-        case 'impVpOdDisminuidoRx':
+        case 'impVlOdDisminuidoRx':
           arrayData[59] = data[iterator];
           break;
-        case 'impVpOiDisminuidoRx':
+        case 'impVlOiDisminuidoRx':
           arrayData[60] = data[iterator];
           break;
-        case 'impDiagObs':
+        case 'impVpOdDisminuidoRx':
+          arrayData[61] = data[iterator];
+          break;
+        case 'impVpOiDisminuidoRx':
           arrayData[62] = data[iterator];
           break;
-        case 'recCorrecionVisualParaTrabajar':
-          arrayData[63] = data[iterator];
-          break;
-        case 'recUsoRxParaVisionProx':
+        case 'impDiagObs':
           arrayData[64] = data[iterator];
           break;
-        case 'recUsoArVideoTrmina':
+        case 'recCorrecionVisualParaTrabajar':
           arrayData[65] = data[iterator];
           break;
-        case 'recUsoRxDescanso':
+        case 'recUsoRxParaVisionProx':
           arrayData[66] = data[iterator];
           break;
-        case 'recUsoLentesProt__Solar':
+        case 'recUsoArVideoTrmina':
           arrayData[67] = data[iterator];
           break;
-        case 'recUsoPermanenteRxOptica':
+        case 'recUsoRxDescanso':
           arrayData[68] = data[iterator];
           break;
-        case 'recUsoEppVisual':
+        case 'recUsoLentesProt__Solar':
           arrayData[69] = data[iterator];
           break;
-        case 'recPyp':
+        case 'recUsoPermanenteRxOptica':
           arrayData[70] = data[iterator];
           break;
-        case 'recPausasActivas':
+        case 'recUsoEppVisual':
           arrayData[71] = data[iterator];
           break;
-        case 'recLubricanteOcular':
+        case 'recPyp':
           arrayData[72] = data[iterator];
           break;
-        case 'recomendacionesObs':
+        case 'recPausasActivas':
           arrayData[73] = data[iterator];
           break;
-        case 'remValoracionOftalm_':
+        case 'recLubricanteOcular':
           arrayData[74] = data[iterator];
           break;
-        case 'remValoracionOpto__Completa':
+        case 'recomendacionesObs':
           arrayData[75] = data[iterator];
           break;
-        case 'remTopografiaCornea':
+        case 'remValoracionOftalm_':
           arrayData[76] = data[iterator];
           break;
-        case 'remTratam__Ortoptica':
+        case 'remValoracionOpto__Completa':
           arrayData[77] = data[iterator];
           break;
-        case 'remTestFarnsworth':
+        case 'remTopografiaCornea':
           arrayData[78] = data[iterator];
           break;
-        case 'realizarPruebaAmbulatoria':
+        case 'remTratam__Ortoptica':
           arrayData[79] = data[iterator];
           break;
-        case 'otrosRemisiones':
+        case 'remTestFarnsworth':
           arrayData[80] = data[iterator];
           break;
-        case 'controlMensual':
+        case 'realizarPruebaAmbulatoria':
           arrayData[81] = data[iterator];
           break;
-        case 'controlesBimestrales':
+        case 'otrosRemisiones':
           arrayData[82] = data[iterator];
           break;
-        case 'controlTrimestral':
+        case 'controlMensual':
           arrayData[83] = data[iterator];
           break;
-        case 'control6Meses':
+        case 'controlesBimestrales':
           arrayData[84] = data[iterator];
           break;
-        case 'control1Ano':
+        case 'controlTrimestral':
           arrayData[85] = data[iterator];
           break;
-        case 'controlConfirmatoria':
+        case 'control6Meses':
           arrayData[86] = data[iterator];
+          break;
+        case 'control1Ano':
+          arrayData[87] = data[iterator];
+          break;
+        case 'controlConfirmatoria':
+          arrayData[88] = data[iterator];
           break;
       }
     }
@@ -364,12 +364,14 @@ function insertVisio(data, sheetName, spreadsheet) {
      */
     const age = ageRange(arrayData[9]);
     arrayData[10] = age;
-    const working = numberWorking(arrayData[18]);
-    arrayData[19] = working;
-    const totalImp = diagnosticsImp(arrayData[45], arrayData[46], arrayData[47], arrayData[48], arrayData[49], arrayData[50], arrayData[51], arrayData[52], arrayData[53], arrayData[54], arrayData[55], arrayData[56], arrayData[57], arrayData[58], arrayData[59], arrayData[60]);
-    arrayData[61] = isNaN(totalImp) ? `Valor no valido ${totalImp}` : totalImp;
+    const working = numberWorking(arrayData[20]);
+    arrayData[21] = working;
+    const totalImp = diagnosticsImp(arrayData[47], arrayData[48], arrayData[49], arrayData[50], arrayData[51], arrayData[52], arrayData[53], arrayData[54], arrayData[55], arrayData[56], arrayData[57], arrayData[58], arrayData[59], arrayData[60], arrayData[61], arrayData[62]);
+    arrayData[63] = isNaN(totalImp) ? `Valor no valido ${totalImp}` : totalImp;
 
     const register = new visio(...arrayData);
+    delete register.numberOfChildrenRec;
+    delete register.postRec;
     const response = visio.registerVisio(register, sheetName, spreadsheet);
     return response;
 
