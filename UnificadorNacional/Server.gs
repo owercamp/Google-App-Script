@@ -78,8 +78,14 @@ function insertData(data) {
         case "spirometry":
           for (const spiro of information[iterator]) {
             const response = insertEspiro(spiro, "ESPIRO", spreadsheet);
+          }
+          break;
+        case "osteometry":
+          for (const osteo of information[iterator]) {
+            const response = insertOsteo(osteo, "OSTEO", spreadsheet);
             Logger.log(response);
           }
+          break;
       }
     }
     return keys;
