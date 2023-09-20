@@ -1,8 +1,8 @@
 class espiro extends emoGraph {
   constructor(
-    contractedName = "", origin = "", destiny = "", city = "", income = "", examType = "", date = "", patient = "", numberIdentification = "", age = "", range_age = "", stratum = "", gender = "", numberOfChildren = "", race = "", civilStatus = "", scholarship = "", post = "", durationWorking = "", antiquity = "", alegias = 0, alergiasObs = "NO REFIERE", tuberculosis = 0, tosCronica = 0, gripasFrecuentes = 0, faringitis = 0, faringoamigdalitis = 0, rinitis = 0, sinusitis = 0, cxTorax = 0, cxToraxObs = "NO REFIERE", asmaBronquial = 0, bronquitis = 0, neumonia = 0, trumaCostal = 0, cancer = 0, cancerObs = "NO REFIERE", otrosRespiratorios = "NO REFIERE", riesgoQuimicoPolvos = 0, riesgoQuimicoFibras = 0, riesgoQuimicoLiquidos = 0, riesgoQuimicoGases = 0, riesgoQuimicoVapos = 0, riesgoQuimicoHumos = 0, riesgoQuimicoMaterialParticulado = 0, otrosRiesgosQuimicos = "NO REFIERE", eppEspecificoTapaboca = 0, eppEspecificoRespirador = 0, actFisica = "", fuma = "", cigarrillosDia = "", frecuencia = "", tiempoEnAnios = "", interpretacion = "", peso = "", talla = "", imc = "", clasiIMC =  "", fvcPredDiag = "", fvcTeorDiag = "", fev1PredDiag = "", fev1TeorDiag = "", fev1FvcPredDiag = "", pefPredDiag = "", pefTeorDiag = "", fef2575PredDiag = "", fef2575TeorDiag = "",diagPpal = "", diagObs = "", diagRel1 = "", diagRel2 = "", diagRel3 = "",tipoInterpretacion = "", tipoGrado = "", resultadoEspiroMetria = "", recGralesDejarDeFumar = 0, recGralesContinuarControlesEps = 0, recGralesBajarDePeso = 0, recGralesTomarRayosXTorax = 0, recGralesRealizarEjerc3XSemana = 0, recGralesValoracEPSXNeumologia = 0, recLabUtilizarEpr = 0, recLabIngresarSve = 0,controlesMensual = 0, controlesBimestrales = 0, controlesTrimestral = 0, controlesSemestral = 0, controlesAnual = 0, controlesConfirmatoria = 0, tecnicaAceptable = "" 
+    contractedName = "", origin = "", destiny = "", city = "", income = "", examType = "", date = "", patient = "", numberIdentification = "", age = "", range_age = "", stratum = "", gender = "", numberOfChildren = "", numberOfChildrenRec = "", race = "", civilStatus = "", scholarship = "", post = "", postRec = "", durationWorking = "", antiquity = "", alegias = 0, alergiasObs = "NO REFIERE", tuberculosis = 0, tosCronica = 0, gripasFrecuentes = 0, faringitis = 0, faringoamigdalitis = 0, rinitis = 0, sinusitis = 0, cxTorax = 0, cxToraxObs = "NO REFIERE", asmaBronquial = 0, bronquitis = 0, neumonia = 0, trumaCostal = 0, cancer = 0, cancerObs = "NO REFIERE", otrosRespiratorios = "NO REFIERE", riesgoQuimicoPolvos = 0, riesgoQuimicoFibras = 0, riesgoQuimicoLiquidos = 0, riesgoQuimicoGases = 0, riesgoQuimicoVapos = 0, riesgoQuimicoHumos = 0, riesgoQuimicoMaterialParticulado = 0, otrosRiesgosQuimicos = "NO REFIERE", eppEspecificoTapaboca = 0, eppEspecificoRespirador = 0, actFisica = "", fuma = "", cigarrillosDia = "", frecuencia = "", tiempoEnAnios = "", interpretacion = "", peso = "", talla = "", imc = "", clasiIMC = "", fvcPredDiag = "", fvcTeorDiag = "", fev1PredDiag = "", fev1TeorDiag = "", fev1FvcPredDiag = "", fev1FvcTeorDiag = "", pefPredDiag = "", pefTeorDiag = "", fef2575PredDiag = "", fef2575TeorDiag = "", diagPpal = "", diagObs = "NO REFIERE", diagRel1 = 0, diagRel2 = 0, diagRel3 = 0, tipoInterpretacion = "", tipoGrado = "", resultadoEspiroMetria = "", recGralesDejarDeFumar = 0, recGralesContinuarControlesEps = 0, recGralesBajarDePeso = 0, recGralesTomarRayosXTorax = 0, recGralesRealizarEjerc3XSemana = 0, recGralesValoracEPSXNeumologia = 0, recLabUtilizarEpr = 0, recLabIngresarSve = 0, controlesMensual = 0, controlesBimestrales = 0, controlesTrimestral = 0, controlesSemestral = 0, controlesAnual = 0, controlesConfirmatoria = 0, tecnicaAceptable = ""
   ) {
-    super(contractedName, origin, destiny, city, income, examType, date, patient, numberIdentification, age, range_age, stratum, gender, numberOfChildren, race, civilStatus, scholarship, post, durationWorking, antiquity);
+    super(contractedName, origin, destiny, city, income, examType, date, patient, numberIdentification, age, range_age, stratum, gender, numberOfChildren, numberOfChildrenRec, race, civilStatus, scholarship, post, postRec, durationWorking, antiquity);
     this.alegias = alegias;
     this.alergiasObs = alergiasObs;
     this.tuberculosis = tuberculosis;
@@ -46,6 +46,7 @@ class espiro extends emoGraph {
     this.fev1PredDiag = fev1PredDiag;
     this.fev1TeorDiag = fev1TeorDiag;
     this.fev1FvcPredDiag = fev1FvcPredDiag;
+    this.fev1FvcTeorDiag = fev1FvcTeorDiag;
     this.pefPredDiag = pefPredDiag;
     this.pefTeorDiag = pefTeorDiag;
     this.fef2575PredDiag = fef2575PredDiag;
@@ -83,7 +84,7 @@ class espiro extends emoGraph {
    * @param {Spreadsheet} spreadsheet - The spreadsheet to register the data into.
    * @return {string} Returns "Success" if the registration is successful.
    */
-  static registerSpiro(data, sheetName, spreadsheet){
+  static registerSpiro(data, sheetName, spreadsheet) {
     const rowRegister = spreadsheet.getSheetByName(sheetName);
     try {
       rowRegister.appendRow(Object.values(data));
@@ -93,8 +94,8 @@ class espiro extends emoGraph {
     }
   }
 }
+
 function insertEspiro(data, sheetName, spreadsheet) {
-  const rowRegister = spreadsheet.getSheetByName(sheetName);
   const arrayData = [];
 
   try {
@@ -140,240 +141,242 @@ function insertEspiro(data, sheetName, spreadsheet) {
           arrayData[13] = data[iterator];
           break;
         case 'race':
-          arrayData[14] = data[iterator];
-          break;
-        case 'civilStatus':
           arrayData[15] = data[iterator];
           break;
-        case 'scholarship':
+        case 'civilStatus':
           arrayData[16] = data[iterator];
           break;
-        case 'post':
+        case 'scholarship':
           arrayData[17] = data[iterator];
           break;
-        case 'durationWorking':
+        case 'post':
           arrayData[18] = data[iterator];
           break;
-        case 'alegias':
+        case 'durationWorking':
           arrayData[20] = data[iterator];
           break;
-        case 'alergiasObs':
-          arrayData[21] = data[iterator];
-          break;
-        case 'tuberculosis':
+        case 'alegias':
           arrayData[22] = data[iterator];
           break;
-        case 'tosCronica':
+        case 'alergiasObs':
           arrayData[23] = data[iterator];
           break;
-        case 'gripasFrecuentes':
+        case 'tuberculosis':
           arrayData[24] = data[iterator];
           break;
-        case 'faringitis':
+        case 'tosCronica':
           arrayData[25] = data[iterator];
           break;
-        case 'faringoamigdalitis':
+        case 'gripasFrecuentes':
           arrayData[26] = data[iterator];
           break;
-        case 'rinitis':
+        case 'faringitis':
           arrayData[27] = data[iterator];
           break;
-        case 'sinusitis':
+        case 'faringoamigdalitis':
           arrayData[28] = data[iterator];
           break;
-        case 'cxTorax':
+        case 'rinitis':
           arrayData[29] = data[iterator];
           break;
-        case 'cxToraxObs':
+        case 'sinusitis':
           arrayData[30] = data[iterator];
           break;
-        case 'asmaBronquial':
+        case 'cxTorax':
           arrayData[31] = data[iterator];
           break;
-        case 'bronquitis':
+        case 'cxToraxObs':
           arrayData[32] = data[iterator];
           break;
-        case 'neumonia':
+        case 'asmaBronquial':
           arrayData[33] = data[iterator];
           break;
-        case 'trumaCostal':
+        case 'bronquitis':
           arrayData[34] = data[iterator];
           break;
-        case 'cancer':
+        case 'neumonia':
           arrayData[35] = data[iterator];
           break;
-        case 'cancerObs':
+        case 'trumaCostal':
           arrayData[36] = data[iterator];
           break;
-        case 'otrosRespiratorios':
+        case 'cancer':
           arrayData[37] = data[iterator];
           break;
-        case 'riesgoQuimicoPolvos':
+        case 'cancerObs':
           arrayData[38] = data[iterator];
           break;
-        case 'riesgoQuimicoFibras':
+        case 'otrosRespiratorios':
           arrayData[39] = data[iterator];
           break;
-        case 'riesgoQuimicoLiquidos':
+        case 'riesgoQuimicoPolvos':
           arrayData[40] = data[iterator];
           break;
-        case 'riesgoQuimicoGases':
+        case 'riesgoQuimicoFibras':
           arrayData[41] = data[iterator];
           break;
-        case 'riesgoQuimicoVapos':
+        case 'riesgoQuimicoLiquidos':
           arrayData[42] = data[iterator];
           break;
-        case 'riesgoQuimicoHumos':
+        case 'riesgoQuimicoGases':
           arrayData[43] = data[iterator];
           break;
-        case 'riesgoQuimicoMaterialParticulado':
+        case 'riesgoQuimicoVapos':
           arrayData[44] = data[iterator];
           break;
-        case 'otrosRiesgosQuimicos':
+        case 'riesgoQuimicoHumos':
           arrayData[45] = data[iterator];
           break;
-        case 'eppEspecificoTapaboca':
+        case 'riesgoQuimicoMaterialParticulado':
           arrayData[46] = data[iterator];
           break;
-        case 'eppEspecificoRespirador':
+        case 'otrosRiesgosQuimicos':
           arrayData[47] = data[iterator];
           break;
-        case 'actFisica':
+        case 'eppEspecificoTapaboca':
           arrayData[48] = data[iterator];
           break;
-        case 'fuma':
+        case 'eppEspecificoRespirador':
           arrayData[49] = data[iterator];
           break;
-        case 'cigarrillosDia':
+        case 'actFisica':
           arrayData[50] = data[iterator];
           break;
-        case 'frecuencia':
+        case 'fuma':
           arrayData[51] = data[iterator];
           break;
-        case 'tiempoEnAnios':
+        case 'cigarrillosDia':
           arrayData[52] = data[iterator];
           break;
-        case 'interpretacion':
+        case 'frecuencia':
           arrayData[53] = data[iterator];
           break;
-        case 'peso':
+        case 'tiempoEnAnios':
           arrayData[54] = data[iterator];
           break;
-        case 'talla':
+        case 'interpretacion':
           arrayData[55] = data[iterator];
           break;
+        case 'peso':
+          arrayData[56] = data[iterator];
+          break;
+        case 'talla':
+          arrayData[57] = data[iterator];
+          break;
         case 'fvcPredDiag':
-          arrayData[58] = data[iterator];
-          break;
-        case 'fvcTeorDiag':
-          arrayData[59] = data[iterator];
-          break;
-        case 'fev1PredDiag':
           arrayData[60] = data[iterator];
           break;
-        case 'fev1TeorDiag':
+        case 'fvcTeorDiag':
           arrayData[61] = data[iterator];
           break;
-        case 'fev1FvcPredDiag':
+        case 'fev1PredDiag':
           arrayData[62] = data[iterator];
           break;
-        case 'fev1FvcTeorDiag':
+        case 'fev1TeorDiag':
           arrayData[63] = data[iterator];
           break;
-        case 'pefPredDiag':
+        case 'fev1FvcPredDiag':
           arrayData[64] = data[iterator];
           break;
-        case 'pefTeorDiag':
+        case 'fev1FvcTeorDiag':
           arrayData[65] = data[iterator];
           break;
-        case 'fef2575PredDiag':
+        case 'pefPredDiag':
           arrayData[66] = data[iterator];
           break;
-        case 'fef2575TeorDiag':
+        case 'pefTeorDiag':
           arrayData[67] = data[iterator];
           break;
-        case 'diagPpal':
+        case 'fef2575PredDiag':
           arrayData[68] = data[iterator];
           break;
-        case 'diagObs':
+        case 'fef2575TeorDiag':
           arrayData[69] = data[iterator];
           break;
-        case 'diagRel1':
+        case 'diagPpal':
           arrayData[70] = data[iterator];
           break;
-        case 'diagRel2':
+        case 'diagObs':
           arrayData[71] = data[iterator];
           break;
-        case 'diagRel3':
+        case 'diagRel1':
           arrayData[72] = data[iterator];
           break;
-        case 'tipoInterpretacion':
+        case 'diagRel2':
           arrayData[73] = data[iterator];
           break;
-        case 'tipoGrado':
+        case 'diagRel3':
           arrayData[74] = data[iterator];
           break;
-        case 'resultadoEspiroMetria':
+        case 'tipoInterpretacion':
           arrayData[75] = data[iterator];
           break;
-        case 'recGralesDejarDeFumar':
+        case 'tipoGrado':
           arrayData[76] = data[iterator];
           break;
-        case 'recGralesContinuarControlesEps':
+        case 'resultadoEspiroMetria':
           arrayData[77] = data[iterator];
           break;
-        case 'recGralesBajarDePeso':
+        case 'recGralesDejarDeFumar':
           arrayData[78] = data[iterator];
           break;
-        case 'recGralesTomarRayosXTorax':
+        case 'recGralesContinuarControlesEps':
           arrayData[79] = data[iterator];
           break;
-        case 'recGralesRealizarEjerc3XSemana':
+        case 'recGralesBajarDePeso':
           arrayData[80] = data[iterator];
           break;
-        case 'recGralesValoracEPSXNeumologia':
+        case 'recGralesTomarRayosXTorax':
           arrayData[81] = data[iterator];
           break;
-        case 'recLabUtilizarEpr':
+        case 'recGralesRealizarEjerc3XSemana':
           arrayData[82] = data[iterator];
           break;
-        case 'recLabIngresarSve':
+        case 'recGralesValoracEPSXNeumologia':
           arrayData[83] = data[iterator];
           break;
-        case 'controlesMensual':
+        case 'recLabUtilizarEpr':
           arrayData[84] = data[iterator];
           break;
-        case 'controlesBimestrales':
+        case 'recLabIngresarSve':
           arrayData[85] = data[iterator];
           break;
-        case 'controlesTrimestral':
+        case 'controlesMensual':
           arrayData[86] = data[iterator];
           break;
-        case 'controlesSemestral':
+        case 'controlesBimestrales':
           arrayData[87] = data[iterator];
           break;
-        case 'controlesAnual':
+        case 'controlesTrimestral':
           arrayData[88] = data[iterator];
           break;
-        case 'controlesConfirmatoria':
+        case 'controlesSemestral':
           arrayData[89] = data[iterator];
           break;
-        case 'tecnicaAceptable':
+        case 'controlesAnual':
           arrayData[90] = data[iterator];
+          break;
+        case 'controlesConfirmatoria':
+          arrayData[91] = data[iterator];
+          break;
+        case 'tecnicaAceptable':
+          arrayData[92] = data[iterator];
           break;
       }
     }
 
     const age = ageRange(arrayData[9]);
     arrayData[10] = age;
-    const working = numberWorking(arrayData[18]);
-    arrayData[19] = working;
+    const working = numberWorking(arrayData[20]);
+    arrayData[21] = working;
 
-    const imc = imc2(arrayData[54], arrayData[55]);
-    arrayData[56] = imc[0].toFixed(2);
-    arrayData[57] = imc[1];
+    const imc = imc2(arrayData[56], arrayData[57]);
+    arrayData[58] = imc[0].toFixed(2);
+    arrayData[59] = imc[1];
 
     const register = new espiro(...arrayData);
+    delete register.numberOfChildrenRec;
+    delete register.postRec;
     const response = espiro.registerSpiro(register, sheetName, spreadsheet);
     return response;
 
