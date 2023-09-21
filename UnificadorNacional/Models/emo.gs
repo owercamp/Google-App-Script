@@ -1,12 +1,12 @@
 class emo extends emoGraph {
   constructor(
-    contractedName = "", origin = "", destiny = "", city = "", income = "", examType = "", date = "", patient = "", numberIdentification = "", age = "", range_age = "", stratum = "", gender = "", numberOfChildren = "", numberOfChildrenRec = "", race = "", civilStatus = "", scholarship = "", post = "", postRec = "", durationWorking = "", antiquity = "",
+    contractedName = "", origin = "", destiny = "", city = "", income = "", examType = "", date = "", patient = "", typeID = "", numberIdentification = "", dateOfBirth = "", age = "", range_age = "", stratum = "", gender = "", numberOfChildren = "", numberOfChildrenRec = "", race = "", civilStatus = "", scholarship = "", post = "", postRec = "", durationWorking = "", antiquity = "",
     riesgosFisicosRuido = 0, riesgosFisicosIluminacion = 0, riesgosFisicosVibracion = 0, riesgosFisicosTemperaturaExtremas = 0, riesgosFisicosPresAtmosferica = 0, riesgosFisicosRadIonizantes = 0, riesgosFisicosRadNoIonizantes = 0, riesgosFisicosOtrosFisicos = "NO REFIERE", riesgosBiologicosVirus = 0, riesgosBiologicosBacterias = 0, riesgosBiologicosHongos = 0, riesgosBiologicosRicketsias = 0, riesgosBiologicosParasitos = 0, riesgosBiologicosFluidos = 0, riesgosBiologicosPicaduras = 0, riesgosBiologicosMordeduras = 0, riesgosBiologicosOtrosBiologicos = "NO REFEIERE", riesgosQuimicosPolvos = 0, riesgosQuimicosFibras = 0, riesgosQuimicosLiquidos = 0, riesgosQuimicosGases = 0, riesgosQuimicosVapores = 0, riesgosQuimicosHumos = 0, riesgosQuimicosMaterialParticulado = 0, riesgosQuimicosOtrosQuimicos = "NO REFIERE", riesgosPsicosGestionOrganizacional = 0, riesgosPsicosCaractDelGrupo = 0, riesgosPsicosInterfasesTarea = 0, riesgosPsicosCaractOrganizacion = 0, riesgosPsicosCondiciones = 0, riesgosPsicosJornada = 0, riesgosPsicosOtrosLaboral = "NO REFIERE", riesgosBiomecanicosPostura = 0, riesgosBiomecanicosEsfuerzo = 0, riesgosBiomecanicosMovRepetitivo = 0, riesgosBiomecanicosManipulacionCarga = 0, riesgosBiomecanicosOtrosBiomecanicos = "NO REFIERE", condicionesDeSeguridadMecanicos = 0, condicionesDeSeguridadElectricos = 0, condicionesDeSeguridadLocativo = 0, condicionesDeSeguridadTecnologico = 0, condicionesDeSeguridadAccDeTransito = 0, condicionesDeSeguridadPublicos = 0, condicionesDeSeguridadTrabajoEnAlturas = 0, condicionesDeSeguridadEspaciosConfinados = 0, condicionesDeSeguridadOtrosDeSeguridad = "NO REFIERE", fenomenosNaturalesSismo = 0, fenomenosNaturalesTerremoto = 0, fenomenosNaturalesVendaval = 0, fenomenosNaturalesInundacion = 0, fenomenosNaturalesDerrumbe = 0, fenomenosNaturalesPrecipitaciones = 0, fenomenosNaturalesOtrosNaturales = 0,
     fechaAccidente = "", accidentePasoEmpresa = "", tipoAccidente = "", naturalezaLesion = "", parteAfectada = "", incapacidad = "", secuelas = "", nombreEnfermedad = "", etapa = "", observacionesEnfermedad = "", actFisica = "", fuma = "", consumoAlcohol = "", peso = "", talla = "", imc = "", clasificacion = "", tensionArterial = "", frecCardiaca = "", frecRespiratoria = "", perimetroAbdominal = "", lateralidad = "",
     diagCodPpal = 0, diagDesPpal = 0, diagCod1 = 0, diagDes1 = 0, diagCod2 = 0, diagDes2 = 0, diagCod3 = 0, diagDes3 = 0, diagCod4 = 0, diagDes4 = 0, diagCod5 = 0, diagDes5 = 0, diagCod6 = 0, diagDes6 = 0, diagCod7 = 0, diagDes7 = 0, diagCod8 = 0, diagDes8 = 0, diagCod9 = 0, diagDes9 = 0, observacionesDiags = "", conceptoDeEvaluacion = "", observacionesConcepto = "",
     emphasis1 = "NO APLICA", emphasisConcep1 = "NO APLICA", emphasisObs1 = "NO APLICA", emphasis2 = "NO APLICA", emphasisConcep2 = "NO APLICA", emphasisObs2 = "NO APLICA", emphasis3 = "NO APLICA", emphasisConcep3 = "NO APLICA", emphasisObs3 = "NO APLICA", emphasis4 = "NO APLICA", emphasisConcep4 = "NO APLICA", emphasisObs4 = "NO APLICA", emphasis5 = "NO APLICA", emphasisConcep5 = "NO APLICA", emphasisObs5 = "NO APLICA", emphasis6 = "NO APLICA", emphasisConcep6 = "NO APLICA", emphasisObs6 = "NO APLICA", emphasis7 = "NO APLICA", emphasisConcep7 = "NO APLICA", emphasisObs7 = "NO APLICA", emphasis8 = "NO APLICA", emphasisConcep8 = "NO APLICA", emphasisObs8 = "NO APLICA", emphasis9 = "NO APLICA", emphasisConcep9 = "NO APLICA", emphasisObs9 = "NO APLICA", recomendacionesEspecificas = ""
   ) {
-    super(contractedName, origin, destiny, city, income, examType, date, patient, numberIdentification, age, range_age, stratum, gender, numberOfChildren, numberOfChildrenRec, race, civilStatus, scholarship, post, postRec, durationWorking, antiquity);
+    super(contractedName, origin, destiny, city, income, examType, date, patient, typeID, numberIdentification,dateOfBirth, age, range_age, stratum, gender, numberOfChildren, numberOfChildrenRec, race, civilStatus, scholarship, post, postRec, durationWorking, antiquity);
     this.riesgosFisicosRuido = riesgosFisicosRuido;
     this.riesgosFisicosIluminacion = riesgosFisicosIluminacion;
     this.riesgosFisicosVibracion = riesgosFisicosVibracion;
@@ -192,257 +192,257 @@ function insertEmo(data, sheetName, spreadsheet) {
           arrayData[7] = data[iterator];
           break;
         case 'numberIdentification':
-          arrayData[8] = data[iterator];
-          break;
-        case 'age':
           arrayData[9] = data[iterator];
           break;
-        case 'stratum':
+        case 'age':
           arrayData[11] = data[iterator];
           break;
-        case 'gender':
-          arrayData[12] = data[iterator];
-          break;
-        case 'numberOfChildren':
+        case 'stratum':
           arrayData[13] = data[iterator];
           break;
-        case 'race':
+        case 'gender':
+          arrayData[14] = data[iterator];
+          break;
+        case 'numberOfChildren':
           arrayData[15] = data[iterator];
           break;
-        case 'civilStatus':
-          arrayData[16] = data[iterator];
-          break;
-        case 'scholarship':
+        case 'race':
           arrayData[17] = data[iterator];
           break;
-        case 'post':
+        case 'civilStatus':
           arrayData[18] = data[iterator];
           break;
-        case 'durationWorking':
+        case 'scholarship':
+          arrayData[19] = data[iterator];
+          break;
+        case 'post':
           arrayData[20] = data[iterator];
           break;
-        case 'riesgosFisicosRuido':
+        case 'durationWorking':
           arrayData[22] = data[iterator];
           break;
-        case 'riesgosFisicosIluminacion':
-          arrayData[23] = data[iterator];
-          break;
-        case 'riesgosFisicosVibracion':
+        case 'riesgosFisicosRuido':
           arrayData[24] = data[iterator];
           break;
-        case 'riesgosFisicosTemperaturaExtremas':
+        case 'riesgosFisicosIluminacion':
           arrayData[25] = data[iterator];
           break;
-        case 'riesgosFisicosPresAtmosferica':
+        case 'riesgosFisicosVibracion':
           arrayData[26] = data[iterator];
           break;
-        case 'riesgosFisicosRadIonizantes':
+        case 'riesgosFisicosTemperaturaExtremas':
           arrayData[27] = data[iterator];
           break;
-        case 'riesgosFisicosRadNoIonizantes':
+        case 'riesgosFisicosPresAtmosferica':
           arrayData[28] = data[iterator];
           break;
-        case 'riesgosFisicosOtrosFisicos':
+        case 'riesgosFisicosRadIonizantes':
           arrayData[29] = data[iterator];
           break;
-        case 'riesgosBiologicosVirus':
+        case 'riesgosFisicosRadNoIonizantes':
           arrayData[30] = data[iterator];
           break;
-        case 'riesgosBiologicosBacterias':
+        case 'riesgosFisicosOtrosFisicos':
           arrayData[31] = data[iterator];
           break;
-        case 'riesgosBiologicosHongos':
+        case 'riesgosBiologicosVirus':
           arrayData[32] = data[iterator];
           break;
-        case 'riesgosBiologicosRicketsias':
+        case 'riesgosBiologicosBacterias':
           arrayData[33] = data[iterator];
           break;
-        case 'riesgosBiologicosParasitos':
+        case 'riesgosBiologicosHongos':
           arrayData[34] = data[iterator];
           break;
-        case 'riesgosBiologicosFluidos':
+        case 'riesgosBiologicosRicketsias':
           arrayData[35] = data[iterator];
           break;
-        case 'riesgosBiologicosPicaduras':
+        case 'riesgosBiologicosParasitos':
           arrayData[36] = data[iterator];
           break;
-        case 'riesgosBiologicosMordeduras':
+        case 'riesgosBiologicosFluidos':
           arrayData[37] = data[iterator];
           break;
-        case 'riesgosBiologicosOtrosBiologicos':
+        case 'riesgosBiologicosPicaduras':
           arrayData[38] = data[iterator];
           break;
-        case 'riesgosQuimicosPolvos':
+        case 'riesgosBiologicosMordeduras':
           arrayData[39] = data[iterator];
           break;
-        case 'riesgosQuimicosFibras':
+        case 'riesgosBiologicosOtrosBiologicos':
           arrayData[40] = data[iterator];
           break;
-        case 'riesgosQuimicosLiquidos':
+        case 'riesgosQuimicosPolvos':
           arrayData[41] = data[iterator];
           break;
-        case 'riesgosQuimicosGases':
+        case 'riesgosQuimicosFibras':
           arrayData[42] = data[iterator];
           break;
-        case 'riesgosQuimicosVapores':
+        case 'riesgosQuimicosLiquidos':
           arrayData[43] = data[iterator];
           break;
-        case 'riesgosQuimicosHumos':
+        case 'riesgosQuimicosGases':
           arrayData[44] = data[iterator];
           break;
-        case 'riesgosQuimicosMaterialParticulado':
+        case 'riesgosQuimicosVapores':
           arrayData[45] = data[iterator];
           break;
-        case 'riesgosQuimicosOtrosQuimicos':
+        case 'riesgosQuimicosHumos':
           arrayData[46] = data[iterator];
           break;
-        case 'riesgosPsicosGestionOrganizacional':
+        case 'riesgosQuimicosMaterialParticulado':
           arrayData[47] = data[iterator];
           break;
-        case 'riesgosPsicosCaractDelGrupo':
+        case 'riesgosQuimicosOtrosQuimicos':
           arrayData[48] = data[iterator];
           break;
-        case 'riesgosPsicosInterfasesTarea':
+        case 'riesgosPsicosGestionOrganizacional':
           arrayData[49] = data[iterator];
           break;
-        case 'riesgosPsicosCaractOrganizacion':
+        case 'riesgosPsicosCaractDelGrupo':
           arrayData[50] = data[iterator];
           break;
-        case 'riesgosPsicosCondiciones':
+        case 'riesgosPsicosInterfasesTarea':
           arrayData[51] = data[iterator];
           break;
-        case 'riesgosPsicosJornada':
+        case 'riesgosPsicosCaractOrganizacion':
           arrayData[52] = data[iterator];
           break;
-        case 'riesgosPsicosOtrosLaboral':
+        case 'riesgosPsicosCondiciones':
           arrayData[53] = data[iterator];
           break;
-        case 'riesgosBiomecanicosPostura':
+        case 'riesgosPsicosJornada':
           arrayData[54] = data[iterator];
           break;
-        case 'riesgosBiomecanicosEsfuerzo':
+        case 'riesgosPsicosOtrosLaboral':
           arrayData[55] = data[iterator];
           break;
-        case 'riesgosBiomecanicosMovRepetitivo':
+        case 'riesgosBiomecanicosPostura':
           arrayData[56] = data[iterator];
           break;
-        case 'riesgosBiomecanicosManipulacionCarga':
+        case 'riesgosBiomecanicosEsfuerzo':
           arrayData[57] = data[iterator];
           break;
-        case 'riesgosBiomecanicosOtrosBiomecanicos':
+        case 'riesgosBiomecanicosMovRepetitivo':
           arrayData[58] = data[iterator];
           break;
-        case 'condicionesDeSeguridadMecanicos':
+        case 'riesgosBiomecanicosManipulacionCarga':
           arrayData[59] = data[iterator];
           break;
-        case 'condicionesDeSeguridadElectricos':
+        case 'riesgosBiomecanicosOtrosBiomecanicos':
           arrayData[60] = data[iterator];
           break;
-        case 'condicionesDeSeguridadLocativo':
+        case 'condicionesDeSeguridadMecanicos':
           arrayData[61] = data[iterator];
           break;
-        case 'condicionesDeSeguridadTecnologico':
+        case 'condicionesDeSeguridadElectricos':
           arrayData[62] = data[iterator];
           break;
-        case 'condicionesDeSeguridadAccDeTransito':
+        case 'condicionesDeSeguridadLocativo':
           arrayData[63] = data[iterator];
           break;
-        case 'condicionesDeSeguridadPublicos':
+        case 'condicionesDeSeguridadTecnologico':
           arrayData[64] = data[iterator];
           break;
-        case 'condicionesDeSeguridadTrabajoEnAlturas':
+        case 'condicionesDeSeguridadAccDeTransito':
           arrayData[65] = data[iterator];
           break;
-        case 'condicionesDeSeguridadEspaciosConfinados':
+        case 'condicionesDeSeguridadPublicos':
           arrayData[66] = data[iterator];
           break;
-        case 'condicionesDeSeguridadOtrosDeSeguridad':
+        case 'condicionesDeSeguridadTrabajoEnAlturas':
           arrayData[67] = data[iterator];
           break;
-        case 'fenomenosNaturalesSismo':
+        case 'condicionesDeSeguridadEspaciosConfinados':
           arrayData[68] = data[iterator];
           break;
-        case 'fenomenosNaturalesTerremoto':
+        case 'condicionesDeSeguridadOtrosDeSeguridad':
           arrayData[69] = data[iterator];
           break;
-        case 'fenomenosNaturalesVendaval':
+        case 'fenomenosNaturalesSismo':
           arrayData[70] = data[iterator];
           break;
-        case 'fenomenosNaturalesInundacion':
+        case 'fenomenosNaturalesTerremoto':
           arrayData[71] = data[iterator];
           break;
-        case 'fenomenosNaturalesDerrumbe':
+        case 'fenomenosNaturalesVendaval':
           arrayData[72] = data[iterator];
           break;
-        case 'fenomenosNaturalesPrecipitaciones':
+        case 'fenomenosNaturalesInundacion':
           arrayData[73] = data[iterator];
           break;
-        case 'fenomenosNaturalesOtrosNaturales':
+        case 'fenomenosNaturalesDerrumbe':
           arrayData[74] = data[iterator];
           break;
-        case 'fechaAccidente':
+        case 'fenomenosNaturalesPrecipitaciones':
           arrayData[75] = data[iterator];
           break;
-        case 'accidentePasoEmpresa':
+        case 'fenomenosNaturalesOtrosNaturales':
           arrayData[76] = data[iterator];
           break;
-        case 'tipoAccidente':
+        case 'fechaAccidente':
           arrayData[77] = data[iterator];
           break;
-        case 'naturalezaLesion':
+        case 'accidentePasoEmpresa':
           arrayData[78] = data[iterator];
           break;
-        case 'parteAfectada':
+        case 'tipoAccidente':
           arrayData[79] = data[iterator];
           break;
-        case 'incapacidad':
+        case 'naturalezaLesion':
           arrayData[80] = data[iterator];
           break;
-        case 'secuelas':
+        case 'parteAfectada':
           arrayData[81] = data[iterator];
           break;
-        case 'nombreEnfermedad':
+        case 'incapacidad':
           arrayData[82] = data[iterator];
           break;
-        case 'etapa':
+        case 'secuelas':
           arrayData[83] = data[iterator];
           break;
-        case 'observacionesEnfermedad':
+        case 'nombreEnfermedad':
           arrayData[84] = data[iterator];
           break;
-        case 'actFisica':
+        case 'etapa':
           arrayData[85] = data[iterator];
           break;
-        case 'fuma':
+        case 'observacionesEnfermedad':
           arrayData[86] = data[iterator];
           break;
-        case 'consumoAlcohol':
+        case 'actFisica':
           arrayData[87] = data[iterator];
           break;
-        case 'peso':
+        case 'fuma':
           arrayData[88] = data[iterator];
           break;
-        case 'talla':
+        case 'consumoAlcohol':
           arrayData[89] = data[iterator];
           break;
+        case 'peso':
+          arrayData[90] = data[iterator];
+          break;
+        case 'talla':
+          arrayData[91] = data[iterator];
+          break;
         case 'tensionArterial':
-          arrayData[92] = data[iterator];
-          break;
-        case 'frecCardiaca':
-          arrayData[93] = data[iterator];
-          break;
-        case 'frecRespiratoria':
           arrayData[94] = data[iterator];
           break;
-        case 'perimetroAbdominal':
+        case 'frecCardiaca':
           arrayData[95] = data[iterator];
           break;
-        case 'lateralidad':
+        case 'frecRespiratoria':
           arrayData[96] = data[iterator];
+          break;
+        case 'perimetroAbdominal':
+          arrayData[97] = data[iterator];
+          break;
+        case 'lateralidad':
+          arrayData[98] = data[iterator];
           break;
         case 'diag':
           const diags = data[iterator];
-          let arrayDataCod = 97, arrayDataDiag = 98;
+          let arrayDataCod = 99, arrayDataDiag = 100;
           const cods = Object.keys(diags).filter(cod => cod.includes("CODIGO"));
           const diagnostics = Object.keys(diags).filter(diag => !diag.includes("CODIGO"));
 
@@ -467,17 +467,17 @@ function insertEmo(data, sheetName, spreadsheet) {
           }
           break;
         case 'observacionesDiags':
-          arrayData[117] = data[iterator];
+          arrayData[119] = data[iterator];
           break;
         case 'conceptoDeEvaluacion':
-          arrayData[118] = data[iterator];
+          arrayData[120] = data[iterator];
           break;
         case 'observacionesConcepto':
-          arrayData[119] = data[iterator];
+          arrayData[121] = data[iterator];
           break;
         case 'emphasis':
           const emphas = data[iterator];
-          let arrayDataEmp = 120, arrayDataEmpConcept = 121, arrayDataEmpObs = 122;
+          let arrayDataEmp = 122, arrayDataEmpConcept = 123, arrayDataEmpObs = 124;
           const emps = Object.keys(emphas).filter(emp => (!emp.includes("CONCEPTO") && !emp.includes("OBSERVACIONES")));
           const concepts = Object.keys(emphas).filter(concept => concept.includes("CONCEPTO"));
           const observations = Object.keys(emphas).filter(obs => obs.includes("OBSERVACIONES"));
@@ -537,7 +537,7 @@ function insertEmo(data, sheetName, spreadsheet) {
           }
           break;
         case 'recomendacionesEspecificas':
-          arrayData[147] = data[iterator];
+          arrayData[149] = data[iterator];
           break;
       }
     }
@@ -545,17 +545,19 @@ function insertEmo(data, sheetName, spreadsheet) {
     /** 
      * Calculates the IMC, N Children, ageRange and durationWorking 
      */
-    const age = ageRange(arrayData[9]);
-    arrayData[10] = age;
-    const childrens = numberChildrens(arrayData[13]);
-    arrayData[14] = childrens;
-    const working = numberWorking(arrayData[20]);
-    arrayData[21] = working;
-    const imc = imc2(arrayData[88], arrayData[89]);
-    arrayData[90] = imc[0].toFixed(2);
-    arrayData[91] = imc[1];
+    const age = ageRange(arrayData[11]);
+    arrayData[12] = age;
+    const childrens = numberChildrens(arrayData[15]);
+    arrayData[16] = childrens;
+    const working = numberWorking(arrayData[22]);
+    arrayData[23] = working;
+    const imc = imc2(arrayData[90], arrayData[91]);
+    arrayData[92] = imc[0].toFixed(2);
+    arrayData[93] = imc[1];
 
     const register = new emo(...arrayData);
+    delete register.typeID;
+    delete register.dateOfBirth;
     const response = emo.registerEmo(register, sheetName, spreadsheet);
     return response;
   } catch (error) {
