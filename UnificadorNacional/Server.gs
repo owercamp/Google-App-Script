@@ -1,6 +1,5 @@
-
 class emoGraph {
-  constructor(contractedName = "", origin = "", destiny = "", city = "", income = "", examType = "", date = "", patient = "", numberIdentification = "", age = "", range_age = "", stratum = "", gender = "", numberOfChildren = "", numberOfChildrenRec ="", race = "", civilStatus = "", scholarship = "", post = "", postRec = "", durationWorking = "", antiquity = "") {
+  constructor(contractedName = "", origin = "", destiny = "", city = "", income = "", examType = "", date = "", patient = "",typeID = "", numberIdentification = "", dateOfBirth = "", age = "", range_age = "", stratum = "", gender = "", numberOfChildren = "", numberOfChildrenRec = "", race = "", civilStatus = "", scholarship = "", post = "", postRec = "", durationWorking = "", antiquity = "") {
     this.contractedName = contractedName; // CONTRATO
     this.origin = origin; // ORIGEN
     this.destiny = destiny; // DESTINO
@@ -9,7 +8,9 @@ class emoGraph {
     this.examType = examType; // TIPO EXAMEN
     this.date = date; // FECHA
     this.patient = patient; // PACIENTE
+    this.typeID = typeID; // TIPO IDENTIFICACION
     this.numberIdentification = numberIdentification; // NUMERO DE IDENTIFICACION
+    this.dateOfBirth = dateOfBirth; // FECHA DE NACIMIENTO
     this.age = age; // EDAD
     this.range_age = range_age; // RANGO EDAD
     this.stratum = stratum; // ESTRATO
@@ -83,9 +84,13 @@ function insertData(data) {
         case "osteometry":
           for (const osteo of information[iterator]) {
             const response = insertOsteo(osteo, "OSTEO", spreadsheet);
-            Logger.log(response);
           }
           break;
+        case 'complementary':
+          for (const complementary of information[iterator]) {
+            const response = insertComplementary(complementary, spreadsheet);
+            Logger.log(response);
+          }
       }
     }
     return keys;
