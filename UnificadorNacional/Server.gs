@@ -88,8 +88,7 @@ function insertData(data) {
           break;
         case 'complementary':
           for (const complementary of information[iterator]) {
-            const response = insertComplementary(complementary, spreadsheet);
-            Logger.log(response);
+            const response = insertComplementary(complementary,"COMPLEMENTARIOS" ,spreadsheet);
           }
       }
     }
