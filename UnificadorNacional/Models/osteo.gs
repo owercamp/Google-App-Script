@@ -1,8 +1,8 @@
 class osteo extends emoGraph {
   constructor(
-    contractedName = "", origin = "", destiny = "", city = "", income = "", examType = "", date = "", patient = "", numberIdentification = "", age = "", range_age = "", stratum = "", gender = "", numberOfChildren = "", numberOfChildrenRec = "", race = "", civilStatus = "", scholarship = "", post = "", postRec = "", durationWorking = "", antiquity = "", cervicalgia = 0, cervicalgiaObs = "NO REFIERE", epicondilitis = 0, epicondilitisObs = "NO REFIERE", lumbalgia = 0, lumbalgiaObs = "NO REFIERE", sTunelCarpo = 0, sTunelCarpoObs = "NO REFIERE", fracturas = 0, fracturasObs = "NO REFIERE", tendinitis = 0, tendinitisObs = "NO REFIERE", lesionEnMeniscos = 0, lesionEnMeniscosObs = "NO REFIERE", esguinces = 0, esguincesObs = "NO REFIERE", hombroDoloroso = 0, hombroDolorosoObs = "NO REFIERE", radiculopatia = 0, radiculopatiaObs = "NO REFIERE", bursitis = 0, bursitisObs = "NO REFIERE", artrosis = 0, artrosisObs = "NO REFIERE", escoliosis = 0, escoliosisObs = "NO REFIERE", retraccionesMusculares = 0, retraccionesMuscularesObs = "NO REFIERE", malformaciones = 0, malformacionesObs = "NO REFIERE", discopatias = 0, discopatiasObs = "NO REFIERE", fibromalgia = 0, fibromalgiaObs = "NO REFIERE", otrosAntOsteomusculares = "NO REFIERE", peso = "", talla = "", diagPpal = "EXAMEN DE SALUD OCUPACIONAL", diagPpalObs = "", diagRel1 = 0, diagRel2 = 0, diagRel3 = 0, recPersActFisicaCardio3xSemana = 0, recPersFort15Repeticiones3Series = 0, recPersEjercEstiramiento20Seg = 0, recPersAutocuidado = 0, recPersSeguimientoMedico = 0, recOcupSvePrevensionLesiones = 0, recOcupManipulacionDeCarga = 0, recOcupPausasActivas = 0, recOcupAnalisisErgonomicos = 0, recOcupEvidarPosturasForzadas = 0, recomOcupacionales = "", recomGrales = ""
+    contractedName = "", origin = "", destiny = "", city = "", income = "", examType = "", date = "", patient = "", typeID = "", numberIdentification = "", dateOfBirth = "", age = "", range_age = "", stratum = "", gender = "", numberOfChildren = "", numberOfChildrenRec = "", race = "", civilStatus = "", scholarship = "", post = "", postRec = "", durationWorking = "", antiquity = "", cervicalgia = 0, cervicalgiaObs = "NO REFIERE", epicondilitis = 0, epicondilitisObs = "NO REFIERE", lumbalgia = 0, lumbalgiaObs = "NO REFIERE", sTunelCarpo = 0, sTunelCarpoObs = "NO REFIERE", fracturas = 0, fracturasObs = "NO REFIERE", tendinitis = 0, tendinitisObs = "NO REFIERE", lesionEnMeniscos = 0, lesionEnMeniscosObs = "NO REFIERE", esguinces = 0, esguincesObs = "NO REFIERE", hombroDoloroso = 0, hombroDolorosoObs = "NO REFIERE", radiculopatia = 0, radiculopatiaObs = "NO REFIERE", bursitis = 0, bursitisObs = "NO REFIERE", artrosis = 0, artrosisObs = "NO REFIERE", escoliosis = 0, escoliosisObs = "NO REFIERE", retraccionesMusculares = 0, retraccionesMuscularesObs = "NO REFIERE", malformaciones = 0, malformacionesObs = "NO REFIERE", discopatias = 0, discopatiasObs = "NO REFIERE", fibromalgia = 0, fibromalgiaObs = "NO REFIERE", otrosAntOsteomusculares = "NO REFIERE", peso = "", talla = "", diagPpal = "EXAMEN DE SALUD OCUPACIONAL", diagPpalObs = "", diagRel1 = 0, diagRel2 = 0, diagRel3 = 0, recPersActFisicaCardio3xSemana = 0, recPersFort15Repeticiones3Series = 0, recPersEjercEstiramiento20Seg = 0, recPersAutocuidado = 0, recPersSeguimientoMedico = 0, recOcupSvePrevensionLesiones = 0, recOcupManipulacionDeCarga = 0, recOcupPausasActivas = 0, recOcupAnalisisErgonomicos = 0, recOcupEvidarPosturasForzadas = 0, recomOcupacionales = "", recomGrales = ""
   ) {
-    super(contractedName, origin, destiny, city, income, examType, date, patient, numberIdentification, age, range_age, stratum, gender, numberOfChildren, numberOfChildrenRec, race, civilStatus, scholarship, post, postRec, durationWorking, antiquity);
+    super(contractedName, origin, destiny, city, income, examType, date, patient, typeID, numberIdentification, dateOfBirth, age, range_age, stratum, gender, numberOfChildren, numberOfChildrenRec, race, civilStatus, scholarship, post, postRec, durationWorking, antiquity);
     this.cervicalgia = cervicalgia;
     this.cervicalgiaObs = cervicalgiaObs;
     this.epicondilitis = epicondilitis;
@@ -117,203 +117,205 @@ function insertOsteo(data, sheetName, spreadsheet) {
           arrayData[7] = data[iterator];
           break;
         case 'numberIdentification':
-          arrayData[8] = data[iterator];
-          break;
-        case 'age':
           arrayData[9] = data[iterator];
           break;
-        case 'stratum':
+        case 'age':
           arrayData[11] = data[iterator];
           break;
+        case 'stratum':
+          arrayData[13] = data[iterator];
+          break;
         case 'gender':
-          arrayData[12] = data[iterator];
+          arrayData[14] = data[iterator];
           break;
         case 'race':
-          arrayData[15] = data[iterator];
-          break;
-        case 'scholarship':
           arrayData[17] = data[iterator];
           break;
-        case 'post':
-          arrayData[18] = data[iterator];
+        case 'scholarship':
+          arrayData[19] = data[iterator];
           break;
-        case 'durationWorking':
+        case 'post':
           arrayData[20] = data[iterator];
           break;
-        case 'cervicalgia':
+        case 'durationWorking':
           arrayData[22] = data[iterator];
           break;
-        case 'cervicalgiaObs':
-          arrayData[23] = data[iterator];
-          break;
-        case 'epicondilitis':
+        case 'cervicalgia':
           arrayData[24] = data[iterator];
           break;
-        case 'epicondilitisObs':
+        case 'cervicalgiaObs':
           arrayData[25] = data[iterator];
           break;
-        case 'lumbalgia':
+        case 'epicondilitis':
           arrayData[26] = data[iterator];
           break;
-        case 'lumbalgiaObs':
+        case 'epicondilitisObs':
           arrayData[27] = data[iterator];
           break;
-        case 'sTunelCarpo':
+        case 'lumbalgia':
           arrayData[28] = data[iterator];
           break;
-        case 'sTunelCarpoObs':
+        case 'lumbalgiaObs':
           arrayData[29] = data[iterator];
           break;
-        case 'fracturas':
+        case 'sTunelCarpo':
           arrayData[30] = data[iterator];
           break;
-        case 'fracturasObs':
+        case 'sTunelCarpoObs':
           arrayData[31] = data[iterator];
           break;
-        case 'tendinitis':
+        case 'fracturas':
           arrayData[32] = data[iterator];
           break;
-        case 'tendinitisObs':
+        case 'fracturasObs':
           arrayData[33] = data[iterator];
           break;
-        case 'lesionEnMeniscos':
+        case 'tendinitis':
           arrayData[34] = data[iterator];
           break;
-        case 'lesionEnMeniscosObs':
+        case 'tendinitisObs':
           arrayData[35] = data[iterator];
           break;
-        case 'esguinces':
+        case 'lesionEnMeniscos':
           arrayData[36] = data[iterator];
           break;
-        case 'esguincesObs':
+        case 'lesionEnMeniscosObs':
           arrayData[37] = data[iterator];
           break;
-        case 'hombroDoloroso':
+        case 'esguinces':
           arrayData[38] = data[iterator];
           break;
-        case 'hombroDolorosoObs':
+        case 'esguincesObs':
           arrayData[39] = data[iterator];
           break;
-        case 'radiculopatia':
+        case 'hombroDoloroso':
           arrayData[40] = data[iterator];
           break;
-        case 'radiculopatiaObs':
+        case 'hombroDolorosoObs':
           arrayData[41] = data[iterator];
           break;
-        case 'bursitis':
+        case 'radiculopatia':
           arrayData[42] = data[iterator];
           break;
-        case 'bursitisObs':
+        case 'radiculopatiaObs':
           arrayData[43] = data[iterator];
           break;
-        case 'artrosis':
+        case 'bursitis':
           arrayData[44] = data[iterator];
           break;
-        case 'artrosisObs':
+        case 'bursitisObs':
           arrayData[45] = data[iterator];
           break;
-        case 'escoliosis':
+        case 'artrosis':
           arrayData[46] = data[iterator];
           break;
-        case 'escoliosisObs':
+        case 'artrosisObs':
           arrayData[47] = data[iterator];
           break;
-        case 'retraccionesMusculares':
+        case 'escoliosis':
           arrayData[48] = data[iterator];
           break;
-        case 'retraccionesMuscularesObs':
+        case 'escoliosisObs':
           arrayData[49] = data[iterator];
           break;
-        case 'malformaciones':
+        case 'retraccionesMusculares':
           arrayData[50] = data[iterator];
           break;
-        case 'malformacionesObs':
+        case 'retraccionesMuscularesObs':
           arrayData[51] = data[iterator];
           break;
-        case 'discopatias':
+        case 'malformaciones':
           arrayData[52] = data[iterator];
           break;
-        case 'discopatiasObs':
+        case 'malformacionesObs':
           arrayData[53] = data[iterator];
           break;
-        case 'fibromalgia':
+        case 'discopatias':
           arrayData[54] = data[iterator];
           break;
-        case 'fibromalgiaObs':
+        case 'discopatiasObs':
           arrayData[55] = data[iterator];
           break;
-        case 'otrosAntOsteomusculares':
+        case 'fibromalgia':
           arrayData[56] = data[iterator];
           break;
-        case 'peso':
+        case 'fibromalgiaObs':
           arrayData[57] = data[iterator];
           break;
-        case 'talla':
+        case 'otrosAntOsteomusculares':
           arrayData[58] = data[iterator];
           break;
+        case 'peso':
+          arrayData[59] = data[iterator];
+          break;
+        case 'talla':
+          arrayData[60] = data[iterator];
+          break;
         case 'diagPpal':
-          arrayData[61] = data[iterator];
-          break;
-        case 'diagPpalObs':
-          arrayData[62] = data[iterator];
-          break;
-        case 'diagRel1':
           arrayData[63] = data[iterator];
           break;
-        case 'diagRel2':
+        case 'diagPpalObs':
           arrayData[64] = data[iterator];
           break;
-        case 'diagRel3':
+        case 'diagRel1':
           arrayData[65] = data[iterator];
           break;
-        case 'recPersActFisicaCardio3xSemana':
+        case 'diagRel2':
           arrayData[66] = data[iterator];
           break;
-        case 'recPersFort15Repeticiones3Series':
+        case 'diagRel3':
           arrayData[67] = data[iterator];
           break;
-        case 'recPersEjercEstiramiento20Seg':
+        case 'recPersActFisicaCardio3xSemana':
           arrayData[68] = data[iterator];
           break;
-        case 'recPersAutocuidado':
+        case 'recPersFort15Repeticiones3Series':
           arrayData[69] = data[iterator];
           break;
-        case 'recPersSeguimientoMedico':
+        case 'recPersEjercEstiramiento20Seg':
           arrayData[70] = data[iterator];
           break;
-        case 'recOcupSvePrevensionLesiones':
+        case 'recPersAutocuidado':
           arrayData[71] = data[iterator];
           break;
-        case 'recOcupManipulacionDeCarga':
+        case 'recPersSeguimientoMedico':
           arrayData[72] = data[iterator];
           break;
-        case 'recOcupPausasActivas':
+        case 'recOcupSvePrevensionLesiones':
           arrayData[73] = data[iterator];
           break;
-        case 'recOcupAnalisisErgonomicos':
+        case 'recOcupManipulacionDeCarga':
           arrayData[74] = data[iterator];
           break;
-        case 'recOcupEvidarPosturasForzadas':
+        case 'recOcupPausasActivas':
           arrayData[75] = data[iterator];
           break;
-        case 'recomOcupacionales':
+        case 'recOcupAnalisisErgonomicos':
           arrayData[76] = data[iterator];
           break;
-        case 'recomGrales':
+        case 'recOcupEvidarPosturasForzadas':
           arrayData[77] = data[iterator];
+          break;
+        case 'recomOcupacionales':
+          arrayData[78] = data[iterator];
+          break;
+        case 'recomGrales':
+          arrayData[79] = data[iterator];
           break;
       }
     }
 
-    const age = ageRange(arrayData[9]);
-    arrayData[10] = age;
-    const working = workingRange(arrayData[20]);
-    arrayData[21] = working;
-    const imc = imc2(arrayData[57], arrayData[58]);
-    arrayData[59] = imc[0].toFixed(2);
-    arrayData[60] = imc[1];
+    const age = ageRange(arrayData[11]);
+    arrayData[12] = age;
+    const working = workingRange(arrayData[22]);
+    arrayData[23] = working;
+    const imc = imc2(arrayData[59], arrayData[60]);
+    arrayData[61] = imc[0].toFixed(2);
+    arrayData[62] = imc[1];
 
     const register = new osteo(...arrayData);
+    delete register.typeID;
+    delete register.dateOfBirth;
     delete register.stratum;
     delete register.numberOfChildren;
     delete register.numberOfChildrenRec;
