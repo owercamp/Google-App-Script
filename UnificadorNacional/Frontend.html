@@ -1535,7 +1535,10 @@
         }
       }
 
-      if (Object.entries(osteo).length > 0) {
+      if (Object.entries(osteo).length > 0 && (
+        ![undefined, ""].includes(osteo.recomOcupacionales) ||
+        ![undefined, ""].includes(osteo.recomGrales)
+      )) {
         const socio_emography = informationSocioEmography(data);
 
         const osteoInformation = {
@@ -1595,7 +1598,10 @@
         }
       }
 
-      if (Object.entries(complement).length > 0) {
+      if (Object.entries(complement).length > 0 && (
+        ![undefined, ""].includes(complement.procedimiento) ||
+        ![undefined, ""].includes(complement.fechaDeNacimiento)
+      )) {
         const socio_emography = informationSocioEmography(data);
 
         const supplemental = {
@@ -1782,19 +1788,28 @@
                 break;
             }
           case "ALCOHOL":
-            if (Object.keys(insomnia).includes("DIFICULTAD_PARA_MANTENER_EL_SUEÑO") || Object.keys(insomnia).includes("DIFICULTAD_PARA_QUEDARSE_DORMIDO(A)") || Object.keys(insomnia).includes("PROBLEMAS_PARA_DESPERTAR_MUY_TEMPRANO") || Object.keys(insomnia).includes("QUE_TAN_SATISFECHO(A)_/_INSATISFECHO(A)_SE_ENCUENTRA_CON_SU_PATRON_DE_SUEÑO_ACTUAL")) {
+            if (
+              Object.keys(insomnia).includes(["DIFICULTAD_PARA_MANTENER_EL_SUEÑO", "DIFICULTAD_PARA_QUEDARSE_DORMIDO(A)", "PROBLEMAS_PARA_DESPERTAR_MUY_TEMPRANO", "QUE_TAN_SATISFECHO(A)_/_INSATISFECHO(A)_SE_ENCUENTRA_CON_SU_PATRON_DE_SUEÑO_ACTUAL"])
+            ) {
               insomnia.alcohol = (data[element] !== undefined) ? data[element].toUpperCase() : "";
             }
             break;
           case "RESULTADO":
-            if (Object.keys(insomnia).includes("DIFICULTAD_PARA_MANTENER_EL_SUEÑO") || Object.keys(insomnia).includes("DIFICULTAD_PARA_QUEDARSE_DORMIDO(A)") || Object.keys(insomnia).includes("PROBLEMAS_PARA_DESPERTAR_MUY_TEMPRANO") || Object.keys(insomnia).includes("QUE_TAN_SATISFECHO(A)_/_INSATISFECHO(A)_SE_ENCUENTRA_CON_SU_PATRON_DE_SUEÑO_ACTUAL")) {
+            if (
+              Object.keys(insomnia).includes(["DIFICULTAD_PARA_MANTENER_EL_SUEÑO", "DIFICULTAD_PARA_QUEDARSE_DORMIDO(A)", "PROBLEMAS_PARA_DESPERTAR_MUY_TEMPRANO", "QUE_TAN_SATISFECHO(A)_/_INSATISFECHO(A)_SE_ENCUENTRA_CON_SU_PATRON_DE_SUEÑO_ACTUAL"])
+            ) {
               insomnia.resultado = (data[element] !== undefined) ? data[element].toUpperCase() : "";
             }
             break;
         }
       }
 
-      if (Object.entries(insomnia).length > 0) {
+      if (Object.entries(insomnia).length > 0 && (
+        ![undefined, ""].includes(insomnia.dificultadParaQuedarseDormido) ||
+        ![undefined, ""].includes(insomnia.dificultadParaMantenerElSueño) ||
+        ![undefined, ""].includes(insomnia.problemasParaDespertarMuyTemprano) ||
+        ![undefined, ""].includes(insomnia.insatisfechoSeEncuentraConSuPatronDeSueno)
+      )) {
         const socio_emography = informationSocioEmography(data);
 
         const insomniaTestInformation = {
