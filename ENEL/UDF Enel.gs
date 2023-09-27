@@ -16,25 +16,25 @@ function FRAMINGHAM(age, cholesterol, hdl, bloodPressure, smoking, diabetes, sex
     return "";
   }
   if (["", "#N/A"].includes(age)) {
-    return `El valor ${age} para la edad no esta permitido y es requeridos!`;
+    return `El valor ${(age == "") ? "VACIO" : age} para la edad no esta permitido y es requeridos!`;
   }
   if (["", "#N/A"].includes(cholesterol)) {
-    return `El valor ${cholesterol} para el colesterol no esta permitido y es requeridos!`;
+    return `El valor ${(cholesterol == "") ? "VACIO" : cholesterol} para el colesterol no esta permitido y es requeridos!`;
   }
   if (["", "#N/A"].includes(hdl)) {
-    return `El valor ${hdl} para el HDL no esta permitido y es requeridos!`;
+    return `El valor ${(hdl == "") ? "VACIO" : hdl} para el HDL no esta permitido y es requeridos!`;
   }
   if (["", "#N/A"].includes(bloodPressure)) {
-    return `El valor ${bloodPressure} para la tensión arterial no esta permitido y es requeridos!`;
+    return `El valor ${(bloodPressure == "") ? "VACIO" : bloodPressure} para la tensión arterial no esta permitido y es requeridos!`;
   }
   if (["", "#N/A"].includes(smoking)) {
-    return `El valor ${smoking} para fumar no esta permitido y es requeridos!`;
+    return `El valor ${(smoking == "") ? "VACIO" : smoking} para fumar no esta permitido y es requeridos!`;
   }
   if (["", "#N/A"].includes(diabetes)) {
-    return `El valor ${diabetes} para la diabetes no esta permitido y es requeridos!`;
+    return `El valor ${(diabetes == "") ? "VACIO" : diabetes} para la diabetes no esta permitido y es requeridos!`;
   }
   if (["", "#N/A"].includes(sex)) {
-    return `El valor ${sex} para el sexo no esta permitido y es requeridos!`;
+    return `El valor ${(sex == "") ? "VACIO" : sex} para el sexo no esta permitido y es requeridos!`;
   }
 
   const tmpSystolic = parseInt(bloodPressure.toString().split("/")[0]);
@@ -515,22 +515,22 @@ function SINDROME_METABOLICO(sex, bloodPressure, abdominalPerimeter, hdl, trigly
     return "";
   }
   if (["", "#N/A"].includes(sex)) {
-    return `El valor ${sex} para el sexo no esta permitido y es requeridos!`;
+    return `El valor ${(sex == "") ? "VACIO" : sex} para el sexo no esta permitido y es requeridos!`;
   }
   if (["", "#N/A"].includes(bloodPressure)) {
-    return `El valor ${bloodPressure} para la tensión arterial no esta permitido y es requeridos!`;
+    return `El valor ${(bloodPressure == "") ? "VACIO" : bloodPressure} para la tensión arterial no esta permitido y es requeridos!`;
   }
   if (["", "#N/A"].includes(abdominalPerimeter)) {
-    return `El valor ${abdominalPerimeter} para el perimetro abdominal no esta permitido y es requeridos!`;
+    return `El valor ${(abdominalPerimeter == "") ? "VACIO" : abdominalPerimeter} para el perimetro abdominal no esta permitido y es requeridos!`;
   }
   if (["", "#N/A"].includes(hdl)) {
-    return `El valor ${hdl} para el HDL no esta permitido y es requeridos!`;
+    return `El valor ${(hdl == "") ? "VACIO" : hdl} para el HDL no esta permitido y es requeridos!`;
   }
   if (["", "#N/A"].includes(triglycerides)) {
-    return `El valor ${triglycerides} para los triglicéridos no esta permitido y es requeridos!`;
+    return `El valor ${(triglycerides == "") ? "VACIO" : triglycerides} para los triglicéridos no esta permitido y es requeridos!`;
   }
   if (["", "#N/A"].includes(glycemia)) {
-    return `El valor ${glycemia} para la glicemia no esta permitido y es requeridos!`;
+    return `El valor ${(glycemia == "") ? "VACIO" : glycemia} para la glicemia no esta permitido y es requeridos!`;
   }
 
   const systolic = (bloodPressure.toString().split("/")[0] >= 130) ? 1 : 0;
@@ -567,7 +567,7 @@ function SINDROME_METABOLICO(sex, bloodPressure, abdominalPerimeter, hdl, trigly
   }
 
   if ((triglyceridesMet + glycemiaMet + bloodPressureMet + abdominalPerimeterMet + hdlMet) >= 3) {
-    return `Presenta SINDROME METABOLICO con alteraciones en: ${msg.toString().replaceAll(",",", ")}`;
+    return `Presenta SINDROME METABOLICO con alteraciones en: ${msg.toString().replaceAll(",", ", ")}`;
   }
   return `Sin Alteraciones`;
 }
@@ -580,25 +580,25 @@ function SINDROME_METABOLICO(sex, bloodPressure, abdominalPerimeter, hdl, trigly
  * @return {string} The level of arterogenicity.
  * @customfunction
  */
-function ARTEROGENICO(cholesterol,hdl) {
+function ARTEROGENICO(cholesterol, hdl) {
 
   if (cholesterol === "" || hdl === "") {
     return "";
   }
   if (["", "#N/A"].includes(cholesterol)) {
-    return `El valor ${cholesterol} para el colesterol no esta permitido y es requeridos!`;
+    return `El valor ${(cholesterol == "") ? "VACIO" : cholesterol} para el colesterol no esta permitido y es requeridos!`;
   }
   if (["", "#N/A"].includes(hdl)) {
-    return `El valor ${hdl} para el HDL no esta permitido y es requeridos!`;
+    return `El valor ${(hdl == "") ? "VACIO" : hdl} para el HDL no esta permitido y es requeridos!`;
   }
-  
+
   const result = parseFloat(cholesterol / hdl).toFixed(2);
-  
+
   if (result < 3.5) {
     return `${result} Minino`;
-  }else if (result >= 3.5 && result <= 4.5) {
+  } else if (result >= 3.5 && result <= 4.5) {
     return `${result} Moderado`;
-  }else if (result >= 4.5) {
-    return `${result} Maximo`;    
+  } else if (result >= 4.5) {
+    return `${result} Maximo`;
   }
 }
