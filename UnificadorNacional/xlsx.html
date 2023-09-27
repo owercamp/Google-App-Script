@@ -25,7 +25,7 @@
       const data = event.target.result;
       const workbook = XLSX.read(data, { type: 'binary' });
       const numberSheets = workbook.SheetNames.length;
-      const resultEmo = [], resultAudio = [], resultOpto = [], resultVisio = [], resultSpiro = [], resultOsteo = [], resultComplementary = [], resultPsychology = [], resultPsychosensometric = [];
+      const resultEmo = [], resultAudio = [], resultOpto = [], resultVisio = [], resultSpiro = [], resultOsteo = [], resultComplementary = [], resultPsychology = [], resultPsychosensometric = [], resultInsomnia = [];
 
       for (let x = 0; x < numberSheets; x++) {
         try {
@@ -110,6 +110,10 @@
                     if (psychosensome) {
                       resultPsychosensometric.push(psychosensome);
                     }
+                    const insomnia = insomniaTest(obj);
+                    if (insomnia) {
+                      resultInsomnia.push(insomnia);
+                    }
                   }
                 }
               }
@@ -148,6 +152,9 @@
           }
           if (resultPsychosensometric.length > 0) {
             informationPatient.psychosensometric = resultPsychosensometric;
+          }
+          if (resultInsomnia.length > 0) {
+            informationPatient.testInsomnia = resultInsomnia;
           }
 
         } catch (err) {
