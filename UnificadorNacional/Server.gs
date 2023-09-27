@@ -90,6 +90,12 @@ function insertData(data) {
           for (const complementary of information[iterator]) {
             const response = insertComplementary(complementary,"COMPLEMENTARIOS" ,spreadsheet);
           }
+          break;
+        case 'testInsomnia':
+          for (const insomnia of information[iterator]) {
+            const response = insertInsomnia(insomnia,"TEST DE INSOMNIO",spreadsheet);
+            Logger.log(response);
+          }
       }
     }
     return keys;
