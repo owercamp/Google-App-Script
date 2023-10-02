@@ -602,3 +602,151 @@ function ARTEROGENICO(cholesterol, hdl) {
     return `${result} Maximo`;
   }
 }
+
+/**
+ * A description of the entire function.
+ *
+ * @return {Promise<void>} - A promise that resolves when the function completes.
+ */
+async function TODO() {
+
+  const book = await CopyBook();
+  const exported = await TransponerYReemplazarFormulas(book);
+  await GenerarEnlace(book);
+  // await ExportSpecificBook();
+  /*   if (exported === "Success") {
+      await EliminarLibroEnDrive(book);
+    } */
+}
+
+/**
+ * Creates a copy of the active spreadsheet in Google Drive.
+ *
+ * @return {string} The ID of the copied spreadsheet.
+ */
+function CopyBook() {
+  let libroActivo = SpreadsheetApp.getActiveSpreadsheet();
+  // Crear una copia del libro activo en Google Drive
+  let copiaLibro = DriveApp.getFileById(libroActivo.getId()).makeCopy();
+  // return el id del libro
+  return copiaLibro.getId();
+}
+
+/**
+ * Transponer y reemplazar fórmulas en una hoja de cálculo.
+ *
+ * @param {string} id - El ID de la hoja de cálculo.
+ * @return {void} No devuelve ningún valor.
+ */
+function TransponerYReemplazarFormulas(id) {
+  // Obtén el libro por su ID
+  var libro = SpreadsheetApp.openById(id);
+
+  // Selecciona la hoja por su nombre
+  var hoja = libro.getSheetByName("RCV-2023");
+
+  // Define el rango en A1Notation (X5:Z)
+  var rangoA1Notation = "X5:Z" + hoja.getLastRow();
+
+  let valores = hoja.getRange(rangoA1Notation).getValues();
+  let dataText = [];
+
+  // Inicializa dataText como un array bidimensional
+  for (var i = 0; i < valores.length; i++) {
+    dataText[i] = [];
+  }
+
+  for (var num = 0; num < valores.length; num++) {
+    dataText[num][0] = valores[num][0].toString();
+    dataText[num][1] = valores[num][1].toString();
+    dataText[num][2] = valores[num][2].toString();
+  }
+
+  hoja.getRange(rangoA1Notation).setValues(dataText);
+}
+
+/**
+ * Generates a link to open and download a book from a given ID.
+ *
+ * @param {string} id - The ID of the book.
+ * @return {void} This function does not return a value.
+ */
+function GenerarEnlace(id) {
+  // obtenemos el libro
+  var libro = SpreadsheetApp.openById(id);
+
+  // Obtiene la URL del libro
+  var urlLibro = libro.getUrl();
+
+  // Crea una página HTML de salida con el enlace y un botón
+  // Creamos un enlace de descarga y mostramos una ventana modal con el enlace
+  var htmlOutput = HtmlService.createHtmlOutput(`<div style="width: 100%; display: flex; justify-content: center"><a href="${urlLibro}" target="_blank"><button style="padding: 0.5rem; background: rgba(51, 36, 172, 0.5); color: white;">Abrir Libro para Descargar</button></a></div>`)
+    .setWidth(200)
+    .setHeight(50);
+
+  SpreadsheetApp.getUi().showModalDialog(htmlOutput, `${libro.getName()}`);
+}
+
+/**
+ * Export a specific book from the active spreadsheet.
+ *
+ * @return {string} Returns "Success" if the export is successful.
+ */
+function ExportSpecificBook() {
+  var spreadsheet = SpreadsheetApp.getActiveSpreadsheet(); // Abre la hoja de cálculo específica usando su ID
+  var exportUrl = 'https://docs.google.com/spreadsheets/d/' + spreadsheet.getId() + '/export?exportFormat=xlsx&format=xlsx'; // URL para exportar a formato XLSX
+
+  // Hacemos la petición para pedir el fichero exportado
+  var response = UrlFetchApp.fetch(exportUrl, { muteHttpExceptions: true, headers: { Authorization: 'Bearer ' + ScriptApp.getOAuthToken() } });
+
+  // Creamos el fichero con el binario que nos devuelve la petición anterior
+  var blob = response.getBlob();
+  blob = blob.setName(spreadsheet.getName() + '.xlsx'); // Establece el nombre del archivo
+
+  // Convertimos el blob a base64
+  var blobData = Utilities.base64Encode(blob.getBytes());
+
+  // Creamos un enlace de descarga y mostramos una ventana modal con el enlace
+  var htmlOutput = HtmlService.createHtmlOutput('<a href="data:application/octet-stream;base64,' + blobData + '" download="' + blob.getName() + '"><button>Descargar archivo</button></a>')
+    .setWidth(300)
+    .setHeight(50);
+
+  SpreadsheetApp.getUi().showModalDialog(htmlOutput, 'Descargar Archivo');
+
+  return "Success";
+
+}
+
+/**
+ * Deletes a book in Drive.
+ *
+ * @param {string} libroId - The ID of the book to be deleted.
+ * @return {string} - Returns "Success" if the book was deleted successfully.
+ */
+function EliminarLibroEnDrive(libroId) {
+
+  var file = DriveApp.getFileById(libroId);
+  file.setTrashed(true);
+
+  return "Success";
+}
+
+/**
+ * Executes when the spreadsheet is opened.
+ *
+ * @param {Object} e - The event object.
+ */
+function onOpen(e) {
+  try {
+    const menu = SpreadsheetApp.getUi().createMenu('ADMINISTRACIÓN ENEL');
+    const recipients = {
+      'Exporte Libro': 'TODO',
+    };
+    for (const [name, recipient] of Object.entries(recipients)) {
+      menu.addItem(name, recipient);
+    }
+    menu.addToUi();
+  } catch (error) {
+    Logger.log(`${error.name}: ${error.message}`);
+  }
+}
