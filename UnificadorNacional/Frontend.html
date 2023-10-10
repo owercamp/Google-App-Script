@@ -29,7 +29,8 @@
           case 'CIUDAD':
             sociography.city = (data[element].trim()) ? data[element].trim() : ""; /** Ciudad **/
             break;
-          case 'INGRESO', 'NUMERO_DE_FACTURA':
+          case 'INGRESO':
+          case 'NUMERO_DE_FACTURA':
             sociography.income = (data[element]) ? data[element] : ""; /** Ingreso **/
             break;
           case 'TIPO_EXAMEN':
@@ -939,52 +940,68 @@
           case "CABEZA_-_PUPILAS_OBS":
             visio.cabezaPupillasObs = (data[element] !== undefined) ? data[element].toUpperCase() : "SIN HALLAZGOS"; /** Cabecera Pupillas Obs **/
             break;
-          case "IMP/DIAG_VL_OD_NORMAL", "IMP/DIAG_VL0OD_NORMAL":
+          case "IMP/DIAG_VL_OD_NORMAL":
+          case "IMP/DIAG_VL0OD_NORMAL":
             visio.impVlOdNormal = data[element]; /** Imp Vl Od Normal **/
             break;
-          case "IMP/DIAG_VL_OI_NORMAL", "IMP/DIAG_VL0OI_NORMAL":
+          case "IMP/DIAG_VL_OI_NORMAL":
+          case "IMP/DIAG_VL0OI_NORMAL":
             visio.impVlOiNormal = data[element]; /** Imp Vl Od Normal **/
             break;
-          case "IMP/DIAG_VP_OD_NORMAL", "IMP/DIAG_VP0OD_NORMAL":
+          case "IMP/DIAG_VP_OD_NORMAL":
+          case "IMP/DIAG_VP0OD_NORMAL":
             visio.impVpOdNormal = data[element]; /** Imp Vp Od Normal **/
             break;
-          case "IMP/DIAG_VP_OI_NORMAL", "IMP/DIAG_VP0OI_NORMAL":
+          case "IMP/DIAG_VP_OI_NORMAL":
+          case "IMP/DIAG_VP0OI_NORMAL":
             visio.impVpOiNormal = data[element]; /** Imp Vp Od Normal **/
             break;
-          case "IMP/DIAG_VL_OD_DISMINUIDO", "IMP/DIAG_VL0OD_DISMINUIDO":
+          case "IMP/DIAG_VL_OD_DISMINUIDO":
+          case "IMP/DIAG_VL0OD_DISMINUIDO":
             visio.impVlOdDisminuido = data[element]; /** Imp Vl Od Disminuido **/
             break;
-          case "IMP/DIAG_VL_OI_DISMINUIDO", "IMP/DIAG_VL0OI_DISMINUIDO":
+          case "IMP/DIAG_VL_OI_DISMINUIDO":
+          case "IMP/DIAG_VL0OI_DISMINUIDO":
             visio.impVlOiDisminuido = data[element]; /** Imp Vl Od Disminuido **/
             break;
-          case "IMP/DIAG_VP_OD_DISMINUIDO", "IMP/DIAG_VP0OD_DISMINUIDO":
+          case "IMP/DIAG_VP_OD_DISMINUIDO":
+          case "IMP/DIAG_VP0OD_DISMINUIDO":
             visio.impVpOdDisminuido = data[element]; /** Imp Vp Od Disminuido **/
             break;
-          case "IMP/DIAG_VP_OI_DISMINUIDO", "IMP/DIAG_VP0OI_DISMINUIDO":
+          case "IMP/DIAG_VP_OI_DISMINUIDO":
+          case "IMP/DIAG_VP0OI_DISMINUIDO":
             visio.impVpOiDisminuido = data[element]; /** Imp Vp Od Disminuido **/
             break;
-          case "IMP/DIAG_VL_OD_NORMAL_RX", "IMP/DIAG_VL0OD_NORMAL_RX":
+          case "IMP/DIAG_VL_OD_NORMAL_RX":
+          case "IMP/DIAG_VL0OD_NORMAL_RX":
             visio.impVlOdNormalRx = data[element]; /** Imp Vl Od Normal Rx **/
             break;
-          case "IMP/DIAG_VL_OI_NORMAL_RX", "IMP/DIAG_VL0OI_NORMAL_RX":
+          case "IMP/DIAG_VL_OI_NORMAL_RX":
+          case "IMP/DIAG_VL0OI_NORMAL_RX":
             visio.impVlOiNormalRx = data[element]; /** Imp Vl Od Normal Rx **/
             break;
-          case "IMP/DIAG_VP_OD_NORMAL_RX", "IMP/DIAG_VP0OD_NORMAL_RX":
+          case "IMP/DIAG_VP_OD_NORMAL_RX":
+          case "IMP/DIAG_VP0OD_NORMAL_RX":
             visio.impVpOdNormalRx = data[element]; /** Imp Vp Od Normal Rx **/
             break;
-          case "IMP/DIAG_VP_OI_NORMAL_RX", "IMP/DIAG_VP0OI_NORMAL_RX":
+          case "IMP/DIAG_VP_OI_NORMAL_RX":
+          case "IMP/DIAG_VP0OI_NORMAL_RX":
             visio.impVpOiNormalRx = data[element]; /** Imp Vp Od Normal Rx **/
             break;
-          case "IMP/DIAG_VL_OD_DISMINUIDO_RX", "IMP/DIAG_VL0OD_DISMINUIDO_RX":
+          case "IMP/DIAG_VL_OD_DISMINUIDO_RX":
+          case "IMP/DIAG_VL0OD_DISMINUIDO_RX":
             visio.impVlOdDisminuidoRx = data[element]; /** Imp Vl Od Disminuido Rx **/
             break;
-          case "IMP/DIAG_VL_OI_DISMINUIDO_RX", "IMP/DIAG_VL0OI_DISMINUIDO_RX":
+          case "IMP/DIAG_VL_OI_DISMINUIDO_RX":
+          case "IMP/DIAG_VL0OI_DISMINUIDO_RX":
             visio.impVlOiDisminuidoRx = data[element]; /** Imp Vl Od Disminuido Rx **/
             break;
-          case "IMP/DIAG_VP_OD_DISMINUIDO_RX", "IMP/DIAG_VP0OD_DISMINUIDO_RX":
+          case "IMP/DIAG_VP_OD_DISMINUIDO_RX":
+          case "IMP/DIAG_VP0OD_DISMINUIDO_RX":
             visio.impVpOdDisminuidoRx = data[element]; /** Imp Vp Od Disminuido Rx **/
             break;
-          case "IMP/DIAG_VP_OI_DISMINUIDO_RX", "IMP/DIAG_VP0OI_DISMINUIDO_RX":
+          case "IMP/DIAG_VP_OI_DISMINUIDO_RX":
+          case "IMP/DIAG_VP0OI_DISMINUIDO_RX":
             visio.impVpOiDisminuidoRx = data[element]; /** Imp Vp Od Disminuido Rx **/
             break;
           case "IMP/DIAG_OBS":
@@ -1845,7 +1862,8 @@
           case "TIPO_IDENTIFICACION":
             psychotec.tipoIdentificacion = (data[element] !== undefined) ? data[element] : "";
             break;
-          case "PRUEBA_PSICOTECNICA", "PSICOTECNICA":
+          case "PRUEBA_PSICOTECNICA":
+          case "PSICOTECNICA":
             psychotec.pruebaPsicotecnica = (data[element] !== undefined) ? data[element] : "";
             break;
           case "DIAGNOSTICO_PPAL":
@@ -1892,7 +1910,8 @@
           case "TIPO_IDENTIFICACION":
             psychosenso.tipoIdentificacion = (data[element] !== undefined) ? data[element] : "";
             break;
-          case "PRUEBA_PSICOSENSOMETRICA", "PSICOSENSOMETRICA":
+          case "PRUEBA_PSICOSENSOMETRICA":
+          case "PSICOSENSOMETRICA":
             psychosenso.pruebaPsicoSensometrica = (data[element] !== undefined) ? data[element] : "";
             break;
           case "DIAGNOSTICO_PPAL":
