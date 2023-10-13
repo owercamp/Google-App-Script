@@ -609,14 +609,19 @@ function ARTEROGENICO(cholesterol, hdl) {
  * @return {Promise<void>} - A promise that resolves when the function completes.
  */
 async function TODO() {
-
+  await EliminarArchivosEnDirectorio("182TKvhuRb0CE2oFL22oV3bnXDFb-Maa3", "1iqbrT26U-SJFbbWW8tZodsqMehX3FK2AwiyLNfQSs5s");
   const book = await CopyBook();
-  const exported = await TransponerYReemplazarFormulas(book);
-  await GenerarEnlace(book);
-  // await ExportSpecificBook();
-  /*   if (exported === "Success") {
-      await EliminarLibroEnDrive(book);
-    } */
+  await TransponerYReemplazarFormulas(book);
+  SpreadsheetApp.getActiveSpreadsheet().getRange("A5").getValue();
+  SpreadsheetApp.getActiveSpreadsheet().getRange("A5").setValue(book);
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var menuEntries = [];
+  menuEntries.push({ name: "Descargar Libro", functionName: "ExportSpecificBook" });
+  ss.updateMenu("ADMINISTRACIÓN ENEL", menuEntries);
+  var htmlOutput = HtmlService.createHtmlOutput('<div><p>Para descargar el libro Generado Vaya a:</p><br/><p>ADMINISTRACIÓN ENEL > Descargar Libro</p></div>')
+    .setWidth(300)
+    .setHeight(150);
+  SpreadsheetApp.getUi().showModalDialog(htmlOutput, 'Descargar Archivo');
 }
 
 /**
@@ -638,7 +643,7 @@ function CopyBook() {
  * @param {string} id - El ID de la hoja de cálculo.
  * @return {void} No devuelve ningún valor.
  */
-function TransponerYReemplazarFormulas(id) {
+async function TransponerYReemplazarFormulas(id) {
   // Obtén el libro por su ID
   var libro = SpreadsheetApp.openById(id);
 
@@ -662,29 +667,14 @@ function TransponerYReemplazarFormulas(id) {
     dataText[num][2] = valores[num][2].toString();
   }
 
-  hoja.getRange(rangoA1Notation).setValues(dataText);
+  await hoja.getRange(rangoA1Notation).setValues(dataText);
 }
 
-/**
- * Generates a link to open and download a book from a given ID.
- *
- * @param {string} id - The ID of the book.
- * @return {void} This function does not return a value.
- */
-function GenerarEnlace(id) {
-  // obtenemos el libro
-  var libro = SpreadsheetApp.openById(id);
-
-  // Obtiene la URL del libro
-  var urlLibro = libro.getUrl();
-
-  // Crea una página HTML de salida con el enlace y un botón
-  // Creamos un enlace de descarga y mostramos una ventana modal con el enlace
-  var htmlOutput = HtmlService.createHtmlOutput(`<div style="width: 100%; display: flex; justify-content: center"><a href="${urlLibro}" target="_blank"><button style="padding: 0.5rem; background: rgba(51, 36, 172, 0.5); color: white;">Abrir Libro para Descargar</button></a></div>`)
-    .setWidth(200)
-    .setHeight(50);
-
-  SpreadsheetApp.getUi().showModalDialog(htmlOutput, `${libro.getName()}`);
+function RemoveMenu() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var menuEntries = [];
+  menuEntries.push({ name: "Generar Libro", functionName: "TODO" });
+  ss.updateMenu("ADMINISTRACIÓN ENEL", menuEntries);
 }
 
 /**
@@ -692,9 +682,10 @@ function GenerarEnlace(id) {
  *
  * @return {string} Returns "Success" if the export is successful.
  */
-function ExportSpecificBook() {
+async function ExportSpecificBook() {
   var spreadsheet = SpreadsheetApp.getActiveSpreadsheet(); // Abre la hoja de cálculo específica usando su ID
-  var exportUrl = 'https://docs.google.com/spreadsheets/d/' + spreadsheet.getId() + '/export?exportFormat=xlsx&format=xlsx'; // URL para exportar a formato XLSX
+  let id = spreadsheet.getRange("A5").getValue();
+  var exportUrl = 'https://docs.google.com/spreadsheets/d/' + id + '/export?exportFormat=xlsx&format=xlsx'; // URL para exportar a formato XLSX
 
   // Hacemos la petición para pedir el fichero exportado
   var response = UrlFetchApp.fetch(exportUrl, { muteHttpExceptions: true, headers: { Authorization: 'Bearer ' + ScriptApp.getOAuthToken() } });
@@ -712,9 +703,8 @@ function ExportSpecificBook() {
     .setHeight(50);
 
   SpreadsheetApp.getUi().showModalDialog(htmlOutput, 'Descargar Archivo');
-
-  return "Success";
-
+  RemoveMenu();
+  spreadsheet.getRange("A5").setValue(spreadsheet.getRange("A6").getValue());
 }
 
 /**
@@ -723,13 +713,28 @@ function ExportSpecificBook() {
  * @param {string} libroId - The ID of the book to be deleted.
  * @return {string} - Returns "Success" if the book was deleted successfully.
  */
-function EliminarLibroEnDrive(libroId) {
+function EliminarArchivosEnDirectorio(driveFolderId, archivoId) {
+  // Obtener el directorio de Google Drive por su ID
+  var folder = DriveApp.getFolderById(driveFolderId);
 
-  var file = DriveApp.getFileById(libroId);
-  file.setTrashed(true);
+  // Obtener todos los archivos en el directorio
+  var files = folder.getFiles();
+
+  // Iterar sobre los archivos y eliminarlos si no coinciden con el ID proporcionado
+  while (files.hasNext()) {
+    var file = files.next();
+    var fileId = file.getId();
+
+    // Verificar si el archivo actual no coincide con el archivo especificado por su ID
+    if (fileId !== archivoId) {
+      // Mover el archivo a la papelera
+      file.setTrashed(true);
+    }
+  }
 
   return "Success";
 }
+
 
 /**
  * Executes when the spreadsheet is opened.
@@ -740,7 +745,7 @@ function onOpen(e) {
   try {
     const menu = SpreadsheetApp.getUi().createMenu('ADMINISTRACIÓN ENEL');
     const recipients = {
-      'Exporte Libro': 'TODO',
+      'Generar Libro': 'TODO',
     };
     for (const [name, recipient] of Object.entries(recipients)) {
       menu.addItem(name, recipient);
