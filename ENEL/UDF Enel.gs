@@ -746,6 +746,7 @@ function onOpen(e) {
     const menu = SpreadsheetApp.getUi().createMenu('ADMINISTRACIÓN ENEL');
     const recipients = {
       'Generar Libro': 'TODO',
+      'Informes': 'abrirInforme',
     };
     for (const [name, recipient] of Object.entries(recipients)) {
       menu.addItem(name, recipient);
@@ -754,4 +755,46 @@ function onOpen(e) {
   } catch (error) {
     Logger.log(`${error.name}: ${error.message}`);
   }
+}
+
+/**
+ * A description of the entire function.
+ *
+ * @return {Object} The evaluated output of the template.
+ */
+function doGet() {
+  let template = HtmlService.createTemplateFromFile('Index');
+  let output = template.evaluate();
+
+  return output;
+}
+
+/**
+ * Includes the content of a specified file.
+ *
+ * @param {string} filename - The name of the file to include.
+ * @return {string} The content of the specified file.
+ */
+function include(filename) {
+  return HtmlService.createHtmlOutputFromFile(filename).getContent();
+}
+
+function abrirInforme() {
+  var html = HtmlService.createHtmlOutput('<html>'
+    + '<script>' +
+    "var urlToOpen = 'https://script.google.com/a/macros/soandes.co/s/AKfycbxJSQj4l5mLlfwyJKFhOj1Aqwvrw8vzTWZgf2luoSPb/dev';" +
+    "var winRef = window.open(urlToOpen);" +
+    "google.script.host.close();"
+    + '</script>'
+    + '</html>')
+    .setWidth(90).setHeight(1);
+  SpreadsheetApp.getUi().showModalDialog(html, "Abriendo Informe");
+}
+
+function getGeneral(params = "") {
+  const dataSheet = SpreadsheetApp.getActiveSpreadsheet();
+  const sheet = dataSheet.getSheetByName("RCV-2023");
+  const data = sheet.getRange(3, 1, sheet.getLastRow(), sheet.getLastColumn()).getValues().filter(e => (e[0] != "") ? e : "");
+
+  return JSON.stringify(data);
 }
