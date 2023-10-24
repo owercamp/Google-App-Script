@@ -37,6 +37,48 @@
     pagingType: "full_numbers"
   });
 
+  let tbl_framingham = $("#tbl_framingham").DataTable({
+    language: {
+      "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
+    },
+    columnDefs: [
+      {
+        className: "myCustomCenter", targets: "_all"
+      }
+    ],
+    fixedColumns: true,
+    responsive: true,
+    pagingType: "full_numbers"
+  });
+
+  let tbl_metabolic = $("#tbl_metabolic").DataTable({
+    language: {
+      "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
+    },
+    columnDefs: [
+      {
+        className: "myCustomCenter", targets: "_all"
+      }
+    ],
+    fixedColumns: true,
+    responsive: true,
+    pagingType: "full_numbers"
+  });
+
+  let tbl_aterogenic = $("#tbl_aterogenic").DataTable({
+    language: {
+      "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
+    },
+    columnDefs: [
+      {
+        className: "myCustomCenter", targets: "_all"
+      }
+    ],
+    fixedColumns: true,
+    responsive: true,
+    pagingType: "full_numbers"
+  });
+
   function firstLetter(info) {
     let letter = info.split(" ");
     let wordsConverted = letter.map(letter => letter.charAt(0).toUpperCase() + letter.slice(1).toLowerCase());
@@ -89,13 +131,116 @@
       .getCentrals();
   }
 
+  const references = {
+    HIGH: {
+      High: "Alto",
+      Counter: 0
+    },
+    MEDIUM: {
+      Medium: "Moderado",
+      Counter: 0
+    },
+    LOW: {
+      Low: "Bajo",
+      Counter: 0
+    },
+    NOLEVEL: {
+      Counter: 0
+    }
+  }
 
-  let graphMetabolic, graphArterogenic, graphFramingham;
-  function general(data) {
+  function testFramingham(params = "", selected = "") {
+    let graphFramingham;
+    let centrals = [];
+    const framinghamChart = document.getElementById("myFramingham");
+
+    if (selected) {
+      graphFramingham.destroy();
+      tbl_framingham.clear().draw();
+    }
+
+    params.forEach(element => {
+      if (!centrals.includes(element[2])) {
+        centrals.push(element[2]);
+      }
+    })
+
+    // console.log(params);
+    debugger;
+    centrals.sort().map(central => {
+      params.forEach(register => {
+        if (register[2] === central && register[24].includes(references.HIGH.High)) {
+          references.HIGH.Counter++;
+        }else if (register[2] === central && register[24].includes(references.MEDIUM.Medium)) {
+          references.MEDIUM.Counter++;
+        }else if (register[2] === central && register[24].includes(references.LOW.Low)) {
+          references.LOW.Counter++;
+        }else if (register[2] === central && ![references.HIGH.High, references.MEDIUM.Medium, references.LOW.Low].includes(register[24])) {
+          references.NOLEVEL.Counter++;
+        }
+      })
+      console.log(references);
+    })
+
+    // tbl_framingham.rows().add().draw();
+
+    graphFramingham = new Chart(framinghamChart, {
+      type: 'doughnut',
+      data: {
+        labels: centrals.sort(),
+        datasets: [{
+          label: "Car Speed",
+          data: [0, 59, 75, 20, 20, 55, 40],
+        }]
+      }
+    });
+  }
+
+  function testMetabolic(params = "", selected = "") {
+    let graphMetabolic;
+    const metabolicChart = document.getElementById("myMetabolic");
+
+    if (selected) {
+      graphMetabolic.destroy();
+    }
+
+    graphMetabolic = new Chart(metabolicChart, {
+      type: 'pie',
+      data: {
+        labels: ["0s", "10s", "20s", "30s", "40s", "50s", "60s"],
+        datasets: [{
+          label: "Car Speed",
+          data: [0, 59, 75, 20, 20, 55, 40],
+        }]
+      }
+    });
+  }
+
+  function testAterogenic(params = "", selected = "") {
+    let graphArterogenic;
+    const arterogenicChart = document.getElementById("myArterogenic");
+
+    if (selected) {
+      graphArterogenic.destroy();
+    }
+
+    graphArterogenic = new Chart(arterogenicChart, {
+      type: 'radar',
+      data: {
+        labels: ["0s", "10s", "20s", "30s", "40s", "50s", "60s"],
+        datasets: [{
+          label: "Car Speed",
+          data: [0, 59, 75, 20, 20, 55, 40],
+        }]
+      }
+    });
+  }
+
+  function general(selected) {
     let generalInfo = google.script.run.withSuccessHandler(element => {
       let row = JSON.parse(element);
       let insertRow = [];
-      if (data) {
+      if (selected) {
         tbl_general.clear().draw();
       }
       row.map(register => {
@@ -112,52 +257,11 @@
       tbl_general.rows.add(insertRow).draw();
 
       /*** instanciación de la gráficas ***/
-      const framinghamChart = document.getElementById("myFramingham");
-      const metabolicChart = document.getElementById("myMetabolic");
-      const arterogenicChart = document.getElementById("myArterogenic");
+      testFramingham(row, selected);
+      testMetabolic(row, selected);
+      testAterogenic(row, selected);
 
-      if (data) {
-        graphFramingham.destroy();
-      }
-      if (data) {
-        graphMetabolic.destroy();
-      }
-      if (data) {
-        graphArterogenic.destroy();
-      }
-
-      graphFramingham = new Chart(framinghamChart, {
-        type: 'doughnut',
-        data: {
-          labels: ["0s", "10s", "20s", "30s", "40s", "50s", "60s"],
-          datasets: [{
-            label: "Car Speed",
-            data: [0, 59, 75, 20, 20, 55, 40],
-          }]
-        }
-      });
-      graphMetabolic = new Chart(metabolicChart, {
-        type: 'pie',
-        data: {
-          labels: ["0s", "10s", "20s", "30s", "40s", "50s", "60s"],
-          datasets: [{
-            label: "Car Speed",
-            data: [0, 59, 75, 20, 20, 55, 40],
-          }]
-        }
-      });
-      graphArterogenic = new Chart(arterogenicChart, {
-        type: 'radar',
-        data: {
-          labels: ["0s", "10s", "20s", "30s", "40s", "50s", "60s"],
-          datasets: [{
-            label: "Car Speed",
-            data: [0, 59, 75, 20, 20, 55, 40],
-          }]
-        }
-      });
-
-      if (data) {
+      if (selected) {
         Swal.fire({
           icon: 'success',
           html: `<p>Success</p>`,
@@ -169,12 +273,10 @@
       .withFailureHandler(error => {
         console.log(error);
       })
-    if (data) {
-      generalInfo.getGeneral(data);
+    if (selected) {
+      generalInfo.getGeneral(selected);
     } else {
       generalInfo.getGeneral();
     }
   }
-
-
 </script>
