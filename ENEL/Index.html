@@ -17,17 +17,34 @@
       <div>Riesgos Cardiovaculares <span class="text-danger fw-bolder">ENEL</span></div>
     </div>
   </nav>
+  <div class="container-fluid p-2">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary rounded">
+      <div class="container-fluid">
+        <b class="text-dark py-1 mx-3">Centrales: </b>
+        <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="central">
+          <!-- cargue dinamico -->
+        </select>
+      </div>
+    </nav>
+  </div>
+  <div class="container-fluid p-2 row">
+    <canvas id="myFramingham"></canvas>
+    <canvas id="myMetabolic"></canvas>
+    <canvas id="myArterogenic"></canvas>
+  </div>
   <div class="container pt-4">
-    <div class="container-fluid">
-      <table class="table table-sm table-hover table-dark text-center w-100" id="tbl_data">
+    <div class="container-fluid table-responsive">
+      <table class="table table-sm table-secondary table-hover display" id="tbl_data">
         <caption>Test Enel</caption>
         <thead>
           <tr>
             <th scope="col">Identificación</th>
             <th scope="col">Nombre</th>
-            <th scope="col">Test de Framingham</th>
-            <th scope="col">Test de Sindrome Metabolico</th>
-            <th scope="col">Test de Arterogenico</th>
+            <th scope="col">Centro de Trabajo</th>
+            <th scope="col">Framingham</th>
+            <th scope="col">Diagnóstocp SX. Metabólico (3 o Más Factores Alterados PA, TG, GLICEMIA, HDL, TA)</th>
+            <th scope="col">Indice Aterógenico Colesterol TOTAL/HDL</th>
+            <th scope="col">Clasificación Final Para La Intervención</th>
           </tr>
         </thead>
         <tbody class="text-center">
