@@ -791,10 +791,28 @@ function abrirInforme() {
   SpreadsheetApp.getUi().showModalDialog(html, "Abriendo Informe");
 }
 
+function getCentrals() {
+  const dataSheet = SpreadsheetApp.getActiveSpreadsheet();
+  const sheet = dataSheet.getSheetByName("RCV-2023");
+  const data = sheet.getRange(3, 1, sheet.getLastRow(), sheet.getLastColumn()).getValues();
+  let info;
+
+  info = data.filter(e => (e[0] != "") ? e : "");
+
+  return JSON.stringify(info.sort());
+}
+
 function getGeneral(params = "") {
   const dataSheet = SpreadsheetApp.getActiveSpreadsheet();
   const sheet = dataSheet.getSheetByName("RCV-2023");
-  const data = sheet.getRange(3, 1, sheet.getLastRow(), sheet.getLastColumn()).getValues().filter(e => (e[0] != "") ? e : "");
+  const data = sheet.getRange(3, 1, sheet.getLastRow(), sheet.getLastColumn()).getValues();
+  let info;
 
-  return JSON.stringify(data);
+  if (params === "" || params === "TODAS") {
+    info = data.filter(e => (e[0] != "") ? e : "");
+  } else {
+    info = data.filter(e => (e[0] != "" && e[2] == params) ? e : "");
+  }
+
+  return JSON.stringify(info.sort(function (a, b) { return a[5] - b[5]; }));
 }
