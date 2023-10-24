@@ -11,8 +11,17 @@
   integrity="sha512-eN8dd/MGUx/RgM4HS5vCfebsBxvQB2yI0OS5rfmqfTo8NIseU+FenpNoa64REdgFftTY4tm0w8VMj5oJ8t+ncQ=="
   crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
 <script>
+  $(document).ready(function () {
+    $('#central').select2({
+      placeholder: 'Centrales',
+      selectOnClose: true
+    });
+  })
   window.addEventListener("load", general(""));
+  window.addEventListener("load", listCentrals());
   /*** instanciación de los DataTables ***/
   let tbl_general = $("#tbl_data").DataTable({
     language: {
@@ -20,9 +29,10 @@
     },
     columnDefs: [
       {
-        className: "dt-center", targets: "_all"
+        className: "myCustomCenter", targets: "_all"
       }
     ],
+    fixedColumns: true,
     responsive: true,
     pagingType: "full_numbers"
   });
@@ -35,6 +45,52 @@
     return letterConverted;
   }
 
+  $(document).on("change", "#central", function () {
+    const selection = $(this).select2('data');
+    const text = selection[0].text;
+    let response = "";
+    swal.fire({
+      text: `¿Desea realizar la búsqueda por ${firstLetter(text)}?`,
+      button: {
+        text: "Buscar",
+        closeModal: false,
+      },
+    })
+      .then(willSearch => {
+        if (willSearch) {
+          response = general(text);
+        }
+        Swal.fire({
+          icon: 'info',
+          html: `<p>Realizando consulta de los datos para la terminal <b style="color:Red;"><i>${firstLetter(text)}</i></b></p>`,
+          footer: `<p style="color:#5faefe">Por favor espere..</p>`,
+          showConfirmButton: false,
+        });
+      })
+  });
+
+  function listCentrals() {
+    let filter = [];
+    google.script.run.withSuccessHandler(data => {
+      let row = JSON.parse(data);
+      $("#central").empty();
+      $("#central").append(`<option value=""></option>`);
+      $("#central").append(`<option value="TODAS">TODAS</option>`);
+      row.forEach(element => {
+        if (!filter.includes(element[2])) {
+          filter.push(element[2]);
+          $("#central").append(`<option value="${element[2]}">${element[2]}</option>`);
+        }
+      });
+    })
+      .withFailureHandler(error => {
+        console.log(error);
+      })
+      .getCentrals();
+  }
+
+
+  let graphMetabolic, graphArterogenic, graphFramingham;
   function general(data) {
     let generalInfo = google.script.run.withSuccessHandler(element => {
       let row = JSON.parse(element);
@@ -44,14 +100,71 @@
       }
       row.map(register => {
         insertRow.push({
-          0: firstLetter(register[4]),
-          1: register[5],
-          2: register[24],
-          3: register[25],
-          4: register[26]
+          0: register[5],
+          1: firstLetter(register[4]),
+          2: firstLetter(register[2]),
+          3: register[24],
+          4: register[25],
+          5: register[26],
+          6: register[27]
         })
       });
       tbl_general.rows.add(insertRow).draw();
+
+      /*** instanciación de la gráficas ***/
+      const framinghamChart = document.getElementById("myFramingham");
+      const metabolicChart = document.getElementById("myMetabolic");
+      const arterogenicChart = document.getElementById("myArterogenic");
+
+      if (data) {
+        graphFramingham.destroy();
+      }
+      if (data) {
+        graphMetabolic.destroy();
+      }
+      if (data) {
+        graphArterogenic.destroy();
+      }
+
+      graphFramingham = new Chart(framinghamChart, {
+        type: 'doughnut',
+        data: {
+          labels: ["0s", "10s", "20s", "30s", "40s", "50s", "60s"],
+          datasets: [{
+            label: "Car Speed",
+            data: [0, 59, 75, 20, 20, 55, 40],
+          }]
+        }
+      });
+      graphMetabolic = new Chart(metabolicChart, {
+        type: 'pie',
+        data: {
+          labels: ["0s", "10s", "20s", "30s", "40s", "50s", "60s"],
+          datasets: [{
+            label: "Car Speed",
+            data: [0, 59, 75, 20, 20, 55, 40],
+          }]
+        }
+      });
+      graphArterogenic = new Chart(arterogenicChart, {
+        type: 'radar',
+        data: {
+          labels: ["0s", "10s", "20s", "30s", "40s", "50s", "60s"],
+          datasets: [{
+            label: "Car Speed",
+            data: [0, 59, 75, 20, 20, 55, 40],
+          }]
+        }
+      });
+
+      if (data) {
+        Swal.fire({
+          icon: 'success',
+          html: `<p>Success</p>`,
+          showConfirmButton: false,
+          timer: 3000
+        });
+      }
     })
       .withFailureHandler(error => {
         console.log(error);
