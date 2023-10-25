@@ -165,24 +165,59 @@
       }
     })
 
-    // console.log(params);
-    debugger;
+    let registerAdd = [];
     centrals.sort().map(central => {
+      references.HIGH.Counter = 0;
+      references.MEDIUM.Counter = 0;
+      references.LOW.Counter = 0;
+      references.NOLEVEL.Counter = 0;
       params.forEach(register => {
         if (register[2] === central && register[24].includes(references.HIGH.High)) {
           references.HIGH.Counter++;
-        }else if (register[2] === central && register[24].includes(references.MEDIUM.Medium)) {
+        } else if (register[2] === central && register[24].includes(references.MEDIUM.Medium)) {
           references.MEDIUM.Counter++;
-        }else if (register[2] === central && register[24].includes(references.LOW.Low)) {
+        } else if (register[2] === central && register[24].includes(references.LOW.Low)) {
           references.LOW.Counter++;
-        }else if (register[2] === central && ![references.HIGH.High, references.MEDIUM.Medium, references.LOW.Low].includes(register[24])) {
+        } else if (register[2] === central && ![references.HIGH.High, references.MEDIUM.Medium, references.LOW.Low].includes(register[24])) {
           references.NOLEVEL.Counter++;
         }
       })
-      console.log(references);
-    })
 
-    // tbl_framingham.rows().add().draw();
+      registerAdd.push({
+        0: central,
+        1: "Alto",
+        2: references.HIGH.Counter
+      })
+      registerAdd.push({
+        0: central,
+        1: "Moderado",
+        2: references.MEDIUM.Counter
+      })
+      registerAdd.push({
+        0: central,
+        1: "Bajo",
+        2: references.LOW.Counter
+      })
+      registerAdd.push({
+        0: central,
+        1: "Sin Dato",
+        2: references.NOLEVEL.Counter
+      })
+    })
+    tbl_framingham.rows.add(registerAdd).draw();
+
+    tbl_framingham.on('draw.dt', function () {
+      var rows = $('#tbl_framingham tbody tr');
+      for (var i = 0; i < rows.length; i += 4) {
+        var rowspan = 4;
+        rows.eq(i).find('td:eq(0)').attr('rowspan', rowspan);
+
+        // Ocultar las celdas en las filas cubiertas por rowspan
+        if (rowspan > 1) {
+          rows.slice(i + 1, i + rowspan).find('td:eq(0)').hide();
+        }
+      }
+    });
 
     graphFramingham = new Chart(framinghamChart, {
       type: 'doughnut',
@@ -260,6 +295,18 @@
       testFramingham(row, selected);
       testMetabolic(row, selected);
       testAterogenic(row, selected);
+
+
+      var rows = $('#tbl_framingham tbody tr');
+      for (var i = 0; i < rows.length; i += 4) {
+        var rowspan = 4;
+        rows.eq(i).find('td:eq(0)').attr('rowspan', rowspan);
+
+        // Ocultar las celdas en las filas cubiertas por rowspan
+        if (rowspan > 1) {
+          rows.slice(i + 1, i + rowspan).find('td:eq(0)').hide();
+        }
+      }
 
       if (selected) {
         Swal.fire({
