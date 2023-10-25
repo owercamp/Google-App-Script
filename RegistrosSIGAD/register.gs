@@ -1,3 +1,13 @@
+/**
+ * Multiplies an input value by 2.
+ * @param {number} input The number to double.
+ * @return The input multiplied by 2.
+ * @customfunction
+*/
+function PRUEBA(input) {
+  return input * 2;
+}
+
 /***
  * mails from users
  */
@@ -5,7 +15,7 @@ const mailUser = {
   leidySanchez: "leidy.sanchez@soandes.co",
   camilaGonzalez: "camila.gonzalez@soandes.co",
   nataliaGuerrero: "natalia.guerrero@soandes.co",
-  dianaPerdomo: "diana.perdomo@soandes.co",
+  santiagoRodriguez: "santiago.rodriguez@soandes.co",
   katherineSanchez: "katherine.sanchez@soandes.co",
   juanAvila: "juan.avila@soandes.co",
   monicaMarroquin: "monica.marroquin@soandes.co",
@@ -50,9 +60,9 @@ const mailToSend = {
    * @param {object} mailUser - An object containing the properties for sending the email.
    * @return {void} This function does not return anything.
    */
-  dianaPerdomo() {
-    const { dianaPerdomo, gestionDocumental, dianaOrtiz } = mailUser;
-    mailSend(dianaPerdomo, gestionDocumental, dianaOrtiz);
+  santiagoRodriguez() {
+    const { santiagoRodriguez, gestionDocumental, dianaOrtiz } = mailUser;
+    mailSend(santiagoRodriguez, gestionDocumental, dianaOrtiz);
   },
   /**
    * Sends an email to Katherine Sanchez with the given mailUser properties.
@@ -117,12 +127,12 @@ function onOpen(e) {
       'Leidy Sanchez': 'mailToSend.leidySanchez',
       'Camila Gonzalez': 'mailToSend.camilaGonzalez',
       'Natalia Guerrero': 'mailToSend.nataliaGuerrero',
-      'Diana Perdomo': 'mailToSend.dianaPerdomo',
+      'Santiago Rodriguez': 'mailToSend.santiagoRodriguez',
       'Katherine Sanchez': 'mailToSend.katherineSanchez',
       'Juan Avila': 'mailToSend.juanAvila',
       'Monica Marroquin': 'mailToSend.monicaMarroquin'
     };
-    for (const [name, recipient] of Object.entries(recipients)) {
+    for (const [name, recipient] of Object.entries(recipients).sort()) {
       menu.addItem(name, recipient);
     }
     menu.addToUi();
@@ -203,7 +213,6 @@ function enviarCorreo() {
     }
   } catch (error) {
     Logger.log(`${error.name}: ${error.message}`);
-    SpreadsheetApp.getUi().alert("Ejecución Terminada");
   }
 }
 
