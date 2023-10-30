@@ -131,7 +131,7 @@
       .getCentrals();
   }
 
-  const references = {
+  const referencesFramingham = {
     HIGH: {
       High: "Alto",
       Counter: 0
@@ -147,6 +147,36 @@
     NOLEVEL: {
       Counter: 0
     }
+  }
+
+  const referencesMetabolic = {
+    withAlterations: {
+      message: "Presenta SINDROME METABOLICO",
+      Counter: 0
+    },
+    withoutAlterations: {
+      message: "Sin Alteraciones",
+      Counter: 0
+    },
+    requiredData: {
+      message: "El valor VACIO",
+      Counter: 0
+    }
+  }
+
+  const referencesAterogenic = {
+    "HIGH": {
+      "High": "Maximo",
+      "Counter": 0
+    },
+    "MEDIUM": {
+      "Medium": "Moderado",
+      "Counter": 0
+    },
+    "LOW": {
+      "Low": "Minimo",
+      "Counter": 0
+    },
   }
 
   function testFramingham(params = "", selected = "") {
@@ -166,43 +196,42 @@
     })
 
     let registerAdd = [];
-    console.log(params);
-    centrals.sort().map(central => {
-      references.HIGH.Counter = 0;
-      references.MEDIUM.Counter = 0;
-      references.LOW.Counter = 0;
-      references.NOLEVEL.Counter = 0;
+    centrals.sort().forEach(central => {
+      referencesFramingham.HIGH.Counter = 0;
+      referencesFramingham.MEDIUM.Counter = 0;
+      referencesFramingham.LOW.Counter = 0;
+      referencesFramingham.NOLEVEL.Counter = 0;
       params.forEach(register => {
-        if (register[3] === central && register[25].includes(references.HIGH.High)) {
-          references.HIGH.Counter++;
-        } else if (register[3] === central && register[25].includes(references.MEDIUM.Medium)) {
-          references.MEDIUM.Counter++;
-        } else if (register[3] === central && register[25].includes(references.LOW.Low)) {
-          references.LOW.Counter++;
-        } else if (register[3] === central && ![references.HIGH.High, references.MEDIUM.Medium, references.LOW.Low].includes(register[25])) {
-          references.NOLEVEL.Counter++;
+        if (register[3] === central && register[25].includes(referencesFramingham.HIGH.High)) {
+          referencesFramingham.HIGH.Counter++;
+        } else if (register[3] === central && register[25].includes(referencesFramingham.MEDIUM.Medium)) {
+          referencesFramingham.MEDIUM.Counter++;
+        } else if (register[3] === central && register[25].includes(referencesFramingham.LOW.Low)) {
+          referencesFramingham.LOW.Counter++;
+        } else if (register[3] === central && ![referencesFramingham.HIGH.High, referencesFramingham.MEDIUM.Medium, referencesFramingham.LOW.Low].includes(register[25])) {
+          referencesFramingham.NOLEVEL.Counter++;
         }
       })
 
       registerAdd.push({
         0: central,
         1: "Alto",
-        2: references.HIGH.Counter
+        2: referencesFramingham.HIGH.Counter
       })
       registerAdd.push({
         0: central,
         1: "Moderado",
-        2: references.MEDIUM.Counter
+        2: referencesFramingham.MEDIUM.Counter
       })
       registerAdd.push({
         0: central,
         1: "Bajo",
-        2: references.LOW.Counter
+        2: referencesFramingham.LOW.Counter
       })
       registerAdd.push({
         0: central,
         1: "Sin Dato",
-        2: references.NOLEVEL.Counter
+        2: referencesFramingham.NOLEVEL.Counter
       })
     })
     tbl_framingham.rows.add(registerAdd).draw();
@@ -234,11 +263,68 @@
 
   function testMetabolic(params = "", selected = "") {
     let graphMetabolic;
+    let centrals = [];
     const metabolicChart = document.getElementById("myMetabolic");
 
     if (selected) {
       graphMetabolic.destroy();
+      tbl_metabolic.clear().draw();
     }
+
+    params.forEach(element => {
+      if (!centrals.includes(element[3])) {
+        centrals.push(element[3]);
+      }
+    })
+
+    let registerAdd = [];
+    
+    centrals.forEach(central =>{
+      referencesMetabolic.withAlterations.Counter = 0;
+      referencesMetabolic.withoutAlterations.Counter = 0;
+      referencesMetabolic.requiredData.Counter = 0;
+      params.forEach(register => {
+        if (register[3] === central && register[26].includes(referencesMetabolic.withAlterations.message)) {
+          referencesMetabolic.withAlterations.Counter++;
+        }else if(register[3] === central && register[26].includes(referencesMetabolic.withoutAlterations.message)){
+          referencesMetabolic.withoutAlterations.Counter++;
+        }else if(register[3] === central && register[26].includes(referencesMetabolic.requiredData.message)){
+          referencesMetabolic.requiredData.Counter++;
+        }
+      })
+
+
+      registerAdd.push({
+        0: central,
+        1: referencesMetabolic.withAlterations.message,
+        2: referencesMetabolic.withAlterations.Counter
+      })
+      registerAdd.push({
+        0: central,
+        1: referencesMetabolic.withoutAlterations.message,
+        2: referencesMetabolic.withoutAlterations.Counter
+      })
+      registerAdd.push({
+        0: central,
+        1: "Contiene valores VACIOS",
+        2: referencesMetabolic.requiredData.Counter
+      })
+    })
+    tbl_metabolic.rows.add(registerAdd).draw();
+
+    tbl_metabolic.on('draw.dt', function () {
+      var rows = $('#tbl_metabolic tbody tr');
+      for (var i = 0; i < rows.length; i += 3) {
+        var rowspan = 3;
+        rows.eq(i).find('td:eq(0)').attr('rowspan', rowspan);
+
+        // Ocultar las celdas en las filas cubiertas por rowspan
+        if (rowspan > 1) {
+          rows.slice(i + 1, i + rowspan).find('td:eq(0)').hide();
+        }
+      }
+    });
+
 
     graphMetabolic = new Chart(metabolicChart, {
       type: 'pie',
@@ -254,11 +340,65 @@
 
   function testAterogenic(params = "", selected = "") {
     let graphArterogenic;
+    let centrals = [];
     const arterogenicChart = document.getElementById("myArterogenic");
 
     if (selected) {
       graphArterogenic.destroy();
+      tbl_aterogenic.clear().draw();
     }
+
+    params.forEach(element => {
+      if (!centrals.includes(element[3])) {
+        centrals.push(element[3]);
+      }
+    })
+
+    let registerAdd = [];
+    centrals.forEach(central =>{
+      referencesAterogenic.HIGH.Counter = 0;
+      referencesAterogenic.MEDIUM.Counter = 0;
+      referencesAterogenic.LOW.Counter = 0;
+      params.forEach(register => {
+        if (register[3] === central && register[27].includes(referencesAterogenic.HIGH.High)) {
+          referencesAterogenic.HIGH.Counter++;
+        }else if (register[3] === central && register[27].includes(referencesAterogenic.MEDIUM.Medium)) {
+          referencesAterogenic.MEDIUM.Counter++;
+        }else if (register[3] === central && register[27].includes(referencesAterogenic.LOW.Low)) {
+          referencesAterogenic.LOW.Counter++;
+        }
+      })
+
+      registerAdd.push({
+        0: central,
+        1: referencesAterogenic.HIGH.High,
+        2: referencesAterogenic.HIGH.Counter
+      })
+      registerAdd.push({
+        0: central,
+        1: referencesAterogenic.MEDIUM.Medium,
+        2: referencesAterogenic.MEDIUM.Counter
+      })
+      registerAdd.push({
+        0: central,
+        1: referencesAterogenic.LOW.Low,
+        2: referencesAterogenic.LOW.Counter
+      })
+    })
+    tbl_aterogenic.rows.add(registerAdd).draw();
+
+    tbl_aterogenic.on('draw.dt', function () {
+      var rows = $('#tbl_aterogenic tbody tr');
+      for (var i = 0; i < rows.length; i += 3) {
+        var rowspan = 3;
+        rows.eq(i).find('td:eq(0)').attr('rowspan', rowspan);
+
+        // Ocultar las celdas en las filas cubiertas por rowspan
+        if (rowspan > 1) {
+          rows.slice(i + 1, i + rowspan).find('td:eq(0)').hide();
+        }
+      }
+    });
 
     graphArterogenic = new Chart(arterogenicChart, {
       type: 'radar',
@@ -279,7 +419,7 @@
       if (selected) {
         tbl_general.clear().draw();
       }
-      row.map(register => {
+      row.forEach(register => {
         insertRow.push({
           0: register[6],
           1: firstLetter(register[5]),
@@ -299,14 +439,34 @@
       testAterogenic(row, selected);
 
 
-      var rows = $('#tbl_framingham tbody tr');
-      for (var i = 0; i < rows.length; i += 4) {
-        var rowspan = 4;
-        rows.eq(i).find('td:eq(0)').attr('rowspan', rowspan);
+      let rowsFramingham = $('#tbl_framingham tbody tr');
+      for (let i = 0; i < rowsFramingham.length; i += 4) {
+        let rowspan = 4;
+        rowsFramingham.eq(i).find('td:eq(0)').attr('rowspan', rowspan);
 
         // Ocultar las celdas en las filas cubiertas por rowspan
         if (rowspan > 1) {
-          rows.slice(i + 1, i + rowspan).find('td:eq(0)').hide();
+          rowsFramingham.slice(i + 1, i + rowspan).find('td:eq(0)').hide();
+        }
+      }
+      let rowsMetabolic = $('#tbl_metabolic tbody tr');
+      for (let i = 0; i < rowsMetabolic.length; i += 3) {
+        let rowspan = 3;
+        rowsMetabolic.eq(i).find('td:eq(0)').attr('rowspan', rowspan);
+
+        // Ocultar las celdas en las filas cubiertas por rowspan
+        if (rowspan > 1) {
+          rowsMetabolic.slice(i + 1, i + rowspan).find('td:eq(0)').hide();
+        }
+      }
+      let rowsAterogenic = $('#tbl_aterogenic tbody tr');
+      for (let i = 0; i < rowsAterogenic.length; i += 3) {
+        let rowspan = 3;
+        rowsAterogenic.eq(i).find('td:eq(0)').attr('rowspan', rowspan);
+
+        // Ocultar las celdas en las filas cubiertas por rowspan
+        if (rowspan > 1) {
+          rowsAterogenic.slice(i + 1, i + rowspan).find('td:eq(0)').hide();
         }
       }
 
