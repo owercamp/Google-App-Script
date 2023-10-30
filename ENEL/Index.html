@@ -27,88 +27,100 @@
       </div>
     </nav>
   </div>
-  <div class="container-fluid col-12 row">
-    <div class="container-fluid col-6">
-      <canvas id="myFramingham"></canvas>
-    </div>
-    <div class="container-fluid col-6">
-      <table class="table table-sm table-secondary table-hover display" data-page-length="12" id="tbl_framingham">
-        <thead>
-          <tr>
-            <th scope="col">Centro de Trabajo</th>
-            <th scope="col">Framingham</th>
-            <th scope="col">Cantidad</th>
-          </tr>
-      </table>
-      <tbody>
-        <!-- Carga Dinamica -->
-      </tbody>
-    </div>
-  </div>
-  <div class="container-fluid col-12 row">
-    <div class="container-fluid col-6">
-      <canvas id="myMetabolic"></canvas>
-    </div>
-    <div class="container-fluid col-6">
-      <table class="table table-sm table-secondary table-hover display" data-page-length="12" id="tbl_metabolic">
-        <thead>
-          <tr>
-            <th scope="col">Centro de Trabajo</th>
-            <th scope="col">Diagnóstocp SX. Metabólico (3 o Más Factores Alterados PA, TG, GLICEMIA, HDL, TA)</th>
-            <th scope="col">Cantidad</th>
-          </tr>
-      </table>
-      <tbody>
-        <!-- Carga Dinamica -->
-      </tbody>
-    </div>
-  </div>
-  <div class="container-fluid col-12 row">
-    <div class="container-fluid col-6">
-      <canvas id="myArterogenic"></canvas>
-    </div>
-    <div class="container-fluid col-6">
-      <table class="table table-sm table-secondary table-hover display"  data-page-length="12" id="tbl_aterogenic">
-        <thead>
-          <tr>
-            <th scope="col">Centro de Trabajo</th>
-            <th scope="col">Indice Aterógenico Colesterol TOTAL/HDL</th>
-            <th scope="col">Cantidad</th>
-          </tr>
-      </table>
-      <tbody>
-        <!-- Carga Dinamica -->
-      </tbody>
-    </div>
-  </div>
-
-
-
-
-
-
-  <div class="container pt-4">
-    <div class="container-fluid table-responsive">
-      <table class="table table-sm table-secondary table-hover display" id="tbl_data">
-        <caption>Test Enel</caption>
-        <thead>
-          <tr>
-            <th scope="col">Identificación</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Centro de Trabajo</th>
-            <th scope="col">Framingham</th>
-            <th scope="col">Diagnóstocp SX. Metabólico (3 o Más Factores Alterados PA, TG, GLICEMIA, HDL, TA)</th>
-            <th scope="col">Indice Aterógenico Colesterol TOTAL/HDL</th>
-            <th scope="col">Clasificación Final Para La Intervención</th>
-          </tr>
-        </thead>
-        <tbody class="text-center">
+  <div class="sample">
+    <div class="container-fluid col-12 row">
+      <div class="container-fluid col-6">
+        <canvas id="myFramingham"></canvas>
+      </div>
+      <div class="container-fluid col-6">
+        <table class="table table-sm table-secondary table-hover display" data-page-length="12" id="tbl_framingham">
+          <thead>
+            <tr>
+              <th scope="col">Centro de Trabajo</th>
+              <th scope="col">Framingham</th>
+              <th scope="col">Cantidad</th>
+            </tr>
+        </table>
+        <tbody>
           <!-- Carga Dinamica -->
         </tbody>
-      </table>
+      </div>
     </div>
-
   </div>
+  <div class="sample">
+    <div class="container-fluid col-12 row">
+      <div class="container-fluid col-6">
+        <canvas id="myMetabolic"></canvas>
+      </div>
+      <div class="container-fluid col-6">
+        <table class="table table-sm table-secondary table-hover display" data-page-length="12" id="tbl_metabolic">
+          <thead>
+            <tr>
+              <th scope="col">Centro de Trabajo</th>
+              <th scope="col">Diagnóstocp SX. Metabólico (3 o Más Factores Alterados PA, TG, GLICEMIA, HDL, TA)</th>
+              <th scope="col">Cantidad</th>
+            </tr>
+        </table>
+        <tbody>
+          <!-- Carga Dinamica -->
+        </tbody>
+      </div>
+    </div>
+  </div>
+  <div class="sample">
+    <div class="container-fluid col-12 row">
+      <div class="container-fluid col-6">
+        <canvas id="myArterogenic"></canvas>
+      </div>
+      <div class="container-fluid col-6">
+        <table class="table table-sm table-secondary table-hover display" data-page-length="12" id="tbl_aterogenic">
+          <thead>
+            <tr>
+              <th scope="col">Centro de Trabajo</th>
+              <th scope="col">Indice Aterógenico Colesterol TOTAL/HDL</th>
+              <th scope="col">Cantidad</th>
+            </tr>
+        </table>
+        <tbody>
+          <!-- Carga Dinamica -->
+        </tbody>
+      </div>
+    </div>
+  </div>
+  <div class="sample">
+    <div class="container pt-4">
+      <div class="container-fluid table-responsive">
+        <table class="table table-sm table-secondary table-hover display" id="tbl_data">
+          <caption>Test Enel</caption>
+          <thead>
+            <tr>
+              <th scope="col">Identificación</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Centro de Trabajo</th>
+              <th scope="col">Framingham</th>
+              <th scope="col">Diagnóstocp SX. Metabólico (3 o Más Factores Alterados PA, TG, GLICEMIA, HDL, TA)</th>
+              <th scope="col">Indice Aterógenico Colesterol TOTAL/HDL</th>
+              <th scope="col">Clasificación Final Para La Intervención</th>
+            </tr>
+          </thead>
+          <tbody class="text-center">
+            <!-- Carga Dinamica -->
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+  <div class="container d-flex mt-2 justify-content-evenly">
+    <a href="#" id="prev" class="display btn btn-outline-secondary btn-sm"><i
+        class="fa-solid fa-circle-chevron-left"></i>
+      Anterior</a>
+    <a href="#" id="next" class="display btn btn-outline-primary btn-sm">Siguiente
+      <i class="fa-solid fa-circle-chevron-right"></i></a>
+  </div>
+
+
+
   <?!= include('JS'); ?>
 </body>
 
