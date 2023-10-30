@@ -15,6 +15,22 @@
 
 <script>
   $(document).ready(function () {
+    $('div.sample').hide().first().show();
+
+    $(document).on('click', 'a.display', function (e) {
+      e.preventDefault();
+      let that = $('div.sample:visible'),
+        t = e.target.id;
+
+      if (t == 'next' && that.next('div.sample').length > 0) {
+        $('div.sample').hide().removeClass("select");
+        that.next('div.sample').show().addClass("select");
+      } else if (t == 'prev' && that.prev('div.sample').length > 0) {
+        $('div.sample').hide().removeClass("select");
+        that.hide().prev('div.sample').show().addClass("select");
+      }
+    });
+
     $('#central').select2({
       placeholder: 'Centrales',
       selectOnClose: true
@@ -278,17 +294,17 @@
     })
 
     let registerAdd = [];
-    
-    centrals.forEach(central =>{
+
+    centrals.forEach(central => {
       referencesMetabolic.withAlterations.Counter = 0;
       referencesMetabolic.withoutAlterations.Counter = 0;
       referencesMetabolic.requiredData.Counter = 0;
       params.forEach(register => {
         if (register[3] === central && register[26].includes(referencesMetabolic.withAlterations.message)) {
           referencesMetabolic.withAlterations.Counter++;
-        }else if(register[3] === central && register[26].includes(referencesMetabolic.withoutAlterations.message)){
+        } else if (register[3] === central && register[26].includes(referencesMetabolic.withoutAlterations.message)) {
           referencesMetabolic.withoutAlterations.Counter++;
-        }else if(register[3] === central && register[26].includes(referencesMetabolic.requiredData.message)){
+        } else if (register[3] === central && register[26].includes(referencesMetabolic.requiredData.message)) {
           referencesMetabolic.requiredData.Counter++;
         }
       })
@@ -355,16 +371,16 @@
     })
 
     let registerAdd = [];
-    centrals.forEach(central =>{
+    centrals.forEach(central => {
       referencesAterogenic.HIGH.Counter = 0;
       referencesAterogenic.MEDIUM.Counter = 0;
       referencesAterogenic.LOW.Counter = 0;
       params.forEach(register => {
         if (register[3] === central && register[27].includes(referencesAterogenic.HIGH.High)) {
           referencesAterogenic.HIGH.Counter++;
-        }else if (register[3] === central && register[27].includes(referencesAterogenic.MEDIUM.Medium)) {
+        } else if (register[3] === central && register[27].includes(referencesAterogenic.MEDIUM.Medium)) {
           referencesAterogenic.MEDIUM.Counter++;
-        }else if (register[3] === central && register[27].includes(referencesAterogenic.LOW.Low)) {
+        } else if (register[3] === central && register[27].includes(referencesAterogenic.LOW.Low)) {
           referencesAterogenic.LOW.Counter++;
         }
       })
