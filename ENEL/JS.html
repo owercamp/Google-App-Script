@@ -119,9 +119,9 @@
       $("#central").append(`<option value=""></option>`);
       $("#central").append(`<option value="TODAS">TODAS</option>`);
       row.forEach(element => {
-        if (!filter.includes(element[2])) {
-          filter.push(element[2]);
-          $("#central").append(`<option value="${element[2]}">${element[2]}</option>`);
+        if (!filter.includes(element[3])) {
+          filter.push(element[3]);
+          $("#central").append(`<option value="${element[3]}">${element[3]}</option>`);
         }
       });
     })
@@ -160,25 +160,26 @@
     }
 
     params.forEach(element => {
-      if (!centrals.includes(element[2])) {
-        centrals.push(element[2]);
+      if (!centrals.includes(element[3])) {
+        centrals.push(element[3]);
       }
     })
 
     let registerAdd = [];
+    console.log(params);
     centrals.sort().map(central => {
       references.HIGH.Counter = 0;
       references.MEDIUM.Counter = 0;
       references.LOW.Counter = 0;
       references.NOLEVEL.Counter = 0;
       params.forEach(register => {
-        if (register[2] === central && register[24].includes(references.HIGH.High)) {
+        if (register[3] === central && register[25].includes(references.HIGH.High)) {
           references.HIGH.Counter++;
-        } else if (register[2] === central && register[24].includes(references.MEDIUM.Medium)) {
+        } else if (register[3] === central && register[25].includes(references.MEDIUM.Medium)) {
           references.MEDIUM.Counter++;
-        } else if (register[2] === central && register[24].includes(references.LOW.Low)) {
+        } else if (register[3] === central && register[25].includes(references.LOW.Low)) {
           references.LOW.Counter++;
-        } else if (register[2] === central && ![references.HIGH.High, references.MEDIUM.Medium, references.LOW.Low].includes(register[24])) {
+        } else if (register[3] === central && ![references.HIGH.High, references.MEDIUM.Medium, references.LOW.Low].includes(register[25])) {
           references.NOLEVEL.Counter++;
         }
       })
@@ -280,15 +281,16 @@
       }
       row.map(register => {
         insertRow.push({
-          0: register[5],
-          1: firstLetter(register[4]),
-          2: firstLetter(register[2]),
-          3: register[24],
-          4: register[25],
-          5: register[26],
-          6: register[27]
+          0: register[6],
+          1: firstLetter(register[5]),
+          2: firstLetter(register[3]),
+          3: register[25],
+          4: register[26],
+          5: register[27],
+          6: register[28]
         })
       });
+
       tbl_general.rows.add(insertRow).draw();
 
       /*** instanciación de la gráficas ***/
