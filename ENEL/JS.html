@@ -15,6 +15,9 @@
 
 <script>
   $(document).ready(function () {
+    let graphFramingham;
+    let graphMetabolic;
+    let graphArterogenic;
     $('div.sample').hide().first().show();
 
     $(document).on('click', 'a.display', function (e) {
@@ -196,7 +199,6 @@
   }
 
   function testFramingham(params = "", selected = "") {
-    let graphFramingham;
     let centrals = [];
     const framinghamChart = document.getElementById("myFramingham");
 
@@ -278,7 +280,6 @@
   }
 
   function testMetabolic(params = "", selected = "") {
-    let graphMetabolic;
     let centrals = [];
     const metabolicChart = document.getElementById("myMetabolic");
 
@@ -355,7 +356,6 @@
   }
 
   function testAterogenic(params = "", selected = "") {
-    let graphArterogenic;
     let centrals = [];
     const arterogenicChart = document.getElementById("myArterogenic");
 
