@@ -651,7 +651,7 @@ async function TransponerYReemplazarFormulas(id) {
   var hoja = libro.getSheetByName("RCV-2023");
 
   // Define el rango en A1Notation (X5:Z)
-  var rangoA1Notation = "X5:Z" + hoja.getLastRow();
+  var rangoA1Notation = "Z3:AB" + hoja.getLastRow();
 
   let valores = hoja.getRange(rangoA1Notation).getValues();
   let dataText = [];
@@ -674,6 +674,7 @@ function RemoveMenu() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var menuEntries = [];
   menuEntries.push({ name: "Generar Libro", functionName: "TODO" });
+  menuEntries.push({ name: "Informes", functionName: "abrirInforme" });
   ss.updateMenu("ADMINISTRACIÓN ENEL", menuEntries);
 }
 
