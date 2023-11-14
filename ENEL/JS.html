@@ -98,6 +98,13 @@
     pagingType: "full_numbers"
   });
 
+  // Transforms the first letter of each word in a given string to uppercase and the rest of the letters to lowercase.
+
+  // Parameters:
+  // - info: a string that contains one or more words separated by spaces.
+
+  // Returns:
+  // - A new string where the first letter of each word is capitalized and the rest of the letters are lowercase.
   function firstLetter(info) {
     let letter = info.split(" ");
     let wordsConverted = letter.map(letter => letter.charAt(0).toUpperCase() + letter.slice(1).toLowerCase());
@@ -130,6 +137,7 @@
       })
   });
 
+  // Retrieves a list of centrals from the server and populates the 'central' dropdown menu.
   function listCentrals() {
     let filter = [];
     google.script.run.withSuccessHandler(data => {
@@ -200,6 +208,10 @@
 
   function testFramingham(params = "", selected = "") {
     let centrals = [];
+    let highValue = [];
+    let mediumValue = [];
+    let lowValue = [];
+    let noLevelValue = [];
     const framinghamChart = document.getElementById("myFramingham");
 
     if (selected) {
@@ -233,17 +245,17 @@
 
       registerAdd.push({
         0: central,
-        1: "Alto",
+        1: referencesFramingham.HIGH.High,
         2: referencesFramingham.HIGH.Counter
       })
       registerAdd.push({
         0: central,
-        1: "Moderado",
+        1: referencesFramingham.MEDIUM.Medium,
         2: referencesFramingham.MEDIUM.Counter
       })
       registerAdd.push({
         0: central,
-        1: "Bajo",
+        1: referencesFramingham.LOW.Low,
         2: referencesFramingham.LOW.Counter
       })
       registerAdd.push({
@@ -251,6 +263,10 @@
         1: "Sin Dato",
         2: referencesFramingham.NOLEVEL.Counter
       })
+      highValue.push(referencesFramingham.HIGH.Counter)
+      mediumValue.push(referencesFramingham.MEDIUM.Counter)
+      lowValue.push(referencesFramingham.LOW.Counter)
+      noLevelValue.push(referencesFramingham.NOLEVEL.Counter)
     })
     tbl_framingham.rows.add(registerAdd).draw();
 
@@ -259,6 +275,8 @@
       for (var i = 0; i < rows.length; i += 4) {
         var rowspan = 4;
         rows.eq(i).find('td:eq(0)').attr('rowspan', rowspan);
+        rows.eq(i).find('td:eq(1)').addClass('d-clamp');
+        rows.eq(i).find('td:eq(2)').addClass('d-clamp');
 
         // Ocultar las celdas en las filas cubiertas por rowspan
         if (rowspan > 1) {
@@ -268,13 +286,68 @@
     });
 
     graphFramingham = new Chart(framinghamChart, {
-      type: 'doughnut',
+      type: 'line',
       data: {
         labels: centrals.sort(),
         datasets: [{
-          label: "Car Speed",
-          data: [0, 59, 75, 20, 20, 55, 40],
-        }]
+          label: referencesFramingham.HIGH.High,
+          data: highValue,
+          pointStyle: 'rectRounded',
+          pointRadius: 6,
+          borderColor: 'rgba(201, 14, 14, 0.7)',
+          backgroundColor: 'rgba(201, 14, 14, 0.5)',
+          fill: {
+            target: 'origin',
+            above: 'rgba(201, 14, 14, 0.5)',
+          }
+        },
+        {
+          label: referencesFramingham.MEDIUM.Medium,
+          data: mediumValue,
+          pointStyle: 'rectRounded',
+          pointRadius: 6,
+          borderColor: 'rgba(192, 201, 14, 0.7)',
+          backgroundColor: 'rgba(192, 201, 14, 0.5)',
+          fill: {
+            target: 'origin',
+            above: 'rgba(192, 201, 14, 0.5)',
+          }
+        },
+        {
+          label: referencesFramingham.LOW.Low,
+          data: lowValue,
+          pointStyle: 'rectRounded',
+          pointRadius: 6,
+          borderColor: 'rgba(17, 201, 14, 0.7)',
+          backgroundColor: 'rgba(17, 201, 14, 0.5)',
+          fill: {
+            target: 'origin',
+            above: 'rgba(17, 201, 14, 0.5)',
+          }
+        },
+        {
+          label: "Sin Dato",
+          data: noLevelValue,
+          pointStyle: 'rectRounded',
+          pointRadius: 6,
+          borderColor: 'rgba(59, 59, 59, 0.7)',
+          backgroundColor: 'rgba(59, 59, 59, 0.5)',
+          fill: {
+            target: 'origin',
+            above: 'rgba(59, 59, 59, 0.5)',
+          }
+        }
+        ]
+      },
+      options: {
+        plugins: {
+          tooltip: {
+            mode: 'index',
+            axis: "y",
+            position: "nearest",
+            backgroundColor: 'rgba(5, 85, 250, 0.6)'
+          }
+        }
       }
     });
   }
@@ -346,7 +419,7 @@
     graphMetabolic = new Chart(metabolicChart, {
       type: 'pie',
       data: {
-        labels: ["0s", "10s", "20s", "30s", "40s", "50s", "60s"],
+        labels: centrals.sort(),
         datasets: [{
           label: "Car Speed",
           data: [0, 59, 75, 20, 20, 55, 40],
@@ -419,7 +492,7 @@
     graphArterogenic = new Chart(arterogenicChart, {
       type: 'radar',
       data: {
-        labels: ["0s", "10s", "20s", "30s", "40s", "50s", "60s"],
+        labels: centrals.sort(),
         datasets: [{
           label: "Car Speed",
           data: [0, 59, 75, 20, 20, 55, 40],
