@@ -354,6 +354,9 @@
 
   function testMetabolic(params = "", selected = "") {
     let centrals = [];
+    let withAlterations = [];
+    let withoutAlterations = [];
+    let requiredData = [];
     const metabolicChart = document.getElementById("myMetabolic");
 
     if (selected) {
@@ -369,7 +372,7 @@
 
     let registerAdd = [];
 
-    centrals.forEach(central => {
+    centrals.sort().forEach(central => {
       referencesMetabolic.withAlterations.Counter = 0;
       referencesMetabolic.withoutAlterations.Counter = 0;
       referencesMetabolic.requiredData.Counter = 0;
@@ -383,22 +386,27 @@
         }
       })
 
-
+      let alteration = referencesMetabolic.withAlterations.Counter;
       registerAdd.push({
         0: central,
         1: referencesMetabolic.withAlterations.message,
-        2: referencesMetabolic.withAlterations.Counter
+        2: alteration
       })
+      let outAlteration = referencesMetabolic.withoutAlterations.Counter;
       registerAdd.push({
         0: central,
         1: referencesMetabolic.withoutAlterations.message,
-        2: referencesMetabolic.withoutAlterations.Counter
+        2: outAlteration
       })
+      let unknown = referencesMetabolic.requiredData.Counter;
       registerAdd.push({
         0: central,
-        1: "Contiene valores VACIOS",
-        2: referencesMetabolic.requiredData.Counter
+        1: referencesMetabolic.requiredData.message,
+        2: unknown
       })
+      withAlterations.push(alteration);
+      withoutAlterations.push(outAlteration);
+      requiredData.push(unknown);
     })
     tbl_metabolic.rows.add(registerAdd).draw();
 
@@ -407,6 +415,8 @@
       for (var i = 0; i < rows.length; i += 3) {
         var rowspan = 3;
         rows.eq(i).find('td:eq(0)').attr('rowspan', rowspan);
+        rows.eq(i).find('td:eq(1)').addClass('d-clamp');
+        rows.eq(i).find('td:eq(2)').addClass('d-clamp');
 
         // Ocultar las celdas en las filas cubiertas por rowspan
         if (rowspan > 1) {
@@ -415,15 +425,45 @@
       }
     });
 
-
+    console.log(registerAdd);
     graphMetabolic = new Chart(metabolicChart, {
-      type: 'pie',
+      type: 'bar',
       data: {
         labels: centrals.sort(),
         datasets: [{
-          label: "Car Speed",
-          data: [0, 59, 75, 20, 20, 55, 40],
+          label: referencesMetabolic.withAlterations.message,
+          data: withAlterations,
+          backgroundColor: 'rgba(82, 35, 20, 0.5)',
+          borderColor: 'rgb(82, 35, 20)',
+        },
+        {
+          label: referencesMetabolic.withoutAlterations.message,
+          data: withoutAlterations,
+          backgroundColor: 'rgba(73, 19, 117, 0.5)',
+          borderColor: 'rgb(73, 19, 117)',
+        },
+        {
+          label: referencesMetabolic.requiredData.message,
+          data: requiredData,
+          backgroundColor: 'rgba(20, 82, 76, 0.5)',
+          borderColor: 'rgb(20, 82, 76)',
         }]
+      },
+      options: {
+        elements: {
+          bar: {
+            borderWidth: 2,
+            borderRadius: 5,
+          }
+        },
+        plugins: {
+          tooltip: {
+            mode: 'index',
+            axis: "y",
+            position: "nearest",
+            backgroundColor: 'rgba(0, 0, 0, 0.6)'
+          }
+        }
       }
     });
   }
