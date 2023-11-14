@@ -386,27 +386,24 @@
         }
       })
 
-      let alteration = referencesMetabolic.withAlterations.Counter;
       registerAdd.push({
         0: central,
         1: referencesMetabolic.withAlterations.message,
-        2: alteration
+        2: referencesMetabolic.withAlterations.Counter
       })
-      let outAlteration = referencesMetabolic.withoutAlterations.Counter;
       registerAdd.push({
         0: central,
         1: referencesMetabolic.withoutAlterations.message,
-        2: outAlteration
+        2: referencesMetabolic.withoutAlterations.Counter
       })
-      let unknown = referencesMetabolic.requiredData.Counter;
       registerAdd.push({
         0: central,
         1: referencesMetabolic.requiredData.message,
-        2: unknown
+        2: referencesMetabolic.requiredData.Counter
       })
-      withAlterations.push(alteration);
-      withoutAlterations.push(outAlteration);
-      requiredData.push(unknown);
+      withAlterations.push(referencesMetabolic.withAlterations.Counter);
+      withoutAlterations.push(referencesMetabolic.withoutAlterations.Counter);
+      requiredData.push(referencesMetabolic.requiredData.Counter);
     })
     tbl_metabolic.rows.add(registerAdd).draw();
 
