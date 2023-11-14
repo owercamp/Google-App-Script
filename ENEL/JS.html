@@ -296,10 +296,6 @@
           pointRadius: 6,
           borderColor: 'rgba(201, 14, 14, 0.7)',
           backgroundColor: 'rgba(201, 14, 14, 0.5)',
-          fill: {
-            target: 'origin',
-            above: 'rgba(201, 14, 14, 0.5)',
-          }
         },
         {
           label: referencesFramingham.MEDIUM.Medium,
@@ -308,10 +304,6 @@
           pointRadius: 6,
           borderColor: 'rgba(192, 201, 14, 0.7)',
           backgroundColor: 'rgba(192, 201, 14, 0.5)',
-          fill: {
-            target: 'origin',
-            above: 'rgba(192, 201, 14, 0.5)',
-          }
         },
         {
           label: referencesFramingham.LOW.Low,
@@ -320,10 +312,6 @@
           pointRadius: 6,
           borderColor: 'rgba(17, 201, 14, 0.7)',
           backgroundColor: 'rgba(17, 201, 14, 0.5)',
-          fill: {
-            target: 'origin',
-            above: 'rgba(17, 201, 14, 0.5)',
-          }
         },
         {
           label: "Sin Dato",
@@ -332,22 +320,32 @@
           pointRadius: 6,
           borderColor: 'rgba(59, 59, 59, 0.7)',
           backgroundColor: 'rgba(59, 59, 59, 0.5)',
-          fill: {
-            target: 'origin',
-            above: 'rgba(59, 59, 59, 0.5)',
-          }
-        }
-        ]
+        }]
       },
       options: {
+        elements: {
+          line: {
+            tension: 0.3,
+            fill: true
+          }
+        },
         plugins: {
           tooltip: {
             mode: 'index',
             axis: "y",
             position: "nearest",
-            backgroundColor: 'rgba(5, 85, 250, 0.6)'
+            backgroundColor: 'rgba(0, 0, 0, 0.6)'
           }
-        }
+        },
+        animations: {
+          tension: {
+            duration: 1000,
+            easing: 'easeInOutQuad',
+            from: 0.2,
+            to: 0,
+            loop: true
+          }
+        },
       }
     });
   }
@@ -422,7 +420,6 @@
       }
     });
 
-    console.log(registerAdd);
     graphMetabolic = new Chart(metabolicChart, {
       type: 'bar',
       data: {
@@ -460,6 +457,15 @@
             position: "nearest",
             backgroundColor: 'rgba(0, 0, 0, 0.6)'
           }
+        },
+        animations: {
+          borderRadius: {
+            from: 0,
+            to: 5,
+            duration: 1000,
+            easing: 'easeInOutQuad',
+            loop: true
+          }
         }
       }
     });
@@ -467,6 +473,9 @@
 
   function testAterogenic(params = "", selected = "") {
     let centrals = [];
+    let max = [];
+    let medium = [];
+    let min = [];
     const arterogenicChart = document.getElementById("myArterogenic");
 
     if (selected) {
@@ -481,7 +490,7 @@
     })
 
     let registerAdd = [];
-    centrals.forEach(central => {
+    centrals.sort().forEach(central => {
       referencesAterogenic.HIGH.Counter = 0;
       referencesAterogenic.MEDIUM.Counter = 0;
       referencesAterogenic.LOW.Counter = 0;
@@ -510,6 +519,10 @@
         1: referencesAterogenic.LOW.Low,
         2: referencesAterogenic.LOW.Counter
       })
+
+      max.push(referencesAterogenic.HIGH.Counter);
+      medium.push(referencesAterogenic.MEDIUM.Counter);
+      min.push(referencesAterogenic.LOW.Counter);
     })
     tbl_aterogenic.rows.add(registerAdd).draw();
 
@@ -518,6 +531,8 @@
       for (var i = 0; i < rows.length; i += 3) {
         var rowspan = 3;
         rows.eq(i).find('td:eq(0)').attr('rowspan', rowspan);
+        rows.eq(i).find('td:eq(1)').addClass('d-clamp');
+        rows.eq(i).find('td:eq(2)').addClass('d-clamp');
 
         // Ocultar las celdas en las filas cubiertas por rowspan
         if (rowspan > 1) {
@@ -527,13 +542,52 @@
     });
 
     graphArterogenic = new Chart(arterogenicChart, {
-      type: 'radar',
+      type: 'line',
       data: {
         labels: centrals.sort(),
         datasets: [{
-          label: "Car Speed",
-          data: [0, 59, 75, 20, 20, 55, 40],
+          label: referencesAterogenic.HIGH.High,
+          data: max,
+          backgroundColor: 'rgba(3, 152, 252, 0.5)',
+          borderColor: 'rgb(3, 152, 252)',
+        },
+        {
+          label: referencesAterogenic.MEDIUM.Medium,
+          data: medium,
+          backgroundColor: 'rgba(252, 152, 3, 0.5)',
+          borderColor: 'rgb(252, 152, 3)',
+        },
+        {
+          label: referencesAterogenic.LOW.Low,
+          data: min,
+          backgroundColor: 'rgba(128, 3, 252, 0.5)',
+          borderColor: 'rgb(128, 3, 252)',
         }]
+      },
+      options: {
+        elements: {
+          line: {
+            tension: 0.3,
+            fill: true
+          }
+        },
+        plugins: {
+          tooltip: {
+            mode: 'index',
+            axis: "y",
+            position: "nearest",
+            backgroundColor: 'rgba(0, 0, 0, 0.6)'
+          }
+        },
+        animations: {
+          tension: {
+            duration: 1000,
+            easing: 'easeInOutQuad',
+            from: 0.2,
+            to: 0,
+            loop: true
+          }
+        },
       }
     });
   }
@@ -569,6 +623,8 @@
       for (let i = 0; i < rowsFramingham.length; i += 4) {
         let rowspan = 4;
         rowsFramingham.eq(i).find('td:eq(0)').attr('rowspan', rowspan);
+        rowsFramingham.eq(i).find('td:eq(1)').addClass('d-clamp');
+        rowsFramingham.eq(i).find('td:eq(2)').addClass('d-clamp');
 
         // Ocultar las celdas en las filas cubiertas por rowspan
         if (rowspan > 1) {
@@ -579,6 +635,8 @@
       for (let i = 0; i < rowsMetabolic.length; i += 3) {
         let rowspan = 3;
         rowsMetabolic.eq(i).find('td:eq(0)').attr('rowspan', rowspan);
+        rowsMetabolic.eq(i).find('td:eq(1)').addClass('d-clamp');
+        rowsMetabolic.eq(i).find('td:eq(2)').addClass('d-clamp');
 
         // Ocultar las celdas en las filas cubiertas por rowspan
         if (rowspan > 1) {
@@ -589,6 +647,8 @@
       for (let i = 0; i < rowsAterogenic.length; i += 3) {
         let rowspan = 3;
         rowsAterogenic.eq(i).find('td:eq(0)').attr('rowspan', rowspan);
+        rowsAterogenic.eq(i).find('td:eq(1)').addClass('d-clamp');
+        rowsAterogenic.eq(i).find('td:eq(2)').addClass('d-clamp');
 
         // Ocultar las celdas en las filas cubiertas por rowspan
         if (rowspan > 1) {
