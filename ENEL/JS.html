@@ -113,6 +113,14 @@
     return letterConverted;
   }
 
+  $(document).on("click", "button.high", function () {
+    let information = $(this).data("info");
+    let title = $(this).data("central");
+    let evaluation = $(this).data("evaluation");
+    let arrayInformation = information.split(",");
+    $("#staticBackdropLabel").text(`${title} - ${evaluation.toUpperCase()}`);
+  });
+
   $(document).on("change", "#central", function () {
     const selection = $(this).select2('data');
     const text = selection[0].text;
@@ -227,6 +235,7 @@
 
     let registerAdd = [];
     centrals.sort().forEach(central => {
+      let highRegisters = [], mediumRegisters = [], lowRegisters = [], noLevelRegisters = [];
       referencesFramingham.HIGH.Counter = 0;
       referencesFramingham.MEDIUM.Counter = 0;
       referencesFramingham.LOW.Counter = 0;
@@ -234,29 +243,33 @@
       params.forEach(register => {
         if (register[3] === central && register[25].includes(referencesFramingham.HIGH.High)) {
           referencesFramingham.HIGH.Counter++;
+          highRegisters.push(`${register[7]}-${register[5]}`);
         } else if (register[3] === central && register[25].includes(referencesFramingham.MEDIUM.Medium)) {
           referencesFramingham.MEDIUM.Counter++;
+          mediumRegisters.push(`${register[7]}-${register[5]}`);
         } else if (register[3] === central && register[25].includes(referencesFramingham.LOW.Low)) {
           referencesFramingham.LOW.Counter++;
+          lowRegisters.push(`${register[7]}-${register[5]}`);
         } else if (register[3] === central && ![referencesFramingham.HIGH.High, referencesFramingham.MEDIUM.Medium, referencesFramingham.LOW.Low].includes(register[25])) {
           referencesFramingham.NOLEVEL.Counter++;
+          noLevelRegisters.push(`${register[7]}-${register[5]}`);
         }
       })
 
       registerAdd.push({
         0: central,
         1: referencesFramingham.HIGH.High,
-        2: referencesFramingham.HIGH.Counter
+        2: `<button type="button" class="btn badge bg-danger rounded-pill high" data-info="${highRegisters}" data-central="${central}" data-evaluation="${referencesFramingham.HIGH.High}"   data-bs-toggle="modal" data-bs-target="#staticBackdrop">${referencesFramingham.HIGH.Counter}</button>`
       })
       registerAdd.push({
         0: central,
         1: referencesFramingham.MEDIUM.Medium,
-        2: referencesFramingham.MEDIUM.Counter
+        2: `<button type="button" class="btn badge bg-warning rounded-pill high" data-info="${mediumRegisters}">${referencesFramingham.MEDIUM.Counter}</button>`
       })
       registerAdd.push({
         0: central,
         1: referencesFramingham.LOW.Low,
-        2: referencesFramingham.LOW.Counter
+        2: `<button type="button" class="btn badge bg-success rounded-pill high" data-info="${lowRegisters}" data-central="${central}" data-evaluation="${referencesFramingham.LOW.Low}"    data-bs-toggle="modal" data-bs-target="#staticBackdrop">${referencesFramingham.LOW.Counter}</button>`
       })
       registerAdd.push({
         0: central,
