@@ -63,6 +63,12 @@
     columnDefs: [
       {
         className: "myCustomCenter", targets: "_all"
+      },
+      {
+        orderable: false, targets: [1, 2]
+      },
+      {
+        searchable: false, targets: [1, 2]
       }
     ],
     fixedColumns: true,
@@ -77,6 +83,12 @@
     columnDefs: [
       {
         className: "myCustomCenter", targets: "_all"
+      },
+      {
+        orderable: false, targets: [1, 2]
+      },
+      {
+        searchable: false, targets: [1, 2]
       }
     ],
     fixedColumns: true,
@@ -91,6 +103,12 @@
     columnDefs: [
       {
         className: "myCustomCenter", targets: "_all"
+      },
+      {
+        orderable: false, targets: [1, 2]
+      },
+      {
+        searchable: false, targets: [1, 2]
       }
     ],
     fixedColumns: true,
@@ -284,7 +302,7 @@
 
       let btnHigh = `0`;
 
-      if (referencesFramingham.HIGH.Counter !== 0) {
+      if (referencesFramingham.HIGH.Counter > 0) {
         btnHigh = `<button type="button" class="btn badge bg-danger rounded-pill high" data-info="${highRegisters}" data-color="danger" data-central="${central}" data-evaluation="${referencesFramingham.HIGH.High}"   data-bs-toggle="modal" data-bs-target="#staticBackdrop">${referencesFramingham.HIGH.Counter}</button>`;
       }
 
@@ -296,7 +314,7 @@
 
       let btnMedium = `0`;
 
-      if (referencesFramingham.MEDIUM.Counter !== 0) {
+      if (referencesFramingham.MEDIUM.Counter > 0) {
         btnMedium = `<button type="button" class="btn badge bg-warning rounded-pill high" data-info="${mediumRegisters}" data-color="warning" data-central="${central}" data-evaluation="${referencesFramingham.MEDIUM.Medium}" data-bs-toggle="modal" data-bs-target="#staticBackdrop">${referencesFramingham.MEDIUM.Counter}</button>`;
       }
       registerAdd.push({
@@ -307,7 +325,7 @@
 
       let btnLow = `0`;
 
-      if (referencesFramingham.LOW.Counter !== 0) {
+      if (referencesFramingham.LOW.Counter > 0) {
         btnLow = `<button type="button" class="btn badge bg-success rounded-pill high" data-info="${lowRegisters}" data-color="success" data-central="${central}" data-evaluation="${referencesFramingham.LOW.Low}"    data-bs-toggle="modal" data-bs-target="#staticBackdrop">${referencesFramingham.LOW.Counter}</button>`;
       }
       registerAdd.push({
@@ -318,7 +336,7 @@
 
       let btnNoLevel = `0`;
 
-      if (referencesFramingham.NOLEVEL.Counter !== 0) {
+      if (referencesFramingham.NOLEVEL.Counter > 0) {
         btnNoLevel = `<button type="button" class="btn badge bg-dark rounded-pill high" data-info="${noLevelRegisters}" data-color="dark" data-central="${central}" data-evaluation="SIN DATO" data-bs-toggle="modal" data-bs-target="#staticBackdrop">${referencesFramingham.NOLEVEL.Counter}</button>`;
       }
       registerAdd.push({
@@ -453,7 +471,7 @@
 
       let btnWithAlterations = `0`;
 
-      if (referencesMetabolic.withAlterations.Counter !== 0) {
+      if (referencesMetabolic.withAlterations.Counter > 0) {
         btnWithAlterations = `<button type="button" class="btn badge bg-danger rounded-pill high" data-info="${withAlterationsRegister}" data-color="danger" data-central="${central}" data-evaluation="${referencesMetabolic.withAlterations.message}" data-bs-toggle="modal" data-bs-target="#staticBackdrop">${referencesMetabolic.withAlterations.Counter}</button>`;
       }
 
@@ -465,7 +483,7 @@
 
       let btnWithoutAlterations = `0`;
 
-      if (referencesMetabolic.withoutAlterations.Counter !== 0) {
+      if (referencesMetabolic.withoutAlterations.Counter > 0) {
         btnWithoutAlterations = `<button type="button" class="btn badge bg-success rounded-pill high" data-info="${withoutAlterationsRegister}" data-color="success" data-central="${central}" data-evaluation="${referencesMetabolic.withoutAlterations.message}" data-bs-toggle="modal" data-bs-target="#staticBackdrop">${referencesMetabolic.withoutAlterations.Counter}</button>`;
       }
       registerAdd.push({
@@ -476,7 +494,7 @@
 
       let btnRequiredData = `0`;
 
-      if (referencesMetabolic.requiredData.Counter !== 0) {
+      if (referencesMetabolic.requiredData.Counter > 0) {
         btnRequiredData = `<button type="button" class="btn badge bg-dark rounded-pill high" data-info="${requiredDataRegister}" data-color="dark" data-central="${central}" data-evaluation="${referencesMetabolic.requiredData.message}" data-bs-toggle="modal" data-bs-target="#staticBackdrop">${referencesMetabolic.requiredData.Counter}</button>`;
       }
       registerAdd.push({
@@ -577,33 +595,55 @@
 
     let registerAdd = [];
     centrals.sort().forEach(central => {
+      let highRegisters = [], mediumRegisters = [], lowRegisters = [];
       referencesAterogenic.HIGH.Counter = 0;
       referencesAterogenic.MEDIUM.Counter = 0;
       referencesAterogenic.LOW.Counter = 0;
       params.forEach(register => {
         if (register[3] === central && register[27].includes(referencesAterogenic.HIGH.High)) {
           referencesAterogenic.HIGH.Counter++;
+          highRegisters.push(`${register[7]}-${register[5]}`);
         } else if (register[3] === central && register[27].includes(referencesAterogenic.MEDIUM.Medium)) {
           referencesAterogenic.MEDIUM.Counter++;
+          mediumRegisters.push(`${register[7]}-${register[5]}`);
         } else if (register[3] === central && register[27].includes(referencesAterogenic.LOW.Low)) {
           referencesAterogenic.LOW.Counter++;
+          lowRegisters.push(`${register[7]}-${register[5]}`);
         }
       })
+
+      let btnHigh = `0`;
+
+      if (referencesAterogenic.HIGH.Counter > 0) {
+        btnHigh = `<button type="button" class="btn badge bg-danger rounded-pill high" data-info="${highRegisters}" data-color="danger" data-central="${central}" data-evaluation="${referencesAterogenic.HIGH.High}" data-bs-toggle="modal" data-bs-target="#staticBackdrop">${referencesAterogenic.HIGH.Counter}</button>`;
+      }
 
       registerAdd.push({
         0: central,
         1: referencesAterogenic.HIGH.High,
-        2: referencesAterogenic.HIGH.Counter
+        2: btnHigh
       })
+
+      let btnMedium = `0`;
+
+      if (referencesAterogenic.MEDIUM.Counter > 0) {
+        btnMedium = `<button type="button" class="btn badge bg-warning rounded-pill high" data-info="${mediumRegisters}" data-color="warning" data-central="${central}" data-evaluation="${referencesAterogenic.MEDIUM.Medium}" data-bs-toggle="modal" data-bs-target="#staticBackdrop">${referencesAterogenic.MEDIUM.Counter}</button>`;
+      }
       registerAdd.push({
         0: central,
         1: referencesAterogenic.MEDIUM.Medium,
-        2: referencesAterogenic.MEDIUM.Counter
+        2: btnMedium
       })
+
+      let btnLow = `0`;
+
+      if (referencesAterogenic.LOW.Counter > 0) {
+        btnLow = `<button type="button" class="btn badge bg-success rounded-pill high" data-info="${lowRegisters}" data-color="success" data-central="${central}" data-evaluation="${referencesAterogenic.LOW.Low}" data-bs-toggle="modal" data-bs-target="#staticBackdrop">${referencesAterogenic.LOW.Counter}</button>`;
+      }
       registerAdd.push({
         0: central,
         1: referencesAterogenic.LOW.Low,
-        2: referencesAterogenic.LOW.Counter
+        2: btnLow
       })
 
       max.push(referencesAterogenic.HIGH.Counter);
