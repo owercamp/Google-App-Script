@@ -285,7 +285,7 @@
       let btnHigh = `0`;
 
       if (referencesFramingham.HIGH.Counter !== 0) {
-        btnHigh = `<button type="button" class="btn badge bg-danger rounded-pill high" data-info="${highRegisters}" data-central="${central}" data-evaluation="${referencesFramingham.HIGH.High}"   data-bs-toggle="modal" data-bs-target="#staticBackdrop">${referencesFramingham.HIGH.Counter}</button>`;
+        btnHigh = `<button type="button" class="btn badge bg-danger rounded-pill high" data-info="${highRegisters}" data-color="danger" data-central="${central}" data-evaluation="${referencesFramingham.HIGH.High}"   data-bs-toggle="modal" data-bs-target="#staticBackdrop">${referencesFramingham.HIGH.Counter}</button>`;
       }
 
       registerAdd.push({
@@ -297,7 +297,7 @@
       let btnMedium = `0`;
 
       if (referencesFramingham.MEDIUM.Counter !== 0) {
-        btnMedium = `<button type="button" class="btn badge bg-warning rounded-pill high" data-info="${mediumRegisters}" data-central="${central}" data-evaluation="${referencesFramingham.MEDIUM.Medium}" data-bs-toggle="modal" data-bs-target="#staticBackdrop">${referencesFramingham.MEDIUM.Counter}</button>`;
+        btnMedium = `<button type="button" class="btn badge bg-warning rounded-pill high" data-info="${mediumRegisters}" data-color="warning" data-central="${central}" data-evaluation="${referencesFramingham.MEDIUM.Medium}" data-bs-toggle="modal" data-bs-target="#staticBackdrop">${referencesFramingham.MEDIUM.Counter}</button>`;
       }
       registerAdd.push({
         0: central,
@@ -308,7 +308,7 @@
       let btnLow = `0`;
 
       if (referencesFramingham.LOW.Counter !== 0) {
-        btnLow = `<button type="button" class="btn badge bg-success rounded-pill high" data-info="${lowRegisters}" data-central="${central}" data-evaluation="${referencesFramingham.LOW.Low}"    data-bs-toggle="modal" data-bs-target="#staticBackdrop">${referencesFramingham.LOW.Counter}</button>`;
+        btnLow = `<button type="button" class="btn badge bg-success rounded-pill high" data-info="${lowRegisters}" data-color="success" data-central="${central}" data-evaluation="${referencesFramingham.LOW.Low}"    data-bs-toggle="modal" data-bs-target="#staticBackdrop">${referencesFramingham.LOW.Counter}</button>`;
       }
       registerAdd.push({
         0: central,
@@ -319,7 +319,7 @@
       let btnNoLevel = `0`;
 
       if (referencesFramingham.NOLEVEL.Counter !== 0) {
-        btnNoLevel = `<button type="button" class="btn badge bg-secondary rounded-pill high" data-info="${noLevelRegisters}" data-central="${central}" data-evaluation="SIN DATO" data-bs-toggle="modal" data-bs-target="#staticBackdrop">${referencesFramingham.NOLEVEL.Counter}</button>`;
+        btnNoLevel = `<button type="button" class="btn badge bg-dark rounded-pill high" data-info="${noLevelRegisters}" data-color="dark" data-central="${central}" data-evaluation="SIN DATO" data-bs-toggle="modal" data-bs-target="#staticBackdrop">${referencesFramingham.NOLEVEL.Counter}</button>`;
       }
       registerAdd.push({
         0: central,
