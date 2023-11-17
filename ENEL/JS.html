@@ -98,6 +98,19 @@
     pagingType: "full_numbers"
   });
 
+  let tbl_modal = $("#tbl_modal").DataTable({
+    language: {
+      "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
+    },
+    columnDefs: [
+      { className: "myCustomCenter0", targets: 0 },
+      { className: "myCustomCenter", targets: 1 }
+    ],
+    fixedColumns: true,
+    responsive: true,
+    pagingType: "full_numbers"
+  });
+
   // Transforms the first letter of each word in a given string to uppercase and the rest of the letters to lowercase.
 
   // Parameters:
@@ -119,6 +132,18 @@
     let evaluation = $(this).data("evaluation");
     let arrayInformation = information.split(",");
     $("#staticBackdropLabel").text(`${title} - ${evaluation.toUpperCase()}`);
+    tbl_modal.clear().draw();
+
+    arrayInformation.map(item => {
+      let row = item.split("-");
+      tbl_modal.row.add({
+        0: row[0],
+        1: row[1]
+      }).draw();
+      
+      console.log(item);
+    });
+
   });
 
   $(document).on("change", "#central", function () {
@@ -256,25 +281,49 @@
         }
       })
 
+      let btnHigh = `0`;
+
+      if (referencesFramingham.HIGH.Counter !== 0) {
+        btnHigh = `<button type="button" class="btn badge bg-danger rounded-pill high" data-info="${highRegisters}" data-central="${central}" data-evaluation="${referencesFramingham.HIGH.High}"   data-bs-toggle="modal" data-bs-target="#staticBackdrop">${referencesFramingham.HIGH.Counter}</button>`;
+      }
+
       registerAdd.push({
         0: central,
         1: referencesFramingham.HIGH.High,
-        2: `<button type="button" class="btn badge bg-danger rounded-pill high" data-info="${highRegisters}" data-central="${central}" data-evaluation="${referencesFramingham.HIGH.High}"   data-bs-toggle="modal" data-bs-target="#staticBackdrop">${referencesFramingham.HIGH.Counter}</button>`
+        2: btnHigh
       })
+
+      let btnMedium = `0`;
+
+      if (referencesFramingham.MEDIUM.Counter !== 0) {
+        btnMedium = `<button type="button" class="btn badge bg-warning rounded-pill high" data-info="${mediumRegisters}" data-central="${central}" data-evaluation="${referencesFramingham.MEDIUM.Medium}" data-bs-toggle="modal" data-bs-target="#staticBackdrop">${referencesFramingham.MEDIUM.Counter}</button>`;
+      }
       registerAdd.push({
         0: central,
         1: referencesFramingham.MEDIUM.Medium,
-        2: `<button type="button" class="btn badge bg-warning rounded-pill high" data-info="${mediumRegisters}">${referencesFramingham.MEDIUM.Counter}</button>`
+        2: btnMedium
       })
+
+      let btnLow = `0`;
+
+      if (referencesFramingham.LOW.Counter !== 0) {
+        btnLow = `<button type="button" class="btn badge bg-success rounded-pill high" data-info="${lowRegisters}" data-central="${central}" data-evaluation="${referencesFramingham.LOW.Low}"    data-bs-toggle="modal" data-bs-target="#staticBackdrop">${referencesFramingham.LOW.Counter}</button>`;
+      }
       registerAdd.push({
         0: central,
         1: referencesFramingham.LOW.Low,
-        2: `<button type="button" class="btn badge bg-success rounded-pill high" data-info="${lowRegisters}" data-central="${central}" data-evaluation="${referencesFramingham.LOW.Low}"    data-bs-toggle="modal" data-bs-target="#staticBackdrop">${referencesFramingham.LOW.Counter}</button>`
+        2: btnLow
       })
+
+      let btnNoLevel = `0`;
+
+      if (referencesFramingham.NOLEVEL.Counter !== 0) {
+        btnNoLevel = `<button type="button" class="btn badge bg-secondary rounded-pill high" data-info="${noLevelRegisters}" data-central="${central}" data-evaluation="SIN DATO" data-bs-toggle="modal" data-bs-target="#staticBackdrop">${referencesFramingham.NOLEVEL.Counter}</button>`;
+      }
       registerAdd.push({
         0: central,
         1: "Sin Dato",
-        2: referencesFramingham.NOLEVEL.Counter
+        2: btnNoLevel
       })
       highValue.push(referencesFramingham.HIGH.Counter)
       mediumValue.push(referencesFramingham.MEDIUM.Counter)
