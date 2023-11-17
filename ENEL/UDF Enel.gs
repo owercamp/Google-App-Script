@@ -595,7 +595,7 @@ function ARTEROGENICO(cholesterol, hdl) {
   const result = parseFloat(cholesterol / hdl).toFixed(2);
 
   if (result < 3.5) {
-    return `${result} Minino`;
+    return `${result} Minimo`;
   } else if (result >= 3.5 && result <= 4.5) {
     return `${result} Moderado`;
   } else if (result >= 4.5) {
