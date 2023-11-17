@@ -129,9 +129,12 @@
   $(document).on("click", "button.high", function () {
     let information = $(this).data("info");
     let title = $(this).data("central");
+    let color = $(this).data("color");
     let evaluation = $(this).data("evaluation");
     let arrayInformation = information.split(",");
     $("#staticBackdropLabel").text(`${title} - ${evaluation.toUpperCase()}`);
+    $("#staticBackdropLabel").parent(".modal-header").removeClass(`bg-danger bg-success bg-warning bg-dark`);
+    $("#staticBackdropLabel").parent(".modal-header").addClass(`bg-${color}`);
     tbl_modal.clear().draw();
 
     arrayInformation.map(item => {
@@ -140,8 +143,6 @@
         0: row[0],
         1: row[1]
       }).draw();
-      
-      console.log(item);
     });
 
   });
@@ -433,34 +434,57 @@
     let registerAdd = [];
 
     centrals.sort().forEach(central => {
+      let withAlterationsRegister = [], withoutAlterationsRegister = [], requiredDataRegister = [];
       referencesMetabolic.withAlterations.Counter = 0;
       referencesMetabolic.withoutAlterations.Counter = 0;
       referencesMetabolic.requiredData.Counter = 0;
       params.forEach(register => {
         if (register[3] === central && register[26].includes(referencesMetabolic.withAlterations.message)) {
           referencesMetabolic.withAlterations.Counter++;
+          withAlterationsRegister.push(`${register[7]}-${register[5]}`);
         } else if (register[3] === central && register[26].includes(referencesMetabolic.withoutAlterations.message)) {
           referencesMetabolic.withoutAlterations.Counter++;
+          withoutAlterationsRegister.push(`${register[7]}-${register[5]}`);
         } else if (register[3] === central && register[26].includes(referencesMetabolic.requiredData.message)) {
           referencesMetabolic.requiredData.Counter++;
+          requiredDataRegister.push(`${register[7]}-${register[5]}`);
         }
       })
+
+      let btnWithAlterations = `0`;
+
+      if (referencesMetabolic.withAlterations.Counter !== 0) {
+        btnWithAlterations = `<button type="button" class="btn badge bg-danger rounded-pill high" data-info="${withAlterationsRegister}" data-color="danger" data-central="${central}" data-evaluation="${referencesMetabolic.withAlterations.message}" data-bs-toggle="modal" data-bs-target="#staticBackdrop">${referencesMetabolic.withAlterations.Counter}</button>`;
+      }
 
       registerAdd.push({
         0: central,
         1: referencesMetabolic.withAlterations.message,
-        2: referencesMetabolic.withAlterations.Counter
+        2: btnWithAlterations
       })
+
+      let btnWithoutAlterations = `0`;
+
+      if (referencesMetabolic.withoutAlterations.Counter !== 0) {
+        btnWithoutAlterations = `<button type="button" class="btn badge bg-success rounded-pill high" data-info="${withoutAlterationsRegister}" data-color="success" data-central="${central}" data-evaluation="${referencesMetabolic.withoutAlterations.message}" data-bs-toggle="modal" data-bs-target="#staticBackdrop">${referencesMetabolic.withoutAlterations.Counter}</button>`;
+      }
       registerAdd.push({
         0: central,
         1: referencesMetabolic.withoutAlterations.message,
-        2: referencesMetabolic.withoutAlterations.Counter
+        2: btnWithoutAlterations
       })
+
+      let btnRequiredData = `0`;
+
+      if (referencesMetabolic.requiredData.Counter !== 0) {
+        btnRequiredData = `<button type="button" class="btn badge bg-dark rounded-pill high" data-info="${requiredDataRegister}" data-color="dark" data-central="${central}" data-evaluation="${referencesMetabolic.requiredData.message}" data-bs-toggle="modal" data-bs-target="#staticBackdrop">${referencesMetabolic.requiredData.Counter}</button>`;
+      }
       registerAdd.push({
         0: central,
         1: referencesMetabolic.requiredData.message,
-        2: referencesMetabolic.requiredData.Counter
+        2: btnRequiredData
       })
+
       withAlterations.push(referencesMetabolic.withAlterations.Counter);
       withoutAlterations.push(referencesMetabolic.withoutAlterations.Counter);
       requiredData.push(referencesMetabolic.requiredData.Counter);
