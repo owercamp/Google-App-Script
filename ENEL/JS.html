@@ -391,8 +391,43 @@
       }
     });
 
+    let typeGraph = 'line';
+    let elements = {
+      line: {
+        tension: 0.3,
+        fill: true
+      }
+    };
+    let animations = {
+      tension: {
+        duration: 1000,
+        easing: 'easeInOutQuad',
+        from: 0.2,
+        to: 0,
+        loop: true
+      }
+    }
+    if (centrals.length == 1) {
+      typeGraph = 'bar';
+      elements = {
+        bar: {
+          borderWidth: 2,
+          borderRadius: 5,
+        }
+      }
+      animations = {
+        borderRadius: {
+          from: 0,
+          to: 5,
+          duration: 1000,
+          easing: 'easeInOutQuad',
+          loop: true
+        }
+      }
+    }
+
     graphFramingham = new Chart(framinghamChart, {
-      type: 'line',
+      type: typeGraph,
       data: {
         labels: centrals.sort(),
         datasets: [{
@@ -429,12 +464,7 @@
         }]
       },
       options: {
-        elements: {
-          line: {
-            tension: 0.3,
-            fill: true
-          }
-        },
+        elements: elements,
         plugins: {
           tooltip: {
             mode: 'index',
@@ -453,15 +483,7 @@
             }
           }
         },
-        animations: {
-          tension: {
-            duration: 1000,
-            easing: 'easeInOutQuad',
-            from: 0.2,
-            to: 0,
-            loop: true
-          }
-        },
+        animations,
       }
     });
   }
@@ -565,36 +587,72 @@
       }
     });
 
+    let typeGraph = 'line';
+    let elements = {
+      line: {
+        tension: 0.3,
+        fill: true
+      }
+    };
+    let animations = {
+      tension: {
+        duration: 1000,
+        easing: 'easeInOutQuad',
+        from: 0.2,
+        to: 0,
+        loop: true
+      }
+    }
+    if (centrals.length == 1) {
+      typeGraph = 'bar';
+      elements = {
+        bar: {
+          borderWidth: 2,
+          borderRadius: 5,
+        }
+      }
+      animations = {
+        borderRadius: {
+          from: 0,
+          to: 5,
+          duration: 1000,
+          easing: 'easeInOutQuad',
+          loop: true
+        }
+      }
+    }
+
     graphMetabolic = new Chart(metabolicChart, {
-      type: 'bar',
+      type: typeGraph,
       data: {
         labels: centrals.sort(),
         datasets: [{
           label: referencesMetabolic.withAlterations.message,
           data: withAlterations,
+          pointStyle: 'rectRounded',
+          pointRadius: 6,
           backgroundColor: 'rgba(82, 35, 20, 0.5)',
           borderColor: 'rgb(82, 35, 20)',
         },
         {
           label: referencesMetabolic.withoutAlterations.message,
           data: withoutAlterations,
+          pointStyle: 'rectRounded',
+          pointRadius: 6,
           backgroundColor: 'rgba(73, 19, 117, 0.5)',
           borderColor: 'rgb(73, 19, 117)',
         },
         {
           label: referencesMetabolic.requiredData.message,
           data: requiredData,
+          pointStyle: 'rectRounded',
+          pointRadius: 6,
           backgroundColor: 'rgba(20, 82, 76, 0.5)',
           borderColor: 'rgb(20, 82, 76)',
         }]
       },
       options: {
-        elements: {
-          bar: {
-            borderWidth: 2,
-            borderRadius: 5,
-          }
-        },
+        elements: elements,
         plugins: {
           tooltip: {
             mode: 'index',
@@ -613,15 +671,7 @@
             }
           }
         },
-        animations: {
-          borderRadius: {
-            from: 0,
-            to: 5,
-            duration: 1000,
-            easing: 'easeInOutQuad',
-            loop: true
-          }
-        }
+        animations,
       }
     });
   }
@@ -724,36 +774,72 @@
       }
     });
 
+    let typeGraph = 'line';
+    let elements = {
+      line: {
+        tension: 0.3,
+        fill: true
+      }
+    };
+    let animations = {
+      tension: {
+        duration: 1000,
+        easing: 'easeInOutQuad',
+        from: 0.2,
+        to: 0,
+        loop: true
+      }
+    }
+    if (centrals.length == 1) {
+      typeGraph = 'bar';
+      elements = {
+        bar: {
+          borderWidth: 2,
+          borderRadius: 5,
+        }
+      }
+      animations = {
+        borderRadius: {
+          from: 0,
+          to: 5,
+          duration: 1000,
+          easing: 'easeInOutQuad',
+          loop: true
+        }
+      }
+    }
+
     graphArterogenic = new Chart(arterogenicChart, {
-      type: 'line',
+      type: typeGraph,
       data: {
         labels: centrals.sort(),
         datasets: [{
           label: referencesAterogenic.HIGH.High,
           data: max,
+          pointStyle: 'rectRounded',
+          pointRadius: 6,
           backgroundColor: 'rgba(3, 152, 252, 0.5)',
           borderColor: 'rgb(3, 152, 252)',
         },
         {
           label: referencesAterogenic.MEDIUM.Medium,
           data: medium,
+          pointStyle: 'rectRounded',
+          pointRadius: 6,
           backgroundColor: 'rgba(252, 152, 3, 0.5)',
           borderColor: 'rgb(252, 152, 3)',
         },
         {
           label: referencesAterogenic.LOW.Low,
           data: min,
+          pointStyle: 'rectRounded',
+          pointRadius: 6,
           backgroundColor: 'rgba(128, 3, 252, 0.5)',
           borderColor: 'rgb(128, 3, 252)',
         }]
       },
       options: {
-        elements: {
-          line: {
-            tension: 0.3,
-            fill: true
-          }
-        },
+        elements: elements,
         plugins: {
           tooltip: {
             mode: 'index',
@@ -772,15 +858,7 @@
             }
           }
         },
-        animations: {
-          tension: {
-            duration: 1000,
-            easing: 'easeInOutQuad',
-            from: 0.2,
-            to: 0,
-            loop: true
-          }
-        },
+        animations,
       }
     });
   }
