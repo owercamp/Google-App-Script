@@ -43,6 +43,16 @@
       placeholder: 'Select an option',
       selectOnClose: true,
     });
+    
+    $('#MetabolicOpc').select2({
+      placeholder: 'Select an option',
+      selectOnClose: true,
+    });
+
+    $('#AterogenicOpc').select2({
+      placeholder: 'Select an option',
+      selectOnClose: true,
+    });
   })
   window.addEventListener("load", general(""));
   window.addEventListener("load", listCentrals());
@@ -282,6 +292,13 @@
       }
     })
 
+    $("#FraminghamOpc").empty();
+    $("#FraminghamOpc").append("<option value=''></option>");
+    $("#FraminghamOpc").append(`<option value="${referencesFramingham.HIGH.High}">${referencesFramingham.HIGH.High}</option>`);
+    $("#FraminghamOpc").append(`<option value="${referencesFramingham.MEDIUM.Medium}">${referencesFramingham.MEDIUM.Medium}</option>`);
+    $("#FraminghamOpc").append(`<option value="${referencesFramingham.LOW.Low}">${referencesFramingham.LOW.Low}</option>`);
+    $("#FraminghamOpc").append(`<option value="Sin Dato">Sin Dato</option>`);
+
     let registerAdd = [];
     centrals.sort().forEach(central => {
       let highRegisters = [], mediumRegisters = [], lowRegisters = [], noLevelRegisters = [];
@@ -464,6 +481,12 @@
       }
     })
 
+    $("#MetabolicOpc").empty();
+    $("#MetabolicOpc").append(`<option value=""></option>`);
+    $("#MetabolicOpc").append(`<option value="${referencesMetabolic.withAlterations.message}">${referencesMetabolic.withAlterations.message}</option>`);
+    $("#MetabolicOpc").append(`<option value="${referencesMetabolic.withoutAlterations.message}">${referencesMetabolic.withoutAlterations.message}</option>`);
+    $("#MetabolicOpc").append(`<option value="${referencesMetabolic.requiredData.message}">${referencesMetabolic.requiredData.message}</option>`);
+
     let registerAdd = [];
 
     centrals.sort().forEach(central => {
@@ -617,6 +640,12 @@
         centrals.push(element[3]);
       }
     })
+
+    $("#AterogenicOpc").empty();
+    $("#AterogenicOpc").append(`<option value=""></option>`);
+    $("#AterogenicOpc").append(`<option value="${referencesAterogenic.HIGH.High}">${referencesAterogenic.HIGH.High}</option>`);
+    $("#AterogenicOpc").append(`<option value="${referencesAterogenic.MEDIUM.Medium}">${referencesAterogenic.MEDIUM.Medium}</option>`);
+    $("#AterogenicOpc").append(`<option value="${referencesAterogenic.LOW.Low}">${referencesAterogenic.LOW.Low}</option>`);
 
     let registerAdd = [];
     centrals.sort().forEach(central => {
