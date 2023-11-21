@@ -38,12 +38,12 @@
       placeholder: 'Select an option',
       selectOnClose: true,
     });
-    
+
     $('#FraminghamOpc').select2({
       placeholder: 'Select an option',
       selectOnClose: true,
     });
-    
+
     $('#MetabolicOpc').select2({
       placeholder: 'Select an option',
       selectOnClose: true,
@@ -182,26 +182,29 @@
 
   $(document).on("change", "#central", function () {
     const selection = $(this).select2('data');
-    const text = selection[0].text;
+    const centralSelection = selection[0].text;
     let response = "";
-    swal.fire({
-      text: `¿Desea realizar la búsqueda por ${firstLetter(text)}?`,
-      button: {
-        text: "Buscar",
-        closeModal: false,
-      },
-    })
-      .then(willSearch => {
-        if (willSearch) {
-          response = general(text);
-        }
+    Swal.fire({
+      title: `¿Desea realizar la búsqueda por ${firstLetter(centralSelection)}?`,
+      showCancelButton: true,
+      confirmButtonText: `Buscar`,
+      cancelButtonText: `Cancelar Busqueda`,
+      allowOutsideClick: false,
+      allowEscapeKey: false,
+      confirmButtonColor: '#5391f5',
+      cancelButtonColor: '#7e7f80',
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
         Swal.fire({
           icon: 'info',
-          html: `<p>Realizando consulta de los datos para la terminal <b style="color:Red;"><i>${firstLetter(text)}</i></b></p>`,
+          html: `<p>Realizando consulta de los datos para la terminal <b style="color:Red;"><i>${firstLetter(centralSelection)}</i></b></p>`,
           footer: `<p style="color:#5faefe">Por favor espere..</p>`,
           showConfirmButton: false,
         });
-      })
+        general(centralSelection);
+      }
+    });
   });
 
   // Retrieves a list of centrals from the server and populates the 'central' dropdown menu.
