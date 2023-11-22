@@ -159,6 +159,26 @@
     return letterConverted;
   }
 
+  $(document).on("change", "#FraminghamOpc", function () {
+    let evaluation = $(this).select2("data")[0].text;
+    let central = $("#central").select2("data")[0].text;
+    let selector = $(this).attr("name");
+
+    let framinghamResult = google.script.run.withSuccessHandler(result => {
+      let information = JSON.parse(result);
+      testFramingham(information, central, evaluation);
+    })
+      .withFailureHandler(error => {
+        console.log(error);
+      })
+
+    if (central) {
+      framinghamResult.getGeneral(central);
+    } else {
+      framinghamResult.getGeneral();
+    }
+  })
+
   $(document).on("click", "button.high", function () {
     let information = $(this).data("info");
     let title = $(this).data("central");
@@ -276,7 +296,7 @@
     },
   }
 
-  function testFramingham(params = "", selected = "") {
+  function testFramingham(params = "", central = "", status = "") {
     let centrals = [];
     let highValue = [];
     let mediumValue = [];
@@ -284,7 +304,7 @@
     let noLevelValue = [];
     const framinghamChart = document.getElementById("myFramingham");
 
-    if (selected) {
+    if (central || status) {
       graphFramingham.destroy();
       tbl_framingham.clear().draw();
     }
@@ -295,12 +315,14 @@
       }
     })
 
-    $("#FraminghamOpc").empty();
-    $("#FraminghamOpc").append("<option value=''></option>");
-    $("#FraminghamOpc").append(`<option value="${referencesFramingham.HIGH.High}">${referencesFramingham.HIGH.High}</option>`);
-    $("#FraminghamOpc").append(`<option value="${referencesFramingham.MEDIUM.Medium}">${referencesFramingham.MEDIUM.Medium}</option>`);
-    $("#FraminghamOpc").append(`<option value="${referencesFramingham.LOW.Low}">${referencesFramingham.LOW.Low}</option>`);
-    $("#FraminghamOpc").append(`<option value="Sin Dato">Sin Dato</option>`);
+    if (!status) {
+      $("#FraminghamOpc").empty();
+      $("#FraminghamOpc").append("<option value=''></option>");
+      $("#FraminghamOpc").append(`<option value="${referencesFramingham.HIGH.High}">${referencesFramingham.HIGH.High}</option>`);
+      $("#FraminghamOpc").append(`<option value="${referencesFramingham.MEDIUM.Medium}">${referencesFramingham.MEDIUM.Medium}</option>`);
+      $("#FraminghamOpc").append(`<option value="${referencesFramingham.LOW.Low}">${referencesFramingham.LOW.Low}</option>`);
+      $("#FraminghamOpc").append(`<option value="Sin Dato">Sin Dato</option>`);
+    }
 
     let registerAdd = [];
     centrals.sort().forEach(central => {
@@ -311,85 +333,203 @@
       referencesFramingham.NOLEVEL.Counter = 0;
       params.forEach(register => {
         if (register[3] === central && register[25].includes(referencesFramingham.HIGH.High)) {
-          referencesFramingham.HIGH.Counter++;
-          highRegisters.push(`${register[7]}-${register[5]}`);
+          if (status && register[25].includes(status)) {
+            referencesFramingham.HIGH.Counter++;
+            highRegisters.push(`${register[7]}-${register[5]}`);
+          } else {
+            referencesFramingham.HIGH.Counter++;
+            highRegisters.push(`${register[7]}-${register[5]}`);
+          }
         } else if (register[3] === central && register[25].includes(referencesFramingham.MEDIUM.Medium)) {
-          referencesFramingham.MEDIUM.Counter++;
-          mediumRegisters.push(`${register[7]}-${register[5]}`);
+          if (status && register[25].includes(status)) {
+            referencesFramingham.MEDIUM.Counter++;
+            mediumRegisters.push(`${register[7]}-${register[5]}`);
+          } else {
+            referencesFramingham.MEDIUM.Counter++;
+            mediumRegisters.push(`${register[7]}-${register[5]}`);
+          }
         } else if (register[3] === central && register[25].includes(referencesFramingham.LOW.Low)) {
-          referencesFramingham.LOW.Counter++;
-          lowRegisters.push(`${register[7]}-${register[5]}`);
+          if (status && register[25].includes(status)) {
+            referencesFramingham.LOW.Counter++;
+            lowRegisters.push(`${register[7]}-${register[5]}`);
+          } else {
+            referencesFramingham.LOW.Counter++;
+            lowRegisters.push(`${register[7]}-${register[5]}`);
+          }
         } else if (register[3] === central && ![referencesFramingham.HIGH.High, referencesFramingham.MEDIUM.Medium, referencesFramingham.LOW.Low].includes(register[25])) {
-          referencesFramingham.NOLEVEL.Counter++;
-          noLevelRegisters.push(`${register[7]}-${register[5]}`);
+          if (status && ![referencesFramingham.HIGH.High, referencesFramingham.MEDIUM.Medium, referencesFramingham.LOW.Low].includes(status)) {
+            referencesFramingham.NOLEVEL.Counter++;
+            noLevelRegisters.push(`${register[7]}-${register[5]}`);
+          } else {
+            referencesFramingham.NOLEVEL.Counter++;
+            noLevelRegisters.push(`${register[7]}-${register[5]}`);
+          }
         }
       })
 
-      let btnHigh = `0`;
+      let btnHigh, btnMedium, btnLow, btnNoLevel;
+      let dataHigh, dataMedium, dataLow, dataNoLevel;
 
-      if (referencesFramingham.HIGH.Counter > 0) {
-        btnHigh = `<button type="button" class="btn badge bg-danger rounded-pill high" data-info="${highRegisters}" data-color="danger" data-central="${central}" data-evaluation="${referencesFramingham.HIGH.High}"   data-bs-toggle="modal" data-bs-target="#staticBackdrop">${referencesFramingham.HIGH.Counter}</button>`;
+      /*** data for the High, Medium and Low graphs ***/
+      dataHigh = {
+        label: referencesFramingham.HIGH.High,
+        data: highValue,
+        pointStyle: 'rectRounded',
+        pointRadius: 6,
+        borderColor: 'rgba(201, 14, 14, 0.7)',
+        backgroundColor: 'rgba(201, 14, 14, 0.5)',
+      }
+      dataMedium = {
+        label: referencesFramingham.MEDIUM.Medium,
+        data: mediumValue,
+        pointStyle: 'rectRounded',
+        pointRadius: 6,
+        borderColor: 'rgba(192, 201, 14, 0.7)',
+        backgroundColor: 'rgba(192, 201, 14, 0.5)',
+      }
+      dataLow = {
+        label: referencesFramingham.LOW.Low,
+        data: lowValue,
+        pointStyle: 'rectRounded',
+        pointRadius: 6,
+        borderColor: 'rgba(17, 201, 14, 0.7)',
+        backgroundColor: 'rgba(17, 201, 14, 0.5)',
+      }
+      dataNoLevel = {
+        label: "Sin Dato",
+        data: noLevelValue,
+        pointStyle: 'rectRounded',
+        pointRadius: 6,
+        borderColor: 'rgba(59, 59, 59, 0.7)',
+        backgroundColor: 'rgba(59, 59, 59, 0.5)',
+      }
+      let pushData = [];
+      switch (status) {
+        case referencesFramingham.HIGH.High:
+          btnHigh = `0`;
+
+          if (referencesFramingham.HIGH.Counter > 0) {
+            btnHigh = `<button type="button" class="btn badge bg-danger rounded-pill high" data-info="${highRegisters}" data-color="danger" data-central="${central}" data-evaluation="${referencesFramingham.HIGH.High}"   data-bs-toggle="modal" data-bs-target="#staticBackdrop">${referencesFramingham.HIGH.Counter}</button>`;
+          }
+
+          registerAdd.push({
+            0: central,
+            1: referencesFramingham.HIGH.High,
+            2: btnHigh
+          })
+          break;
+        case referencesFramingham.MEDIUM.Medium:
+          btnMedium = `0`;
+
+          if (referencesFramingham.MEDIUM.Counter > 0) {
+            btnMedium = `<button type="button" class="btn badge bg-warning rounded-pill high" data-info="${mediumRegisters}" data-color="warning" data-central="${central}" data-evaluation="${referencesFramingham.MEDIUM.Medium}" data-bs-toggle="modal" data-bs-target="#staticBackdrop">${referencesFramingham.MEDIUM.Counter}</button>`;
+          }
+          registerAdd.push({
+            0: central,
+            1: referencesFramingham.MEDIUM.Medium,
+            2: btnMedium
+          })
+          break;
+        case referencesFramingham.LOW.Low:
+          btnLow = `0`;
+
+          if (referencesFramingham.LOW.Counter > 0) {
+            btnLow = `<button type="button" class="btn badge bg-success rounded-pill high" data-info="${lowRegisters}" data-color="success" data-central="${central}" data-evaluation="${referencesFramingham.LOW.Low}"    data-bs-toggle="modal" data-bs-target="#staticBackdrop">${referencesFramingham.LOW.Counter}</button>`;
+          }
+          registerAdd.push({
+            0: central,
+            1: referencesFramingham.LOW.Low,
+            2: btnLow
+          })
+          break;
+        case 'Sin Dato':
+          btnNoLevel = `0`;
+
+          if (referencesFramingham.NOLEVEL.Counter > 0) {
+            btnNoLevel = `<button type="button" class="btn badge bg-dark rounded-pill high" data-info="${noLevelRegisters}" data-color="dark" data-central="${central}" data-evaluation="SIN DATO" data-bs-toggle="modal" data-bs-target="#staticBackdrop">${referencesFramingham.NOLEVEL.Counter}</button>`;
+          }
+          registerAdd.push({
+            0: central,
+            1: "Sin Dato",
+            2: btnNoLevel
+          })
+          break;
+        default:
+          btnHigh = `0`;
+
+          if (referencesFramingham.HIGH.Counter > 0) {
+            btnHigh = `<button type="button" class="btn badge bg-danger rounded-pill high" data-info="${highRegisters}" data-color="danger" data-central="${central}" data-evaluation="${referencesFramingham.HIGH.High}"   data-bs-toggle="modal" data-bs-target="#staticBackdrop">${referencesFramingham.HIGH.Counter}</button>`;
+          }
+
+          registerAdd.push({
+            0: central,
+            1: referencesFramingham.HIGH.High,
+            2: btnHigh
+          })
+
+          btnMedium = `0`;
+
+          if (referencesFramingham.MEDIUM.Counter > 0) {
+            btnMedium = `<button type="button" class="btn badge bg-warning rounded-pill high" data-info="${mediumRegisters}" data-color="warning" data-central="${central}" data-evaluation="${referencesFramingham.MEDIUM.Medium}" data-bs-toggle="modal" data-bs-target="#staticBackdrop">${referencesFramingham.MEDIUM.Counter}</button>`;
+          }
+          registerAdd.push({
+            0: central,
+            1: referencesFramingham.MEDIUM.Medium,
+            2: btnMedium
+          })
+
+          btnLow = `0`;
+
+          if (referencesFramingham.LOW.Counter > 0) {
+            btnLow = `<button type="button" class="btn badge bg-success rounded-pill high" data-info="${lowRegisters}" data-color="success" data-central="${central}" data-evaluation="${referencesFramingham.LOW.Low}"    data-bs-toggle="modal" data-bs-target="#staticBackdrop">${referencesFramingham.LOW.Counter}</button>`;
+          }
+          registerAdd.push({
+            0: central,
+            1: referencesFramingham.LOW.Low,
+            2: btnLow
+          })
+
+          btnNoLevel = `0`;
+
+          if (referencesFramingham.NOLEVEL.Counter > 0) {
+            btnNoLevel = `<button type="button" class="btn badge bg-dark rounded-pill high" data-info="${noLevelRegisters}" data-color="dark" data-central="${central}" data-evaluation="SIN DATO" data-bs-toggle="modal" data-bs-target="#staticBackdrop">${referencesFramingham.NOLEVEL.Counter}</button>`;
+          }
+          registerAdd.push({
+            0: central,
+            1: "Sin Dato",
+            2: btnNoLevel
+          })
+          break;
       }
 
-      registerAdd.push({
-        0: central,
-        1: referencesFramingham.HIGH.High,
-        2: btnHigh
-      })
-
-      let btnMedium = `0`;
-
-      if (referencesFramingham.MEDIUM.Counter > 0) {
-        btnMedium = `<button type="button" class="btn badge bg-warning rounded-pill high" data-info="${mediumRegisters}" data-color="warning" data-central="${central}" data-evaluation="${referencesFramingham.MEDIUM.Medium}" data-bs-toggle="modal" data-bs-target="#staticBackdrop">${referencesFramingham.MEDIUM.Counter}</button>`;
-      }
-      registerAdd.push({
-        0: central,
-        1: referencesFramingham.MEDIUM.Medium,
-        2: btnMedium
-      })
-
-      let btnLow = `0`;
-
-      if (referencesFramingham.LOW.Counter > 0) {
-        btnLow = `<button type="button" class="btn badge bg-success rounded-pill high" data-info="${lowRegisters}" data-color="success" data-central="${central}" data-evaluation="${referencesFramingham.LOW.Low}"    data-bs-toggle="modal" data-bs-target="#staticBackdrop">${referencesFramingham.LOW.Counter}</button>`;
-      }
-      registerAdd.push({
-        0: central,
-        1: referencesFramingham.LOW.Low,
-        2: btnLow
-      })
-
-      let btnNoLevel = `0`;
-
-      if (referencesFramingham.NOLEVEL.Counter > 0) {
-        btnNoLevel = `<button type="button" class="btn badge bg-dark rounded-pill high" data-info="${noLevelRegisters}" data-color="dark" data-central="${central}" data-evaluation="SIN DATO" data-bs-toggle="modal" data-bs-target="#staticBackdrop">${referencesFramingham.NOLEVEL.Counter}</button>`;
-      }
-      registerAdd.push({
-        0: central,
-        1: "Sin Dato",
-        2: btnNoLevel
-      })
       highValue.push(referencesFramingham.HIGH.Counter)
       mediumValue.push(referencesFramingham.MEDIUM.Counter)
       lowValue.push(referencesFramingham.LOW.Counter)
       noLevelValue.push(referencesFramingham.NOLEVEL.Counter)
+
+
+
     })
     tbl_framingham.rows.add(registerAdd).draw();
 
     tbl_framingham.on('draw.dt', function () {
-      var rows = $('#tbl_framingham tbody tr');
-      for (var i = 0; i < rows.length; i += 4) {
-        var rowspan = 4;
-        rows.eq(i).find('td:eq(0)').attr('rowspan', rowspan);
-        rows.eq(i).find('td:eq(1)').addClass('d-clamp');
-        rows.eq(i).find('td:eq(2)').addClass('d-clamp');
+      let data_select = $("#FraminghamOpc").select2("data")[0].value;
+      if (data_select) {
+        var rows = $('#tbl_framingham tbody tr');
+        for (var i = 0; i < rows.length; i += 4) {
+          var rowspan = 4;
+          rows.eq(i).find('td:eq(0)').attr('rowspan', rowspan);
+          rows.eq(i).find('td:eq(1)').addClass('d-clamp');
+          rows.eq(i).find('td:eq(2)').addClass('d-clamp');
 
-        // Ocultar las celdas en las filas cubiertas por rowspan
-        if (rowspan > 1) {
-          rows.slice(i + 1, i + rowspan).find('td:eq(0)').hide();
+          // Ocultar las celdas en las filas cubiertas por rowspan
+          if (rowspan > 1) {
+            rows.slice(i + 1, i + rowspan).find('td:eq(0)').hide();
+          }
         }
       }
     });
+
 
     let typeGraph = 'line';
     let elements = {
@@ -430,38 +570,10 @@
       type: typeGraph,
       data: {
         labels: centrals.sort(),
-        datasets: [{
-          label: referencesFramingham.HIGH.High,
-          data: highValue,
-          pointStyle: 'rectRounded',
-          pointRadius: 6,
-          borderColor: 'rgba(201, 14, 14, 0.7)',
-          backgroundColor: 'rgba(201, 14, 14, 0.5)',
-        },
-        {
-          label: referencesFramingham.MEDIUM.Medium,
-          data: mediumValue,
-          pointStyle: 'rectRounded',
-          pointRadius: 6,
-          borderColor: 'rgba(192, 201, 14, 0.7)',
-          backgroundColor: 'rgba(192, 201, 14, 0.5)',
-        },
-        {
-          label: referencesFramingham.LOW.Low,
-          data: lowValue,
-          pointStyle: 'rectRounded',
-          pointRadius: 6,
-          borderColor: 'rgba(17, 201, 14, 0.7)',
-          backgroundColor: 'rgba(17, 201, 14, 0.5)',
-        },
-        {
-          label: "Sin Dato",
-          data: noLevelValue,
-          pointStyle: 'rectRounded',
-          pointRadius: 6,
-          borderColor: 'rgba(59, 59, 59, 0.7)',
-          backgroundColor: 'rgba(59, 59, 59, 0.5)',
-        }]
+        datasets: [
+
+
+        ]
       },
       options: {
         elements: elements,
@@ -930,9 +1042,9 @@
       if (selected) {
         Swal.fire({
           icon: 'success',
-          html: `<p>Success</p>`,
+          title: "Good job!",
           showConfirmButton: false,
-          timer: 3000
+          timer: 2000
         });
       }
     })
