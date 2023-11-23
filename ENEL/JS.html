@@ -302,6 +302,7 @@
     let mediumValue = [];
     let lowValue = [];
     let noLevelValue = [];
+    let pushData = [];
     const framinghamChart = document.getElementById("myFramingham");
 
     if (central || status) {
@@ -318,6 +319,7 @@
     if (!status) {
       $("#FraminghamOpc").empty();
       $("#FraminghamOpc").append("<option value=''></option>");
+      $("#FraminghamOpc").append("<option value='TODAS'>TODAS</option>");
       $("#FraminghamOpc").append(`<option value="${referencesFramingham.HIGH.High}">${referencesFramingham.HIGH.High}</option>`);
       $("#FraminghamOpc").append(`<option value="${referencesFramingham.MEDIUM.Medium}">${referencesFramingham.MEDIUM.Medium}</option>`);
       $("#FraminghamOpc").append(`<option value="${referencesFramingham.LOW.Low}">${referencesFramingham.LOW.Low}</option>`);
@@ -368,42 +370,7 @@
       })
 
       let btnHigh, btnMedium, btnLow, btnNoLevel;
-      let dataHigh, dataMedium, dataLow, dataNoLevel;
 
-      /*** data for the High, Medium and Low graphs ***/
-      dataHigh = {
-        label: referencesFramingham.HIGH.High,
-        data: highValue,
-        pointStyle: 'rectRounded',
-        pointRadius: 6,
-        borderColor: 'rgba(201, 14, 14, 0.7)',
-        backgroundColor: 'rgba(201, 14, 14, 0.5)',
-      }
-      dataMedium = {
-        label: referencesFramingham.MEDIUM.Medium,
-        data: mediumValue,
-        pointStyle: 'rectRounded',
-        pointRadius: 6,
-        borderColor: 'rgba(192, 201, 14, 0.7)',
-        backgroundColor: 'rgba(192, 201, 14, 0.5)',
-      }
-      dataLow = {
-        label: referencesFramingham.LOW.Low,
-        data: lowValue,
-        pointStyle: 'rectRounded',
-        pointRadius: 6,
-        borderColor: 'rgba(17, 201, 14, 0.7)',
-        backgroundColor: 'rgba(17, 201, 14, 0.5)',
-      }
-      dataNoLevel = {
-        label: "Sin Dato",
-        data: noLevelValue,
-        pointStyle: 'rectRounded',
-        pointRadius: 6,
-        borderColor: 'rgba(59, 59, 59, 0.7)',
-        backgroundColor: 'rgba(59, 59, 59, 0.5)',
-      }
-      let pushData = [];
       switch (status) {
         case referencesFramingham.HIGH.High:
           btnHigh = `0`;
@@ -506,15 +473,71 @@
       mediumValue.push(referencesFramingham.MEDIUM.Counter)
       lowValue.push(referencesFramingham.LOW.Counter)
       noLevelValue.push(referencesFramingham.NOLEVEL.Counter)
-
-
-
     })
+
+    let dataHigh, dataMedium, dataLow, dataNoLevel;
+
+    /*** data for the High, Medium and Low graphs ***/
+    dataHigh = {
+      label: referencesFramingham.HIGH.High,
+      data: highValue,
+      pointStyle: 'rectRounded',
+      pointRadius: 6,
+      borderColor: 'rgba(201, 14, 14, 0.7)',
+      backgroundColor: 'rgba(201, 14, 14, 0.5)',
+    }
+    dataMedium = {
+      label: referencesFramingham.MEDIUM.Medium,
+      data: mediumValue,
+      pointStyle: 'rectRounded',
+      pointRadius: 6,
+      borderColor: 'rgba(192, 201, 14, 0.7)',
+      backgroundColor: 'rgba(192, 201, 14, 0.5)',
+    }
+    dataLow = {
+      label: referencesFramingham.LOW.Low,
+      data: lowValue,
+      pointStyle: 'rectRounded',
+      pointRadius: 6,
+      borderColor: 'rgba(17, 201, 14, 0.7)',
+      backgroundColor: 'rgba(17, 201, 14, 0.5)',
+    }
+    dataNoLevel = {
+      label: "Sin Dato",
+      data: noLevelValue,
+      pointStyle: 'rectRounded',
+      pointRadius: 6,
+      borderColor: 'rgba(59, 59, 59, 0.7)',
+      backgroundColor: 'rgba(59, 59, 59, 0.5)',
+    }
+
+    pushData = [];
+    switch (status) {
+      case referencesFramingham.HIGH.High:
+        pushData.push(dataHigh);
+        break;
+      case referencesFramingham.MEDIUM.Medium:
+        pushData.push(dataMedium);
+        break;
+      case referencesFramingham.LOW.Low:
+        pushData.push(dataLow);
+        break;
+      case "Sin Dato":
+        pushData.push(dataNoLevel);
+        break;
+      default:
+        pushData.push(dataHigh);
+        pushData.push(dataMedium);
+        pushData.push(dataLow);
+        pushData.push(dataNoLevel);
+        break;
+    }
+
     tbl_framingham.rows.add(registerAdd).draw();
 
     tbl_framingham.on('draw.dt', function () {
-      let data_select = $("#FraminghamOpc").select2("data")[0].value;
-      if (data_select) {
+      let data_select = $("#FraminghamOpc").val();
+      if (!data_select || data_select === "TODAS") {
         var rows = $('#tbl_framingham tbody tr');
         for (var i = 0; i < rows.length; i += 4) {
           var rowspan = 4;
@@ -570,10 +593,7 @@
       type: typeGraph,
       data: {
         labels: centrals.sort(),
-        datasets: [
-
-
-        ]
+        datasets: pushData
       },
       options: {
         elements: elements,
@@ -689,8 +709,8 @@
       for (var i = 0; i < rows.length; i += 3) {
         var rowspan = 3;
         rows.eq(i).find('td:eq(0)').attr('rowspan', rowspan);
-        rows.eq(i).find('td:eq(1)').addClass('d-clamp');
-        rows.eq(i).find('td:eq(2)').addClass('d-clamp');
+        rows.eq(i).find('td:eq(1)').attr('overflow', 'hidden');
+        rows.eq(i).find('td:eq(2)').attr('overflow', 'hidden');
 
         // Ocultar las celdas en las filas cubiertas por rowspan
         if (rowspan > 1) {
