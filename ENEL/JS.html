@@ -199,6 +199,26 @@
     }
   })
 
+  $(document).on("change", "#AterogenicOpc", function () {
+    let evaluation = $(this).select2("data")[0].text;
+    let central = $("#central").select2("data")[0].text;
+    let selector = $(this).attr("name");
+
+    let AterogenicResult = google.script.run.withSuccessHandler(result => {
+      let information = JSON.parse(result);
+      testAterogenic(information, central, evaluation);
+    })
+      .withFailureHandler(error => {
+        console.log(error);
+      })
+
+    if (central) {
+      AterogenicResult.getGeneral(central);
+    } else {
+      AterogenicResult.getGeneral();
+    }
+  })
+
   $(document).on("click", "button.high", function () {
     let information = $(this).data("info");
     let title = $(this).data("central");
@@ -562,8 +582,8 @@
         for (var i = 0; i < rows.length; i += 4) {
           var rowspan = 4;
           rows.eq(i).find('td:eq(0)').attr('rowspan', rowspan);
-          rows.eq(i).find('td:eq(1)').addClass('d-clamp');
-          rows.eq(i).find('td:eq(2)').addClass('d-clamp');
+          rows.eq(i).find('td:eq(1)').attr('overflow', 'hidden');
+          rows.eq(i).find('td:eq(2)').attr('overflow', 'hidden');
 
           // Ocultar las celdas en las filas cubiertas por rowspan
           if (rowspan > 1) {
@@ -916,14 +936,14 @@
     });
   }
 
-  function testAterogenic(params = "", selected = "") {
+  function testAterogenic(params = "", central = "", status = "") {
     let centrals = [];
     let max = [];
     let medium = [];
     let min = [];
     const arterogenicChart = document.getElementById("myArterogenic");
 
-    if (selected) {
+    if (central || status) {
       graphArterogenic.destroy();
       tbl_aterogenic.clear().draw();
     }
@@ -934,11 +954,14 @@
       }
     })
 
-    $("#AterogenicOpc").empty();
-    $("#AterogenicOpc").append(`<option value=""></option>`);
-    $("#AterogenicOpc").append(`<option value="${referencesAterogenic.HIGH.High}">${referencesAterogenic.HIGH.High}</option>`);
-    $("#AterogenicOpc").append(`<option value="${referencesAterogenic.MEDIUM.Medium}">${referencesAterogenic.MEDIUM.Medium}</option>`);
-    $("#AterogenicOpc").append(`<option value="${referencesAterogenic.LOW.Low}">${referencesAterogenic.LOW.Low}</option>`);
+    if (!status) {
+      $("#AterogenicOpc").empty();
+      $("#AterogenicOpc").append(`<option value=""></option>`);
+      $("#AterogenicOpc").append(`<option value="TODAS">TODAS</option>`);
+      $("#AterogenicOpc").append(`<option value="${referencesAterogenic.HIGH.High}">${referencesAterogenic.HIGH.High}</option>`);
+      $("#AterogenicOpc").append(`<option value="${referencesAterogenic.MEDIUM.Medium}">${referencesAterogenic.MEDIUM.Medium}</option>`);
+      $("#AterogenicOpc").append(`<option value="${referencesAterogenic.LOW.Low}">${referencesAterogenic.LOW.Low}</option>`);
+    }
 
     let registerAdd = [];
     centrals.sort().forEach(central => {
@@ -948,68 +971,177 @@
       referencesAterogenic.LOW.Counter = 0;
       params.forEach(register => {
         if (register[3] === central && register[27].includes(referencesAterogenic.HIGH.High)) {
-          referencesAterogenic.HIGH.Counter++;
-          highRegisters.push(`${register[7]}-${register[5]}`);
+          if (status && register[27].includes(status)) {
+            referencesAterogenic.HIGH.Counter++;
+            highRegisters.push(`${register[7]}-${register[5]}`);
+          } else {
+            referencesAterogenic.HIGH.Counter++;
+            highRegisters.push(`${register[7]}-${register[5]}`);
+          }
         } else if (register[3] === central && register[27].includes(referencesAterogenic.MEDIUM.Medium)) {
-          referencesAterogenic.MEDIUM.Counter++;
-          mediumRegisters.push(`${register[7]}-${register[5]}`);
+          if (status && register[27].includes(status)) {
+            referencesAterogenic.MEDIUM.Counter++;
+            mediumRegisters.push(`${register[7]}-${register[5]}`);
+          } else {
+            referencesAterogenic.MEDIUM.Counter++;
+            mediumRegisters.push(`${register[7]}-${register[5]}`);
+          }
         } else if (register[3] === central && register[27].includes(referencesAterogenic.LOW.Low)) {
-          referencesAterogenic.LOW.Counter++;
-          lowRegisters.push(`${register[7]}-${register[5]}`);
+          if (status && register[27].includes(status)) {
+            referencesAterogenic.LOW.Counter++;
+            lowRegisters.push(`${register[7]}-${register[5]}`);
+          } else {
+            referencesAterogenic.LOW.Counter++;
+            lowRegisters.push(`${register[7]}-${register[5]}`);
+          }
         }
       })
 
-      let btnHigh = `0`;
+      let btnHigh, btnMedium, btnLow;
 
-      if (referencesAterogenic.HIGH.Counter > 0) {
-        btnHigh = `<button type="button" class="btn badge bg-danger rounded-pill high" data-info="${highRegisters}" data-color="danger" data-central="${central}" data-evaluation="${referencesAterogenic.HIGH.High}" data-bs-toggle="modal" data-bs-target="#staticBackdrop">${referencesAterogenic.HIGH.Counter}</button>`;
+      switch (status) {
+        case referencesAterogenic.HIGH.High:
+          btnHigh = `0`;
+
+          if (referencesAterogenic.HIGH.Counter > 0) {
+            btnHigh = `<button type="button" class="btn badge bg-danger rounded-pill high" data-info="${highRegisters}" data-color="danger" data-central="${central}" data-evaluation="${referencesAterogenic.HIGH.High}" data-bs-toggle="modal" data-bs-target="#staticBackdrop">${referencesAterogenic.HIGH.Counter}</button>`;
+          }
+
+          registerAdd.push({
+            0: central,
+            1: referencesAterogenic.HIGH.High,
+            2: btnHigh
+          })
+          break;
+        case referencesAterogenic.MEDIUM.Medium:
+          btnMedium = `0`;
+
+          if (referencesAterogenic.MEDIUM.Counter > 0) {
+            btnMedium = `<button type="button" class="btn badge bg-warning rounded-pill high" data-info="${mediumRegisters}" data-color="warning" data-central="${central}" data-evaluation="${referencesAterogenic.MEDIUM.Medium}" data-bs-toggle="modal" data-bs-target="#staticBackdrop">${referencesAterogenic.MEDIUM.Counter}</button>`;
+          }
+          registerAdd.push({
+            0: central,
+            1: referencesAterogenic.MEDIUM.Medium,
+            2: btnMedium
+          })
+          break;
+        case referencesAterogenic.LOW.Low:
+          btnLow = `0`;
+
+          if (referencesAterogenic.LOW.Counter > 0) {
+            btnLow = `<button type="button" class="btn badge bg-success rounded-pill high" data-info="${lowRegisters}" data-color="success" data-central="${central}" data-evaluation="${referencesAterogenic.LOW.Low}" data-bs-toggle="modal" data-bs-target="#staticBackdrop">${referencesAterogenic.LOW.Counter}</button>`;
+          }
+          registerAdd.push({
+            0: central,
+            1: referencesAterogenic.LOW.Low,
+            2: btnLow
+          })
+          break;
+        default:
+          btnHigh = `0`;
+
+          if (referencesAterogenic.HIGH.Counter > 0) {
+            btnHigh = `<button type="button" class="btn badge bg-danger rounded-pill high" data-info="${highRegisters}" data-color="danger" data-central="${central}" data-evaluation="${referencesAterogenic.HIGH.High}" data-bs-toggle="modal" data-bs-target="#staticBackdrop">${referencesAterogenic.HIGH.Counter}</button>`;
+          }
+
+          registerAdd.push({
+            0: central,
+            1: referencesAterogenic.HIGH.High,
+            2: btnHigh
+          })
+
+          btnMedium = `0`;
+
+          if (referencesAterogenic.MEDIUM.Counter > 0) {
+            btnMedium = `<button type="button" class="btn badge bg-warning rounded-pill high" data-info="${mediumRegisters}" data-color="warning" data-central="${central}" data-evaluation="${referencesAterogenic.MEDIUM.Medium}" data-bs-toggle="modal" data-bs-target="#staticBackdrop">${referencesAterogenic.MEDIUM.Counter}</button>`;
+          }
+          registerAdd.push({
+            0: central,
+            1: referencesAterogenic.MEDIUM.Medium,
+            2: btnMedium
+          })
+
+          btnLow = `0`;
+
+          if (referencesAterogenic.LOW.Counter > 0) {
+            btnLow = `<button type="button" class="btn badge bg-success rounded-pill high" data-info="${lowRegisters}" data-color="success" data-central="${central}" data-evaluation="${referencesAterogenic.LOW.Low}" data-bs-toggle="modal" data-bs-target="#staticBackdrop">${referencesAterogenic.LOW.Counter}</button>`;
+          }
+          registerAdd.push({
+            0: central,
+            1: referencesAterogenic.LOW.Low,
+            2: btnLow
+          })
+          break;
       }
-
-      registerAdd.push({
-        0: central,
-        1: referencesAterogenic.HIGH.High,
-        2: btnHigh
-      })
-
-      let btnMedium = `0`;
-
-      if (referencesAterogenic.MEDIUM.Counter > 0) {
-        btnMedium = `<button type="button" class="btn badge bg-warning rounded-pill high" data-info="${mediumRegisters}" data-color="warning" data-central="${central}" data-evaluation="${referencesAterogenic.MEDIUM.Medium}" data-bs-toggle="modal" data-bs-target="#staticBackdrop">${referencesAterogenic.MEDIUM.Counter}</button>`;
-      }
-      registerAdd.push({
-        0: central,
-        1: referencesAterogenic.MEDIUM.Medium,
-        2: btnMedium
-      })
-
-      let btnLow = `0`;
-
-      if (referencesAterogenic.LOW.Counter > 0) {
-        btnLow = `<button type="button" class="btn badge bg-success rounded-pill high" data-info="${lowRegisters}" data-color="success" data-central="${central}" data-evaluation="${referencesAterogenic.LOW.Low}" data-bs-toggle="modal" data-bs-target="#staticBackdrop">${referencesAterogenic.LOW.Counter}</button>`;
-      }
-      registerAdd.push({
-        0: central,
-        1: referencesAterogenic.LOW.Low,
-        2: btnLow
-      })
 
       max.push(referencesAterogenic.HIGH.Counter);
       medium.push(referencesAterogenic.MEDIUM.Counter);
       min.push(referencesAterogenic.LOW.Counter);
     })
+
+    let dataMax, dataMedium, dataMin;
+
+    dataMax = {
+      label: referencesAterogenic.HIGH.High,
+      data: max,
+      pointStyle: 'rectRounded',
+      pointRadius: 6,
+      backgroundColor: 'rgba(3, 152, 252, 0.5)',
+      borderColor: 'rgb(3, 152, 252)',
+    }
+
+    dataMedium = {
+      label: referencesAterogenic.MEDIUM.Medium,
+      data: medium,
+      pointStyle: 'rectRounded',
+      pointRadius: 6,
+      backgroundColor: 'rgba(252, 152, 3, 0.5)',
+      borderColor: 'rgb(252, 152, 3)',
+    }
+
+    dataMin = {
+      label: referencesAterogenic.LOW.Low,
+      data: min,
+      pointStyle: 'rectRounded',
+      pointRadius: 6,
+      backgroundColor: 'rgba(128, 3, 252, 0.5)',
+      borderColor: 'rgb(128, 3, 252)',
+    }
+
+    pushData = [];
+    switch (status) {
+      case referencesAterogenic.HIGH.High:
+        pushData.push(dataMax);
+        break;
+      case referencesAterogenic.MEDIUM.Medium:
+        pushData.push(dataMedium);
+        break;
+      case referencesAterogenic.LOW.Low:
+        pushData.push(dataMin);
+        break;
+      default:
+        pushData.push(dataMax);
+        pushData.push(dataMedium);
+        pushData.push(dataMin);
+        break;
+    }
+
     tbl_aterogenic.rows.add(registerAdd).draw();
 
     tbl_aterogenic.on('draw.dt', function () {
-      var rows = $('#tbl_aterogenic tbody tr');
-      for (var i = 0; i < rows.length; i += 3) {
-        var rowspan = 3;
-        rows.eq(i).find('td:eq(0)').attr('rowspan', rowspan);
-        rows.eq(i).find('td:eq(1)').addClass('d-clamp');
-        rows.eq(i).find('td:eq(2)').addClass('d-clamp');
+      let data_select = $('#AterogenicOpc').val();
+      if (!data_select || data_select === 'TODAS') {
+        var rows = $('#tbl_aterogenic tbody tr');
+        for (var i = 0; i < rows.length; i += 3) {
+          var rowspan = 3;
+          rows.eq(i).find('td:eq(0)').attr('rowspan', rowspan);
+          rows.eq(i).find('td:eq(1)').attr('overflow', 'hidden');
+          rows.eq(i).find('td:eq(2)').attr('overflow', 'hidden');
 
-        // Ocultar las celdas en las filas cubiertas por rowspan
-        if (rowspan > 1) {
-          rows.slice(i + 1, i + rowspan).find('td:eq(0)').hide();
+          // Ocultar las celdas en las filas cubiertas por rowspan
+          if (rowspan > 1) {
+            rows.slice(i + 1, i + rowspan).find('td:eq(0)').hide();
+          }
         }
       }
     });
@@ -1053,30 +1185,7 @@
       type: typeGraph,
       data: {
         labels: centrals.sort(),
-        datasets: [{
-          label: referencesAterogenic.HIGH.High,
-          data: max,
-          pointStyle: 'rectRounded',
-          pointRadius: 6,
-          backgroundColor: 'rgba(3, 152, 252, 0.5)',
-          borderColor: 'rgb(3, 152, 252)',
-        },
-        {
-          label: referencesAterogenic.MEDIUM.Medium,
-          data: medium,
-          pointStyle: 'rectRounded',
-          pointRadius: 6,
-          backgroundColor: 'rgba(252, 152, 3, 0.5)',
-          borderColor: 'rgb(252, 152, 3)',
-        },
-        {
-          label: referencesAterogenic.LOW.Low,
-          data: min,
-          pointStyle: 'rectRounded',
-          pointRadius: 6,
-          backgroundColor: 'rgba(128, 3, 252, 0.5)',
-          borderColor: 'rgb(128, 3, 252)',
-        }]
+        datasets: pushData
       },
       options: {
         elements: elements,
