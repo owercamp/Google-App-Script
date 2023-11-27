@@ -164,9 +164,24 @@
     let central = $("#central").select2("data")[0].text;
     let selector = $(this).attr("name");
 
+    Swal.fire({
+      title: "Consultando...",
+      text: `Consultando informacion de ${evaluation}`,
+      icon: "info",
+      showConfirmButton: false,
+      showCancelButton: false,
+      showDenyButton: false,
+    });
+
     let framinghamResult = google.script.run.withSuccessHandler(result => {
       let information = JSON.parse(result);
       testFramingham(information, central, evaluation);
+      Swal.fire({
+        icon: 'success',
+        title: "Good job!",
+        showConfirmButton: false,
+        timer: 2000
+      });
     })
       .withFailureHandler(error => {
         console.log(error);
@@ -184,9 +199,24 @@
     let central = $("#central").select2("data")[0].text;
     let selector = $(this).attr("name");
 
+    Swal.fire({
+      title: "Consultando...",
+      text: `Consultando informacion de ${evaluation}`,
+      icon: "info",
+      showConfirmButton: false,
+      showCancelButton: false,
+      showDenyButton: false,
+    });
+
     let MetabolicResult = google.script.run.withSuccessHandler(result => {
       let information = JSON.parse(result);
       testMetabolic(information, central, evaluation);
+      Swal.fire({
+        icon: 'success',
+        title: "Good job!",
+        showConfirmButton: false,
+        timer: 2000
+      });
     })
       .withFailureHandler(error => {
         console.log(error);
@@ -204,9 +234,24 @@
     let central = $("#central").select2("data")[0].text;
     let selector = $(this).attr("name");
 
+    Swal.fire({
+      title: "Consultando...",
+      text: `Consultando informacion de ${evaluation}`,
+      icon: "info",
+      showConfirmButton: false,
+      showCancelButton: false,
+      showDenyButton: false,
+    });
+
     let AterogenicResult = google.script.run.withSuccessHandler(result => {
       let information = JSON.parse(result);
       testAterogenic(information, central, evaluation);
+      Swal.fire({
+        icon: 'success',
+        title: "Good job!",
+        showConfirmButton: false,
+        timer: 2000
+      });
     })
       .withFailureHandler(error => {
         console.log(error);
@@ -668,6 +713,7 @@
     let pushData = [];
     const metabolicChart = document.getElementById("myMetabolic");
 
+    debugger;
     if (central || status) {
       graphMetabolic.destroy();
       tbl_metabolic.clear().draw();
@@ -725,78 +771,74 @@
 
       let btnWithAlterations, btnWithoutAlterations, btnRequiredData;
 
-      switch (status) {
-        case referencesMetabolic.withAlterations.message:
-          btnWithAlterations = `0`;
+      if (status.includes(referencesMetabolic.withAlterations.message)) {
+        btnWithAlterations = `0`;
 
-          if (referencesMetabolic.withAlterations.Counter > 0) {
-            btnWithAlterations = `<button type="button" class="btn badge bg-danger rounded-pill high" data-info="${withAlterationsRegister}" data-color="danger" data-central="${central}" data-evaluation="${referencesMetabolic.withAlterations.message}" data-bs-toggle="modal" data-bs-target="#staticBackdrop">${referencesMetabolic.withAlterations.Counter}</button>`;
-          }
+        if (referencesMetabolic.withAlterations.Counter > 0) {
+          btnWithAlterations = `<button type="button" class="btn badge bg-danger rounded-pill high" data-info="${withAlterationsRegister}" data-color="danger" data-central="${central}" data-evaluation="${referencesMetabolic.withAlterations.message}" data-bs-toggle="modal" data-bs-target="#staticBackdrop">${referencesMetabolic.withAlterations.Counter}</button>`;
+        }
 
-          registerAdd.push({
-            0: central,
-            1: referencesMetabolic.withAlterations.message,
-            2: btnWithAlterations
-          })
-          break;
-        case referencesMetabolic.withoutAlterations.message:
-          btnWithoutAlterations = `0`;
+        registerAdd.push({
+          0: central,
+          1: referencesMetabolic.withAlterations.message,
+          2: btnWithAlterations
+        })
+      } else if (status.includes(referencesMetabolic.withoutAlterations.message)) {
+        btnWithoutAlterations = `0`;
 
-          if (referencesMetabolic.withoutAlterations.Counter > 0) {
-            btnWithoutAlterations = `<button type="button" class="btn badge bg-success rounded-pill high" data-info="${withoutAlterationsRegister}" data-color="success" data-central="${central}" data-evaluation="${referencesMetabolic.withoutAlterations.message}" data-bs-toggle="modal" data-bs-target="#staticBackdrop">${referencesMetabolic.withoutAlterations.Counter}</button>`;
-          }
-          registerAdd.push({
-            0: central,
-            1: referencesMetabolic.withoutAlterations.message,
-            2: btnWithoutAlterations
-          })
-          break;
-        case referencesMetabolic.requiredData.message:
-          btnRequiredData = `0`;
+        if (referencesMetabolic.withoutAlterations.Counter > 0) {
+          btnWithoutAlterations = `<button type="button" class="btn badge bg-success rounded-pill high" data-info="${withoutAlterationsRegister}" data-color="success" data-central="${central}" data-evaluation="${referencesMetabolic.withoutAlterations.message}" data-bs-toggle="modal" data-bs-target="#staticBackdrop">${referencesMetabolic.withoutAlterations.Counter}</button>`;
+        }
+        registerAdd.push({
+          0: central,
+          1: referencesMetabolic.withoutAlterations.message,
+          2: btnWithoutAlterations
+        })
+      } else if (status.includes(referencesMetabolic.requiredData.message)) {
+        btnRequiredData = `0`;
 
-          if (referencesMetabolic.requiredData.Counter > 0) {
-            btnRequiredData = `<button type="button" class="btn badge bg-dark rounded-pill high" data-info="${requiredDataRegister}" data-color="dark" data-central="${central}" data-evaluation="${referencesMetabolic.requiredData.message}" data-bs-toggle="modal" data-bs-target="#staticBackdrop">${referencesMetabolic.requiredData.Counter}</button>`;
-          }
-          registerAdd.push({
-            0: central,
-            1: referencesMetabolic.requiredData.message,
-            2: btnRequiredData
-          })
-        default:
-          btnWithAlterations = `0`;
+        if (referencesMetabolic.requiredData.Counter > 0) {
+          btnRequiredData = `<button type="button" class="btn badge bg-dark rounded-pill high" data-info="${requiredDataRegister}" data-color="dark" data-central="${central}" data-evaluation="${referencesMetabolic.requiredData.message}" data-bs-toggle="modal" data-bs-target="#staticBackdrop">${referencesMetabolic.requiredData.Counter}</button>`;
+        }
+        registerAdd.push({
+          0: central,
+          1: referencesMetabolic.requiredData.message,
+          2: btnRequiredData
+        })
+      } else {
+        btnWithAlterations = `0`;
 
-          if (referencesMetabolic.withAlterations.Counter > 0) {
-            btnWithAlterations = `<button type="button" class="btn badge bg-danger rounded-pill high" data-info="${withAlterationsRegister}" data-color="danger" data-central="${central}" data-evaluation="${referencesMetabolic.withAlterations.message}" data-bs-toggle="modal" data-bs-target="#staticBackdrop">${referencesMetabolic.withAlterations.Counter}</button>`;
-          }
+        if (referencesMetabolic.withAlterations.Counter > 0) {
+          btnWithAlterations = `<button type="button" class="btn badge bg-danger rounded-pill high" data-info="${withAlterationsRegister}" data-color="danger" data-central="${central}" data-evaluation="${referencesMetabolic.withAlterations.message}" data-bs-toggle="modal" data-bs-target="#staticBackdrop">${referencesMetabolic.withAlterations.Counter}</button>`;
+        }
 
-          registerAdd.push({
-            0: central,
-            1: referencesMetabolic.withAlterations.message,
-            2: btnWithAlterations
-          })
+        registerAdd.push({
+          0: central,
+          1: referencesMetabolic.withAlterations.message,
+          2: btnWithAlterations
+        })
 
-          btnWithoutAlterations = `0`;
+        btnWithoutAlterations = `0`;
 
-          if (referencesMetabolic.withoutAlterations.Counter > 0) {
-            btnWithoutAlterations = `<button type="button" class="btn badge bg-success rounded-pill high" data-info="${withoutAlterationsRegister}" data-color="success" data-central="${central}" data-evaluation="${referencesMetabolic.withoutAlterations.message}" data-bs-toggle="modal" data-bs-target="#staticBackdrop">${referencesMetabolic.withoutAlterations.Counter}</button>`;
-          }
-          registerAdd.push({
-            0: central,
-            1: referencesMetabolic.withoutAlterations.message,
-            2: btnWithoutAlterations
-          })
+        if (referencesMetabolic.withoutAlterations.Counter > 0) {
+          btnWithoutAlterations = `<button type="button" class="btn badge bg-success rounded-pill high" data-info="${withoutAlterationsRegister}" data-color="success" data-central="${central}" data-evaluation="${referencesMetabolic.withoutAlterations.message}" data-bs-toggle="modal" data-bs-target="#staticBackdrop">${referencesMetabolic.withoutAlterations.Counter}</button>`;
+        }
+        registerAdd.push({
+          0: central,
+          1: referencesMetabolic.withoutAlterations.message,
+          2: btnWithoutAlterations
+        })
 
-          btnRequiredData = `0`;
+        btnRequiredData = `0`;
 
-          if (referencesMetabolic.requiredData.Counter > 0) {
-            btnRequiredData = `<button type="button" class="btn badge bg-dark rounded-pill high" data-info="${requiredDataRegister}" data-color="dark" data-central="${central}" data-evaluation="${referencesMetabolic.requiredData.message}" data-bs-toggle="modal" data-bs-target="#staticBackdrop">${referencesMetabolic.requiredData.Counter}</button>`;
-          }
-          registerAdd.push({
-            0: central,
-            1: referencesMetabolic.requiredData.message,
-            2: btnRequiredData
-          })
-          break;
+        if (referencesMetabolic.requiredData.Counter > 0) {
+          btnRequiredData = `<button type="button" class="btn badge bg-dark rounded-pill high" data-info="${requiredDataRegister}" data-color="dark" data-central="${central}" data-evaluation="${referencesMetabolic.requiredData.message}" data-bs-toggle="modal" data-bs-target="#staticBackdrop">${referencesMetabolic.requiredData.Counter}</button>`;
+        }
+        registerAdd.push({
+          0: central,
+          1: referencesMetabolic.requiredData.message,
+          2: btnRequiredData
+        })
       }
 
       withAlterations.push(referencesMetabolic.withAlterations.Counter);
@@ -834,20 +876,16 @@
     }
 
     pushData = [];
-    switch (status) {
-      case referencesMetabolic.withAlterations.message:
-        pushData.push(dataWithAlteration);
-        break;
-      case referencesMetabolic.withoutAlterations.message:
-        pushData.push(dataWithoutAlteration);
-        break;
-      case referencesMetabolic.requiredData.message:
-        pushData.push(dataRequiredData);
-      default:
-        pushData.push(dataWithAlteration);
-        pushData.push(dataWithoutAlteration);
-        pushData.push(dataRequiredData);
-        break;
+    if (status.includes(referencesMetabolic.withAlterations.message)) {
+      pushData.push(dataWithAlteration);
+    } else if (status.includes(referencesMetabolic.withoutAlterations.message)) {
+      pushData.push(dataWithoutAlteration);
+    } else if (status.includes(referencesMetabolic.requiredData.message)) {
+      pushData.push(dataRequiredData);
+    } else {
+      pushData.push(dataWithAlteration);
+      pushData.push(dataWithoutAlteration);
+      pushData.push(dataRequiredData);
     }
 
     tbl_metabolic.rows.add(registerAdd).draw();
