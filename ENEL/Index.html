@@ -31,9 +31,11 @@
     <div class="container-fluid col-12 row">
       <div class="container-fluid col-7">
         <div class="row-2">
-          <label for="Framingham" class="form-label w-100 text-secondary fw-bolder" style="margin-left: 0.6rem!important;">
+          <label for="Framingham" class="form-label w-100 text-secondary fw-bolder"
+            style="margin-left: 0.6rem!important;">
             Framingham
-            <select name="Framingham" id="FraminghamOpc" class="form-select form-select-sm" style="width: 100%!important;">
+            <select name="Framingham" id="FraminghamOpc" class="form-select form-select-sm"
+              style="width: 100%!important;">
               <!-- cargue dinamico -->
             </select>
           </label>
@@ -62,9 +64,11 @@
     <div class="container-fluid col-12 row">
       <div class="container-fluid col-7">
         <div class="row-2">
-          <label for="Metabolic" class="form-label w-100 text-secondary fw-bolder" style="margin-left: 0.6rem!important;">
+          <label for="Metabolic" class="form-label w-100 text-secondary fw-bolder"
+            style="margin-left: 0.6rem!important;">
             Síndrome Metabólico
-            <select name="Metabolic" id="MetabolicOpc" class="form-select form-select-sm" style="width: 100%!important;">
+            <select name="Metabolic" id="MetabolicOpc" class="form-select form-select-sm"
+              style="width: 100%!important;">
               <!-- cargue dinamico -->
             </select>
           </label>
@@ -93,9 +97,11 @@
     <div class="container-fluid col-12 row">
       <div class="container-fluid col-7">
         <div class="row-2">
-          <label for="Aterogenic" class="form-label w-100 text-secondary fw-bolder" style="margin-left: 0.6rem!important;">
+          <label for="Aterogenic" class="form-label w-100 text-secondary fw-bolder"
+            style="margin-left: 0.6rem!important;">
             Indice Aterógenico
-            <select name="Aterogenic" id="AterogenicOpc" class="form-select form-select-sm" style="width: 100%!important;">
+            <select name="Aterogenic" id="AterogenicOpc" class="form-select form-select-sm"
+              style="width: 100%!important;">
               <!-- cargue dinamico -->
             </select>
           </label>
@@ -127,13 +133,14 @@
           <caption>Test Enel</caption>
           <thead>
             <tr>
-              <th scope="col">Identificación</th>
-              <th scope="col">Nombre</th>
-              <th scope="col">Centro de Trabajo</th>
-              <th scope="col">Framingham</th>
-              <th scope="col">Diagnóstocp SX. Metabólico (3 o Más Factores Alterados PA, TG, GLICEMIA, HDL, TA)</th>
-              <th scope="col">Indice Aterógenico Colesterol TOTAL/HDL</th>
-              <th scope="col">Clasificación Final Para La Intervención</th>
+              <th scope="col">GERENCIA</th>
+              <th scope="col">TIPO DE EXAMEN</th>
+              <th scope="col">CENTRO DE TRABAJO</th>
+              <th scope="col">CIUDAD</th>
+              <th scope="col">NOMBRE</th>
+              <th scope="col">IDENTIFICACION</th>
+              <th scope="col">CARGO</th>
+              <th scope="col">VER</th>
             </tr>
           </thead>
           <tbody class="text-center">
@@ -177,6 +184,27 @@
       </div>
     </div>
   </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="totalInfo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="totalInfoLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="totalInfoLabel">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Understood</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
   <?!= include('JS'); ?>
 </body>
