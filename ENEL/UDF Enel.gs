@@ -729,7 +729,11 @@ function EliminarArchivosEnDirectorio(driveFolderId, archivoId) {
     // Verificar si el archivo actual no coincide con el archivo especificado por su ID
     if (fileId !== archivoId) {
       // Mover el archivo a la papelera
-      file.setTrashed(true);
+      try {
+        file.setTrashed(true);
+      } catch (error) {
+        console.log(error);
+      }
     }
   }
 
