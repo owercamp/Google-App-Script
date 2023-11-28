@@ -188,21 +188,72 @@
   <!-- Modal -->
   <div class="modal fade" id="totalInfo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="totalInfoLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="totalInfoLabel">Modal title</h5>
+          <h5 class="modal-title" id="totalInfoLabel">GERENCIA</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Understood</button>
+        <div class="modal-body d-flex flex-column align-items-center">
+          <div class="col-12 w-100 row">
+            <div class="col-8 row">
+              <b>CENTRO DE TRABAJO:</b>
+              <span id="central" class="span">CENTRO DE TRABAJO</span>
+            </div>
+            <div class="col-4 row">
+              <b>TIPO EXAMEN:</b>
+              <span id="examen" class="badge text-bg-primary span">TIPO EXAMEN</span>
+            </div>
+          </div>
+          <div class="col-12 w-100 row">
+            <div class="col-8 row">
+              <b>PACIENTE:</b>
+              <span id="paciente" class="span">PACIENTE</span>
+            </div>
+            <div class="col-4 row">
+              <b>IDENTIFICACION:</b>
+              <span id="identificacion" class="span">123456789</span>
+            </div>
+          </div>
+          <div class="col-12 w-100 row">
+            <div class="col-2 row">
+              <b>EDAD:</b>
+              <span id="edad">45</span>
+            </div>
+            <div class="col-4 row">
+              <b>SEXO:</b>
+              <span id="sexo">MASCULINO</span>
+            </div>
+            <div class="col-6 row">
+              <b>CARGO:</b>
+              <span id="cargo">CARGO</span>
+            </div>
+          </div>
+          <hr class="border border-primary border-3 opacity-75 w-100" style="border-radius: 5px!important;">
+          <div class="col-12 w-100 row">
+            <div class="col-6 row">
+              <b>Framingham:</b>
+              <span id="framingham">Resultado Framingham</span>
+            </div>
+            <div class="col-6 row">
+              <b>Aterogenia</b>
+              <span id="aterogenia">Resultado Aterogenia</span>
+            </div>
+          </div>
+          <div class="col-12 w-100 row">
+            <div class="col-6 row">
+              <b>Sindrome Metabolico</b>
+              <span id="sindrome">Sindrome Metabolico</span>
+            </div>
+            <div class="col-6 row">
+              <b>Clasificación Final</b>
+              <span id="clasificacion">Clasificación Final</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+  </div>
   </div>
 
 
