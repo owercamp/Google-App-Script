@@ -282,8 +282,49 @@
         1: row[1]
       }).draw();
     });
-
   });
+
+  $(document).on("click", "button.infoGeneral", function () {
+    let color = "";
+    let management = $(this).data("gerencia");
+    let review = $(this).data("examen");
+    let central = $(this).data("central");
+    let patient = $(this).data("paciente");
+    let identification = $(this).data("identificacion");
+    let charge = $(this).data("cargo");
+    let sex = $(this).data("sexo");
+    let age = $(this).data("edad");
+    let framingham = $(this).data("framingham");
+    let metabolic = $(this).data("metabolico");
+    let aterogenic = $(this).data("aterogenico");
+    let final = $(this).data("final");
+    switch (final) {
+      case "BAJO":
+        color = "text-bg-success";
+        break;
+      case "MEDIO":
+        color = "text-bg-warning";
+        break;
+      case "ALTO":
+        color = "text-bg-danger";
+        break;
+    }
+
+    $("span#clasificacion").removeClass("text-bg-primary text-bg-success text-bg-warning text-bg-danger");
+
+    $("h5#totalInfoLabel").text(management);
+    $("span#examen").text(review);
+    $("span#central").text(central);
+    $("span#paciente").text(patient);
+    $("span#identificacion").text(identification);
+    $("span#cargo").text(charge);
+    $("span#sexo").text(sex);
+    $("span#edad").text(age);
+    $("span#framingham").text(framingham);
+    $("span#sindrome").text(metabolic);
+    $("span#aterogenia").text(aterogenic);
+    $("span#clasificacion").text(final).addClass(`${color}`);
+  })
 
   $(document).on("change", "#central", function () {
     const selection = $(this).select2('data');
@@ -1271,7 +1312,7 @@
           4: register[5],
           5: register[7],
           6: register[10],
-          7: `<button type="button" class="btn btn-primary btn-sm d-flex" style="width: 2.5em!important; height: 2.5em!important;" data-bs-toggle="modal" data-bs-target="#totalInfo" data-gerencia="${register[1]}" data-examen="${register[2]}" data-central="${register[3]}" data-paciente="${register[5]}" data-identificacion="${register[7]}" data-cargo="${register[10]}">${icon}</button>`
+          7: `<button type="button" class="btn btn-primary btn-sm d-flex infoGeneral" style="width: 2.5em!important; height: 2.5em!important;" data-bs-toggle="modal" data-bs-target="#totalInfo" data-gerencia="${register[1]}" data-examen="${register[2]}" data-central="${register[3]}" data-paciente="${register[5]}" data-identificacion="${register[7]}" data-cargo="${register[10]}" data-sexo="${register[9]}" data-edad="${register[8]}" data-framingham="${register[25]}" data-metabolico="${register[26]}" data-aterogenico="${register[27]}" data-final="${register[28]}">${icon}</button>`
         })
       });
 
