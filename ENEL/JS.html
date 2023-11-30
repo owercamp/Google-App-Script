@@ -298,6 +298,8 @@
     let metabolic = $(this).data("metabolico");
     let aterogenic = $(this).data("aterogenico");
     let final = $(this).data("final");
+    let months = $(this).data("months");
+    let splitterMonths = months.split(",");
     switch (final) {
       case "BAJO":
         color = "text-bg-success";
@@ -324,6 +326,104 @@
     $("span#sindrome").text(metabolic);
     $("span#aterogenia").text(aterogenic);
     $("span#clasificacion").text(final).addClass(`${color}`);
+
+    let pointer = 0, training = 1, dateThemeTraining = 3, workshop = 5, dateThemeWorkshop = 7, dateTracking = 9, diagnosticCV = 11, observationTracking = 13, valNutritional = 15, observationNutritional = 17, datePhysiotherapy = 19, observationPhysiotherapy = 21, datePsychology = 23, observationPsychology = 25, GYM = 27, increment = 29;
+
+    $("div.accordion-item").each(function (index, element) {
+      element.children.namedItem(splitterMonths[pointer]).removeChild(element.children.namedItem(splitterMonths[pointer]).children[0]);
+      element.children.namedItem(splitterMonths[pointer]).appendChild(document.createElement(`div`)).innerHTML = `
+        <div class="d-flex flex-column align-items-center p-2 gap-2">
+          <div class="col-12 w-100 row gap-2">
+            <div class="col-6 row">
+              <b>${splitterMonths[training]}:</b>
+              <span class="text-center border-bottom border-secondary">${(splitterMonths[training + 1] == "Sin Dato") ? " " : splitterMonths[training + 1]}</span>
+            </div>
+            <div class="col-6 row">
+              <b>${splitterMonths[dateThemeTraining]}:</b>
+            <span class="text-center border-bottom border-secondary">${(splitterMonths[dateThemeTraining + 1] == "Sin Dato") ? " " : splitterMonths[dateThemeTraining + 1].split("T")[0]}</span>
+            </div>
+          </div>
+          <div class="col-12 w-100 row gap-2">
+            <div class="col-6 row">
+              <b>${splitterMonths[workshop]}:</b>
+              <span class="text-center border-bottom border-secondary">${(splitterMonths[workshop + 1] == "Sin Dato") ? " " : splitterMonths[workshop + 1]}</span>
+            </div>
+            <div class="col-6 row">
+              <b>${splitterMonths[dateThemeWorkshop]}:</b>
+              <span class="text-center border-bottom border-secondary">${(splitterMonths[dateThemeWorkshop + 1] == "Sin Dato") ? " " : splitterMonths[dateThemeWorkshop + 1].split("T")[0]}</span>
+            </div>
+          </div>
+          <div class="col-12 w-100 row gap-2">
+            <div class="col-6 row">
+              <b>${splitterMonths[dateTracking]}:</b>
+              <span class="text-center border-bottom border-secondary">${(splitterMonths[dateTracking + 1] == "Sin Dato") ? " " : splitterMonths[dateTracking + 1].split("T")[0]}</span>
+            </div>
+            <div class="col-6 row">
+              <b>${splitterMonths[observationTracking]}:</b>
+              <span class="text-center border-bottom border-secondary">${(splitterMonths[observationTracking + 1] == "Sin Dato") ? " " : splitterMonths[observationTracking + 1]}</span>
+            </div>            
+          </div>
+          <div class="col-12 w-100 row gap-2">
+            <div class="col-6 row">
+              <b>${splitterMonths[valNutritional]}:</b>
+              <span class="text-center border-bottom border-secondary">${(splitterMonths[valNutritional + 1] == "Sin Dato") ? " " : splitterMonths[valNutritional + 1].split("T")[0]}</span>
+            </div>
+            <div class="col-6 row">
+              <b>${splitterMonths[observationNutritional]}:</b>
+              <span class="text-center border-bottom border-secondary">${(splitterMonths[observationNutritional + 1] == "Sin Dato") ? " " : splitterMonths[observationNutritional + 1]}</span>
+            </div>
+          </div>
+          <div class="col-12 w-100 row gap-2">
+            <div class="col-6 row">
+              <b>${splitterMonths[datePhysiotherapy]}:</b>
+              <span class="text-center border-bottom border-secondary">${(splitterMonths[datePhysiotherapy + 1] == "Sin Dato") ? " " : splitterMonths[datePhysiotherapy + 1].split("T")[0]}</span>
+            </div>
+            <div class="col-6 row">
+              <b>${splitterMonths[observationPhysiotherapy]}:</b>
+              <span class="text-center border-bottom border-secondary">${(splitterMonths[observationPhysiotherapy + 1] == "Sin Dato") ? " " : splitterMonths[observationPhysiotherapy + 1]}</span>
+            </div>
+          </div>
+          <div class="col-12 w-100 row gap-2">
+            <div class="col-6 row">
+              <b>${splitterMonths[datePsychology]}:</b>
+              <span class="text-center border-bottom border-secondary">${(splitterMonths[datePsychology + 1] == "Sin Dato") ? " " : splitterMonths[datePsychology + 1].split("T")[0]}</span>
+            </div>
+            <div class="col-6 row">
+              <b>${splitterMonths[observationPsychology]}:</b>
+              <span class="text-center border-bottom border-secondary">${(splitterMonths[observationPsychology + 1] == "Sin Dato") ? " " : splitterMonths[observationPsychology + 1]}</span>
+            </div>
+          </div>
+          <div class="col-12 w-100 row gap-2">
+            <div class="col-6 row">
+              <b>${splitterMonths[diagnosticCV]}:</b>
+              <span class="text-center border-bottom border-secondary">${(splitterMonths[diagnosticCV + 1] == "Sin Dato") ? " " : splitterMonths[diagnosticCV + 1]}</span>
+            </div>
+            <div class="col-6 row">
+              <b>${splitterMonths[GYM]}:</b>
+              <span class="text-center border-bottom border-secondary">${(splitterMonths[GYM + 1] == "Sin Dato") ? " " : splitterMonths[GYM + 1]}</span>
+            </div>
+          </div>
+        </div>
+      `;
+      pointer += increment;
+      training += increment;
+      dateThemeTraining += increment;
+      workshop += increment;
+      dateThemeWorkshop += increment;
+      dateTracking += increment;
+      diagnosticCV += increment;
+      observationTracking += increment;
+      valNutritional += increment;
+      observationNutritional += increment;
+      datePhysiotherapy += increment;
+      observationPhysiotherapy += increment;
+      datePsychology += increment;
+      observationPsychology += increment;
+      GYM += increment;
+    })
+
+
+
   })
 
   $(document).on("change", "#central", function () {
@@ -1291,6 +1391,7 @@
   }
 
   function general(selected) {
+    let months = ['flush-collapseOne', 'flush-collapseTwo', 'flush-collapseThree', 'flush-collapseFour', 'flush-collapseFive', 'flush-collapseSix', 'flush-collapseSeven', 'flush-collapseEight', 'flush-collapseNine', 'flush-collapseTen', 'flush-collapseEleven', 'flush-collapseTwelve'];
     let generalInfo = google.script.run.withSuccessHandler(element => {
       let row = JSON.parse(element);
       let icon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
@@ -1298,12 +1399,51 @@
                     <path fill-rule="evenodd" d="M.664 10.59a1.651 1.651 0 010-1.186A10.004 10.004 0 0110 3c4.257 0 7.893 2.66 9.336 6.41.147.381.146.804 0 1.186A10.004 10.004 0 0110 17c-4.257 0-7.893-2.66-9.336-6.41zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/>
                   </svg>`;
 
-      console.log(row);
       let insertRow = [];
       if (selected) {
         tbl_general.clear().draw();
       }
+
       row.forEach(register => {
+        let monthsData = [];
+        let training = 29, dateThemeTraining = 30, workshop = 31, dateThemeWorkshop = 32, dateTracking = 33, diagnosticCV = 34, observationTracking = 35, valNutritional = 36, observationNutritional = 37, datePhysiotherapy = 38, observationPhysiotherapy = 39, datePsychology = 40, observationPsychology = 41, GYM = 42;
+
+        months.forEach(month => {
+          let dataInside = [];
+
+          dataInside.push(`${month},Capacitación(asiste / no asiste),${(register[training] == "") ? "Sin Dato" : register[training]}`);
+          dataInside.push(`Fecha / Tema Capacitación,${(register[dateThemeTraining] == "") ? "Sin Dato" : register[dateThemeTraining]}`);
+          dataInside.push(`Talleres / Círculos(asiste / no asiste),${(register[workshop] == "") ? "Sin Dato" : register[workshop]}`);
+          dataInside.push(`Fecha / Tema Taller,${(register[dateThemeWorkshop] == "") ? "Sin Dato" : register[dateThemeWorkshop]}`);
+          dataInside.push(`Seguimiento Médico(fecha),${(register[dateTracking] == "") ? "Sin Dato" : register[dateTracking]}`);
+          dataInside.push(`Diagnosticos CV,${(register[diagnosticCV] == "") ? "Sin Dato" : register[diagnosticCV]}`);
+          dataInside.push(`Observación de Seguimiento,${(register[observationTracking] == "") ? "Sin Dato" : register[observationTracking]}`);
+          dataInside.push(`Val. Nutricional(fecha),${(register[valNutritional] == "") ? "Sin Dato" : register[valNutritional]}`);
+          dataInside.push(`Observación Nutricionales,${(register[observationNutritional] == "") ? "Sin Dato" : register[observationNutritional]}`);
+          dataInside.push(`Val. Fisioterapia/Deportologo/Prof. Deportes(fecha),${(register[datePhysiotherapy] == "") ? "Sin Dato" : register[datePhysiotherapy]}`);
+          dataInside.push(`Observación Fisioterapia/Deportologo/Prof. Deportes,${(register[observationPhysiotherapy] == "") ? "Sin Dato" : register[observationPhysiotherapy]}`);
+          dataInside.push(`Val. Psicología(fecha),${(register[datePsychology] == "") ? "Sin Dato" : register[datePsychology]}`);
+          dataInside.push(`Observación Psicología,${(register[observationPsychology] == "") ? "Sin Dato" : register[observationPsychology]}`);
+          dataInside.push(`GYM,${(register[GYM] == "") ? "Sin Dato" : register[GYM]}`);
+
+          monthsData.push(dataInside);
+
+          training += 14;
+          dateThemeTraining += 14;
+          workshop += 14;
+          dateThemeWorkshop += 14;
+          dateTracking += 14;
+          diagnosticCV += 14;
+          observationTracking += 14;
+          valNutritional += 14;
+          observationNutritional += 14;
+          datePhysiotherapy += 14;
+          observationPhysiotherapy += 14;
+          datePsychology += 14;
+          observationPsychology += 14;
+          GYM += 14;
+        });
+
         insertRow.push({
           0: register[1],
           1: register[2],
@@ -1312,7 +1452,7 @@
           4: register[5],
           5: register[7],
           6: register[10],
-          7: `<button type="button" class="btn btn-primary btn-sm d-flex infoGeneral" style="width: 2.5em!important; height: 2.5em!important;" data-bs-toggle="modal" data-bs-target="#totalInfo" data-gerencia="${register[1]}" data-examen="${register[2]}" data-central="${register[3]}" data-paciente="${register[5]}" data-identificacion="${register[7]}" data-cargo="${register[10]}" data-sexo="${register[9]}" data-edad="${register[8]}" data-framingham="${register[25]}" data-metabolico="${register[26]}" data-aterogenico="${register[27]}" data-final="${register[28]}">${icon}</button>`
+          7: `<button type="button" class="btn btn-primary btn-sm d-flex infoGeneral" style="width: 2.5em!important; height: 2.5em!important;" data-bs-toggle="modal" data-bs-target="#totalInfo" data-gerencia="${register[1]}" data-examen="${register[2]}" data-central="${register[3]}" data-paciente="${register[5]}" data-identificacion="${register[7]}" data-cargo="${register[10]}" data-sexo="${register[9]}" data-edad="${register[8]}" data-framingham="${register[25]}" data-metabolico="${register[26]}" data-aterogenico="${register[27]}" data-final="${register[28]}" data-months="${monthsData}">${icon}</button>`
         })
       });
 
