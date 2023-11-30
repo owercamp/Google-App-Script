@@ -821,3 +821,15 @@ function getGeneral(params = "") {
 
   return JSON.stringify(info.sort(function (a, b) { return a[5] - b[5]; }));
 }
+
+function removePoint() {
+  const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  const sheet = spreadsheet.getSheetByName("RCV-2023");
+  const column = sheet.getActiveCell().getColumn();
+  const row = sheet.getActiveCell().getRow();
+
+  if (column >= 30 && sheet.getRange(row, column).getValue() !== "") {
+    let remove = sheet.getActiveCell().getValue().toString().replaceAll(",", ";");
+    sheet.getRange(row, column).setValue(remove);
+  }
+}
