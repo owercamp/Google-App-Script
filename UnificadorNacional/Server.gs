@@ -1,5 +1,5 @@
 class emoGraph {
-  constructor(contractedName = "", origin = "", destiny = "", city = "", income = "", examType = "", date = "", patient = "",typeID = "", numberIdentification = "", dateOfBirth = "", age = "", range_age = "", stratum = "", gender = "", numberOfChildren = "", numberOfChildrenRec = "", race = "", civilStatus = "", scholarship = "", post = "", postRec = "", durationWorking = "", antiquity = "") {
+  constructor(contractedName = ``, origin = ``, destiny = ``, city = ``, income = ``, examType = ``, date = ``, patient = ``,typeID = ``, numberIdentification = ``, dateOfBirth = ``, age = ``, range_age = ``, stratum = ``, gender = ``, numberOfChildren = ``, numberOfChildrenRec = ``, race = ``, civilStatus = ``, scholarship = ``, post = ``, postRec = ``, durationWorking = ``, antiquity = ``) {
     this.contractedName = contractedName; // CONTRATO
     this.origin = origin; // ORIGEN
     this.destiny = destiny; // DESTINO
@@ -32,7 +32,7 @@ class emoGraph {
  * @return {HtmlOutput} The HTML content to be displayed.
  */
 function doGet() {
-  const template = HtmlService.createTemplateFromFile("index");
+  const template = HtmlService.createTemplateFromFile(`index`);
   const outputTemplate = template.evaluate();
 
   return outputTemplate;
@@ -49,51 +49,51 @@ function include(file) {
 }
 
 function insertData(data) {
-  const spreadsheet = SpreadsheetApp.openById("1rgYxBiE-4rWifkEWNx7er6aG-yKN9cx3hum15TWzePI");
+  const spreadsheet = SpreadsheetApp.openById(`1rgYxBiE-4rWifkEWNx7er6aG-yKN9cx3hum15TWzePI`);
 
   try {
     const information = data;
     const keys = Object.keys(information);
     for (const iterator of keys) {
       switch (iterator) {
-        case "emo":
+        case `emo`:
           for (const emo of information[iterator]) {
-            const response = insertEmo(emo, "EMO", spreadsheet);
+            const response = insertEmo(emo, `EMO`, spreadsheet);
           }
           break;
-        case "audiometry":
+        case `audiometry`:
           for (const audio of information[iterator]) {
-            const response = insertAudio(audio, "AUDIO", spreadsheet);
+            const response = insertAudio(audio, `AUDIO`, spreadsheet);
           }
           break;
-        case "optometry":
+        case `optometry`:
           for (const opto of information[iterator]) {
-            const response = insertOpto(opto, "OPTO", spreadsheet);
+            const response = insertOpto(opto, `OPTO`, spreadsheet);
           }
           break;
-        case "visiometrics":
+        case `visiometrics`:
           for (const visio of information[iterator]) {
-            const response = insertVisio(visio, "VISIO", spreadsheet);
+            const response = insertVisio(visio, `VISIO`, spreadsheet);
           }
           break;
-        case "spirometry":
+        case `spirometry`:
           for (const spiro of information[iterator]) {
-            const response = insertEspiro(spiro, "ESPIRO", spreadsheet);
+            const response = insertEspiro(spiro, `ESPIRO`, spreadsheet);
           }
           break;
-        case "osteometry":
+        case `osteometry`:
           for (const osteo of information[iterator]) {
-            const response = insertOsteo(osteo, "OSTEO", spreadsheet);
+            const response = insertOsteo(osteo, `OSTEO`, spreadsheet);
           }
           break;
-        case 'complementary':
+        case `complementary`:
           for (const complementary of information[iterator]) {
-            const response = insertComplementary(complementary,"COMPLEMENTARIOS" ,spreadsheet);
+            const response = insertComplementary(complementary,`COMPLEMENTARIOS` ,spreadsheet);
           }
           break;
-        case 'testInsomnia':
+        case `testInsomnia`:
           for (const insomnia of information[iterator]) {
-            const response = insertInsomnia(insomnia,"TEST DE INSOMNIO",spreadsheet);
+            const response = insertInsomnia(insomnia,`TEST DE INSOMNIO`,spreadsheet);
             Logger.log(response);
           }
       }
@@ -112,28 +112,28 @@ function insertData(data) {
  * @return {string} The corresponding age range.
  */
 function ageRange(age) {
-  if (age <= 19) return '0 MENOR O IGUAL A 19 AÑOS';
-  if (age <= 29) return '1 DE 20 A 29 AÑOS';
-  if (age <= 39) return '2 DE 30 A 39 AÑOS';
-  if (age <= 49) return '3 DE 40 A 49 AÑOS';
-  if (age <= 59) return '4 DE 50 A 59 AÑOS';
-  if (age <= 91) return '60 O MAS AÑOS';
-  return 'VALOR NO VALIDO';
+  if (age <= 19) return `0 MENOR O IGUAL A 19 AÑOS`;
+  if (age <= 29) return `1 DE 20 A 29 AÑOS`;
+  if (age <= 39) return `2 DE 30 A 39 AÑOS`;
+  if (age <= 49) return `3 DE 40 A 49 AÑOS`;
+  if (age <= 59) return `4 DE 50 A 59 AÑOS`;
+  if (age <= 91) return `60 O MAS AÑOS`;
+  return `VALOR NO VALIDO`;
 }
 
 /**
  * Returns the number of children based on the input.
  *
- * @param {number|string} childrens - The number of children or "SIN DATO" or "SIN DATOS".
+ * @param {number|string} childrens - The number of children or `SIN DATO` or `SIN DATOS`.
  * @return {string} The number of children or a string indicating the number of children.
  */
 function numberChildrens(childrens) {
   if (!childrens) {
-    return 'SIN DATO';
+    return `SIN DATO`;
   } else if (childrens >= 3) {
     return `3 O MAS HIJOS`;
-  } else if (childrens == 'SIN DATO' || childrens == 'SIN DATOS') {
-    return 'SIN DATO';
+  } else if (childrens == `SIN DATO` || childrens == `SIN DATOS`) {
+    return `SIN DATO`;
   } else {
     return `${childrens} HIJO`;
   }
@@ -146,13 +146,13 @@ function numberChildrens(childrens) {
  * @return {string} The working years category.
  */
 function numberWorking(number) {
-  if (!number) return 'SIN DATO';
-  if (number < 1) return '1 MENOS DE 1 AÑO';
-  if (number >= 1 && number <= 5) return '2 DE 1 A 5 AÑOS';
-  if (number >= 6 && number <= 10) return '3 DE 6 A 10 AÑOS';
-  if (number >= 11 && number <= 15) return '4 DE 11 A 15 AÑOS';
-  if (number >= 16) return 'MAS DE 16 AÑOS';
-  if (number == 'SIN DATO' || number == 'SIN DATOS') return 'SIN DATO';
+  if (!number) return `SIN DATO`;
+  if (number < 1) return `1 MENOS DE 1 AÑO`;
+  if (number >= 1 && number <= 5) return `2 DE 1 A 5 AÑOS`;
+  if (number >= 6 && number <= 10) return `3 DE 6 A 10 AÑOS`;
+  if (number >= 11 && number <= 15) return `4 DE 11 A 15 AÑOS`;
+  if (number >= 16) return `MAS DE 16 AÑOS`;
+  if (number == `SIN DATO` || number == `SIN DATOS`) return `SIN DATO`;
 }
 
 /**
@@ -165,26 +165,26 @@ function numberWorking(number) {
  */
 function imc2(weight, size) {
   if (!weight || !size) {
-    return '';
+    return ``;
   }
 
   const imc = weight / (size * size);
-  let category = '';
+  let category = ``;
 
   if (imc < 18.5) {
-    category = '1 PESO BAJO';
+    category = `1 PESO BAJO`;
   } else if (imc < 25) {
-    category = '2 NORMAL';
+    category = `2 NORMAL`;
   } else if (imc < 30) {
-    category = '3 SOBREPESO';
+    category = `3 SOBREPESO`;
   } else if (imc < 35) {
-    category = '4 OBESIDAD GRADO I';
+    category = `4 OBESIDAD GRADO I`;
   } else if (imc < 40) {
-    category = '5 OBESIDAD GRADO II';
+    category = `5 OBESIDAD GRADO II`;
   } else if (imc < 50) {
-    category = '6 OBESIDAD GRADO III';
+    category = `6 OBESIDAD GRADO III`;
   } else {
-    category = 'CAMPO SIN VALOR';
+    category = `CAMPO SIN VALOR`;
   }
 
   return [imc, category];
