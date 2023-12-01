@@ -5,6 +5,7 @@
  * @return {Template} The evaluated output template.
  */
 function doGet() {
+  // const template = HtmlService.createTemplateFromFile("index");
   const template = HtmlService.createTemplateFromFile("index");
   const outputTemplate = template.evaluate();
   return outputTemplate;
@@ -110,4 +111,10 @@ function onOpen(e) {
     menu.addItem(name, recipient);
   }
   menu.addToUi();
+}
+
+function prueba() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const sh = ss.getSheetByName("Registro");
+  sh.getActiveCell().setValue("prueba");  
 }
