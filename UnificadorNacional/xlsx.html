@@ -26,6 +26,9 @@
       const workbook = XLSX.read(data, { type: 'binary' });
       const numberSheets = workbook.SheetNames.length;
       const resultEmo = [], resultAudio = [], resultOpto = [], resultVisio = [], resultSpiro = [], resultOsteo = [], resultComplementary = [], resultPsychology = [], resultPsychosensometric = [], resultInsomnia = [];
+      const title = document.getElementById('title');
+
+      title.innerText = `puede continuar usando el ordenador sin ningún inconveniente`;
 
       for (let x = 0; x < numberSheets; x++) {
         try {
@@ -48,13 +51,16 @@
             case 'OSTEO':
               console.log(`Osteo`)
               break;
-            case 'COMPLEMENTARIOS', 'COMPLEMENTARIO':
+            case 'COMPLEMENTARIO':
+            case 'COMPLEMENTARIOS':
               console.log(`Complementario`)
               break;
-            case 'PSICOTECNICA', 'PSICOLOGIA':
+            case 'PSICOLOGIA':
+            case 'PSICOTECNICA':
               console.log(`Psicologia`)
               break;
-            case 'PSICOSENSOMETRICA', 'PSICOMOTRIZ':
+            case 'PSICOMOTRIZ':
+            case 'PSICOSENSOMETRICA':
               console.log(`Psicomotriz`)
               break;
             default:
@@ -119,7 +125,6 @@
               }
               break;
           }
-          const title = document.getElementById('title');
           title.innerText = `¡¡ Por favor espere Enviando información !!`;
 
           spinner.classList.add('d-none');
