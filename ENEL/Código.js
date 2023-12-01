@@ -729,10 +729,10 @@ function EliminarArchivosEnDirectorio(driveFolderId, archivoId) {
     // Verificar si el archivo actual no coincide con el archivo especificado por su ID
     if (fileId !== archivoId) {
       // Mover el archivo a la papelera
-      try {
+      try{
         file.setTrashed(true);
-      } catch (error) {
-        console.log(error);
+      }catch(e){
+        Logger.log(e);
       }
     }
   }
@@ -816,7 +816,7 @@ function getGeneral(params = "") {
   if (params === "" || params === "TODAS") {
     info = data.filter(e => (e[0] != "") ? e : "");
   } else {
-    info = data.filter(e => (e[0] != "" && e[2] == params) ? e : "");
+    info = data.filter(e => (e[0] != "" && e[3] == params) ? e : "");
   }
 
   return JSON.stringify(info.sort(function (a, b) { return a[5] - b[5]; }));
@@ -828,8 +828,8 @@ function removePoint() {
   const column = sheet.getActiveCell().getColumn();
   const row = sheet.getActiveCell().getRow();
 
-  if (column >= 30 && sheet.getRange(row, column).getValue() !== "") {
-    let remove = sheet.getActiveCell().getValue().toString().replaceAll(",", ";");
-    sheet.getRange(row, column).setValue(remove);
+  if(column >= 30 && sheet.getRange(row, column).getValue() !== ""){
+    let remove = sheet.getActiveCell().getValue().toString().replaceAll(",",";");
+    sheet.getRange(row,column).setValue(remove);
   }
 }
