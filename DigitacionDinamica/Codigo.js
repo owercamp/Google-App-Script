@@ -1,5 +1,5 @@
 function doGet() {
-  let template = HtmlService.createTemplateFromFile("Index");
+  let template = HtmlService.createTemplateFromFile("index");
   let output = template.evaluate();
 
   return output;
