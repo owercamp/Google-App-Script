@@ -14,56 +14,56 @@
 
 <script>
   /*** llamado de las funciones luego de cargar la pagina ***/
-  window.addEventListener('load', specialty);
-  window.addEventListener('load', graphProfessional(""));
-  window.addEventListener('load', graphHeadquartersInvoice(""));
+  window.addEventListener('load',specialty);
+  window.addEventListener('load',graphProfessional(""));
+  window.addEventListener('load',graphHeadquartersInvoice(""));
 
   /*** instanciación de los DataTables ***/
   var myTable = $("#Professional").DataTable({
-    language: {
-      "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
+    language:{
+      "url":"//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
     },
     responsive: true,
     pagingType: "full_numbers"
   });
 
   var invoiceTable = $("#Headquarters").DataTable({
-    language: {
-      "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
+    language:{
+      "url":"//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
     },
     responsive: true,
     pagingType: "full_numbers"
   })
 
   /*** funcion que carga las diferentes especialidades ***/
-  function specialty() {
-    google.script.run.withSuccessHandler(element => {
-      element.forEach(item => {
+  function specialty(){
+    google.script.run.withSuccessHandler(element =>{
+      element.forEach( item =>{
         $("#specialty").append(`<option value="${item}">${item}</option>`);
       })
     })
-      .withFailureHandler(error => {
-        console.log(`${error}`)
-      })
-      .getSpecialty();
+    .withFailureHandler(error=>{
+      console.log(`${error}`)
+    })
+    .getSpecialty();
   }
 
   let professionalGraph, invoiceGraph;
   /*** funcion que carga los datos de los profesionales medicos en la grafica y alimenta la tabla ***/
-  function graphProfessional(data) {
+  function graphProfessional(data){
     let dataTable = [];
-    let consultProfessional = google.script.run.withSuccessHandler(element => {
-      for (let x = 0; x < element[0].length; x++) {
-        dataTable.push({ '0': x + 1, '1': element[0][x], '2': element[1][x] })
+    let consultProfessional = google.script.run.withSuccessHandler(element =>{
+      for(let x = 0; x < element[0].length; x++){
+        dataTable.push({ '0':x+1,'1': element[0][x],'2': element[1][x]})
       }
 
       const ctx = document.getElementById('factureChart');
 
-      if (professionalGraph) {
+      if(professionalGraph){
         professionalGraph.destroy();
       }
 
-      if (data) {
+      if(data){
         myTable.clear().draw();
       }
       myTable.rows.add(dataTable).draw();
@@ -75,13 +75,13 @@
           datasets: [{
             data: element[1],
             backgroundColor: element[3],
-            borderColor: element[2],
+            borderColor:element[2],
             borderWidth: 1
           }]
         },
         options: {
           responsive: true,
-          borderRadius: '5',
+          borderRadius:'5',
           interaction: {
             intersect: false,
             mode: 'index',
@@ -94,60 +94,60 @@
                 size: 3
               }
             },
-            tooltip: {
+            tooltip:{
               backgroundColor: 'rgba(0,82,164,0.7)',
-              titleFont: {
+              titleFont:{
                 size: 14,
                 family: 'helvetica'
               },
-              bodyFont: {
-                size: 16,
+              bodyFont:{
+                size:16,
                 family: 'sans-serif'
               },
             },
             title: {
               display: true,
               text: 'Profesionales Medicos',
-              font: {
+              font:{
                 size: 20
               }
             }
           }
-        }
+        }  
       });
     })
-      .withFailureHandler(error => {
-        console.log(`${error}`)
-      })
-    if (data) {
+    .withFailureHandler(error =>{
+      console.log(`${error}`)
+    })
+    if(data){
       consultProfessional.getCollaborators(data);
-    } else {
+    }else{
       consultProfessional.getCollaborators();
     }
   }
 
   /*** funcion que carga los datos de las sedes en la grafica y alimenta la tabla ***/
-  function graphHeadquartersInvoice(data) {
-    let consultInvoices = google.script.run.withSuccessHandler(element => {
+  function graphHeadquartersInvoice(data){
+    let consultInvoices = google.script.run.withSuccessHandler(element =>{
       let dataTable = [];
       const footer = (tooltipItems) => {
         let sum = 0;
 
-        tooltipItems.forEach(function (tooltipItem) {
+        tooltipItems.forEach(function(tooltipItem) {
           sum += tooltipItem.parsed.y;
         });
         return 'Sum: ' + sum;
       };
 
-      for (let x = 0; x < element[0].length; x++) {
-        dataTable.push({ '0': x + 1, '1': element[0][x], '2': element[1][x], '3': element[2][x] })
+      for(let x = 0; x < element[0].length; x++){
+        dataTable.push({ '0':x+1,'1': element[0][x],'2': element[1][x],'3':element[2][x]})
       }
 
-      if (invoiceGraph) {
+      if(invoiceGraph){
         invoiceGraph.destroy();
       }
 
-      if (data) {
+      if(data){
         invoiceTable.clear().draw();
       }
       invoiceTable.rows.add(dataTable).draw();
@@ -155,20 +155,20 @@
       const xtc = document.getElementById('examsChart');
       invoiceGraph = new Chart(xtc, {
         type: 'line',
-        data: {
+        data:{
           labels: element[0],
-          datasets: [{
+          datasets:[{
             label: "Historia Clinica",
             data: element[1],
             backgroundColor: 'rgba(123,36,28,.2)',
-            borderColor: 'rgb(123,36,28)',
+            borderColor:'rgb(123,36,28)',
             borderWidth: 1,
             fill: true
-          }, {
+          },{
             label: "Informe Ventas",
             data: element[2],
             backgroundColor: 'rgba(123,36,128,.2)',
-            borderColor: 'rgb(123,36,128)',
+            borderColor:'rgb(123,36,128)',
             borderWidth: 1,
             fill: true,
           }]
@@ -194,31 +194,31 @@
         }
       })
     })
-      .withFailureHandler(error => {
-        console.log(`${error}`)
-      })
-    if (data) {
+    .withFailureHandler(error =>{
+      console.log(`${error}`)
+    })
+    if(data){
       consultInvoices.getHeadquartersInvoice(data);
-    } else {
+    }else{
       consultInvoices.getHeadquartersInvoice();
     }
   }
 
-  $(document).ready(function () {
+  $(document).ready(function(){
     Swal.fire({
       icon: 'info',
-      html: `<p>Realizando la consulta <b style="color:Red;"><i>General</i></b> de los datos</p>`,
-      footer: `<p style="color:#5faefe">Por favor espere..</p>`,
+      html:`<p>Realizando la consulta <b style="color:Red;"><i>General</i></b> de los datos</p>`,
+      footer:`<p style="color:#5faefe">Por favor espere..</p>`,
       showConfirmButton: false,
       timer: 8000
     });
   })
 
-  $("#specialty").change((e) => {
+  $("#specialty").change((e)=>{
     Swal.fire({
       icon: 'info',
-      html: `<p>Realizando la consulta <b style="color:Red;"><i>${e.target.value}</i></b> de los datos</p>`,
-      footer: `<p style="color:#5faefe">Por favor espere..</p>`,
+      html:`<p>Realizando la consulta <b style="color:Red;"><i>${e.target.value}</i></b> de los datos</p>`,
+      footer:`<p style="color:#5faefe">Por favor espere..</p>`,
       showConfirmButton: false,
       timer: 9000
     })
