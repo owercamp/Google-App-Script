@@ -1,3 +1,8 @@
+/**
+ * Gets the content to be displayed in the web app.
+ *
+ * @return {Object} The evaluated content to be displayed.
+ */
 function doGet() {
   let template = HtmlService.createTemplateFromFile("Index");
   let output = template.evaluate();
@@ -5,10 +10,21 @@ function doGet() {
   return output;
 }
 
+/**
+ * Returns the contents of the specified HTML file.
+ *
+ * @param {string} filename - The name of the HTML file.
+ * @return {string} The content of the HTML file.
+ */
 function include(filename) {
   return HtmlService.createHtmlOutputFromFile(filename).getContent();
 }
 
+/**
+ * Retrieves the specialty values from the "Clasificación" sheet in the active spreadsheet.
+ *
+ * @return {Array} An array containing the unique specialty values.
+ */
 function getSpecialty() {
   let specialty = [];
   let spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
@@ -26,6 +42,12 @@ function getSpecialty() {
   return specialty;
 }
 
+/**
+ * Generates a list of collaborators based on the provided special parameter.
+ *
+ * @param {boolean} special - A flag indicating if the special parameter is provided
+ * @return {Array} An array containing collaborator information
+ */
 function getCollaborators(special) {
   let collaborators = [];
   let collaborator = [];
@@ -95,6 +117,12 @@ function getCollaborators(special) {
   return datos;
 }
 
+/**
+ * Retrieves the headquarters invoice data.
+ *
+ * @param {boolean} special - Specifies if the special flag is set.
+ * @return {Array[]} The headquarters invoice data, including the invoices, sum of history, and sum of info.
+ */
 function getHeadquartersInvoice(special) {
   let invoices = [];
   let sumHistory = [];
@@ -210,6 +238,11 @@ function getHeadquartersInvoice(special) {
   return datos;
 }
 
+/**
+ * Opens an informe by creating a new HTML document and opening it in a new window.
+ *
+ * @return {HtmlOutput} The HTML output object.
+ */
 function abrirInforme() {
   var html = HtmlService.createHtmlOutput('<html>'
     + '<script>' +
@@ -222,6 +255,11 @@ function abrirInforme() {
   SpreadsheetApp.getUi().showModalDialog(html, "Abriendo Informe");
 }
 
+/**
+ * Hide of column.
+ *
+ * @return {Promise<void>} A promise that resolves when the column is hidden.
+ */
 async function hideOfColumn() {
   /**
    * Seleccion de la informacion para realizxar la validación
@@ -396,6 +434,12 @@ function WASPRESENTED(num_exam, id, especial) {
   return def;
 }
 
+/**
+ * Finds the specialty for a given data.
+ *
+ * @param {any} data - The data to search for the specialty.
+ * @return {any} The specialty corresponding to the data.
+ */
 function specialty(data) {
   let spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
   let clasi = spreadsheet.getSheetByName("Clasificación").getRange(2, 6, spreadsheet.getSheetByName("Clasificación").getLastRow(), 2).getValues().filter(e => (e[0] != "") ? e : "");
