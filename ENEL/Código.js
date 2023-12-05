@@ -675,6 +675,7 @@ function RemoveMenu() {
   var menuEntries = [];
   menuEntries.push({ name: "Generar Libro", functionName: "TODO" });
   menuEntries.push({ name: "Informes", functionName: "abrirInforme" });
+  menuEntries.push({ name: "Verificar Intervención", functionName: "verified" });
   ss.updateMenu("ADMINISTRACIÓN ENEL", menuEntries);
 }
 
@@ -729,9 +730,9 @@ function EliminarArchivosEnDirectorio(driveFolderId, archivoId) {
     // Verificar si el archivo actual no coincide con el archivo especificado por su ID
     if (fileId !== archivoId) {
       // Mover el archivo a la papelera
-      try{
+      try {
         file.setTrashed(true);
-      }catch(e){
+      } catch (e) {
         Logger.log(e);
       }
     }
@@ -752,6 +753,7 @@ function onOpen(e) {
     const recipients = {
       'Generar Libro': 'TODO',
       'Informes': 'abrirInforme',
+      'Verificar Intervención': 'verified'
     };
     for (const [name, recipient] of Object.entries(recipients)) {
       menu.addItem(name, recipient);
@@ -827,9 +829,85 @@ function removePoint() {
   const sheet = spreadsheet.getSheetByName("RCV-2023");
   const column = sheet.getActiveCell().getColumn();
   const row = sheet.getActiveCell().getRow();
+  const my_value = sheet.getActiveCell().getValue();
+  const validateDate = isNaN(Date.parse(my_value));
 
-  if(column >= 30 && sheet.getRange(row, column).getValue() !== ""){
-    let remove = sheet.getActiveCell().getValue().toString().replaceAll(",",";");
-    sheet.getRange(row,column).setValue(remove);
+  if (column >= 30 && sheet.getRange(row, column).getValue() !== "" && validateDate === true) {
+    let remove = sheet.getActiveCell().getValue().toString().replaceAll(",", ";");
+    sheet.getRange(row, column).setValue(remove);
+  }
+}
+
+const pointer = {
+  framingham: 26,
+  aterogenia: 28,
+  sindrome: 27,
+  clasificacion: 29
+}
+
+/**
+ * Generate classifications based on certain conditions.
+ *
+ * @param {none} This function does not take any parameters.
+ * @return {none} This function does not return any value.
+ */
+function classifications() {
+  const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+
+  if (spreadsheet.getActiveSheet().getName() === "RCV-2023") {
+    const sheet = spreadsheet.getSheetByName("RCV-2023");
+    const row = sheet.getActiveCell().getRow();
+    const column = sheet.getActiveCell().getColumn();
+
+    if (column >= 12 && column <= 28) {
+      let framingham = sheet.getRange(row, pointer.framingham).getValue();
+      let aterogenia = sheet.getRange(row, pointer.aterogenia).getValue();
+      let sindrome = sheet.getRange(row, pointer.sindrome).getValue();
+
+      if (framingham === null || aterogenia === null || sindrome === null) {
+        let campos = `${(framingham === "") ? "-Framingham" : ""} ${(aterogenia === "") ? " -Aterogenia" : ""} ${(sindrome === "") ? " -Sindrome Metabolico" : ""}`;
+        sheet.getRange(row, pointer.clasificacion).setValue(`clasificación no permitida faltan campos ${campos}`);
+      }
+
+      if (
+        (framingham.includes("Alto") || framingham.includes("Moderado"))
+        && aterogenia.includes("Maximo")
+        && sindrome.includes("Presenta SINDROME METABOLICO")
+      ) {
+        sheet.getRange(row, pointer.clasificacion).setValue("ALTO");
+      } else if (
+        (framingham.includes("Bajo") || framingham.includes("Moderado"))
+        && ((aterogenia.includes("Maximo") || aterogenia.includes("Moderado")) || sindrome.includes("Presenta SINDROME METABOLICO"))
+      ) {
+        sheet.getRange(row, pointer.clasificacion).setValue("MEDIO");
+      } else if (
+        (framingham.includes("Bajo") || framingham.includes("Moderado"))
+        && (aterogenia.includes("Moderado") || aterogenia.includes("Minimo"))
+        && sindrome.includes("Sin Alteraciones")
+      ) {
+        sheet.getRange(row, pointer.clasificacion).setValue("BAJO");
+      } else {
+        sheet.getRange(row, pointer.clasificacion).setValue("Sin Clasificación los parametros no corresponden");
+      }
+    }
+  }
+}
+
+/**
+ * Executes the verification process for the entire spreadsheet.
+ *
+ * @param {Spreadsheet} spreadsheet - The active spreadsheet object.
+ * @return {void} This function does not return anything.
+ */
+function verified() {
+  const spreadsheet = SpreadsheetApp.getActiveSheet();
+
+  if (spreadsheet.getName() === "RCV-2023") {
+    spreadsheet.getRange("AB3").activate();
+
+    while (spreadsheet.getActiveCell().getValue()[0] !== undefined) {
+      classifications();
+      spreadsheet.getActiveCell().offset(1, 0).activate();
+    }
   }
 }
