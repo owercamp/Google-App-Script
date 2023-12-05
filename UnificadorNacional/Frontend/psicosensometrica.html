@@ -1,0 +1,77 @@
+<script>
+  /**
+  ** Generates a new object based on the provided data.
+  ** The generated object contains different properties
+  ** based on the elements of the data object.
+  **
+  ** Parameters:
+  ** - data: An object containing the data to be processed.
+  **
+  ** Returns:
+  ** - An object with properties based on the elements of the data object.
+  */
+  const psychosensometric = (data) => {
+    const psychosenso = new Object();
+
+    try {
+      for (const element in data) {
+        switch (element.trim().toUpperCase().toString()) {
+          case `TIPO_IDENTIFICACION`:
+            psychosenso.tipoIdentificacion = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `PRUEBA_PSICOSENSOMETRICA`:
+          case `PSICOSENSOMETRICA`:
+            psychosenso.pruebaPsicoSensometrica = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `DIAGNOSTICO_PPAL`:
+            psychosenso.diagnosticoPpal = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `DIAGNOSTICO_OBS`:
+            psychosenso.diagnosticoObs = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `DIAGNOSTICO_REL/1`:
+            psychosenso.diagnosticoRel1 = (data[element] !== undefined) ? data[element] : 0;
+            break;
+          case `DIAGNOSTICO_REL/2`:
+            psychosenso.diagnosticoRel2 = (data[element] !== undefined) ? data[element] : 0;
+            break;
+          case `DIAGNOSTICO_REL/3`:
+            psychosenso.diagnosticoRel3 = (data[element] !== undefined) ? data[element] : 0;
+            break;
+          case `CONTROLES_MENSUALES`:
+            psychosenso.controlesMensuales = (data[element] !== undefined) ? data[element] : 0;
+            break;
+          case `CONTROLES_BIMENSUAL`:
+            psychosenso.controlesBimensual = (data[element] !== undefined) ? data[element] : 0;
+            break;
+          case `CONTROLES_TRIMESTRALES`:
+            psychosenso.controlesTrimestrales = (data[element] !== undefined) ? data[element] : 0;
+            break;
+          case `CONTROLES_6_MESES`:
+            psychosenso.controles6Meses = (data[element] !== undefined) ? data[element] : 0;
+            break;
+          case `CONTROLES_1_AÑO`:
+            psychosenso.controles1Ano = (data[element] !== undefined) ? data[element] : 0;
+            break;
+          case `CONTROLES_CONFIRMATORIA`:
+            psychosenso.controlesConfirmatoria = (data[element] !== undefined) ? data[element] : 0;
+            break;
+        }
+      }
+
+      if (Object.entries(psychosenso).length > 0 && psychosenso.pruebaPsicoSensometrica != ``) {
+        const socio_emography = informationSocioEmography(data);
+
+        const psychosensometricInformation = {
+          ...socio_emography,
+          ...psychosenso
+        }
+
+        return psychosensometricInformation;
+      }
+      return ``;
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+</script>

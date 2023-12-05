@@ -1,0 +1,250 @@
+<script>
+  /**
+  ** Generates a new object based on the provided data.
+  ** The generated object contains different properties
+  ** based on the elements of the data object.
+  **
+  ** Parameters:
+  ** - data: An object containing the data to be processed.
+  **
+  ** Returns:
+  ** - An object with properties based on the elements of the data object.
+  */
+  const spirometry = (data) => {
+    const spiro = new Object();
+
+    try {
+      for (const element in data) {
+        switch (element.trim().toUpperCase().toString()) {
+          case `ALEGIAS`:
+            spiro.alegias = (data[element] !== undefined) ? data[element] : 0; /** Alegias **/
+            break;
+          case `ALERGIAS_OBS`:
+            spiro.alergiasObs = (data[element] !== undefined) ? data[element].toUpperCase() : `NO REFIERE`; /** Alergias Obs **/
+            break;
+          case `TUBERCULOSIS`:
+            spiro.tuberculosis = (data[element] !== undefined) ? data[element] : 0; /** Tuberculosis **/
+            break;
+          case `TOS_CRONICA`:
+            spiro.tosCronica = (data[element] !== undefined) ? data[element] : 0; /** Tos Cronica **/
+            break;
+          case `GRIPAS_FRECUENTES`:
+            spiro.gripasFrecuentes = (data[element] !== undefined) ? data[element] : 0; /** Gripas Freuentes **/
+            break;
+          case `FARINGITIS`:
+            spiro.faringitis = (data[element] !== undefined) ? data[element] : 0; /** Faringitis **/
+            break;
+          case `FARINGOAMIGDALITIS`:
+            spiro.faringoamigdalitis = (data[element] !== undefined) ? data[element] : 0; /** Faringoamigdalitis **/
+            break;
+          case `RINITIS`:
+            spiro.rinitis = (data[element] !== undefined) ? data[element] : 0; /** Rinitis **/
+            break;
+          case `SINUSITIS`:
+            spiro.sinusitis = (data[element] !== undefined) ? data[element] : 0; /** Sinusitis **/
+            break;
+          case `CX_TORAX`:
+            spiro.cxTorax = (data[element] !== undefined) ? data[element] : 0; /** CX Torax **/
+            break;
+          case `CX_TORAX_OBS`:
+            spiro.cxToraxObs = (data[element] !== undefined) ? data[element].toUpperCase() : `NO REFIERE`; /** CX Torax Obs **/
+            break;
+          case `ASMA_BRONQUIAL`:
+            spiro.asmaBronquial = (data[element] !== undefined) ? data[element] : 0; /** Asma Bronquial **/
+            break;
+          case `BRONQUITIS`:
+            spiro.bronquitis = (data[element] !== undefined) ? data[element] : 0; /** Bronquitis **/
+            break;
+          case `NEUMONIA`:
+            spiro.neumonia = (data[element] !== undefined) ? data[element] : 0; /** Neumonia **/
+            break;
+          case `TRAUMA_COSTAL`:
+            spiro.trumaCostal = (data[element] !== undefined) ? data[element] : 0; /** Trauma Costal **/
+            break;
+          case `CANCER`:
+            spiro.cancer = (data[element] !== undefined) ? data[element] : 0; /** Cancer **/
+            break;
+          case `CANCER_OBS`:
+            spiro.cancerObs = (data[element] !== undefined) ? data[element].toUpperCase() : `NO REFIERE`; /** Cancer Obs **/
+            break;
+          case `OTROS_RESPIRATORIOS`:
+            spiro.otrosRespiratorios = (data[element] !== undefined) ? data[element].toUpperCase() : `NO REFIERE`; /** Otros Respiratorios **/
+            break;
+          case `RIESGO_QUIMICO_/_POLVOS`:
+            spiro.riesgoQuimicoPolvos = (data[element] !== undefined) ? data[element] : 0; /** Riesgo Quimico_/_Polvos **/
+            break;
+          case `RIESGO_QUIMICO_/_FIBRAS`:
+            spiro.riesgoQuimicoFibras = (data[element] !== undefined) ? data[element] : 0; /** Riesgo Quimico_/_Fibras **/
+            break;
+          case `RIESGO_QUIMICO_/_LIQUIDOS`:
+            spiro.riesgoQuimicoLiquidos = (data[element] !== undefined) ? data[element] : 0; /** Riesgo Quimico_/_Liquidos **/
+            break;
+          case `RIESGO_QUIMICO_/GASES`:
+            spiro.riesgoQuimicoGases = (data[element] !== undefined) ? data[element] : 0; /** Riesgo Quimico_/Gases **/
+            break;
+          case `RIESGO_QUIMICO_/_VAPORES`:
+            spiro.riesgoQuimicoVapos = (data[element] !== undefined) ? data[element] : 0; /** Riesgo Quimico_/_Vapos **/
+            break;
+          case `RIESGO_QUIMICO_/_HUMOS`:
+            spiro.riesgoQuimicoHumos = (data[element] !== undefined) ? data[element] : 0; /** Riesgo Quimico_/_HUMOS **/
+            break;
+          case `RIESGO_QUIMICO_/MATERIAL_PARTICULADO`:
+            spiro.riesgoQuimicoMaterialParticulado = (data[element] !== undefined) ? data[element] : 0; /** Riesgo Quimico_/MATERIAL_PARTICULADO **/
+            break;
+          case `OTROS_RIESGOS_QUIMICOS`:
+            spiro.otrosRiesgosQuimicos = (data[element] !== undefined) ? data[element].toUpperCase() : `NO REFIERE`; /** Otros Riesgos Quimicos **/
+            break;
+          case `EPP_ESPECIFICO_/_TAPABOCA`:
+            spiro.eppEspecificoTapaboca = (data[element] !== undefined) ? data[element] : 0; /** Epp Especifico_/_Tapaboca **/
+            break;
+          case `EPP_ESPECIFICO_/_RESPIRADOR`:
+            spiro.eppEspecificoRespirador = (data[element] !== undefined) ? data[element] : 0; /** Epp Especifico_/_Respirador **/
+            break;
+          case `ACT__FISICA`:
+            spiro.actFisica = (data[element] !== undefined) ? data[element].toUpperCase() : ``; /** Act Fisica **/
+            break;
+          case `FUMA`:
+            spiro.fuma = (data[element] !== undefined) ? data[element] : ``; /** Fuma **/
+            break;
+          case `CIGARRILLOS_DIA`:
+            spiro.cigarrillosDia = (data[element] !== undefined) ? data[element] : ``; /** Cigarrillos Dia **/
+            break;
+          case `FRECUENCIA`:
+            spiro.frecuencia = (data[element] !== undefined) ? data[element] : ``; /** Frecuencia **/
+            break;
+          case `TIEMPO_EN_AÑOS`:
+            spiro.tiempoEnAnios = (data[element] !== undefined) ? data[element] : ``; /** Tiempo En Años **/
+            break;
+          case `INTERPRETACION`:
+            spiro.interpretacion = (data[element] !== undefined) ? data[element].toUpperCase() : ``; /** Interpretacion **/
+            break;
+          case `PESO`:
+            spiro.peso = (data[element] !== undefined) ? data[element] : ``; /** Peso **/
+            break;
+          case `TALLA`:
+            spiro.talla = (data[element] !== undefined) ? data[element] : ``; /** Talla **/
+            break;
+          case `FVC_PRED_DIAG_`:
+            spiro.fvcPredDiag = (data[element] !== undefined) ? data[element] : ``; /** FVC Pred Diag **/
+            break;
+          case `FVC_%TEOR_DIAG_`:
+            spiro.fvcTeorDiag = (data[element] !== undefined) ? data[element] : ``; /** FVC %Teor Diag **/
+            break;
+          case `FEV1_PRED_DIAG_`:
+            spiro.fev1PredDiag = (data[element] !== undefined) ? data[element] : ``; /** FEV1 Pred Diag **/
+            break;
+          case `FEV1_%TEOR_DIAG_`:
+            spiro.fev1TeorDiag = (data[element] !== undefined) ? data[element] : ``; /** FEV1 %Teor Diag **/
+            break;
+          case `FEV1/FVC_PRED_DIAG_`:
+            spiro.fev1FvcPredDiag = (data[element] !== undefined) ? data[element] : ``; /** FEV1/FVC Pred Diag **/
+            break;
+          case `FEV1/FVC_%TEOR_DIAG_`:
+            spiro.fev1FvcTeorDiag = (data[element] !== undefined) ? data[element] : ``; /** FEV1/FVC %Teor Diag **/
+            break;
+          case `PEF_PRED_DIAG_`:
+            spiro.pefPredDiag = (data[element] !== undefined) ? data[element] : ``; /** PEF Pred Diag **/
+            break;
+          case `PEF_%TEOR_DIAG_`:
+            spiro.pefTeorDiag = (data[element] !== undefined) ? data[element] : ``; /** PEF %Teor Diag **/
+            break;
+          case `FEF_25-75_PRED_DIAG_`:
+            spiro.fef2575PredDiag = (data[element] !== undefined) ? data[element] : ``; /** FEF_25-75 Pred Diag **/
+            break;
+          case `FEF_25-75_%TEOR_DIAG_`:
+            spiro.fef2575TeorDiag = (data[element] !== undefined) ? data[element] : ``; /** FEF_25-75 %Teor Diag **/
+            break;
+          case `DIAG__PPAL`:
+            spiro.diagPpal = (data[element] !== undefined) ? data[element].toUpperCase() : ``; /** Diag Ppal **/
+            break;
+          case `DIAG__OBS`:
+            spiro.diagObs = (data[element] !== undefined) ? data[element].toUpperCase() : ``; /** Diag Obs **/
+            break;
+          case `DIAG__REL/1`:
+            spiro.diagRel1 = (data[element] !== undefined) ? data[element].toUpperCase() : 0; /** Diag Rel 1 **/
+            break;
+          case `DIAG__REL/2`:
+            spiro.diagRel2 = (data[element] !== undefined) ? data[element].toUpperCase() : 0; /** Diag Rel 2 **/
+            break;
+          case `DIAG__REL/3`:
+            spiro.diagRel3 = (data[element] !== undefined) ? data[element].toUpperCase() : 0; /** Diag Rel 3 **/
+            break;
+          case `TIPO_INTERPRETACION`:
+            spiro.tipoInterpretacion = (data[element] !== undefined) ? data[element].toUpperCase() : ``; /** Tipo Interpretacion **/
+            break;
+          case `TIPO_GRADO`:
+            spiro.tipoGrado = (data[element] !== undefined) ? data[element].toUpperCase() : ``; /** Tipo Grado **/
+            break;
+          case `RESULTADO_ESPIROMETRIA`:
+            spiro.resultadoEspiroMetria = (data[element] !== undefined) ? data[element].toUpperCase() : ``; /** Resultado Espiro Metria **/
+            break;
+          case `REC/GRALES_DEJAR_DE_FUMAR`:
+            spiro.recGralesDejarDeFumar = (data[element] !== undefined) ? data[element] : 0; /** Rec Grales Dejar De Fumar **/
+            break;
+          case `REC/GRALES_CONTINUAR_CONTROLES_EPS`:
+            spiro.recGralesContinuarControlesEps = (data[element] !== undefined) ? data[element] : 0; /** Rec Grales Continuar Controles EPS **/
+            break;
+          case `REC/GRALES_BAJAR_DE_PESO`:
+            spiro.recGralesBajarDePeso = (data[element] !== undefined) ? data[element] : 0; /** Rec Grales Bajar De Peso **/
+            break;
+          case `REC/GRALES_TOMAR_RAYOS_X_TORAX`:
+            spiro.recGralesTomarRayosXTorax = (data[element] !== undefined) ? data[element] : 0; /** Rec Grales Tomar Rayos X Torax **/
+            break;
+          case `REC/GRALES_REALIZAR_EJERC__3X_SEMANA`:
+            spiro.recGralesRealizarEjerc3XSemana = (data[element] !== undefined) ? data[element] : 0; /** Rec Grales Realizar Ejerc 3X Semana **/
+            break;
+          case `REC/GRALES_VALORAC__EPS_X_NEUMOLOGIA`:
+            spiro.recGralesValoracEPSXNeumologia = (data[element] !== undefined) ? data[element] : 0; /** Rec Grales Valorac EPS X Neumologia **/
+            break;
+          case `REC/LAB_UTILIZAR_EPR`:
+            spiro.recLabUtilizarEpr = (data[element] !== undefined) ? data[element] : 0; /** Rec Lab Utilizar EPR **/
+            break;
+          case `REC/LAB_INGRESAR_SVE`:
+            spiro.recLabIngresarSve = (data[element] !== undefined) ? data[element] : 0; /** Rec Lab Ingresar SVE **/
+            break;
+          case `CONTROLES_MENSUAL`:
+            spiro.controlesMensual = (data[element] !== undefined) ? data[element] : 0; /** Controles Mensual **/
+            break;
+          case `CONTROLES_BIMESTRALES`:
+            spiro.controlesBimestrales = (data[element] !== undefined) ? data[element] : 0; /** Controles Bimestrales **/
+            break;
+          case `CONTROLES_TRIMESTRAL`:
+            spiro.controlesTrimestral = (data[element] !== undefined) ? data[element] : 0; /** Controles Trimestral **/
+            break;
+          case `CONTROLES_SEMESTRAL`:
+            spiro.controlesSemestral = (data[element] !== undefined) ? data[element] : 0; /** Controles Semestral **/
+            break;
+          case `CONTROLES_ANUAL`:
+            spiro.controlesAnual = (data[element] !== undefined) ? data[element] : 0; /** Controles Anual **/
+            break;
+          case `CONTROLES_CONFIRMATORIA`:
+            spiro.controlesConfirmatoria = (data[element] !== undefined) ? data[element] : 0; /** Controles Confirmatoria **/
+            break;
+          case `TECNICA_ACEPTABLE`:
+            spiro.tecnicaAceptable = (data[element] !== undefined) ? data[element].toUpperCase() : ``; /** TECNICA ACEPTABLE **/
+            break;
+        }
+      }
+
+      if (
+        Object.entries(spiro).length > 0 && (
+          ![undefined, ``].includes(spiro.tipoInterpretacion) ||
+          ![undefined, ``].includes(spiro.tipoGrado) ||
+          ![undefined, ``].includes(spiro.resultadoEspiroMetria)
+        )
+      ) {
+        const socio_emography = informationSocioEmography(data);
+
+        const spiroInformation = {
+          ...socio_emography,
+          ...spiro
+        }
+
+        return spiroInformation;
+      }
+      return ``;
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+</script>

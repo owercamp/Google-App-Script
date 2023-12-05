@@ -1,0 +1,64 @@
+<script>
+  /**
+  ** Generates a new object based on the provided data.
+  ** The generated object contains different properties
+  ** based on the elements of the data object.
+  **
+  ** Parameters:
+  ** - data: An object containing the data to be processed.
+  **
+  ** Returns:
+  ** - An object with properties based on the elements of the data object.
+  */
+  const complementary = (data) => {
+    const complement = new Object();
+
+    try {
+      for (const element in data) {
+        switch (element.trim().toUpperCase().toString()) {
+          case `TIPO_IDENTIFICACION`:
+            complement.tipoIdentificacion = (data[element] !== undefined) ? data[element].toUpperCase() : ``; /** TIPO_IDENTIFICACION **/
+            break;
+          case `FECHA_DE_NACIMIENTO`:
+            complement.fechaDeNacimiento = (data[element] !== undefined) ? data[element] : ``; /** FECHA_DE_NACIMIENTO **/
+            break;
+          case `PROCEDIMIENTO`:
+            complement.procedimiento = (data[element] !== undefined) ? data[element].toUpperCase() : ``; /** PROCEDIMIENTO **/
+            break;
+          case `DIAG__PPAL`:
+            complement.diagPpal = (data[element] !== undefined) ? data[element].toUpperCase() : ``; /** DIAG__PPAL **/
+            break;
+          case `DIAG__PPAL_OBS`:
+            complement.diagPpalObs = (data[element] !== undefined) ? data[element].toUpperCase() : ``; /** DIAG__PPAL Obs **/
+            break;
+          case `DIAG__REL_1`:
+            complement.diagRel1 = (data[element] !== undefined) ? data[element].toUpperCase() : 0; /** DIAG__REL_1 **/
+            break;
+          case `DIAG__REL_2`:
+            complement.diagRel2 = (data[element] !== undefined) ? data[element].toUpperCase() : 0; /** DIAG__REL_2 **/
+            break;
+          case `DIAG__REL_3`:
+            complement.diagRel3 = (data[element] !== undefined) ? data[element].toUpperCase() : 0; /** DIAG__REL_3 **/
+            break;
+        }
+      }
+
+      if (Object.entries(complement).length > 0 && (
+        ![undefined, ``].includes(complement.procedimiento) ||
+        ![undefined, ``].includes(complement.fechaDeNacimiento)
+      )) {
+        const socio_emography = informationSocioEmography(data);
+
+        const supplemental = {
+          ...socio_emography,
+          ...complement
+        }
+
+        return supplemental;
+      }
+      return ``;
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+</script>

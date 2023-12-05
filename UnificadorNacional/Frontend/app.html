@@ -1,0 +1,146 @@
+<script>
+  /**
+  **  Creates a socio-emographic object based on the provided data.
+  **  
+  **  Parameters:
+  **  - data: an object containing the socio-emographic information.
+  **  
+  **  Returns:
+  **  - sociography: an object with the extracted socio-emographic information.
+  **
+  **  Throws:
+  **  If an error occurs during the execution of the function, an error message is logged to the console
+  **/
+  const informationSocioEmography = (data) => {
+    const sociography = new Object()
+
+    try {
+      for (const element in data) {
+        switch (element.trim().toUpperCase().toString()) {
+          case `NOMBRE_EMPRESA`:
+            sociography.contractedName = (data[element].trim()) ? data[element].trim() : ``; /** Nombre Contrato o Empresa **/
+            break;
+          case `ORIGEN`:
+            sociography.origin = (data[element].trim()) ? data[element].trim() : ``; /** Origen **/
+            break;
+          case `DESTINO`:
+            sociography.destiny = (data[element].trim()) ? data[element].trim() : ``; /** Destino **/
+            break;
+          case `CIUDAD`:
+            sociography.city = (data[element].trim()) ? data[element].trim() : ``; /** Ciudad **/
+            break;
+          case `INGRESO`:
+          case `NUMERO_DE_FACTURA`:
+            sociography.income = (data[element]) ? data[element] : ``; /** Ingreso **/
+            break;
+          case `TIPO_EXAMEN`:
+            sociography.examType = (data[element].trim()) ? data[element].trim() : ``; /** Tipo de Examen **/
+            break;
+          case `FECHA_DE_ATENCION`:
+            sociography.date = (data[element]) ? data[element] : ``; /** Fecha **/
+            break;
+          case `PACIENTE`:
+            sociography.patient = (data[element].trim()) ? data[element].trim() : ``; /** Paciente **/
+            break;
+          case `NRO_IDENFICACION`:
+            sociography.numberIdentification = (data[element]) ? data[element] : ``; /** Numero Identificación **/
+            break;
+          case `EDADREC`:
+            sociography.age = (data[element]) ? data[element] : ``; /** Edad **/
+            break;
+          case `ESTRATO`:
+            sociography.stratum = (data[element]) ? data[element] : ``; /** Estrato **/
+            break;
+          case `GENERO`:
+            sociography.gender = (data[element].trim()) ? data[element].trim() : ``; /** Genero **/
+            break;
+          case `NRO_HIJOS`:
+            sociography.numberOfChildren = (data[element]) ? data[element] : ``; /** Numero de Hijos **/
+            break;
+          case `RAZA`:
+            sociography.race = (data[element].trim()) ? data[element].trim() : ``; /** raza **/
+            break;
+          case `ESTADO_CIVIL`:
+            sociography.civilStatus = (data[element].trim()) ? data[element].trim() : ``; /** Estado Civil **/
+            break;
+          case `ESCOLARIDAD`:
+            sociography.scholarship = (data[element].trim()) ? data[element].trim() : ``; /** Escolaridad **/
+            break;
+          case `CARGO`:
+            sociography.post = (data[element].trim()) ? data[element].trim() : ``; /** cargo **/
+            break;
+          case `ANTIGUEDAD`:
+            sociography.durationWorking = (data[element]) ? data[element] : ``; /** duracion laboral **/
+            break;
+        }
+      }
+
+      return sociography;
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
+
+  /**
+   ** Generates a new object with diagnostics data from the input data object.
+   ** 
+   ** Parameters:
+   ** - data: An object containing the data to be processed.
+   ** 
+   ** Returns:
+   ** An object with diagnostics data where the keys are filtered from the input data object based on certain
+   ** conditions and the corresponding values are converted to uppercase. 
+   ** If an element in the input data object is undefined, the corresponding value in the output object is an empty string.
+   **
+   ** Throws:
+   ** If an error occurs during the execution of the function, an error message is logged to the console.
+  */
+  const occupationalMedicalDiag = (data) => {
+    const diag = new Object();
+    const dataDiag = Object.keys(data).filter(element => (!element.includes(`DIAG_REL/`) && (element.includes(`DIAG_REL`) || element.includes(`DIAG_PPAL`))));
+
+    try {
+      for (const element in data) {
+        for (const iterator of dataDiag) {
+          if (element.trim() === iterator.trim()) {
+            diag[iterator.trim()] = (data[element] !== undefined) ? data[element].trim().toUpperCase() : 0;
+          }
+        }
+      }
+      return diag;
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
+  /**
+  ** Generates a new object with emphasis values from the given data object.
+  **
+  ** Parameters:
+  ** - data: The data object to extract emphasis values from.
+  **
+  ** Returns:
+  ** - An object with emphasis values.
+  **
+  ** Throws:
+  ** - Will catch and log any errors that occur during execution.
+  */
+  const occupationalMedicalEmphasis = (data) => {
+    const emphasis = new Object()
+    const dataEmphasis = Object.keys(data).filter(element => (element.includes(`ENFASIS`)));
+
+    try {
+      for (const element in data) {
+        for (const iterator of dataEmphasis) {
+          if (element.trim() === iterator.trim()) {
+            emphasis[iterator.trim()] = (data[element] !== undefined) ? data[element].trim().toUpperCase() : `NO APLICA`;
+          }
+        }
+      }
+      return emphasis;
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+</script>

@@ -1,0 +1,270 @@
+<script>
+  /**
+  ** Generates a new object based on the provided data.
+  ** The generated object contains different properties
+  ** based on the elements of the data object.
+  **
+  ** Parameters:
+  ** - data: An object containing the data to be processed.
+  **
+  ** Returns:
+  ** - An object with properties based on the elements of the data object.
+  */
+  const visiometrics = (data) => {
+    const visio = new Object();
+
+    try {
+      for (const element in data) {
+        switch (element.trim().toUpperCase().toString()) {
+          case `VISIO/ANT__LABORAL_ILUMINACION_INADECUADA`:
+            visio.iluminacionInade = (data[element] !== undefined) ? data[element] : 0; /** Iluminacion Inadecuada **/
+            break;
+          case `VISIO/ANT__LABORALVISIO_RADIACIONES_UV`:
+            visio.radiacionesUv = (data[element] !== undefined) ? data[element] : 0; /** Radiaciones UV **/
+            break;
+          case `VISIO/ANT__LABORAL_MALA_VENTILACION`:
+            visio.malaVentilacion = (data[element] !== undefined) ? data[element] : 0; /** Mala Ventilacion **/
+            break;
+          case `VISIO/ANT__LABORAL_GASES_TOXICOS`:
+            visio.gasesToxicos = (data[element] !== undefined) ? data[element] : 0; /** Gases Toxicos **/
+            break;
+          case `SINTOMAS_FOTOFOBIA`:
+            visio.sintomasFotofobia = (data[element] !== undefined) ? data[element] : 0; /** Sintomas Fotofobia **/
+            break;
+          case `SINTOMAS_OJO_ROJO`:
+            visio.sintomasOjoRojo = (data[element] !== undefined) ? data[element] : 0; /** Sintomas Ojo Rojo **/
+            break;
+          case `SINTOMAS_LAGRIMEO`:
+            visio.sintomasLagrimeno = (data[element] !== undefined) ? data[element] : 0; /** Sintomas Lagrimeno **/
+            break;
+          case `SINTOMAS_VISION_BORROSA`:
+            visio.sintomasVisionBorrosa = (data[element] !== undefined) ? data[element] : 0; /** Sintomas Vision Borrosa **/
+            break;
+          case `SINTOMAS_ARDOR`:
+            visio.sintomasArdor = (data[element] !== undefined) ? data[element] : 0; /** Sintomas Ardor **/
+            break;
+          case `SINTOMAS_VISION_DOBLE`:
+            visio.sintomasVisionDoble = (data[element] !== undefined) ? data[element] : 0; /** Sintomas Vision Doble **/
+            break;
+          case `SINTOMAS_CANSANCIO`:
+            visio.sintomasCansancio = (data[element] !== undefined) ? data[element] : 0; /** Sintomas Cansancio **/
+            break;
+          case `SINTOMAS_MALA_VISION_CERCANA`:
+            visio.sintomasMalaVisionCercana = (data[element] !== undefined) ? data[element] : 0; /** Sintomas Mala Vision Cercana **/
+            break;
+          case `SINTOMAS_DOLOR`:
+            visio.sintomasDolor = (data[element] !== undefined) ? data[element] : 0; /** Sintomas Dolor **/
+            break;
+          case `SINTOMAS_MALA_VISON_LEJANA`:
+            visio.sintomasMalaVisionLejana = (data[element] !== undefined) ? data[element] : 0; /** Sintomas Mala Vision Lejana **/
+            break;
+          case `SINTOMAS_SECRECION`:
+            visio.sintomasSecrecion = (data[element] !== undefined) ? data[element] : 0; /** Sintomas Secrecion **/
+            break;
+          case `SINTOMAS_CEFALEA`:
+            visio.sintomasCefalea = (data[element] !== undefined) ? data[element] : 0; /** Sintomas Cefalea **/
+            break;
+          case `OTROS_SINTOMAS`:
+            visio.otrosSintomas = (data[element] !== undefined) ? data[element].toUpperCase() : `SIN DATO`; /** Otros Sintomas **/
+            break;
+          case `CABEZA_-_PARPADOS`:
+            visio.cabezaParpados = (data[element] !== undefined) ? data[element].toUpperCase() : `NORMAL`; /** Cabecera Parpados **/
+            break;
+          case `CABEZA_-_PARPADOS_OBS`:
+            visio.cabezaParpadosObs = (data[element] !== undefined) ? data[element].toUpperCase() : `SIN HALLAZGOS`; /** Cabecera Parpados Obs **/
+            break;
+          case `CABEZA_-_CONJUNTIVAS`:
+            visio.cabezaConjuntivas = (data[element] !== undefined) ? data[element].toUpperCase() : `NORMAL`; /** Cabecera Conjuntivas **/
+            break;
+          case `CABEZA_-_OBS_CONJUNTIVAS`:
+            visio.cabezaConjuntivasObs = (data[element] !== undefined) ? data[element].toUpperCase() : `SIN HALLAZGOS`; /** Cabecera Conjuntivas Obs **/
+            break;
+          case `CABEZA_-_ESCLERAS`:
+            visio.cabezaEscleras = (data[element] !== undefined) ? data[element].toUpperCase() : `NORMAL`;  /** Cabecera Escleras **/
+            break;
+          case `CABEZA_-_OBS_ESCLERAS`:
+            visio.cabezaEsclerasObs = (data[element] !== undefined) ? data[element].toUpperCase() : `SIN HALLAZGOS`; /** Cabecera Escleras Obs **/
+            break;
+          case `CABEZA_-_PUPILAS`:
+            visio.cabezaPupillas = (data[element] !== undefined) ? data[element].toUpperCase() : `NORMAL`; /** Cabecera Pupillas **/
+            break;
+          case `CABEZA_-_PUPILAS_OBS`:
+            visio.cabezaPupillasObs = (data[element] !== undefined) ? data[element].toUpperCase() : `SIN HALLAZGOS`; /** Cabecera Pupillas Obs **/
+            break;
+          case `IMP/DIAG_VL_OD_NORMAL`:
+          case `IMP/DIAG_VL0OD_NORMAL`:
+            visio.impVlOdNormal = data[element]; /** Imp Vl Od Normal **/
+            break;
+          case `IMP/DIAG_VL_OI_NORMAL`:
+          case `IMP/DIAG_VL0OI_NORMAL`:
+            visio.impVlOiNormal = data[element]; /** Imp Vl Od Normal **/
+            break;
+          case `IMP/DIAG_VP_OD_NORMAL`:
+          case `IMP/DIAG_VP0OD_NORMAL`:
+            visio.impVpOdNormal = data[element]; /** Imp Vp Od Normal **/
+            break;
+          case `IMP/DIAG_VP_OI_NORMAL`:
+          case `IMP/DIAG_VP0OI_NORMAL`:
+            visio.impVpOiNormal = data[element]; /** Imp Vp Od Normal **/
+            break;
+          case `IMP/DIAG_VL_OD_DISMINUIDO`:
+          case `IMP/DIAG_VL0OD_DISMINUIDO`:
+            visio.impVlOdDisminuido = data[element]; /** Imp Vl Od Disminuido **/
+            break;
+          case `IMP/DIAG_VL_OI_DISMINUIDO`:
+          case `IMP/DIAG_VL0OI_DISMINUIDO`:
+            visio.impVlOiDisminuido = data[element]; /** Imp Vl Od Disminuido **/
+            break;
+          case `IMP/DIAG_VP_OD_DISMINUIDO`:
+          case `IMP/DIAG_VP0OD_DISMINUIDO`:
+            visio.impVpOdDisminuido = data[element]; /** Imp Vp Od Disminuido **/
+            break;
+          case `IMP/DIAG_VP_OI_DISMINUIDO`:
+          case `IMP/DIAG_VP0OI_DISMINUIDO`:
+            visio.impVpOiDisminuido = data[element]; /** Imp Vp Od Disminuido **/
+            break;
+          case `IMP/DIAG_VL_OD_NORMAL_RX`:
+          case `IMP/DIAG_VL0OD_NORMAL_RX`:
+            visio.impVlOdNormalRx = data[element]; /** Imp Vl Od Normal Rx **/
+            break;
+          case `IMP/DIAG_VL_OI_NORMAL_RX`:
+          case `IMP/DIAG_VL0OI_NORMAL_RX`:
+            visio.impVlOiNormalRx = data[element]; /** Imp Vl Od Normal Rx **/
+            break;
+          case `IMP/DIAG_VP_OD_NORMAL_RX`:
+          case `IMP/DIAG_VP0OD_NORMAL_RX`:
+            visio.impVpOdNormalRx = data[element]; /** Imp Vp Od Normal Rx **/
+            break;
+          case `IMP/DIAG_VP_OI_NORMAL_RX`:
+          case `IMP/DIAG_VP0OI_NORMAL_RX`:
+            visio.impVpOiNormalRx = data[element]; /** Imp Vp Od Normal Rx **/
+            break;
+          case `IMP/DIAG_VL_OD_DISMINUIDO_RX`:
+          case `IMP/DIAG_VL0OD_DISMINUIDO_RX`:
+            visio.impVlOdDisminuidoRx = data[element]; /** Imp Vl Od Disminuido Rx **/
+            break;
+          case `IMP/DIAG_VL_OI_DISMINUIDO_RX`:
+          case `IMP/DIAG_VL0OI_DISMINUIDO_RX`:
+            visio.impVlOiDisminuidoRx = data[element]; /** Imp Vl Od Disminuido Rx **/
+            break;
+          case `IMP/DIAG_VP_OD_DISMINUIDO_RX`:
+          case `IMP/DIAG_VP0OD_DISMINUIDO_RX`:
+            visio.impVpOdDisminuidoRx = data[element]; /** Imp Vp Od Disminuido Rx **/
+            break;
+          case `IMP/DIAG_VP_OI_DISMINUIDO_RX`:
+          case `IMP/DIAG_VP0OI_DISMINUIDO_RX`:
+            visio.impVpOiDisminuidoRx = data[element]; /** Imp Vp Od Disminuido Rx **/
+            break;
+          case `IMP/DIAG_OBS`:
+            visio.impDiagObs = (data[element] !== undefined) ? data[element].toUpperCase() : `NO REFIERE`; /** Imp Diag Obs **/
+            break;
+          case `REC_CORRECCION_VISUAL_PARA_TRABAJAR`:
+            visio.recCorrecionVisualParaTrabajar = (data[element] !== undefined) ? data[element] : 0; /** Rec Correcion Visual Para Trabajar **/
+            break;
+          case `REC_USO_RX_PARA_VISION_PROX`:
+            visio.recUsoRxParaVisionProx = (data[element] !== undefined) ? data[element] : 0; /** Rec Uso Rx Para Vision Prox **/
+            break;
+          case `REC_USO_AR_VIDEO_TRMINAL`:
+            visio.recUsoArVideoTrmina = (data[element] !== undefined) ? data[element] : 0; /** Rec Uso Ar Video Trmina **/
+            break;
+          case `REC_USO_RX_DESCANSO`:
+            visio.recUsoRxDescanso = (data[element] !== undefined) ? data[element] : 0; /** Rec Uso Rx Descanso **/
+            break;
+          case `REC_USO_LENTES_PROT__SOLAR`:
+            visio.recUsoLentesProt__Solar = (data[element] !== undefined) ? data[element] : 0; /** Rec Uso Lentes Prot__Solar **/
+            break;
+          case `REC_USO_PERMANENTE_RX_OPTICA`:
+            visio.recUsoPermanenteRxOptica = (data[element] !== undefined) ? data[element] : 0; /** Rec Uso Permanente Rx Optica **/
+            break;
+          case `REC_USO_EPP_VISUAL`:
+            visio.recUsoEppVisual = (data[element] !== undefined) ? data[element] : 0; /** Rec Uso Epp Visual **/
+            break;
+          case `REC_PYP`:
+            visio.recPyp = (data[element] !== undefined) ? data[element] : 0; /** Rec Pyp **/
+            break;
+          case `REC_PAUSAS_ACTIVAS`:
+            visio.recPausasActivas = (data[element] !== undefined) ? data[element] : 0; /** Rec Pausas Activas **/
+            break;
+          case `REC_LUBRICANTE_OCULAR`:
+            visio.recLubricanteOcular = (data[element] !== undefined) ? data[element] : 0; /** Rec Lubricante Ocular **/
+            break;
+          case `RECOMENDACIONES_OBS`:
+            visio.recomendacionesObs = (data[element] !== undefined) ? data[element].toUpperCase() : `NO REFIERE`; /** Recomendaciones Obs **/
+            break;
+          case `REM__VALORACION_OFTALM_`:
+            visio.remValoracionOftalm_ = (data[element] !== undefined) ? data[element] : 0; /** Rem Valoracion Oftalm_ **/
+            break;
+          case `REM__VALORACION_OPTO__COMPLETA`:
+            visio.remValoracionOpto__Completa = (data[element] !== undefined) ? data[element] : 0; /** Rem Valoracion Opto__Completa **/
+            break;
+          case `REM__TOPOGRAFIA_CORNEAL`:
+            visio.remTopografiaCornea = (data[element] !== undefined) ? data[element] : 0; /** Rem Topografia Cornea **/
+            break;
+          case `REM__TRATAM__ORTOPTICA`:
+            visio.remTratam__Ortoptica = (data[element] !== undefined) ? data[element] : 0; /** Rem Tratam__Ortoptica **/
+            break;
+          case `REM__TEST_FARNSWORTH`:
+            visio.remTestFarnsworth = (data[element] !== undefined) ? data[element] : 0; /** Rem Test Farnsworth **/
+            break;
+          case `REALIZAR_PRUEBA_AMBULATORIA`:
+            visio.realizarPruebaAmbulatoria = (data[element] !== undefined) ? data[element] : 0; /** Realizar Prueba Ambulatoria **/
+            break;
+          case `OTRAS_REMISIONES`:
+            visio.otrosRemisiones = (data[element] !== undefined) ? data[element].toUpperCase() : `NO REFIERE`; /** Otras Remisiones **/
+            break;
+          case `CONTROL_MENSUAL`:
+            visio.controlMensual = (data[element] !== undefined) ? data[element] : 0; /** Control Mensual **/
+            break;
+          case `CONTROLES_BIMESTRALES`:
+            visio.controlesBimestrales = (data[element] !== undefined) ? data[element] : 0; /** Controles Bimestrales **/
+            break;
+          case `CONTROL_TRIMESTRAL`:
+            visio.controlTrimestral = (data[element] !== undefined) ? data[element] : 0; /** Control Trimestral **/
+            break;
+          case `CONTROL_6_MESES`:
+            visio.control6Meses = (data[element] !== undefined) ? data[element] : 0; /** Control 6 Meses **/
+            break;
+          case `CONTROL_1_AÑO`:
+            visio.control1Ano = (data[element] !== undefined) ? data[element] : 0; /** Control 1 Año **/
+            break;
+          case `CONTROL_CONFIRMATORIA`:
+            visio.controlConfirmatoria = (data[element] !== undefined) ? data[element] : 0; /** Control Confirmatoria **/
+            break;
+        }
+      }
+
+      if (
+        Object.entries(visio).length > 0 && (
+          ![undefined, ``].includes(visio.impVlOdNormal) ||
+          ![undefined, ``].includes(visio.impVlOiNormal) ||
+          ![undefined, ``].includes(visio.impVpOdNormal) ||
+          ![undefined, ``].includes(visio.impVpOiNormal) ||
+          ![undefined, ``].includes(visio.impVlOdDisminuido) ||
+          ![undefined, ``].includes(visio.impVlOiDisminuido) ||
+          ![undefined, ``].includes(visio.impVpOdDisminuido) ||
+          ![undefined, ``].includes(visio.impVpOiDisminuido) ||
+          ![undefined, ``].includes(visio.impVlOdNormalRx) ||
+          ![undefined, ``].includes(visio.impVlOiNormalRx) ||
+          ![undefined, ``].includes(visio.impVpOdNormalRx) ||
+          ![undefined, ``].includes(visio.impVpOiNormalRx) ||
+          ![undefined, ``].includes(visio.impVlOdDisminuidoRx) ||
+          ![undefined, ``].includes(visio.impVlOiDisminuidoRx) ||
+          ![undefined, ``].includes(visio.impVpOdDisminuidoRx) ||
+          ![undefined, ``].includes(visio.impVpOiDisminuidoRx)
+        )
+      ) {
+        const socio_emography = informationSocioEmography(data);
+
+        const visioInformation = {
+          ...socio_emography,
+          ...visio
+        }
+
+        return visioInformation;
+      }
+      return ``;
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+</script>

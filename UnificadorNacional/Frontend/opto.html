@@ -1,0 +1,219 @@
+<script>
+  /**
+  ** Generates a new object based on the provided data.
+  ** The generated object contains different properties
+  ** based on the elements of the data object.
+  **
+  ** Parameters:
+  ** - data: An object containing the data to be processed.
+  **
+  ** Returns:
+  ** - An object with properties based on the elements of the data object.
+  */
+  const optometry = (data) => {
+    const opto = new Object();
+
+    try {
+      for (const element in data) {
+        switch (element.trim().toUpperCase().toString()) {
+          case `VISIO/ANT__LABORAL_ILUMINACION_INADECUADA`:
+            opto.visioAntLaboralIluminacionInadecuada = (data[element] !== undefined) ? data[element] : 0; /** Visio Ant Laboral Iluminacion Inadecuada **/
+            break;
+          case `VISIO/ANT__LABORAL_USUARIO_COMPUTADOR`:
+            opto.visioAntLaboralUsuarioComputador = (data[element] !== undefined) ? data[element] : 0; /** Visio Ant Laboral Usuario Computador **/
+            break;
+          case `VISIO/ANT__LABORAL_VISIO_RADIACIONES_UV`:
+            opto.visioAntLaboralVisioRadiacionesUv = (data[element] !== undefined) ? data[element] : 0; /** Visio Ant Laboral Visio Radiaciones UV **/
+            break;
+          case `VISIO/ANT__LABORAL_CAMBIOS_TEMPERATURA`:
+            opto.visioAntLaboralCambiosTemperatura = (data[element] !== undefined) ? data[element] : 0; /** Visio Ant Laboral Cambios Temperatura **/
+            break;
+          case `VISIO/ANT__LABORAL_MALA_VENTILACION`:
+            opto.visioAntLaboralMalaventilacion = (data[element] !== undefined) ? data[element] : 0; /** Visio Ant Laboral Malaventilacion **/
+            break;
+          case `VISIO/ANT__LABORAL_GASES_TOXICOS`:
+            opto.visioAntLaboralGasesToxicos = (data[element] !== undefined) ? data[element] : 0; /** Visio Ant Laboral Gases Toxicos **/
+            break;
+          case `SINTOMAS_FOTOFOBIA`:
+            opto.sintomasFotofobia = (data[element] !== undefined) ? data[element] : 0; /** Sintomas Fotofobia **/
+            break;
+          case `SINTOMAS_OJO_ROJO`:
+            opto.sintomasOjoRojo = (data[element] !== undefined) ? data[element] : 0; /** Sintomas Ojo Rojo **/
+            break;
+          case `SINTOMAS_LAGRIMEO`:
+            opto.sintomasLagrimeo = (data[element] !== undefined) ? data[element] : 0; /** Sintomas Lagrimeo **/
+            break;
+          case `SINTOMAS_VISION_BORROSA`:
+            opto.sintomasVisionBorrosa = (data[element] !== undefined) ? data[element] : 0; /** Sintomas Vision Borrosa **/
+            break;
+          case `SINTOMAS_ARDOR`:
+            opto.sintomasArdor = (data[element] !== undefined) ? data[element] : 0; /** Sintomas Ardor **/
+            break;
+          case `SINTOMAS_VISION_DOBLE`:
+            opto.sintomasVisionDoble = (data[element] !== undefined) ? data[element] : 0; /** Sintomas Vision Doble **/
+            break;
+          case `SINTOMAS_CANSANCIO`:
+            opto.sintomasCansancio = (data[element] !== undefined) ? data[element] : 0; /** Sintomas Cansancio **/
+            break;
+          case `SINTOMAS_MALA_VISION_CERCANA`:
+            opto.sintomasMalavisionCercana = (data[element] !== undefined) ? data[element] : 0; /** Sintomas Malavision Cercana **/
+            break;
+          case `SINTOMAS_DOLOR`:
+            opto.sintomasDolor = (data[element] !== undefined) ? data[element] : 0; /** Sintomas Dolor **/
+            break;
+          case `SINTOMAS_MALA_VISON_LEJANA`:
+            opto.sintomasMalavisionLejana = (data[element] !== undefined) ? data[element] : 0; /** Sintomas Malavision Lejana **/
+            break;
+          case `SINTOMAS_SECRECION`:
+            opto.sintomasSecrecion = (data[element] !== undefined) ? data[element] : 0; /** Sintomas Secrecion **/
+            break;
+          case `SINTOMAS_CEFALEA`:
+            opto.sintomasCefalea = (data[element] !== undefined) ? data[element] : 0; /** Sintomas Cefalea **/
+            break;
+          case `OTROS_SINTOMAS`:
+            opto.otrosSintomas = (data[element] !== undefined) ? data[element].toUpperCase() : `NO REFIERE`; /** Otros Sintomas **/
+            break;
+          case `CABEZA_-_PARPADOS`:
+            opto.cabezaParpados = (data[element] !== undefined) ? data[element].toUpperCase() : `NORMAL`; /** Cabeza Parpados **/
+            break;
+          case `CABEZA_-_PARPADOS_OBS`:
+            opto.cabezaParpadosObs = (data[element] !== undefined) ? data[element].toUpperCase() : `SIN HALLAZGOS`; /** Cabeza Parpados Obs **/
+            break;
+          case `CABEZA_-_CONJUNTIVAS`:
+            opto.cabezaConjuntivas = (data[element] !== undefined) ? data[element].toUpperCase() : `NORMAL`; /** Cabeza Conjuntivas **/
+            break;
+          case `CABEZA_-_OBS_CONJUNTIVAS`:
+            opto.cabezaConjuntivasObs = (data[element] !== undefined) ? data[element].toUpperCase() : `SIN HALLAZGOS`; /** Cabeza Conjuntivas Obs **/
+            break;
+          case `CABEZA_-_ESCLERAS`:
+            opto.cabezaEscleras = (data[element] !== undefined) ? data[element].toUpperCase() : `NORMAL`; /** Cabeza Escleras **/
+            break;
+          case `CABEZA_-_OBS_ESCLERAS`:
+            opto.cabezaEsclerasObs = (data[element] !== undefined) ? data[element].toUpperCase() : `SIN HALLAZGOS`; /** Cabeza Escleras Obs **/
+            break;
+          case `CABEZA_-_PUPILAS`:
+            opto.cabezaPupillas = (data[element] !== undefined) ? data[element].toUpperCase() : `NORMAL`; /** Cabeza Pupillas **/
+            break;
+          case `CABEZA_-_PUPILAS_OBS`:
+            opto.cabezaPupillasObs = (data[element] !== undefined) ? data[element].toUpperCase() : `SIN HALLAZGOS`; /** Cabeza Pupillas Obs **/
+            break;
+          case `MOT/OCUL_COVERT_TEST_LEJOS`:
+            opto.motOculCovertTestLejos = (data[element] !== undefined) ? data[element].toUpperCase() : `SIN DATO`; /** Mot Ocul Covert Test Lejos **/
+            break;
+          case `MOT/OCUL_COVERT_TEST_CERCA`:
+            opto.motOculCovertTestCerca = (data[element] !== undefined) ? data[element].toUpperCase() : `SIN DATO`; /** Mot Ocul Covert Test Cerca **/
+            break;
+          case `ESTADO_DE_CORRECCION`:
+            opto.estadoDeCorreccion = data[element]; /** Estado de Correccion **/
+            break;
+          case `PATOLOGIA_OCULAR`:
+            opto.patologiaOcular = data[element]; /** Patologia Ocular **/
+            break;
+          case `DIAG_PPAL`:
+            opto.diagPpal = (data[element] !== undefined) ? data[element].toUpperCase() : ``; /** Diag Ppal **/
+            break;
+          case `DIAG_OBS`:
+            opto.diagObs = (data[element] !== undefined) ? data[element] : ``; /** Diag Obs **/
+            break;
+          case `DIAG_REL/1`:
+            opto.diagRel1 = (data[element] !== undefined) ? data[element] : ``; /** Diag Rel 1 **/
+            break;
+          case `DIAG_REL/2`:
+            opto.diagRel2 = (data[element] !== undefined) ? data[element] : ``; /** Diag Rel 2 **/
+            break;
+          case `DIAG_REL/3`:
+            opto.diagRel3 = (data[element] !== undefined) ? data[element] : ``; /** Diag Rel 3 **/
+            break;
+          case `REC_CORRECCION_VISUAL_PARA_TRABAJAR`:
+            opto.recCorreccionVisualParaTrabajar = (data[element] !== undefined) ? data[element] : 0; /** Rec Correccion Visual Para Trabajar **/
+            break;
+          case `REC_USO_AR_VIDEO_TRMINAL`:
+            opto.recUsoArVideoTerminal = (data[element] !== undefined) ? data[element] : 0; /** Rec Uso Ar Video Terminal **/
+            break;
+          case `REC_USO_DE_LENTES_DE_PROTECCION_SOLAR`:
+            opto.recUsoDeLentesDeProteccionSolar = (data[element] !== undefined) ? data[element] : 0; /** Rec Uso De Lentes De Proteccion Solar **/
+            break;
+          case `REC_USO_EPP_VISUAL`:
+            opto.recUsoEppVisual = (data[element] !== undefined) ? data[element] : 0; /** Rec Uso Epp Visual **/
+            break;
+          case `REC_PAUSAS_ACTIVAS`:
+            opto.recPausasActivas = (data[element] !== undefined) ? data[element] : 0; /** Rec Pausas Activas **/
+            break;
+          case `REC_USO_RX_VISION_PROXIMA`:
+            opto.recUsoRxVisionProxima = (data[element] !== undefined) ? data[element] : 0; /** Rec Uso Rx Vision Proxima **/
+            break;
+          case `REC_USO_RX_DESCANSO`:
+            opto.recUsoRxDescanso = (data[element] !== undefined) ? data[element] : 0; /** Rec Uso Rx Descanso **/
+            break;
+          case `REC_USO_PERMANENTE_RX_OPTICA`:
+            opto.recUsoPermanenteRxOptica = (data[element] !== undefined) ? data[element] : 0; /** Rec Uso Permanente Rx Optica **/
+            break;
+          case `REC_PYP`:
+            opto.recPyp = (data[element] !== undefined) ? data[element] : 0; /** Rec Pyp **/
+            break;
+          case `REC_LUBRICANTE_OCULAR`:
+            opto.recLubricanteOcular = (data[element] !== undefined) ? data[element] : 0; /** Rec Lubricante Ocular **/
+            break;
+          case `RECOMENDACIONES_OBS`:
+            opto.recomendacionesObs = (data[element] !== undefined) ? data[element].toUpperCase() : `SIN DATO`; /** Recomendaciones Obs **/
+            break;
+          case `REM__VALORACION_OFTALM_`:
+            opto.remValoracionOftalm = (data[element] !== undefined) ? data[element] : 0; /** Rem Valoracion Oftalm **/
+            break;
+          case `REM__TOPOGRAFIA_CORNEAL`:
+            opto.remTopografiaCornea = (data[element] !== undefined) ? data[element] : 0; /** Rem Topografia Cornea **/
+            break;
+          case `REM__TRATAM__ORTOPTICA`:
+            opto.remTratamientoOrtop = (data[element] !== undefined) ? data[element] : 0; /** Rem Tratamiento Ortop **/
+            break;
+          case `REM__TEST_FARNSWORTH`:
+            opto.remTestFarnsworth = (data[element] !== undefined) ? data[element] : 0; /** Rem Test Farnsworth **/
+            break;
+          case `REALIZAR_PRUEBA_AMBULATORIA`:
+            opto.realizarPruebaAmbulatoria = (data[element] !== undefined) ? data[element] : 0; /** Realizar Prueba Ambulatoria **/
+            break;
+          case `REMISIONES_OBS`:
+            opto.remisionesObs = (data[element] !== undefined) ? data[element].toUpperCase() : `SIN DATO`; /** Remisiones Obs **/
+            break;
+          case `CONTROLES_MENSUAL`:
+            opto.controlesMensual = (data[element] !== undefined) ? data[element] : 0; /** Controles Mensual **/
+            break;
+          case `CONTROLES_BIMESTRALES`:
+            opto.controlesBimestrales = (data[element] !== undefined) ? data[element] : 0; /** Controles Bimestrales **/
+            break;
+          case `CONTROLES_TRIMESTRAL`:
+            opto.controlesTrimestrales = (data[element] !== undefined) ? data[element] : 0; /** Controles Trimestrales **/
+            break;
+          case `CONTROLES_6_MESES`:
+            opto.controles6Meses = (data[element] !== undefined) ? data[element] : 0; /** Controles 6 Meses **/
+            break;
+          case `CONTROLES_1_AÑO`:
+            opto.controles1Anio = (data[element] !== undefined) ? data[element] : 0; /** Controles 1 Anio **/
+            break;
+          case `CONTROLES_CONFIRMATORIA`:
+            opto.controlesConfirmatoria = (data[element] !== undefined) ? data[element] : 0; /** Controles Confirmatoria **/
+            break;
+        }
+      }
+
+      if (
+        Object.entries(opto).length > 0 && (
+          ![undefined, ``].includes(opto.estadoDeCorreccion) ||
+          ![undefined, ``].includes(opto.patologiaOcular)
+        )
+      ) {
+        const socio_emography = informationSocioEmography(data);
+
+        const optoInformation = {
+          ...socio_emography,
+          ...opto
+        }
+
+        return optoInformation;
+      }
+      return ``;
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+</script>

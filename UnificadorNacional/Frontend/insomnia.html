@@ -1,0 +1,209 @@
+<script>
+  /**
+  ** Generates a new object based on the provided data.
+  ** The generated object contains different properties
+  ** based on the elements of the data object.
+  **
+  ** Parameters:
+  ** - data: An object containing the data to be processed.
+  **
+  ** Returns:
+  ** - An object with properties based on the elements of the data object.
+  */
+  const insomniaTest = (data) => {
+    const insomnia = new Object();
+
+    const categories = {
+      level: [`NINGUNA (0)`, `LEVE (1)`, `MODERADA (2)`, `SEVERA (3)`, `MUY_SEVERA (4)`],
+      satisfaction: [`MUY SATISFECHO (0)`, `MODERADAMENTE SATISFECHO (1)`, `SATISFECHO (2)`, `INSATISFECHO (3)`, `MUY INSATISFECHO (4)`],
+      perception: [`NO ES PERCEPTIBLE (0)`, `UN POCO PERCEPTIBLE (1)`, `ALGO PERCEPTIBLE (2)`, `PERCEPTIBLE (3)`, `MUY PERCEPTIBLE (4)`],
+      concern: [`NO ESTOY PREOCUPADO (0)`, `UN POCO PREOCUPADO (1)`, `ALGO PREOCUPADO (2)`, `MUY PREOCUPADO (3)`, `ALTAMENTE PREOCUPADO (4)`],
+      interference: [`NO INTERFIERE PARA NADA (0)`, `INTERFIERE POCO (1)`, `LEVE INTERFERENCIA (2)`, `INTERFIERE BASTANTE (3)`, `MUCHA INTERFERENCIA (4)`]
+    };
+
+    try {
+      for (const element in data) {
+        switch (element.trim().toUpperCase().toString()) {
+          case `DIFICULTAD_PARA_QUEDARSE_DORMIDO(A)`:
+            switch (data[element].trim().toUpperCase().toString()) {
+              case categories.level[0].split(` (`)[0], categories.level[0].split(` (`)[1].replace(`)`, ``), categories.level[0]:
+                insomnia.dificultadParaQuedarseDormido = categories.level[0];
+                break;
+              case categories.level[1].split(` (`)[0], categories.level[1].split(` (`)[1].replace(`)`, ``), categories.level[1]:
+                insomnia.dificultadParaQuedarseDormido = categories.level[1];
+                break;
+              case categories.level[2].split(` (`)[0], categories.level[2].split(` (`)[1].replace(`)`, ``), categories.level[2]:
+                insomnia.dificultadParaQuedarseDormido = categories.level[2];
+                break;
+              case categories.level[3].split(` (`)[0], categories.level[3].split(` (`)[1].replace(`)`, ``), categories.level[3]:
+                insomnia.dificultadParaQuedarseDormido = categories.level[3];
+                break;
+              case categories.level[4].split(` (`)[0], categories.level[4].split(` (`)[1].replace(`)`, ``), categories.level[4]:
+                insomnia.dificultadParaQuedarseDormido = categories.level[4];
+                break;
+              default:
+                insomnia.dificultadParaQuedarseDormido = ``;
+                break;
+            }
+          case `DIFICULTAD_PARA_MANTENER_EL_SUEÑO`:
+            switch (data[element].trim().toUpperCase().toString()) {
+              case categories.level[0].split(` (`)[0], categories.level[0].split(` (`)[1].replace(`)`, ``), categories.level[0]:
+                insomnia.dificultadParaMantenerElSueño = categories.level[0];
+                break;
+              case categories.level[1].split(` (`)[0], categories.level[1].split(` (`)[1].replace(`)`, ``), categories.level[1]:
+                insomnia.dificultadParaMantenerElSueño = categories.level[1];
+                break;
+              case categories.level[2].split(` (`)[0], categories.level[2].split(` (`)[1].replace(`)`, ``), categories.level[2]:
+                insomnia.dificultadParaMantenerElSueño = categories.level[2];
+                break;
+              case categories.level[3].split(` (`)[0], categories.level[3].split(` (`)[1].replace(`)`, ``), categories.level[3]:
+                insomnia.dificultadParaMantenerElSueño = categories.level[3];
+                break;
+              case categories.level[4].split(` (`)[0], categories.level[4].split(` (`)[1].replace(`)`, ``), categories.level[4]:
+                insomnia.dificultadParaMantenerElSueño = categories.level[4];
+                break;
+              default:
+                insomnia.dificultadParaMantenerElSueño = ``;
+                break;
+            }
+          case `PROBLEMAS_PARA_DESPERTAR_MUY_TEMPRANO`:
+            switch (data[element].trim().toUpperCase().toString()) {
+              case categories.level[0].split(` (`)[0], categories.level[0].split(` (`)[1].replace(`)`, ``), categories.level[0]:
+                insomnia.problemasParaDespertarMuyTemprano = categories.level[0];
+                break;
+              case categories.level[1].split(` (`)[0], categories.level[1].split(` (`)[1].replace(`)`, ``), categories.level[1]:
+                insomnia.problemasParaDespertarMuyTemprano = categories.level[1];
+                break;
+              case categories.level[2].split(` (`)[0], categories.level[2].split(` (`)[1].replace(`)`, ``), categories.level[2]:
+                insomnia.problemasParaDespertarMuyTemprano = categories.level[2];
+                break;
+              case categories.level[3].split(` (`)[0], categories.level[3].split(` (`)[1].replace(`)`, ``), categories.level[3]:
+                insomnia.problemasParaDespertarMuyTemprano = categories.level[3];
+                break;
+              case categories.level[4].split(` (`)[0], categories.level[4].split(` (`)[1].replace(`)`, ``), categories.level[4]:
+                insomnia.problemasParaDespertarMuyTemprano = categories.level[4];
+                break;
+              default:
+                insomnia.problemasParaDespertarMuyTemprano = ``;
+                break;
+            }
+          case `QUE_TAN_SATISFECHO(A)_/_INSATISFECHO(A)_SE_ENCUENTRA_CON_SU_PATRON_DE_SUEÑO_ACTUAL`:
+            switch (data[element].trim().toUpperCase().toString()) {
+              case categories.satisfaction[0].split(` (`)[0], categories.satisfaction[0].split(` (`)[1].replace(`)`, ``), categories.satisfaction[0]:
+                insomnia.insatisfechoSeEncuentraConSuPatronDeSueno = categories.satisfaction[0];
+                break;
+              case categories.satisfaction[1].split(` (`)[0], categories.satisfaction[1].split(` (`)[1].replace(`)`, ``), categories.satisfaction[1]:
+                insomnia.insatisfechoSeEncuentraConSuPatronDeSueno = categories.satisfaction[1];
+                break;
+              case categories.satisfaction[2].split(` (`)[0], categories.satisfaction[2].split(` (`)[1].replace(`)`, ``), categories.satisfaction[2]:
+                insomnia.insatisfechoSeEncuentraConSuPatronDeSueno = categories.satisfaction[2];
+                break;
+              case categories.satisfaction[3].split(` (`)[0], categories.satisfaction[3].split(` (`)[1].replace(`)`, ``), categories.satisfaction[3]:
+                insomnia.insatisfechoSeEncuentraConSuPatronDeSueno = categories.satisfaction[3];
+                break;
+              case categories.satisfaction[4].split(` (`)[0], categories.satisfaction[4].split(` (`)[1].replace(`)`, ``), categories.satisfaction[4]:
+                insomnia.insatisfechoSeEncuentraConSuPatronDeSueno = categories.satisfaction[4];
+                break;
+              default:
+                insomnia.insatisfechoSeEncuentraConSuPatronDeSueno = ``;
+                break;
+            }
+          case `QUE_TAN_PERCEPTIBLE_PARA_OTROS_CONSIDERA_SU_PROBLEMA_DE_SUEÑO_EN_TERMINOS_DE_AFECTAR_SU_CALIDAD_DE_VIDA`:
+            switch (data[element].trim().toUpperCase().toString()) {
+              case categories.perception[0].split(` (`)[0], categories.perception[0].split(` (`)[1].replace(`)`, ``), categories.perception[0]:
+                insomnia.perceptibleParaOtrosConsideraSuProblema = categories.perception[0];
+                break;
+              case categories.perception[1].split(` (`)[0], categories.perception[1].split(` (`)[1].replace(`)`, ``), categories.perception[1]:
+                insomnia.perceptibleParaOtrosConsideraSuProblema = categories.perception[1];
+                break;
+              case categories.perception[2].split(` (`)[0], categories.perception[2].split(` (`)[1].replace(`)`, ``), categories.perception[2]:
+                insomnia.perceptibleParaOtrosConsideraSuProblema = categories.perception[2];
+                break;
+              case categories.perception[3].split(` (`)[0], categories.perception[3].split(` (`)[1].replace(`)`, ``), categories.perception[3]:
+                insomnia.perceptibleParaOtrosConsideraSuProblema = categories.perception[3];
+                break;
+              case categories.perception[4].split(` (`)[0], categories.perception[4].split(` (`)[1].replace(`)`, ``), categories.perception[4]:
+                insomnia.perceptibleParaOtrosConsideraSuProblema = categories.perception[4];
+                break;
+              default:
+                insomnia.perceptibleParaOtrosConsideraSuProblema = ``;
+            }
+          case `QUE_TAN_PREOCUPADO(A)_/_ESTRESADO(A)_ESTÁ_CON_SU_PROBLEMA_DE_SUEÑO`:
+            switch (data[element].trim().toUpperCase().toString()) {
+              case categories.concern[0].split(` (`)[0], categories.concern[0].split(` (`)[1].replace(`)`, ``), categories.concern[0]:
+                insomnia.estresadoEstaConSuProblemaDeSueno = categories.concern[0];
+                break;
+              case categories.concern[1].split(` (`)[0], categories.concern[1].split(` (`)[1].replace(`)`, ``), categories.concern[1]:
+                insomnia.estresadoEstaConSuProblemaDeSueno = categories.concern[1];
+                break;
+              case categories.concern[2].split(` (`)[0], categories.concern[2].split(` (`)[1].replace(`)`, ``), categories.concern[2]:
+                insomnia.estresadoEstaConSuProblemaDeSueno = categories.concern[2];
+                break;
+              case categories.concern[3].split(` (`)[0], categories.concern[3].split(` (`)[1].replace(`)`, ``), categories.concern[3]:
+                insomnia.estresadoEstaConSuProblemaDeSueno = categories.concern[3];
+                break;
+              case categories.concern[4].split(` (`)[0], categories.concern[4].split(` (`)[1].replace(`)`, ``), categories.concern[4]:
+                insomnia.estresadoEstaConSuProblemaDeSueno = categories.concern[4];
+                break;
+              default:
+                insomnia.estresadoEstaConSuProblemaDeSueno = ``;
+            }
+          case `¿HASTA_QUE_PUNTO_CONSIDERA_QUE_SU_PROBLEMA_DE_SUEÑO_INTERFIERE_CON_SU_FUNCIONAMIENTO_DIARIO?_(POR_EJEMPLO_FATIGA_DURANTE_EL_DIA,_HUMOR,_HABILIDAD_PARA_REALIZAR_FUNCIONES_DIARIAS,_CONCENTRACION,_MEMORIA,_ETC)`:
+            switch (data[element].trim().toUpperCase().toString()) {
+              case categories.interference[0].split(` (`)[0], categories.interference[0].split(` (`)[1].replace(`)`, ``), categories.interference[0]:
+                insomnia.interfieraConSuFuncionamientoDiario = categories.interference[0];
+                break;
+              case categories.interference[1].split(` (`)[0], categories.interference[1].split(` (`)[1].replace(`)`, ``), categories.interference[1]:
+                insomnia.interfieraConSuFuncionamientoDiario = categories.interference[1];
+                break;
+              case categories.interference[2].split(` (`)[0], categories.interference[2].split(` (`)[1].replace(`)`, ``), categories.interference[2]:
+                insomnia.interfieraConSuFuncionamientoDiario = categories.interference[2];
+                break;
+              case categories.interference[3].split(` (`)[0], categories.interference[3].split(` (`)[1].replace(`)`, ``), categories.interference[3]:
+                insomnia.interfieraConSuFuncionamientoDiario = categories.interference[3];
+                break;
+              case categories.interference[4].split(` (`)[0], categories.interference[4].split(` (`)[1].replace(`)`, ``), categories.interference[4]:
+                insomnia.interfieraConSuFuncionamientoDiario = categories.interference[4];
+                break;
+              default:
+                insomnia.interfieraConSuFuncionamientoDiario = ``;
+                break;
+            }
+          case `ALCOHOL`:
+            if (
+              Object.keys(insomnia).includes([`DIFICULTAD_PARA_MANTENER_EL_SUEÑO`, `DIFICULTAD_PARA_QUEDARSE_DORMIDO(A)`, `PROBLEMAS_PARA_DESPERTAR_MUY_TEMPRANO`, `QUE_TAN_SATISFECHO(A)_/_INSATISFECHO(A)_SE_ENCUENTRA_CON_SU_PATRON_DE_SUEÑO_ACTUAL`])
+            ) {
+              insomnia.alcohol = (data[element] !== undefined) ? data[element].toUpperCase() : ``;
+            }
+            break;
+          case `RESULTADO`:
+            if (
+              Object.keys(insomnia).includes([`DIFICULTAD_PARA_MANTENER_EL_SUEÑO`, `DIFICULTAD_PARA_QUEDARSE_DORMIDO(A)`, `PROBLEMAS_PARA_DESPERTAR_MUY_TEMPRANO`, `QUE_TAN_SATISFECHO(A)_/_INSATISFECHO(A)_SE_ENCUENTRA_CON_SU_PATRON_DE_SUEÑO_ACTUAL`])
+            ) {
+              insomnia.resultado = (data[element] !== undefined) ? data[element].toUpperCase() : ``;
+            }
+            break;
+        }
+      }
+
+      if (Object.entries(insomnia).length > 0 && (
+        ![undefined, ``].includes(insomnia.dificultadParaQuedarseDormido) ||
+        ![undefined, ``].includes(insomnia.dificultadParaMantenerElSueño) ||
+        ![undefined, ``].includes(insomnia.problemasParaDespertarMuyTemprano) ||
+        ![undefined, ``].includes(insomnia.insatisfechoSeEncuentraConSuPatronDeSueno)
+      )) {
+        const socio_emography = informationSocioEmography(data);
+
+        const insomniaTestInformation = {
+          ...socio_emography,
+          ...insomnia
+        }
+
+        return insomniaTestInformation;
+      }
+      return ``;
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+</script>

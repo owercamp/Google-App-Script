@@ -1,0 +1,49 @@
+<script>
+  /**
+  ** Generates a new object based on the provided data.
+  ** The generated object contains different properties
+  ** based on the elements of the data object.
+  **
+  ** Parameters:
+  ** - data: An object containing the data to be processed.
+  **
+  ** Returns:
+  ** - An object with properties based on the elements of the data object.
+  */
+  const psychotechnic = (data) => {
+    const psychotec = new Object();
+
+    try {
+      for (const element in data) {
+        switch (element.trim().toUpperCase().toString()) {
+          case `TIPO_IDENTIFICACION`:
+            psychotec.tipoIdentificacion = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `PRUEBA_PSICOTECNICA`:
+          case `PSICOTECNICA`:
+            psychotec.pruebaPsicotecnica = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `DIAGNOSTICO_PPAL`:
+            psychotec.diagnosticoPpal = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `DIAGNOSTICO_OBS`:
+            psychotec.diagnosticoObs = (data[element] !== undefined) ? data[element] : ``;
+        }
+      }
+
+      if (Object.entries(psychotec).length > 0 && psychotec.pruebaPsicotecnica != ``) {
+        const socio_emography = informationSocioEmography(data);
+
+        const psychotechnicInformation = {
+          ...socio_emography,
+          ...psychotec
+        }
+
+        return psychotechnicInformation;
+      }
+      return ``;
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+</script>

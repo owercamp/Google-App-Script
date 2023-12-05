@@ -1,0 +1,284 @@
+<script>
+  /**
+  **  Creates a exam medical occupational object based on the provided data.
+  **  
+  **  Parameters:
+  **  - data: an object containing the exam medical occupational information.
+  **  
+  **  Returns:
+  **  - occupational: an object with the extracted exam medical occupational information.
+  **
+  **  Throws:
+  **  If an error occurs during the execution of the function, an error message is logged to the console
+  **/
+  const occupationalMedicalExamination = (data) => {
+    const occupational = new Object()
+
+    try {
+      for (const element in data) {
+        switch (element.trim().toUpperCase().toString()) {
+          /** Riesgos Biologicos **/
+          case `RIESGO_BIOLOGICO_/_VIRUS`:
+            occupational.riesgosBiologicosVirus = (data[element] !== undefined) ? data[element] : 0; /** Virus **/
+            break;
+          case `RIESGO_BIOLOGICO_/_BACTERIAS`:
+            occupational.riesgosBiologicosBacterias = (data[element] !== undefined) ? data[element] : 0; /** Bacterias **/
+            break;
+          case `RIESGO_BIOLOGICO_/_HONGOS`:
+            occupational.riesgosBiologicosHongos = (data[element] !== undefined) ? data[element] : 0; /** Hongos **/
+            break;
+          case `RIESGO_BIOLOGICO_/_RICKETSIAS`:
+            occupational.riesgosBiologicosRicketsias = (data[element] !== undefined) ? data[element] : 0; /** Ricketsias **/
+            break;
+          case `RIESGO_BIOLOGICO_/_PARASITOS`:
+            occupational.riesgosBiologicosParasitos = (data[element] !== undefined) ? data[element] : 0; /** Parasitos **/
+            break;
+          case `RIESGO_BIOLOGICO_/_FLUIDOS`:
+            occupational.riesgosBiologicosFluidos = (data[element] !== undefined) ? data[element] : 0; /** Fluidos **/
+            break;
+          case `RIESGO_BIOLOGICO_/_PICADURAS`:
+            occupational.riesgosBiologicosPicaduras = (data[element] !== undefined) ? data[element] : 0; /** Picaduras **/
+            break;
+          case `RIESGO_BIOLOGICO_/_MORDEDURAS`:
+            occupational.riesgosBiologicosMordeduras = (data[element] !== undefined) ? data[element] : 0; /** Mordeduras **/
+            break;
+          case `OTROS_RIESGOS_BIOLOGICOS`:
+            occupational.riesgosBiologicosOtrosBiologicos = (data[element] !== undefined) ? data[element].toUpperCase() : `NO REFIERE`; /** Otros **/
+            break;
+          /** Riesgos Fenomenos Naturales **/
+          case `FENOMENOS_NATURALES_/_DERRUMBE`:
+            occupational.fenomenosNaturalesDerrumbe = (data[element] !== undefined) ? data[element] : 0; /** Derrumbe **/
+            break;
+          case `FENOMENOS_NATURALES_/_INUNDACION`:
+            occupational.fenomenosNaturalesInundacion = (data[element] !== undefined) ? data[element] : 0; /** Inundacion **/
+            break;
+          case `FENOMENOS_NATURALES_/_PRECIPITACIONES`:
+            occupational.fenomenosNaturalesPrecipitaciones = (data[element] !== undefined) ? data[element] : 0; /** Precipitaciones **/
+            break;
+          case `FENOMENOS_NATURALES_/_SISMO`:
+            occupational.fenomenosNaturalesSismo = (data[element] !== undefined) ? data[element] : 0; /** Sismo **/
+            break;
+          case `FENOMENOS_NATURALES_/_TERREMOTO`:
+            occupational.fenomenosNaturalesTerremoto = (data[element] !== undefined) ? data[element] : 0; /** Terremoto **/
+            break;
+          case `FENOMENOS_NATURALES_/_VENDAVAL`:
+            occupational.fenomenosNaturalesVendaval = (data[element] !== undefined) ? data[element] : 0; /** Vendaval **/
+            break;
+          case `FENOMENOS_NATURALES_/_OTROS_NATURALES`:
+            occupational.fenomenosNaturalesOtrosNaturales = (data[element] !== undefined) ? data[element].toUpperCase() : `NO REFIERE`; /** Otros **/
+            break;
+          /** Riesgos Biomecanicos **/
+          case `RIESGO_BIOMECANICO_ESFUERZO`:
+            occupational.riesgosBiomecanicosEsfuerzo = (data[element] !== undefined) ? data[element] : 0; /** Esfuerzo **/
+            break;
+          case `RIESGO_BIOMECANICO_MANIPULACION_CARGA`:
+            occupational.riesgosBiomecanicosManipulacionCarga = (data[element] !== undefined) ? data[element] : 0; /** Manipulacion de carga **/
+            break;
+          case `RIESGO_BIOMECANICO_MOVREPETITIVO`:
+            occupational.riesgosBiomecanicosMovRepetitivo = (data[element] !== undefined) ? data[element] : 0; /** Movimiento repetitivo **/
+            break;
+          case `RIESGO_BIOMECANICO_POSTURA`:
+            occupational.riesgosBiomecanicosPostura = (data[element] !== undefined) ? data[element] : 0; /** Postura **/
+            break;
+          case `OTROS_RIESGOS_BIOMECANICOS`:
+            occupational.riesgosBiomecanicosOtrosBiomecanicos = (data[element] !== undefined) ? data[element].toUpperCase() : `NO REFIERE`; /** Otros **/
+            break;
+          /** Riesgos Fisicos **/
+          case `RIESGO_FISICO_/_ILUMINACION`:
+            occupational.riesgosFisicosIluminacion = (data[element] !== undefined) ? data[element] : 0; /** Iluminacion **/
+            break;
+          case `RIESGO_FISICO_/_PRES_ATMOSFERICA`:
+            occupational.riesgosFisicosPresAtmosferica = (data[element] !== undefined) ? data[element] : 0; /** Presion Atmosferica **/
+            break;
+          case `RIESGO_FISICO_/_RAD_IONIZANTES`:
+            occupational.riesgosFisicosRadIonizantes = (data[element] !== undefined) ? data[element] : 0; /** Radiacion Ionizantes **/
+            break;
+          case `RIESGO_FISICO_/_RAD_NO_IONIZANTES`:
+            occupational.riesgosFisicosRadNoIonizantes = (data[element] !== undefined) ? data[element] : 0; /** Radiacion No Ionizantes **/
+            break;
+          case `RIESGO_FISICO_/_RUIDO`:
+            occupational.riesgosFisicosRuido = (data[element] !== undefined) ? data[element] : 0; /** Ruido **/
+            break;
+          case `RIESGO_FISICO_/_TEMP_EXTREMAS`:
+            occupational.riesgosFisicosTemperaturaExtremas = (data[element] !== undefined) ? data[element] : 0; /** Temperatura Extremas **/
+            break;
+          case `RIESGO_FISICO_/_VIBRACION`:
+            occupational.riesgosFisicosVibracion = (data[element] !== undefined) ? data[element] : 0; /** Vibracion **/
+            break;
+          case `RIESGO_DE_OTROS_FACTORES_FISICOS`:
+            occupational.riesgosFisicosOtrosFisicos = (data[element] !== undefined) ? data[element].toUpperCase() : `NO REFIERE`; /** Otros **/
+            break;
+          /** Riesgos Psicologicos **/
+          case `RIESGO_PSICO_/_CARACT_DEL_GRUPO`:
+            occupational.riesgosPsicosCaractDelGrupo = (data[element] !== undefined) ? data[element] : 0; /** Caracteristicas del grupo **/
+            break;
+          case `RIESGO_PSICO_/_CARACT_ORGANIZACION`:
+            occupational.riesgosPsicosCaractOrganizacion = (data[element] !== undefined) ? data[element] : 0; /** Caracteristicas organizacion **/
+            break;
+          case `RIESGO_PSICO_/_CONDICIONES`:
+            occupational.riesgosPsicosCondiciones = (data[element] !== undefined) ? data[element] : 0; /** Caracteristicas de condiciones **/
+            break;
+          case `RIESGO_PSICO_/_GESTION_ORGANIZACIONAL`:
+            occupational.riesgosPsicosGestionOrganizacional = (data[element] !== undefined) ? data[element] : 0; /** Caracteristicas de gestion organizacional **/
+            break;
+          case `RIESGO_PSICO_/_INTERFACES_TAREA`:
+            occupational.riesgosPsicosInterfasesTarea = (data[element] !== undefined) ? data[element] : 0; /** Caracteristicas de interfaces de tarea **/
+            break;
+          case `RIESGO_PSICO_/_JORNADA`:
+            occupational.riesgosPsicosJornada = (data[element] !== undefined) ? data[element] : 0; /** Caracteristicas de jornada **/
+            break;
+          case `OTROS_PSICO_LABORAL`:
+            occupational.riesgosPsicosOtrosLaboral = (data[element] !== undefined) ? data[element].toUpperCase() : `NO REFIERE`; /** Otros **/
+            break;
+          /** riesgos Quimicos **/
+          case `RIESGO_QUIMICO_/GASES`:
+            occupational.riesgosQuimicosGases = (data[element] !== undefined) ? data[element] : 0; /** Gases **/
+            break;
+          case `RIESGO_QUIMICO_/MATERIAL_PARTICULADO`:
+            occupational.riesgosQuimicosMaterialParticulado = (data[element] !== undefined) ? data[element] : 0; /** Material Particulado **/
+            break;
+          case `RIESGO_QUIMICO_/_FIBRAS`:
+            occupational.riesgosQuimicosFibras = (data[element] !== undefined) ? data[element] : 0; /** Fibras **/
+            break;
+          case `RIESGO_QUIMICO_/_HUMOS`:
+            occupational.riesgosQuimicosHumos = (data[element] !== undefined) ? data[element] : 0; /** Humos **/
+            break;
+          case `RIESGO_QUIMICO_/_LIQUIDOS`:
+            occupational.riesgosQuimicosLiquidos = (data[element] !== undefined) ? data[element] : 0; /** Liquidos **/
+            break;
+          case `RIESGO_QUIMICO_/_POLVOS`:
+            occupational.riesgosQuimicosPolvos = (data[element] !== undefined) ? data[element] : 0; /** Polvos **/
+            break;
+          case `RIESGO_QUIMICO_/_VAPORES`:
+            occupational.riesgosQuimicosVapores = (data[element] !== undefined) ? data[element] : 0; /** Vapores **/
+            break;
+          case `OTROS_RIESGOS_QUIMICOS`:
+            occupational.riesgosQuimicosOtrosQuimicos = (data[element] !== undefined) ? data[element].toUpperCase() : `NO REFIERE`; /** Otros **/
+            break;
+          /** Condiciones de Seguridad **/
+          case `CONDICIONES_DE_SEGURIDAD_/_ACC_DE_TRANSITO`:
+            occupational.condicionesDeSeguridadAccDeTransito = (data[element] !== undefined) ? data[element] : 0; /** Acciones de transporte **/
+            break;
+          case `CONDICIONES_DE_SEGURIDAD_/_ELECTRICOS`:
+            occupational.condicionesDeSeguridadElectricos = (data[element] !== undefined) ? data[element] : 0; /** Electricos **/
+            break;
+          case `CONDICIONES_DE_SEGURIDAD_/_ESPACIOS_CONFINADOS`:
+            occupational.condicionesDeSeguridadEspaciosConfinados = (data[element] !== undefined) ? data[element] : 0; /** Espacios Confinados **/
+            break;
+          case `CONDICIONES_DE_SEGURIDAD_/_LOCATIVO`:
+            occupational.condicionesDeSeguridadLocativo = (data[element] !== undefined) ? data[element] : 0; /** Locativo **/
+            break;
+          case `CONDICIONES_DE_SEGURIDAD_/_MECANICOS`:
+            occupational.condicionesDeSeguridadMecanicos = (data[element] !== undefined) ? data[element] : 0; /** Mecanicos **/
+            break;
+          case `CONDICIONES_DE_SEGURIDAD_/_PUBLICOS`:
+            occupational.condicionesDeSeguridadPublicos = (data[element] !== undefined) ? data[element] : 0; /** Publicos **/
+            break;
+          case `CONDICIONES_DE_SEGURIDAD_/_TECNOLOGICO`:
+            occupational.condicionesDeSeguridadTecnologico = (data[element] !== undefined) ? data[element] : 0; /** Tecnologico **/
+            break;
+          case `CONDICIONES_DE_SEGURIDAD_/_TRABAJO_EN_ALTURAS`:
+            occupational.condicionesDeSeguridadTrabajoEnAlturas = (data[element] !== undefined) ? data[element] : 0; /** Trabajo en alturas **/
+            break;
+          case `CONDICIONES_DE_SEGURIDAD_/_OTROS_DE_SEGURIDAD`:
+            occupational.condicionesDeSeguridadOtrosDeSeguridad = (data[element] !== undefined) ? data[element].toUpperCase() : `NO REFIERE`; /** Otros **/
+            break;
+          case `FECHA_ACCIDENTE`:
+            occupational.fechaAccidente = (data[element] !== undefined) ? data[element] : ``; /** Fecha **/
+            break;
+          case `ACCIDENTE_PASO_EN_EMPRESA`:
+            occupational.accidentePasoEmpresa = (data[element] !== undefined) ? data[element] : ``; /** Accidente **/
+            break;
+          case `TIPO_ACCIDENTE`:
+            occupational.tipoAccidente = (data[element] !== undefined) ? data[element] : ``; /** Tipo Accidente **/
+            break;
+          case `NATURALEZA_LESION`:
+            occupational.naturalezaLesion = (data[element] !== undefined) ? data[element] : ``; /** Naturaleza Lesion **/
+            break;
+          case `PARTE_AFECTADA`:
+            occupational.parteAfectada = (data[element] !== undefined) ? data[element] : ``; /** Parte afectada **/
+            break;
+          case `INCAPACIDAD`:
+            occupational.incapacidad = (data[element] !== undefined) ? data[element] : ``; /** Incapacidad **/
+            break;
+          case `SECUELAS`:
+            occupational.secuelas = (data[element] !== undefined) ? data[element] : ``; /** Secuelas **/
+            break;
+          case `NOMBRE_ENFERMEDAD`:
+            occupational.nombreEnfermedad = (data[element] !== undefined) ? data[element] : ``; /** Nombre Enfermedad **/
+            break;
+          case `ETAPA`:
+            occupational.etapa = (data[element] !== undefined) ? data[element] : ``; /** Etapa **/
+            break;
+          case `OBSERVACIONES_DE_ENFERMEDAD`:
+            occupational.observacionesEnfermedad = (data[element] !== undefined) ? data[element] : ``; /** Observaciones de Enfermedad **/
+            break;
+          case `ACT__FISICA`:
+            occupational.actFisica = (data[element] !== undefined) ? data[element] : ``; /** Act Fisica **/
+            break;
+          case `FUMA`:
+            occupational.fuma = (data[element] !== undefined) ? data[element] : ``; /** Fuma **/
+            break;
+          case `CONSUMO_DE_ALCOHOL`:
+            occupational.consumoAlcohol = (data[element] !== undefined) ? data[element] : ``; /** Consumo Alcohol **/
+            break;
+          case `PESO`:
+            occupational.peso = (data[element] !== undefined) ? data[element] : ``; /** Peso **/
+            break;
+          case `TALLA`:
+            occupational.talla = (data[element] !== undefined) ? data[element] : ``; /** Talla **/
+            break;
+          case `TENSION_ARTERIAL`:
+            occupational.tensionArterial = (data[element] !== undefined) ? data[element] : ``; /** Tension Arterial **/
+            break;
+          case `FREC__CARDIACA`:
+            occupational.frecCardiaca = (data[element] !== undefined) ? data[element] : ``; /** Frec Cardiaca **/
+            break;
+          case `FREC__RESPIRATORIA`:
+            occupational.frecRespiratoria = (data[element] !== undefined) ? data[element] : ``; /** Frec Respiratoria **/
+            break;
+          case `PERIMETRO_ABDOMINAL`:
+            occupational.perimetroAbdominal = (data[element] !== undefined) ? data[element] : ``; /** Perimetro Abdominal **/
+            break;
+          case `LATERALIDAD`:
+            occupational.lateralidad = (data[element] !== undefined) ? data[element] : ``; /** Lateralidad **/
+            break;
+          case `OBS_DIAGS`:
+            occupational.observacionesDiags = (data[element] !== undefined) ? data[element] : `NO REFIERE`; /** Observaciones Diags **/
+            break;
+          case `CONCEPTO_DE_EVALUACION`:
+            occupational.conceptoDeEvaluacion = (data[element] !== undefined) ? data[element] : ``; /** Concepto de Evaluacion **/
+            break;
+          case `OBSERVACIONES_DEL_CONCEPTO`:
+            occupational.observacionesConcepto = (data[element] !== undefined) ? data[element] : `NO REFIERE`; /** Observaciones del Concepto **/
+            break;
+          case `RECOMENDACIONES_ESPECIFICAS`:
+            occupational.recomendacionesEspecificas = (data[element] !== undefined) ? data[element] : ``; /** Recomendaciones Especificas **/
+            break;
+        }
+      }
+
+      if (Object.entries(occupational).length > 0) {
+        const socio_emography = informationSocioEmography(data);
+        const diag = occupationalMedicalDiag(data);
+        const emphasis = occupationalMedicalEmphasis(data);
+
+        const occupationalEmo = {
+          ...socio_emography,
+          ...occupational,
+        }
+        occupationalEmo.diag = {
+          ...diag
+        }
+        occupationalEmo.emphasis = {
+          ...emphasis
+        }
+
+        return occupationalEmo;
+      }
+      return ``;
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+</script>

@@ -1,0 +1,206 @@
+<script>
+  /**
+  ** Generates a new object based on the provided data.
+  ** The generated object contains different properties
+  ** based on the elements of the data object.
+  **
+  ** Parameters:
+  ** - data: An object containing the data to be processed.
+  **
+  ** Returns:
+  ** - An object with properties based on the elements of the data object.
+  */
+  const osteometry = (data) => {
+    const osteo = new Object();
+
+    try {
+      for (const element in data) {
+        switch (element.trim().toUpperCase().toString()) {
+          case `CERVICALGIA`:
+            osteo.cervicalgia = (data[element] !== undefined) ? data[element] : 0; /** Cervicalgia **/
+            break;
+          case `CERVICALGIA_OBS`:
+            osteo.cervicalgiaObs = (data[element] !== undefined) ? data[element].toUpperCase() : `NO REFIERE`; /** Cervicalgia Obs **/
+            break;
+          case `EPICONDILITIS`:
+            osteo.epicondilitis = (data[element] !== undefined) ? data[element] : 0; /** Epicondilitis **/
+            break;
+          case `EPICONDILITIS_OBS`:
+            osteo.epicondilitisObs = (data[element] !== undefined) ? data[element].toUpperCase() : `NO REFIERE`; /** Epicondilitis Obs **/
+            break;
+          case `LUMBALGIA`:
+            osteo.lumbalgia = (data[element] !== undefined) ? data[element] : 0; /** Lumbalgia **/
+            break;
+          case `LUMBALGIA_OBS`:
+            osteo.lumbalgiaObs = (data[element] !== undefined) ? data[element].toUpperCase() : `NO REFIERE`; /** Lumbalgia Obs **/
+            break;
+          case `S__TUNEL_CARPO`:
+            osteo.sTunelCarpo = (data[element] !== undefined) ? data[element] : 0; /** S__Tunel Carpo **/
+            break;
+          case `S__TUNEL_CARPO_OBS`:
+            osteo.sTunelCarpoObs = (data[element] !== undefined) ? data[element].toUpperCase() : `NO REFIERE`; /** S__Tunel Carpo Obs **/
+            break;
+          case `FRACTURAS`:
+            osteo.fracturas = (data[element] !== undefined) ? data[element] : 0; /** Fracturas **/
+            break;
+          case `FRACTURAS_OBS`:
+            osteo.fracturasObs = (data[element] !== undefined) ? data[element].toUpperCase() : `NO REFIERE`; /** Fracturas Obs **/
+            break;
+          case `TENDINITIS`:
+            osteo.tendinitis = (data[element] !== undefined) ? data[element] : 0; /** Tendinitis **/
+            break;
+          case `TENDINITIS_OBS`:
+            osteo.tendinitisObs = (data[element] !== undefined) ? data[element].toUpperCase() : `NO REFIERE`; /** Tendinitis Obs **/
+            break;
+          case `LESION_EN_MENISCOS`:
+            osteo.lesionEnMeniscos = (data[element] !== undefined) ? data[element] : 0; /** Lesion En Meniscos **/
+            break;
+          case `LESION_EN_MENISCOS_OBS`:
+            osteo.lesionEnMeniscosObs = (data[element] !== undefined) ? data[element].toUpperCase() : `NO REFIERE`; /** Lesion En Meniscos Obs **/
+            break;
+          case `ESGUINCES`:
+            osteo.esguinces = (data[element] !== undefined) ? data[element] : 0; /** Esguinces **/
+            break;
+          case `ESGUINCES_OBS`:
+            osteo.esguincesObs = (data[element] !== undefined) ? data[element].toUpperCase() : `NO REFIERE`; /** Esguinces Obs **/
+            break;
+          case `HOMBRO_DOLOROSO`:
+            osteo.hombroDoloroso = (data[element] !== undefined) ? data[element] : 0; /** Hombro Doloroso **/
+            break;
+          case `HOMBRO_DOLOROSO_OBS`:
+            osteo.hombroDolorosoObs = (data[element] !== undefined) ? data[element].toUpperCase() : `NO REFIERE`; /** Hombro Doloroso Obs **/
+            break;
+          case `RADICULOPATIA`:
+            osteo.radiculopatia = (data[element] !== undefined) ? data[element] : 0; /** Radiculopatia **/
+            break;
+          case `RADICULOPATIA_OBS`:
+            osteo.radiculopatiaObs = (data[element] !== undefined) ? data[element].toUpperCase() : `NO REFIERE`; /** Radiculopatia Obs **/
+            break;
+          case `BURSITIS`:
+            osteo.bursitis = (data[element] !== undefined) ? data[element] : 0; /** Bursitis **/
+            break;
+          case `BURSITIS_OBS`:
+            osteo.bursitisObs = (data[element] !== undefined) ? data[element].toUpperCase() : `NO REFIERE`; /** Bursitis Obs **/
+            break;
+          case `ARTROSIS`:
+            osteo.artrosis = (data[element] !== undefined) ? data[element] : 0; /** Artrosis **/
+            break;
+          case `ARTROSIS_OBS`:
+            osteo.artrosisObs = (data[element] !== undefined) ? data[element].toUpperCase() : `NO REFIERE`; /** Artrosis Obs **/
+            break;
+          case `ESCOLIOSIS`:
+            osteo.escoliosis = (data[element] !== undefined) ? data[element] : 0; /** Escoliosis **/
+            break;
+          case `ESCOLIOSIS_OBS`:
+            osteo.escoliosisObs = (data[element] !== undefined) ? data[element].toUpperCase() : `NO REFIERE`; /** Escoliosis Obs **/
+            break;
+          case `RETRACCIONES_MUSCULARES`:
+            osteo.retraccionesMusculares = (data[element] !== undefined) ? data[element] : 0; /** Retracciones Musculares **/
+            break;
+          case `RETRACCIONES_MUSCULARES_OBS`:
+            osteo.retraccionesMuscularesObs = (data[element] !== undefined) ? data[element].toUpperCase() : `NO REFIERE`; /** Retracciones Musculares Obs **/
+            break;
+          case `MALFORMACIONES`:
+            osteo.malformaciones = (data[element] !== undefined) ? data[element] : 0; /** Malformaciones **/
+            break;
+          case `MALFORMACIONES_OBS`:
+            osteo.malformacionesObs = (data[element] !== undefined) ? data[element].toUpperCase() : `NO REFIERE`; /** Malformaciones Obs **/
+            break;
+          case `DISCOPATIAS`:
+            osteo.discopatias = (data[element] !== undefined) ? data[element] : 0; /** Discopatias **/
+            break;
+          case `DISCOPATIAS_OBS`:
+            osteo.discopatiasObs = (data[element] !== undefined) ? data[element].toUpperCase() : `NO REFIERE`; /** Discopatias Obs **/
+            break;
+          case `FIBROMALGIA`:
+            osteo.fibromalgia = (data[element] !== undefined) ? data[element] : 0; /** Fibromalgia **/
+            break;
+          case `FIBROMALGIA_OBS`:
+            osteo.fibromalgiaObs = (data[element] !== undefined) ? data[element].toUpperCase() : `NO REFIERE`; /** Fibromalgia Obs **/
+            break;
+          case `OTROS_ANT__OSTEOMUSCULARES`:
+            osteo.otrosAntOsteomusculares = (data[element] !== undefined) ? data[element].toUpperCase() : `NO REFIERE`; /** Otros Ant Osteomusculares **/
+            break;
+          case `PESO`:
+            if (osteo.cervicalgia !== undefined) {
+              osteo.peso = (data[element] !== undefined) ? data[element] : ``; /** Peso **/
+            }
+            break;
+          case `TALLA`:
+            if (osteo.cervicalgia !== undefined) {
+              osteo.talla = (data[element] !== undefined) ? data[element] : ``; /** Talla **/
+            }
+            break;
+          case `DIAG__PPAL`:
+            osteo.diagPpal = (data[element] !== undefined) ? data[element].toUpperCase() : `EXAMEN DE SALUD OCUPACIONAL`; /** DIAG__PPAL **/
+            break;
+          case `DIAG__PPAL_OBS`:
+            osteo.diagPpalObs = (data[element] !== undefined) ? data[element].toUpperCase() : ``; /** DIAG__PPAL Obs **/
+            break;
+          case `DIAG__REL_1`:
+            osteo.diagRel1 = (data[element] !== undefined) ? data[element].toUpperCase() : 0; /** DIAG__REL_1 **/
+            break;
+          case `DIAG__REL_2`:
+            osteo.diagRel2 = (data[element] !== undefined) ? data[element].toUpperCase() : 0; /** DIAG__REL_2 **/
+            break;
+          case `DIAG__REL_3`:
+            osteo.diagRel3 = (data[element] !== undefined) ? data[element].toUpperCase() : 0; /** DIAG__REL_3 **/
+            break;
+          case `REC/PERS_ACT__FISICA_CARDIO_3X/SEMANA`:
+            osteo.recPersActFisicaCardio3xSemana = (data[element] !== undefined) ? data[element] : 0; /** REC/PERS_ACT__FISICA_CARDIO_3X/SEMANA **/
+            break;
+          case `REC/PERS_FORT__15_REPETICIONES/3_SERIES`:
+            osteo.recPersFort15Repeticiones3Series = (data[element] !== undefined) ? data[element] : 0; /** REC/PERS_FORT__15_REPETICIONES/3_SERIES **/
+            break;
+          case `REC/PERS_EJERC__ESTIRAMIENTO_20_SEG`:
+            osteo.recPersEjercEstiramiento20Seg = (data[element] !== undefined) ? data[element] : 0; /** REC/PERS_EJERC__ESTIRAMIENTO_20_SEG **/
+            break;
+          case `REC/PERS_AUTOCUIDADO`:
+            osteo.recPersAutocuidado = (data[element] !== undefined) ? data[element] : 0; /** REC/PERS_AUTOCUIDADO **/
+            break;
+          case `REC/PERS_SEGUIMIENTO_MEDICO`:
+            osteo.recPersSeguimientoMedico = (data[element] !== undefined) ? data[element] : 0; /** REC/PERS_SEGUIMIENTO_MEDICO **/
+            break;
+          case `REC/OCUP_SVE_PREVENSION_LESIONES`:
+            osteo.recOcupSvePrevensionLesiones = (data[element] !== undefined) ? data[element] : 0; /** REC/OCUP_SVE_PREVENSION_LESIONES **/
+            break;
+          case `REC/OCUP_MANIPULACION_DE_CARGA`:
+            osteo.recOcupManipulacionDeCarga = (data[element] !== undefined) ? data[element] : 0; /** REC/OCUP_MANIPULACION_DE_CARGA **/
+            break;
+          case `REC/OCUP_PAUSAS_ACTIVAS`:
+            osteo.recOcupPausasActivas = (data[element] !== undefined) ? data[element] : 0; /** REC/OCUP_PAUSAS_ACTIVAS **/
+            break;
+          case `REC/OCUP_ANALISIS_ERGONOMICOS`:
+            osteo.recOcupAnalisisErgonomicos = (data[element] !== undefined) ? data[element] : 0; /** REC/OCUP_ANALISIS_ERGONOMICOS **/
+            break;
+          case `REC/OCUP_EVITAR_POSTURAS_FORZADAS`:
+            osteo.recOcupEvidarPosturasForzadas = (data[element] !== undefined) ? data[element] : 0; /** REC/OCUP_EVITAR_POSTURAS_FORZADAS **/
+            break;
+          case `RECOM__OCUPACIONALES`:
+            osteo.recomOcupacionales = (data[element] !== undefined) ? data[element].toUpperCase() : ``; /** RECOM__OCUPACIONALES **/
+            break;
+          case `RECOM__G/RALES`:
+            osteo.recomGrales = (data[element] !== undefined) ? data[element].toUpperCase() : ``; /** RECOM__G/RALES **/
+            break;
+        }
+      }
+
+      if (Object.entries(osteo).length > 0 && (
+        ![undefined, ``].includes(osteo.recomOcupacionales) ||
+        ![undefined, ``].includes(osteo.recomGrales)
+      )) {
+        const socio_emography = informationSocioEmography(data);
+
+        const osteoInformation = {
+          ...socio_emography,
+          ...osteo
+        }
+
+        return osteoInformation;
+      }
+      return ``;
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+</script>

@@ -1,0 +1,203 @@
+<script>
+  /**
+  ** Generates a new object based on the provided data.
+  ** The generated object contains different properties
+  ** based on the elements of the data object.
+  **
+  ** Parameters:
+  ** - data: An object containing the data to be processed.
+  **
+  ** Returns:
+  ** - An object with properties based on the elements of the data object.
+  */
+  const audiometry = (data) => {
+    const audio = new Object();
+
+    try {
+      for (const element in data) {
+        switch (element.trim().toUpperCase().toString()) {
+          case `EPP_ESPECIFICO_/_AUDITIVO`:
+            audio.eppEspecificoAuditivo = (data[element] !== undefined) ? data[element] : 0; /** Auditivo **/
+            break;
+          case `EPP_ESPECIFICO_/_AUDITIVO_COPA`:
+            audio.eppEspecificoAuditivoCopa = (data[element] !== undefined) ? data[element] : 0; /** Auditivo Copa **/
+            break;
+          case `EPP_ESPECIFICO_/_AUDITIVO_INSERCION`:
+            audio.eppEspecificoAuditivoInsercion = (data[element] !== undefined) ? data[element] : 0; /** Auditivo Insercion **/
+            break;
+          case `EPP_ESPECIFICO_/_AUDITIVO_DOBLE`:
+            audio.eppEspecificoAuditivoDoble = (data[element] !== undefined) ? data[element] : 0; /** Auditivo Doble **/
+            break;
+          case `PABELLON_AURIC__OIDO_DER__`:
+            audio.pabellonAuricoidoDer = (data[element] !== undefined) ? data[element].toUpperCase() : `NORMAL`; /** Pabellon Auricular Oido Derecho Normal **/
+            break;
+          case `PABELLON_AURIC__OIDO_DER__OBS`:
+            audio.pabellonAuricoidoDerObs = (data[element] !== undefined) ? data[element].toUpperCase() : `SIN HALLAZGOS`; /** Pabellon Auricular Oido Derecho Sin Hallazgos **/
+            break;
+          case `PABELLON_AURIC__OIDO_IZQ__`:
+            audio.pabellonAuricoidoIzq = (data[element] !== undefined) ? data[element].toUpperCase() : `NORMAL`; /** Pabellon Auricular Oido Izquierdo Normal **/
+            break;
+          case `PABELLON_AURIC__OIDO_IZQ__OBS`:
+            audio.pabellonAuricoidoIzqObs = (data[element] !== undefined) ? data[element].toUpperCase() : `SIN HALLAZGOS`; /** Pabellon Auricular Oido Izquierdo Sin Hallazgos **/
+          case `CONDUCTO_AUDIT__OIDO_DER_`:
+            audio.conductoAuditoidoDer = (data[element] !== undefined) ? data[element].toUpperCase() : `NORMAL`; /** Conducto Auditivo Oido Derecho Normal **/
+            break;
+          case `CONDUCTO_AUDIT__OIDO_DER__OBS`:
+            audio.conductoAuditoidoDerObs = (data[element] !== undefined) ? data[element].toUpperCase() : `SIN HALLAZGOS`; /** Conducto Auditivo Oido Derecho Sin Hallazgos **/
+            break;
+          case `CONDUCTO_AUDIT__OIDO_IZQ_`:
+            audio.conductoAuditoidoIzq = (data[element] !== undefined) ? data[element].toUpperCase() : `NORMAL`; /** Conducto Auditivo Oido Izquierdo Normal **/
+            break;
+          case `CONDUCTO_AUDIT__OIDO_IZQ__OBS`:
+            audio.conductoAuditoidoIzqObs = (data[element] !== undefined) ? data[element].toUpperCase() : `SIN HALLAZGOS`; /** Conducto Auditivo Oido Izquierdo Sin Hallazgos **/
+            break;
+          case `MEMBRANA_TIMP__OIDO_DER`:
+            audio.membranaTimpoidoDer = (data[element] !== undefined) ? data[element].toUpperCase() : `NORMAL`; /** Membrana Timpoido Derecho Normal **/
+            break;
+          case `MEMBRANA_TIMP__OIDO_DER__OBS`:
+            audio.membranaTimpoidoDerObs = (data[element] !== undefined) ? data[element].toUpperCase() : `SIN HALLAZGOS`; /** Membrana Timpoido Derecho Sin Hallazgos **/
+            break;
+          case `MEMBRANA_TIMP__OIDO_IZQ`:
+            audio.membranaTimpoidoIzq = (data[element] !== undefined) ? data[element].toUpperCase() : `NORMAL`; /** Membrana Timpoido Izquierdo Normal **/
+            break;
+          case `MEMBRANA_TIMP__OIDO_IZQ__OBS`:
+            audio.membranaTimpoidoIzqObs = (data[element] !== undefined) ? data[element].toUpperCase() : `SIN HALLAZGOS`; /** Membrana Timpoido Izquierdo Sin Hallazgos **/
+            break;
+          case `TIPO_DE_EXAMEN`:
+            audio.tipoDeExamen = (data[element] !== undefined) ? data[element].toUpperCase() : `AUDIOMETRIA DE TONOS PUROS AEREOS Y OSEOS CON ENMASCARAMIENTO [AUDIOMETRIA TONAL]`; /** Tipo de Examen **/
+            break;
+          case `OD_500`:
+            audio.od500 = data[element]; /** OD 500 **/
+            break;
+          case `OD_1000`:
+            audio.od1000 = data[element]; /** OD 1000 **/
+            break;
+          case `OD_2000`:
+            audio.od2000 = data[element]; /** OD 2000 **/
+            break;
+          case `OD_3000`:
+            audio.od3000 = data[element]; /** OD 3000 **/
+            break;
+          case `OD_4000`:
+            audio.od4000 = data[element]; /** OD 4000 **/
+            break;
+          case `OD_6000`:
+            audio.od6000 = data[element]; /** OD 6000 **/
+            break;
+          case `OD_8000`:
+            audio.od8000 = data[element]; /** OD 8000 **/
+            break;
+          case `OI_500`:
+            audio.oi500 = data[element]; /** OI 500 **/
+            break;
+          case `OI_1000`:
+            audio.oi1000 = data[element]; /** OI 1000 **/
+            break;
+          case `OI_2000`:
+            audio.oi2000 = data[element]; /** OI 2000 **/
+            break;
+          case `OI_3000`:
+            audio.oi3000 = data[element]; /** OI 3000 **/
+            break;
+          case `OI_4000`:
+            audio.oi4000 = data[element]; /** OI 4000 **/
+            break;
+          case `OI_6000`:
+            audio.oi6000 = data[element]; /** OI 6000 **/
+            break;
+          case `OI_8000`:
+            audio.oi8000 = data[element]; /** OI 8000 **/
+            break;
+          case `CONTROL_SEGUN_PVE`:
+            audio.controlSegunPve = (data[element] !== undefined) ? data[element] : 0; /** Control Segun PVE **/
+            break;
+          case `CONFIRMATORIA`:
+            audio.confirmatoria = (data[element] !== undefined) ? data[element] : 0; /** Confirmatoria **/
+            break;
+          case `REMISION_ORL`:
+            audio.remisionOrl = (data[element] !== undefined) ? data[element] : 0; /** Remision Orl **/
+            break;
+          case `PRUEBAS_COMPLEMENTARIAS`:
+            audio.pruebasComplementarias = (data[element] !== undefined) ? data[element] : 0; /** Pruebas Complementarias **/
+            break;
+          case `LIMPIEZA_DE_OIDO`:
+            audio.limpiezaDeOido = (data[element] !== undefined) ? data[element] : 0; /** Limpieza de Oido **/
+            break;
+          case `LIMPIEZA_OD`:
+            audio.limpiezaOd = (data[element] !== undefined) ? data[element] : 0; /** Limpieza Od **/
+            break;
+          case `LIMPIEZA_OI`:
+            audio.limpiezaOi = (data[element] !== undefined) ? data[element] : 0; /** Limpieza Oi **/
+            break;
+          case `REPOSO_AUDITIVO_EXTRALAB`:
+            audio.reposoAuditivoExtralab = (data[element] !== undefined) ? data[element] : 0; /** Reposo Auditivo Extralab **/
+            break;
+          case `ROTAR_DIADEMA_TELEFONICA`:
+            audio.rotarDiaadematelefonica = (data[element] !== undefined) ? data[element] : 0; /** Rotar Diaadematelefonica **/
+            break;
+          case `CONDUCIR_CON_VENTANAS_CERRADAS`:
+            audio.conducirConVentanasCerradas = (data[element] !== undefined) ? data[element] : 0; /** Conducir Con Ventanas Cerradas **/
+            break;
+          case `USO_DE_EPP_AUDITIVO`:
+            audio.usoDeEppAuditivo = (data[element] !== undefined) ? data[element] : 0; /** Uso De Epp Auditivo **/
+            break;
+          case `CONTROLES_MENSUALES`:
+            audio.controlesMensuales = (data[element] !== undefined) ? data[element] : 0; /** Controles Mensuales **/
+            break;
+          case `CONTROLES_BIMESTRALES`:
+            audio.controlesBimestrales = (data[element] !== undefined) ? data[element] : 0; /** Controles Bimestrales **/
+            break;
+          case `CONTROLES_TRIMESTRALES`:
+            audio.controlesTrimestrales = (data[element] !== undefined) ? data[element] : 0; /** Controles Trimestrales **/
+            break;
+          case `CONTROLES_6_MESES`:
+            audio.controles6Meses = (data[element] !== undefined) ? data[element] : 0; /** Controles 6 Meses **/
+            break;
+          case `CONTROLES_1_AÑO`:
+            audio.controles1Anio = (data[element] !== undefined) ? data[element] : 0; /** Controles 1 Anio **/
+            break;
+          case `DIAG_PPAL`:
+            audio.diagPpal = data[element]; /** Diagnostico Ppal **/
+            break;
+          case `DIAG_INTERNO`:
+            audio.diagInterno = data[element]; /** Diagnostico Interno **/
+            break;
+          case `DIAG_GATI-SO`:
+            audio.diagGatiSo = data[element]; /** Diagnostico Gati-SO **/
+            break;
+        }
+      }
+
+      if (
+        Object.entries(audio).length > 0 && (
+          ![undefined, ``].includes(audio.oi500) ||
+          ![undefined, ``].includes(audio.oi1000) ||
+          ![undefined, ``].includes(audio.oi2000) ||
+          ![undefined, ``].includes(audio.oi3000) ||
+          ![undefined, ``].includes(audio.oi4000) ||
+          ![undefined, ``].includes(audio.oi6000) ||
+          ![undefined, ``].includes(audio.oi8000) ||
+          ![undefined, ``].includes(audio.od500) ||
+          ![undefined, ``].includes(audio.od1000) ||
+          ![undefined, ``].includes(audio.od2000) ||
+          ![undefined, ``].includes(audio.od3000) ||
+          ![undefined, ``].includes(audio.od4000) ||
+          ![undefined, ``].includes(audio.od6000) ||
+          ![undefined, ``].includes(audio.od8000)
+        )
+      ) {
+        const socio_emography = informationSocioEmography(data);
+
+        const audioInformation = {
+          ...socio_emography,
+          ...audio
+        }
+
+        return audioInformation;
+      }
+      return ``;
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+</script>

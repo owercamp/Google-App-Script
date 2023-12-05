@@ -1,0 +1,362 @@
+<script>
+  /**
+  ** Generates a new object based on the provided data.
+  ** The generated object contains different properties
+  ** based on the elements of the data object.
+  **
+  ** Parameters:
+  ** - data: An object containing the data to be processed.
+  **
+  ** Returns:
+  ** - An object with properties based on the elements of the data object.
+  */
+  const laboratory = (data) => {
+    const lab = new Object();
+
+    try {
+      for (const element in data) {
+        switch (element.trim().toUpperCase().toString()) {
+          case `ACIDO_URICO`:
+            lab.acidoUrico = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `ANTIGENO_ESPECIFICO_DE_PROSTATA_(PSA)`:
+            lab.antigenoEspecificoDeProstata = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `COCAINA_(COC)`:
+            lab.cocainaCOC = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `MARIHUANA_(THC)`:
+            lab.marihuanaTHC = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `ANFETAMINAS`:
+            lab.anfetaminas = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `BENZODIACEPINAS`:
+            lab.benzodiazepinas = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `COCAINA`:
+            lab.cocaina = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `MARIHUANA`:
+            lab.marihuana = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `MORFINA`:
+            lab.morfina = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `OPIACEOS`:
+            lab.opiaceos = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `ANFETAMINAS_(AMP)`:
+            lab.anfetaminasAMP = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `ANTIDEPRESIVOS_TRICICLICOS_(TCA)`:
+            lab.antidepresivosTriciclicosTCA = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `BARBITURICOS_(BAR)`:
+            lab.barbituricosBAR = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `BENZODIACEPINAS_(BZO)`:
+            lab.benzodiazepinasBZO = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `METADONA_(MTD)`:
+            lab.metadonaMTD = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `METANFETAMINA_(MET)`:
+            lab.metanfetaminaMET = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `METILNDIOXIMETANFETAMINA_(MDMA)`:
+            lab.metilndioximetanfetaminaMDMA = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `MORFINA_(MOP)`:
+            lab.morfinaMOP = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `FENCICLIDINA`:
+            lab.fenciclidina = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `C.C.M.H`:
+            lab.c_c_m_h = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `EOSINOFILOS`:
+            lab.eosinofilos = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `H.C.M`:
+            lab.h_c_m = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `HEMATOCRITO`:
+            lab.hematocrito = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `HEMOGLOBINA`:
+            lab.hemoglobina = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `LINFOCITOS`:
+            lab.linfocitos = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `MONOCITOS`:
+            lab.monocitos = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `NEUTROFILOS`:
+            lab.neutrofilos = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `RDW`:
+            lab.rdw = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `RECUENTO_DE_GLOBULOS_ROJOS`:
+            lab.recuentoDeGlobulosRojos = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `RECUENTO_DE_LEUCOCITOS`:
+            lab.recuentoDeLeucocitos = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `RECUENTO_DE_PLAQUETAS`:
+            lab.recuentoDePlaquetas = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `V.C.M`:
+            lab.v_c_m = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `CELULAS_MEDIAS_(MONICITOS,_EOSINOFILOS,_BÁSOFILOS)`:
+            lab.celulasMediasMonicitosEosinofilosBasofilos = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `ANCHO_DE_DITRIBUCION_DE_ERITROCITOS_(POR_SI_SALE,_SI_NO_SALE_SE_PUEDE_ELIMINAR_ESTA_COLUMNA)`:
+            lab.anchoDeDistribucionDeEritrocitos = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `VOLUMEN_CORPUSCULAR_MEDIO`:
+            lab.volumenCorpuscularMedio = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `ERITROCITOS`:
+            lab.eritrocitos = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `HEMATOCRITOS`:
+            lab.hematocritos = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `RECUENTO_DE_LEUCOCITOS_`:
+            lab.recuentoDeLeucocitos_ = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `P.N._NEUTROFILOS`:
+            lab.p_n__neutrofilos = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `LINFOCITOS_`:
+            lab.linfocitos_ = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `P.N._EOSINOFILOS`:
+            lab.p_n__eosinofilos = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `RECUENTO_DE_ERITROCITOS`:
+            lab.recuentoDeEritrocitos = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `ANCHO_DE_DITRIBUCION_DE_ERITROCITOS`:
+            lab.anchoDeDitribucionDeEritrocitos = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `RECUENTO_TOTAL_DE_LEUCOCITOS`:
+            lab.recuentoTotalDeLeucocitos = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `RECUENTO_DIFERENCIAL_DE_LEUCOCITOS`:
+            lab.recuentoDiferencialDeLeucocitos = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `VOLUMEN_MEDIO_PLAQUETARIO_(VPM_-_MPV)`:
+            lab.volumenMedioPlaquetarioVPMMPV = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `ANCHO_DE_DISTRIBUCIÓN_DE_LAS_PLAQUETAS`:
+            lab.anchoDeDistribucionDeLasPlaquetas = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `PLAQUETOCRITO`:
+            lab.plaquetocrito = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `MORFOLOGÍA_DE_SANGRE_PERIFÉRICA_POR_MÉTODOS_ELECTRÓNICOS_Y_MANUALES`:
+            lab.MorfoLogiaDeSangrePerifericaPorMetodosElectronicosYManuales = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `PLAQUETAS_RETICULADAS`:
+            lab.plaquetasReticuladas = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `RECUENTO_DE_RETICULOCITOS`:
+            lab.recuentoDeReticulocitos = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `HEMOGLOBINA_RETICULOCITARIA`:
+            lab.hemoglobinaReticulocitaria = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `PROMEDIO_DE_VOLUMEN_CORPUSCULAR_(PVC)`:
+            lab.promedioDeVolumenCorpuscularPVC = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `PROMEDIO_DE_HEMOGLOBINA_CORPUSCULAR_(PHC)`:
+            lab.promedioDeHemoglobinaCorpuscularPHC = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `PROMEDIO_DE_CONCENTRACION_DE_LA_HEMOGLOBINA_(PCHC)`:
+            lab.promedioDeConcentracionDeLaHemoglobinaPCHC = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `GRANULOCITOS_(Neutrofilos,_Eosinofilos,_Basofilos)`:
+            lab.granulocitosNeutrofilosEosinofilosBasofilos = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `SEROLOGÍA_[PRUEBA_NO_TREPOMENICA]_VDRL_EN_SUERO_O_LCR_`:
+            lab.serologiaPruebaNoTrepomenicaVDRLEnSueroOLCR = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `HORMONA_ESTIMULANTE_DE_LA_TIROIDES_[TSH]`:
+            lab.hormonaEstimulanteDeLaTiroidesTSH = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `BACILOS_GRANPOSITIVOS`:
+            lab.bacilosGranpositivos = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `COCOS_GRAMPOSITIVOS`:
+            lab.cocosGrampositivos = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `DIPLOCOCOS_GRAMPOSITIVOS`:
+            lab.diplococosGrampositivos = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `REACCIÓN_LEUCOCITARIA`:
+            lab.reaccionLeucocitaria = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `EXAMEN_DIRECTO`:
+            lab.examenDirecto = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `T4_TOTAL`:
+            lab.t4Total = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `CREATININA`:
+            lab.creatinina = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `TRIYODOTIRONINA_TOTAL_[T3]_+`:
+            lab.triyodotironinaTotalT3 = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `GAMMA_GLUTAMIL_TRANSFERASA`:
+            lab.gammaGlutamilTransferasa = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `FOSFATASA_ALCALINA`:
+            lab.fosfatasaAlcalina = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `TRANSAMINASA_TGO`:
+            lab.transaminasaTGO = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `TRANSAMINASA_TGP`:
+            lab.transaminasaTGP = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `ALCOHOLEMIA`:
+            lab.alcoholemia = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `COLESTEROL_DE_ALTA_DENSIDAD_[HDL]_INMUNOLÓGICO_DIRECTO`:
+            lab.colesterolDeAltaDensidadHDLInmunologicoDirecto = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `COLESTEROL_DE_BAJA_DENSIDAD_[LDL]_INMUNOLÓGICO_DIRECTO`:
+            lab.colesterolDeBajaDensidadLDLInmunologicoDirecto = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `COLESTEROL_MUY_BAJA_DENSIDAD__VLDL`:
+            lab.colesterolMuyBajaDensidadVLDL = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `COLESTEROL_TOTAL`:
+            lab.colesterolTotal = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `TRIGLICERIDOS`:
+            lab.trigliceridos = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `GONADOTROPINA_CORIÓNICA,_SUBUNIDAD_BETA_CUALITATIVA,_[BHCG]_PRUEBA_DE_EMBARAZO_EN_ORINA_O_SUERO_`:
+            lab.gonadotropinaCorionicaSubunidadBetaCualitativaBhcgPruebaDeEmbarazoEnOrinaOSuero = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `GLUCOSA_EN_SUERO`:
+            lab.glucosaEnSuero = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `ASPECTO`:
+            lab.aspecto = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `BACTERIAS`:
+            lab.bacterias = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `BILIRRUBINA`:
+            lab.bilirrubina = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `CELULAS_EPITELIALES_ALTAS`:
+            lab.celulasEpitelialesAltas = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `CELULAS_EPITELIALES_BAJAS`:
+            lab.celulasEpitelialesBajas = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `CETONAS`:
+            lab.cetonas = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `COLOR`:
+            lab.color = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `CRISTALES`:
+            lab.cristales = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `DENSIDAD`:
+            lab.densidad = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `GLUCOSA`:
+            lab.glucosa = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `LEUCOCITOS`:
+            lab.leucocitos = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `MOCO`:
+            lab.moco = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `NITRITOS`:
+            lab.nitritos = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `PH`:
+            lab.ph = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `PROTEINAS`:
+            lab.proteinas = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `SANGRE`:
+            lab.sangre = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `UROBILINOGENO`:
+            lab.urobilinoGeno = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `HEMATIES`:
+            lab.hematies = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `ALMIDON`:
+            lab.almidon = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `CONSISTENCIA`:
+            lab.consistencia = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `FLORA_BACTERIANA`:
+            lab.floraBacteriana = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `GRASAS`:
+            lab.grasas = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `RESULTADO`:
+            lab.resultado = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `INDICE_ARTERIAL`:
+            lab.indiceArterial = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `ACIDO_HIPURICO_(TOLUENO)`:
+            lab.acidoHipuricoTolueno = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `ACIDO_METILHIPURICO_(XILENO)`:
+            lab.acidoMetilhipuricoXileno = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `FENOL_(BENCENO)`:
+            lab.fenolBenceno = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `P-CRESOL`:
+            lab.pCresol = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `SEUDOCOLINESTERASA`:
+            lab.seudocolinesterasa = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `U/L`:
+            lab.ul = (data[element] !== undefined) ? data[element] : ``;
+            break;
+        }
+      }
+
+      if (Object.entries(lab).length > 0) {
+        const socio_emography = informationSocioEmography(data);
+
+        const labAsses = {
+          ...socio_emography,
+          ...lab
+        }
+
+        return labAsses;
+
+      }
+      return ``;
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+</script>

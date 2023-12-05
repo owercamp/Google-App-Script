@@ -1,0 +1,205 @@
+<script>
+  /**
+  ** Generates a new object based on the provided data.
+  ** The generated object contains different properties
+  ** based on the elements of the data object.
+  **
+  ** Parameters:
+  ** - data: An object containing the data to be processed.
+  **
+  ** Returns:
+  ** - An object with properties based on the elements of the data object.
+  */
+  const respiratoryAssessment = (data) => {
+    const respiratory = new Object();
+
+    try {
+      for (const element in object) {
+        switch (element.trim().toUpperCase().toString()) {
+          case `TUBERULOSIS`:
+            respiratory.tuberculosis = (data[element] !== undefined) ? (data[element] === `SIN DATO`) ? `SIN DATO` : `SI` : `NO`;
+            break;
+          case `BRONQUITIS`:
+            respiratory.bronquitis = (data[element] !== undefined) ? (data[element] === `SIN DATO`) ? `SIN DATO` : `SI` : `NO`;
+            break;
+          case `RINITIS`:
+            respiratory.rinitis = (data[element] !== undefined) ? (data[element] === `SIN DATO`) ? `SIN DATO` : `SI` : `NO`;
+            break;
+          case `SINUSITIS`:
+            respiratory.sinusitis = (data[element] !== undefined) ? (data[element] === `SIN DATO`) ? `SIN DATO` : `SI` : `NO`;
+            break;
+          case `TOS_CRONICA`:
+            respiratory.tosCronicas = (data[element] !== undefined) ? (data[element] === `SIN DATO`) ? `SIN DATO` : `SI` : `NO`;
+            break;
+          case `ASMA_BRONQUIAL`:
+            respiratory.asmaBronquial = (data[element] !== undefined) ? (data[element] === `SIN DATO`) ? `SIN DATO` : `SI` : `NO`;
+            break;
+          case `COVID-19`:
+            respiratory.covid19 = (data[element] !== undefined) ? (data[element] === `SIN DATO`) ? `SIN DATO` : `SI` : `NO`;
+            break;
+          case `ENFERMEDAD_PULMONAR_CRONICA`:
+            respiratory.enfermedadPulmonarCronica = (data[element] !== undefined) ? (data[element] === `SIN DATO`) ? `SIN DATO` : `SI` : `NO`;
+            break;
+          case `GRIPA_FRECUENTE`:
+            respiratory.gripafrequente = (data[element] !== undefined) ? (data[element] === `SIN DATO`) ? `SIN DATO` : `SI` : `NO`;
+            break;
+          case `TRAUMA_COSTAL`:
+            respiratory.traumaCostal = (data[element] !== undefined) ? (data[element] === `SIN DATO`) ? `SIN DATO` : `SI` : `NO`;
+            break;
+          case `CANCER`:
+            respiratory.cancer = (data[element] !== undefined) ? (data[element] === `SIN DATO`) ? `SIN DATO` : `SI` : `NO`;
+            break;
+          case `FARINGITIS`:
+            respiratory.faringitis = (data[element] !== undefined) ? (data[element] === `SIN DATO`) ? `SIN DATO` : `SI` : `NO`;
+            break;
+          case `NEUMONIA`:
+            respiratory.neumonia = (data[element] !== undefined) ? (data[element] === `SIN DATO`) ? `SIN DATO` : `SI` : `NO`;
+            break;
+          case `FARINGOAMIGDALITIS`:
+            respiratory.faringoamigdalitis = (data[element] !== undefined) ? (data[element] === `SIN DATO`) ? `SIN DATO` : `SI` : `NO`;
+            break;
+          case `OTROS`:
+            respiratory.otros = (data[element] !== undefined) ? data[element] : `NO`;
+            break;
+          case `¿PRACTICA_DEPORTE?`:
+            respiratory.practicaDeporte = (data[element] !== undefined) ? data[element] : `NO`;
+            break;
+          case `FRECUENCIA`:
+            respiratory.frecuencia = (![undefined, ``].includes(data[element])) ? data[element] : ``;
+            break;
+          case `TABAQUISMO`:
+            respiratory.tabaquismo = (![undefined, ``].includes(data[element])) ? data[element] : ``;
+            break;
+          case `FRECUENCIA_TABAQUISMO`:
+            respiratory.frecuenciaTabaquismo = (![undefined, ``].includes(data[element])) ? data[element] : ``;
+            break;
+          case `#_CIGARRILLOS`:
+            respiratory.cigarrillos = (![undefined, ``].includes(data[element])) ? data[element] : ``;
+            break;
+          case `¿_CUANTO_TIEMPO_LLEVA_FUMANDO_?`:
+            respiratory.fumando = (![undefined, ``].includes(data[element])) ? data[element] : ``;
+            break;
+          case `¿HACE_CUANTO_TIEMPO_DEJO_DE_FUMAR_?`:
+            respiratory.fumandoTiempo = (![undefined, ``].includes(data[element])) ? data[element] : ``;
+            break;
+          case `FRECUENCIA_CARDIACA`:
+            respiratory.frecuenciaCardiaca = (![undefined, ``].includes(data[element])) ? data[element] : ``;
+            break;
+          case `FRECUENCIA_RESPIRATORIA`:
+            respiratory.frecuenciaRespiratoria = (![undefined, ``].includes(data[element])) ? data[element] : ``;
+            break;
+          case `TEMPERATURA`:
+            respiratory.temperatura = (![undefined, ``].includes(data[element])) ? data[element] : ``;
+            break;
+          case `RX_TORAX`:
+            respiratory.rxTorax = (data[element] !== undefined) ? (data[element] === `SIN DATO`) ? `SIN DATO` : `SI` : `NO`;
+            break;
+          case `RX_TORAX_DESC`:
+            respiratory.rxToraxDesc = (![undefined, ``].includes(data[element])) ? data[element] : ``;
+            break;
+          case `MEDICACION_ACTUAL`:
+            respiratory.medicacionActual = (data[element] !== undefined) ? (data[element] === `SIN DATO`) ? `SIN DATO` : `SI` : `NO`;
+            break;
+          case `MEDICACION_ACTUAL_DESC`:
+            respiratory.medicacionActualDesc = (![undefined, ``].includes(data[element])) ? data[element] : ``;
+            break;
+          case `FACTOR_DE_RIESGO`:
+            respiratory.factorDeRiesgo = (data[element] !== undefined) ? data[element] : `NO`;
+            break;
+          case `TIEMPO_DE_EXPOSICION`:
+            respiratory.tiempoDeExposicion = (data[element] !== undefined) ? data[element] : `NO`;
+            break;
+          case `USO_DE_EPR`:
+            respiratory.usoDeEpr = (data[element] !== undefined) ? data[element] : `NO`;
+            break;
+          case `USO_DE_EPR_DESC`:
+            respiratory.usoDeEprDesc = (data[element] !== undefined) ? data[element] : `NO`;
+            break;
+          case `MATERIAL_PARTICULADO`:
+            respiratory.materialParticulado = (data[element] !== undefined) ? data[element] : `NO`;
+            break;
+          case `GASES`:
+            respiratory.gases = (data[element] !== undefined) ? data[element] : `NO`;
+            break;
+          case `VAPORES`:
+            respiratory.vaposores = (data[element] !== undefined) ? data[element] : `NO`;
+            break;
+          case `HUMOS`:
+            respiratory.humos = (data[element] !== undefined) ? data[element] : `NO`;
+            break;
+          case `BIOLOGICOS`:
+            respiratory.biologicos = (data[element] !== undefined) ? data[element] : `NO`;
+            break;
+          case `OTROS`:
+            respiratory.otros = (data[element] !== undefined) ? data[element] : `NO`;
+            break;
+          case `TAPABOCA_TELA`:
+            respiratory.tapabocaTela = (data[element] !== undefined) ? data[element] : `NO`;
+            break;
+          case `MASCARILLA_DESECHABLE`:
+            respiratory.mascarillaDesechable = (data[element] !== undefined) ? data[element] : `NO`;
+            break;
+          case `MASCARILLA_FILTRO`:
+            respiratory.mascarillaFiltro = (data[element] !== undefined) ? data[element] : `NO`;
+            break;
+          case `MASCARILLA_AUTOCONTENIDO`:
+            respiratory.mascarillaAutocontenido = (data[element] !== undefined) ? data[element] : `NO`;
+            break;
+          case 5:
+            respiratory.cinco = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case 4:
+            respiratory.cuatro = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case 3:
+            respiratory.tres = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case 2:
+            respiratory.dos = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case 1:
+            respiratory.uno = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case 0:
+            respiratory.cero = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `CLASE_DE_TORAX`:
+            respiratory.claseDeTorax = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `CIFOSIS`:
+            respiratory.cifosis = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `ESCOLIOSIS`:
+            respiratory.escoliosis = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `PATRON_RESPIRATORIO`:
+            respiratory.patronRespiratorio = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `COORDINACION_ENTRE_EL_TORAX_Y_EL_ABDOMEN`:
+            respiratory.coordinacionEntreElToraxYElAbdomen = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `VALOR`:
+            respiratory.valor = (data[element] !== undefined) ? data[element] : ``;
+            break;
+          case `INTERPRETACION`:
+            respiratory.interpretacion = (data[element] !== undefined) ? data[element] : ``;
+            break;
+        }
+      }
+
+      if (Object.entries(respiratory).length > 0) {
+        const socio_emography = informationSocioEmography(data);
+
+        const respiratoryAsses = {
+          ...socio_emography,
+          ...respiratory
+        }
+
+        return respiratoryAsses;
+      }
+      return ``;
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+</script>
