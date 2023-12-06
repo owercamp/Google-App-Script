@@ -31,6 +31,39 @@
     <div class="container-fluid col-12 row">
       <div class="container-fluid col-7">
         <div class="row-2">
+          <label for="Intervention" class="form-label w-100 text-secondary fw-bolder"
+            style="margin-left: 0.6rem!important;">
+            Clasificación Final para la Intervención
+            <select name="Intervention" id="InterventionOpc" class="form-select form-select-sm"
+              style="width: 100%!important;">
+              <!-- cargue dinamico -->
+            </select>
+          </label>
+        </div>
+        <div class="row-10">
+          <canvas id="myIntervention" height="230vw"></canvas>
+        </div>
+      </div>
+      <div class="container-fluid col-5">
+        <table class="table table-sm table-secondary table-hover display w-100" data-page-length="12"
+          id="tbl_Intervention">
+          <thead>
+            <tr>
+              <th scope="col">Centro de Trabajo</th>
+              <th scope="col">Clasificación Final para la Intervención</th>
+              <th scope="col">Cantidad</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="sample">
+    <div class="container-fluid col-12 row">
+      <div class="container-fluid col-7">
+        <div class="row-2">
           <label for="Framingham" class="form-label w-100 text-secondary fw-bolder"
             style="margin-left: 0.6rem!important;">
             Framingham
