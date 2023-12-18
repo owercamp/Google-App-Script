@@ -1,0 +1,133 @@
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+  integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"
+  integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ=="
+  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+  // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+  if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    document.documentElement.classList.add('dark')
+  } else {
+    document.documentElement.classList.remove('dark')
+  }
+
+  // Whenever the user explicitly chooses light mode
+  localStorage.theme = 'light'
+
+  // Whenever the user explicitly chooses dark mode
+  localStorage.theme = 'dark'
+
+  // Whenever the user explicitly chooses to respect the OS preference
+  localStorage.removeItem('theme')
+</script>
+
+<script>
+  let arrayImages = [];
+  $(document).ready(function () {
+    const modal = document.getElementById('modal');
+    $(`h1`).text(`Manual RIPS ${new Date().getFullYear()}`);
+    $(document).on('click', 'a.display', function (e) {
+      e.preventDefault();
+      let that = $('div.sample:visible'), t;
+      switch (e.target.localName) {
+        case "a":
+          t = e.target.id;
+          break;
+        case "svg":
+          t = e.target.parentElement.id;
+          break;
+        case "g":
+        case "defs":
+          t = e.target.parentElement.parentElement.id;
+          break;
+        case "path":
+          if (e.target.parentElement.localName == "g") {
+            t = e.target.parentElement.parentElement.parentElement.id;
+          } else if (e.target.parentElement.localName == "clipPath") {
+            t = e.target.parentElement.parentElement.parentElement.parentElement.id;
+          }
+        case "clipPath":
+          t = e.target.parentElement.parentElement.parentElement.id;
+          break;
+      }
+
+      if (t == 'next' && that.next('div.sample').length > 0) {
+        $('div.sample').hide().removeClass("select");
+        that.next('div.sample').show().addClass("select");
+      } else if (t == 'prev' && that.prev('div.sample').length > 0) {
+        $('div.sample').hide().removeClass("select");
+        that.hide().prev('div.sample').show().addClass("select");
+      }
+    });
+    setTimeout(() => {
+      openDocument();
+    }, 1000);
+
+    $(document).on('click', 'img.full-width-image', function (e) {
+      let url = e.target.src;
+      let picture = document.getElementById('picture');
+      picture.setAttribute('src', url);
+      modal.classList.remove('hidden');
+    });
+
+    $(document).on('click', 'button#closeModal', function (e) {
+      let picture = document.getElementById('picture');
+      picture.setAttribute('src', "#");
+      modal.classList.add('hidden');
+    });
+  });
+
+  let openImages = () => {
+    $("div.image").each((index, element) => {
+      $(`<img src="https://drive.google.com/uc?export=view&id=${arrayImages[index]}" class="full-width-image">`).appendTo(element);
+    })
+  }
+
+  let openDocument = () => {
+    let bodyList = document.getElementById(`bodyList`);
+    let sampleBody = ``;
+    let sample = ``;
+    let rows = 0;
+
+    google.script.run.withSuccessHandler(body => {
+      let dataBody = body.split('\n');
+      let line = dataBody[0].split('\\n');
+      let arrayBody = line.filter(line => line.length > 0);
+      let lineData = arrayBody.splice(17, arrayBody.length);
+
+      let numSample = lineData.length / 10;
+
+      for (let num = 0; num <= numSample; num++) {
+        $(`<div class="sample grid"></div>`).appendTo(bodyList);
+      }
+
+      let sample = $(`div.sample`);
+      let position = 0;
+      lineData.map(line => {
+        if (rows === 10) {
+          rows = 0;
+          position++;
+        }
+        let lineBreak = line.replaceAll("\n", '');
+        let backSlash = (!lineBreak.includes("Imagen")) ? lineBreak.replaceAll("/", "\\") : lineBreak;
+        if (backSlash.includes("Imagen")) {
+          let image = backSlash.split(" - ");
+          arrayImages.push(image[1]);
+          sample[position].innerHTML += `<div class="image circular-container ml-8 my-3"></div>`;
+        } else {
+          sample[position].innerHTML += `<label class="inline-flex items-center mt-3">
+              <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600"><span
+                class="ml-2 text-gray-700">${backSlash}</span>
+            </label>`;
+        }
+        rows++;
+      })
+      $('div.sample').hide().first().show();
+      openImages();
+    })
+      .withFailureHandler(error => {
+        console.log(`${error.name}: ${error.message}`);
+      })
+      .getDocuments();
+  }  
+</script>
