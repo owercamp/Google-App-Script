@@ -108,7 +108,7 @@
       }
     });
 
-    let count = 0;
+    let count = ('RIPS' in localStorage) ? parseInt(localStorage.getItem('RIPS').split(' - ')[0]) : 0;
     $(document).on('click', 'input[type=checkbox]', function (e) {
       let date = moment().format("DD/MM/YYYY");
       if ($(e.currentTarget).prop('checked') === true) {
@@ -134,7 +134,7 @@
     let date = moment().format("DD/MM/YYYY").split('/')[1];
     if ('RIPS' in localStorage) {
       let dateSaved = localStorage.getItem('RIPS').split(' - ')[1].split('/')[1];
-      if (parseInt(date) === parseInt(dateSaved)) {
+      if (parseInt(date) !== parseInt(dateSaved)) {
         localStorage.removeItem('RIPS');
       }
     }
