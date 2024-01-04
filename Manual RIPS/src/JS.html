@@ -164,6 +164,10 @@
           let image = backSlash.split(" - ");
           arrayImages.push(image[1]);
           sample[position].innerHTML += `<div class="image circular-container ml-8 my-3"></div>`;
+        } else if(backSlash.includes("|")){
+          sample[position].innerHTML += `<h1 class="inline-flex items-center text-2xl tracking-wider my-2 text-orange-800/60">${backSlash.replaceAll("|", "")}</h1>`;
+        } else if(backSlash.includes("*") && !backSlash.includes("Contraseña")){
+          sample[position].innerHTML += `<h2 class="inline-flex items-center text-lg my-2 text-blue-800/80">${backSlash.replaceAll("*", "")}</h2>`;
         } else {
           sample[position].innerHTML += `<label class="inline-flex items-center mt-3">
               <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600"><span
