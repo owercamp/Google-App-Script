@@ -187,7 +187,13 @@
         }
       }
 
-      if (Object.entries(respiratory).length > 0) {
+      if (Object.entries(respiratory).length > 0 &&
+        (
+          ![undefined, ""].includes(respiratory.fumando) ||
+          ![undefined, ""].includes(respiratory.covid19) ||
+          ![undefined, ""].includes(respiratory.factorDeRiesgo)
+        )
+      ) {
         const socio_emography = informationSocioEmography(data);
 
         const respiratoryAsses = {
