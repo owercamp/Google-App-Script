@@ -155,6 +155,7 @@ function auto_Increment() {
 
     if (column !== 2 || sheet.getRange(row, 2).isBlank()) return;
 
+    cell.setValue(cell.getValue().toString().toLocaleUpperCase());
     const data_value = sheet.getRange(row - 1, 3).getValue();
     const [, au] = data_value.toString().split('-');
     const incremented = parseInt(au, 10) + 1;
