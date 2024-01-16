@@ -3,17 +3,28 @@
 
 <head>
   <base target="_top">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          
+        }
+      },
+      darkMode: 'class'
+    }
+  </script>
   <?!= include('asset/css'); ?>
 </head>
 
-<body class="container">
-  <div class="loader-div d-none" id="loader-div">
+<body class="">
+  <!-- <div class="loader-div d-none" id="loader-div">
     <label id="title">¡¡ Procesando Información !!</label>
     <div class="loader" id="loader"></div>
     <span class="loaderX d-none" id="loaderX"></span>
     <span class="badge text-bg-warning mt-4">puede continuar usando el ordenador sin ningún inconveniente</span>
-  </div>
-  <h1>Almacenamiento nacional</h1>
+  </div> -->
+  <h1 class="text-base">Almacenamiento nacional</h1>
 
   <form id="excelForm">
     <input type="file" id="excelFile" accept=".xlsx">
