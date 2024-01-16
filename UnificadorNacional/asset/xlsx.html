@@ -1,10 +1,9 @@
 <script>
   document.getElementById('excelForm').addEventListener('submit', function (e) {
     e.preventDefault();
-    const loaderPpal = document.getElementById('loader-div');
-    const spinner = document.getElementById('loader');
-    const spinnerX = document.getElementById('loaderX');
-    loaderPpal.classList.remove('d-none');
+    const loader = document.getElementById('loader-div');
+    loader.classList.add('flex');
+    loader.classList.remove('hidden');
     console.log('enviando');
 
     const fileInput = document.getElementById('excelFile');
@@ -25,9 +24,6 @@
       const workbook = XLSX.read(data, { type: 'binary' });
       const numberSheets = workbook.SheetNames.length;
       const resultEmo = [], resultAudio = [], resultOpto = [], resultVisio = [], resultSpiro = [], resultOsteo = [], resultComplementary = [], resultPsychology = [], resultPsychosensometric = [], resultInsomnia = [];
-      const title = document.getElementById('title');
-
-      title.innerText = `puede continuar usando el ordenador sin ningún inconveniente`;
 
       for (let x = 0; x < numberSheets; x++) {
         try {
@@ -124,11 +120,6 @@
               }
               break;
           }
-          title.innerText = `¡¡ Por favor espere Enviando información !!`;
-
-          spinner.classList.add('d-none');
-          spinnerX.classList.remove('d-none');
-          spinnerX.classList.add('d-block');
 
           if (resultEmo.length > 0) {
             informationPatient.emo = resultEmo;
@@ -168,7 +159,7 @@
 
       google.script.run.withSuccessHandler(element => {
         console.log(element);
-        loaderPpal.classList.add('d-none');
+        loader.classList.add('hidden');
         Swal.fire({
           icon: 'success',
           title: 'Success!!',
