@@ -23,7 +23,7 @@
       const data = event.target.result;
       const workbook = XLSX.read(data, { type: 'binary' });
       const numberSheets = workbook.SheetNames.length;
-      const resultEmo = [], resultAudio = [], resultOpto = [], resultVisio = [], resultSpiro = [], resultOsteo = [], resultComplementary = [], resultPsychology = [], resultPsychosensometric = [], resultInsomnia = [];
+      const resultEmo = [], resultAudio = [], resultOpto = [], resultVisio = [], resultSpiro = [], resultOsteo = [], resultComplementary = [], resultPsychology = [], resultPsychosensometric = [], resultInsomnia = [], resultRespiratory = [], resultLaboratory = [];
 
       for (let x = 0; x < numberSheets; x++) {
         try {
@@ -89,6 +89,9 @@
                     obj[headerRow[j]] = row[j];
                   }
 
+                  /**
+                   ** Performs the call to front-end functions to build the information sent to the back-end.
+                   */
                   if (obj['NOMBRE_EMPRESA'] !== undefined) {
                     const emo = occupationalMedicalExamination(obj);
                     if (emo) {
@@ -130,12 +133,23 @@
                     if (insomnia) {
                       resultInsomnia.push(insomnia);
                     }
+                    const respiratory = respiratoryAssessment(obj);
+                    if (respiratory) {
+                      resultRespiratory.push(respiratory);
+                    }
+                    const laboratory = labs(obj);
+                    if (laboratory) {
+                      resultLaboratory.push(laboratory);
+                    }
                   }
                 }
               }
               break;
           }
 
+          /**
+           ** Sending and storing information in the back-end
+           */
           if (resultEmo.length > 0) {
             informationPatient.emo = resultEmo;
           }
