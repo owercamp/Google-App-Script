@@ -343,7 +343,11 @@
         }
       }
 
-      if (Object.entries(lab).length > 0) {
+      if (Object.entries(lab).length > 0 &&
+        (![undefined, ``].includes(lab.resultado)) ||
+        (![undefined, ``].includes(lab.indiceArterial)) ||
+        (![undefined, ``].includes(lab.acidoHipuricoTolueno))
+      ) {
         const socio_emography = informationSocioEmography(data);
 
         const labAsses = {
