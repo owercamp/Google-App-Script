@@ -191,11 +191,17 @@
         loader.classList.add('hidden');
         Swal.fire({
           icon: 'success',
-          title: 'Success!!',
+          title: 'almacenamiento exitoso',
           showConfirmButton: false,
-          timer: 2000,
+          timer: 4000,
           allowEscapeKey: false,
-          closeOnEsc: false
+          closeOnEsc: false,
+          showClass: {
+            popup: `animate__flipInX`
+          },
+          hideClass: {
+            popup: `animate__flipOutX`
+          }
         })
       })
         .insertData(informationPatient);
