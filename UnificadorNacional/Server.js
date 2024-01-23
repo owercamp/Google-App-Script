@@ -66,6 +66,11 @@ function insertData(data) {
         case `testInsomnia`:
           for (const insomnia of information[iterator]) {
             const response = insertInsomnia(insomnia,`TEST DE INSOMNIO`,spreadsheet);
+          }
+          break;
+        case `testRespiratory`:
+          for (const respiratory of information[iterator]) {
+            const response = insertRespiratory(respiratory,`VALORACION RESPIRATORIA X FISIO`,spreadsheet);
             Logger.log(response);
           }
       }
