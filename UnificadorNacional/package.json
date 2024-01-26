@@ -1,5 +1,6 @@
 {
   "devDependencies": {
+    "@types/google-apps-script": "^1.0.79",
     "tailwindcss": "^3.4.1"
   }
 }
