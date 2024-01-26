@@ -650,8 +650,8 @@ async function TransponerYReemplazarFormulas(id) {
   // Selecciona la hoja por su nombre
   var hoja = libro.getSheetByName("RCV-2023");
 
-  // Define el rango en A1Notation (X5:Z)
-  var rangoA1Notation = "Z3:AB" + hoja.getLastRow();
+  // Define el rango en A1Notation (AA3:AC)
+  var rangoA1Notation = "AA3:AC" + hoja.getLastRow();
 
   let valores = hoja.getRange(rangoA1Notation).getValues();
   let dataText = [];
@@ -818,31 +818,31 @@ function getGeneral(params = "") {
   if (params === "" || params === "TODAS") {
     info = data.filter(e => (e[0] != "") ? e : "");
   } else {
-    info = data.filter(e => (e[0] != "" && e[3] == params) ? e : "");
+    info = data.filter(e => (e[0] != "" && e[4] == params) ? e : "");
   }
 
-  return JSON.stringify(info.sort(function (a, b) { return a[5] - b[5]; }));
+  return JSON.stringify(info.sort(function (a, b) { return a[6] - b[6]; }));
 }
 
 function removePoint() {
   const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
-  const sheet = spreadsheet.getSheetByName("RCV-2023");
+  const sheet = spreadsheet.getActiveSheet();
   const column = sheet.getActiveCell().getColumn();
   const row = sheet.getActiveCell().getRow();
   const my_value = sheet.getActiveCell().getValue();
   const validateDate = isNaN(Date.parse(my_value));
 
-  if (column >= 30 && sheet.getRange(row, column).getValue() !== "" && validateDate === true) {
+  if (column >= 31 && sheet.getRange(row, column).getValue() !== "" && validateDate === true) {
     let remove = sheet.getActiveCell().getValue().toString().replaceAll(",", ";");
     sheet.getRange(row, column).setValue(remove);
   }
 }
 
 const pointer = {
-  framingham: 26,
-  aterogenia: 28,
-  sindrome: 27,
-  clasificacion: 29
+  framingham: 27,
+  aterogenia: 29,
+  sindrome: 28,
+  clasificacion: 30
 }
 
 /**
@@ -854,12 +854,12 @@ const pointer = {
 function classifications() {
   const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
 
-  if (spreadsheet.getActiveSheet().getName() === "RCV-2023") {
-    const sheet = spreadsheet.getSheetByName("RCV-2023");
+  if (["RCV-2023", "RCV-2024"].includes(spreadsheet.getActiveSheet().getName())) {
+    const sheet = spreadsheet.getActiveSheet();
     const row = sheet.getActiveCell().getRow();
     const column = sheet.getActiveCell().getColumn();
 
-    if (column >= 12 && column <= 28) {
+    if (column >= 13 && column <= 29) {
       let framingham = sheet.getRange(row, pointer.framingham).getValue();
       let aterogenia = sheet.getRange(row, pointer.aterogenia).getValue();
       let sindrome = sheet.getRange(row, pointer.sindrome).getValue();
@@ -902,7 +902,7 @@ function classifications() {
 function verified() {
   const spreadsheet = SpreadsheetApp.getActiveSheet();
 
-  if (spreadsheet.getName() === "RCV-2023") {
+  if (["RCV-2023", "RCV-2024"].includes(spreadsheet.getName())) {
     spreadsheet.getRange("AB3").activate();
 
     while (spreadsheet.getActiveCell().getValue()[0] !== undefined) {
@@ -910,4 +910,23 @@ function verified() {
       spreadsheet.getActiveCell().offset(1, 0).activate();
     }
   }
+}
+
+/**
+ * Clears the contents and formatting of specific ranges in the active spreadsheet.
+ *
+ * @return {void}
+ */
+function clearContents() {
+  const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  const sheet = spreadsheet.getActiveSheet();
+  const range = sheet.getRange(3, 1, sheet.getLastRow(), 26);
+  const functions = sheet.getRange(3, 27, sheet.getLastRow(), 4);
+  const totalRows = sheet.getRange(3, 1, sheet.getLastRow(), 30);
+
+  range.clearContent();
+  range.clearFormat();
+  functions.clearFormat();
+  totalRows.activate();
+  sheet.getActiveRangeList().setBorder(true, true, true, true, true, true, '#000000', SpreadsheetApp.BorderStyle.SOLID);
 }
