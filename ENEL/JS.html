@@ -520,9 +520,9 @@
       $("#central").append(`<option value=""></option>`);
       $("#central").append(`<option value="TODAS">TODAS</option>`);
       row.forEach(element => {
-        if (!filter.includes(element[3])) {
-          filter.push(element[3]);
-          $("#central").append(`<option value="${element[3]}">${element[3]}</option>`);
+        if (!filter.includes(element[4])) {
+          filter.push(element[4]);
+          $("#central").append(`<option value="${element[4]}">${element[4]}</option>`);
         }
       });
     })
@@ -596,8 +596,8 @@
     }
 
     params.forEach(element => {
-      if (!centrals.includes(element[3])) {
-        centrals.push(element[3]);
+      if (!centrals.includes(element[4])) {
+        centrals.push(element[4]);
       }
     })
 
@@ -619,37 +619,37 @@
       references.LOW.Counter = 0;
       references.NOLEVEL.Counter = 0;
       params.forEach(register => {
-        if (register[3] === central && register[25].includes(references.HIGH.High)) {
-          if (status && register[25].includes(status)) {
+        if (register[4] === central && register[26].includes(references.HIGH.High)) {
+          if (status && register[26].includes(status)) {
             references.HIGH.Counter++;
-            highRegisters.push(`${register[7]}-${register[5]}`);
+            highRegisters.push(`${register[8]}-${register[6]}`);
           } else {
             references.HIGH.Counter++;
-            highRegisters.push(`${register[7]}-${register[5]}`);
+            highRegisters.push(`${register[8]}-${register[6]}`);
           }
-        } else if (register[3] === central && register[25].includes(references.MEDIUM.Moderate)) {
-          if (status && register[25].includes(status)) {
+        } else if (register[4] === central && register[26].includes(references.MEDIUM.Moderate)) {
+          if (status && register[26].includes(status)) {
             references.MEDIUM.Counter++;
-            mediumRegisters.push(`${register[7]}-${register[5]}`);
+            mediumRegisters.push(`${register[8]}-${register[6]}`);
           } else {
             references.MEDIUM.Counter++;
-            mediumRegisters.push(`${register[7]}-${register[5]}`);
+            mediumRegisters.push(`${register[8]}-${register[6]}`);
           }
-        } else if (register[3] === central && register[25].includes(references.LOW.Low)) {
-          if (status && register[25].includes(status)) {
+        } else if (register[4] === central && register[26].includes(references.LOW.Low)) {
+          if (status && register[26].includes(status)) {
             references.LOW.Counter++;
-            lowRegisters.push(`${register[7]}-${register[5]}`);
+            lowRegisters.push(`${register[8]}-${register[6]}`);
           } else {
             references.LOW.Counter++;
-            lowRegisters.push(`${register[7]}-${register[5]}`);
+            lowRegisters.push(`${register[8]}-${register[6]}`);
           }
-        } else if (register[3] === central && ![references.HIGH.High, references.MEDIUM.Moderate, references.LOW.Low].includes(register[25])) {
+        } else if (register[4] === central && ![references.HIGH.High, references.MEDIUM.Moderate, references.LOW.Low].includes(register[26])) {
           if (status && ![references.HIGH.High, references.MEDIUM.Moderate, references.LOW.Low].includes(status)) {
             references.NOLEVEL.Counter++;
-            noLevelRegisters.push(`${register[7]}-${register[5]}`);
+            noLevelRegisters.push(`${register[8]}-${register[6]}`);
           } else {
             references.NOLEVEL.Counter++;
-            noLevelRegisters.push(`${register[7]}-${register[5]}`);
+            noLevelRegisters.push(`${register[8]}-${register[6]}`);
           }
         }
       })
@@ -919,8 +919,8 @@
     }
 
     params.forEach(element => {
-      if (!centrals.includes(element[3])) {
-        centrals.push(element[3]);
+      if (!centrals.includes(element[4])) {
+        centrals.push(element[4]);
       }
     })
 
@@ -941,29 +941,29 @@
       referencesMetabolic.withoutAlterations.Counter = 0;
       referencesMetabolic.requiredData.Counter = 0;
       params.forEach(register => {
-        if (register[3] === central && register[26].includes(referencesMetabolic.withAlterations.message)) {
-          if (status && register[26].includes(status)) {
+        if (register[4] === central && register[27].includes(referencesMetabolic.withAlterations.message)) {
+          if (status && register[27].includes(status)) {
             referencesMetabolic.withAlterations.Counter++;
-            withAlterationsRegister.push(`${register[7]}-${register[5]}`);
+            withAlterationsRegister.push(`${register[8]}-${register[6]}`);
           } else {
             referencesMetabolic.withAlterations.Counter++;
-            withAlterationsRegister.push(`${register[7]}-${register[5]}`);
+            withAlterationsRegister.push(`${register[8]}-${register[6]}`);
           }
-        } else if (register[3] === central && register[26].includes(referencesMetabolic.withoutAlterations.message)) {
-          if (status && register[26].includes(status)) {
+        } else if (register[4] === central && register[27].includes(referencesMetabolic.withoutAlterations.message)) {
+          if (status && register[27].includes(status)) {
             referencesMetabolic.withoutAlterations.Counter++;
-            withoutAlterationsRegister.push(`${register[7]}-${register[5]}`);
+            withoutAlterationsRegister.push(`${register[8]}-${register[6]}`);
           } else {
             referencesMetabolic.withoutAlterations.Counter++;
-            withoutAlterationsRegister.push(`${register[7]}-${register[5]}`);
+            withoutAlterationsRegister.push(`${register[8]}-${register[6]}`);
           }
-        } else if (register[3] === central && register[26].includes(referencesMetabolic.requiredData.message)) {
-          if (status && register[26].includes(status)) {
+        } else if (register[4] === central && register[27].includes(referencesMetabolic.requiredData.message)) {
+          if (status && register[27].includes(status)) {
             referencesMetabolic.requiredData.Counter++;
-            requiredDataRegister.push(`${register[7]}-${register[5]}`);
+            requiredDataRegister.push(`${register[8]}-${register[6]}`);
           } else {
             referencesMetabolic.requiredData.Counter++;
-            requiredDataRegister.push(`${register[7]}-${register[5]}`);
+            requiredDataRegister.push(`${register[8]}-${register[6]}`);
           }
         }
       })
@@ -1186,8 +1186,8 @@
     }
 
     params.forEach(element => {
-      if (!centrals.includes(element[3])) {
-        centrals.push(element[3]);
+      if (!centrals.includes(element[4])) {
+        centrals.push(element[4]);
       }
     })
 
@@ -1207,29 +1207,29 @@
       referencesAterogenic.MEDIUM.Counter = 0;
       referencesAterogenic.LOW.Counter = 0;
       params.forEach(register => {
-        if (register[3] === central && register[27].includes(referencesAterogenic.HIGH.High)) {
-          if (status && register[27].includes(status)) {
+        if (register[4] === central && register[28].includes(referencesAterogenic.HIGH.High)) {
+          if (status && register[28].includes(status)) {
             referencesAterogenic.HIGH.Counter++;
-            highRegisters.push(`${register[7]}-${register[5]}`);
+            highRegisters.push(`${register[8]}-${register[6]}`);
           } else {
             referencesAterogenic.HIGH.Counter++;
-            highRegisters.push(`${register[7]}-${register[5]}`);
+            highRegisters.push(`${register[8]}-${register[6]}`);
           }
-        } else if (register[3] === central && register[27].includes(referencesAterogenic.MEDIUM.Medium)) {
-          if (status && register[27].includes(status)) {
+        } else if (register[4] === central && register[28].includes(referencesAterogenic.MEDIUM.Medium)) {
+          if (status && register[28].includes(status)) {
             referencesAterogenic.MEDIUM.Counter++;
-            mediumRegisters.push(`${register[7]}-${register[5]}`);
+            mediumRegisters.push(`${register[8]}-${register[6]}`);
           } else {
             referencesAterogenic.MEDIUM.Counter++;
-            mediumRegisters.push(`${register[7]}-${register[5]}`);
+            mediumRegisters.push(`${register[8]}-${register[6]}`);
           }
-        } else if (register[3] === central && register[27].includes(referencesAterogenic.LOW.Low)) {
-          if (status && register[27].includes(status)) {
+        } else if (register[4] === central && register[28].includes(referencesAterogenic.LOW.Low)) {
+          if (status && register[28].includes(status)) {
             referencesAterogenic.LOW.Counter++;
-            lowRegisters.push(`${register[7]}-${register[5]}`);
+            lowRegisters.push(`${register[8]}-${register[6]}`);
           } else {
             referencesAterogenic.LOW.Counter++;
-            lowRegisters.push(`${register[7]}-${register[5]}`);
+            lowRegisters.push(`${register[8]}-${register[6]}`);
           }
         }
       })
@@ -1464,8 +1464,8 @@
     }
 
     params.forEach(element => {
-      if (!centrals.includes(element[3])) {
-        centrals.push(element[3]);
+      if (!centrals.includes(element[4])) {
+        centrals.push(element[4]);
       }
     })
 
@@ -1487,44 +1487,43 @@
       references.LOW.Counter = 0;
       references.NOLEVEL.Counter = 0;
       params.forEach(register => {
-        if (register[3] === central && register[28].includes(references.HIGH.High.toLocaleUpperCase())) {
-          if (status && register[28].includes(status.toLocaleUpperCase())) {
+        if (register[4] === central && register[29].includes(references.HIGH.High.toLocaleUpperCase())) {
+          if (status && register[29].includes(status.toLocaleUpperCase())) {
             references.HIGH.Counter++;
-            highRegisters.push(`${register[7]}-${register[5]}`);
+            highRegisters.push(`${register[8]}-${register[6]}`);
           } else {
             references.HIGH.Counter++;
-            highRegisters.push(`${register[7]}-${register[5]}`);
+            highRegisters.push(`${register[8]}-${register[6]}`);
           }
-        } else if (register[3] === central && register[28].includes(references.MEDIUM.Medium.toLocaleUpperCase())) {
-          if (status && register[28].includes(status.toLocaleUpperCase())) {
+        } else if (register[4] === central && register[29].includes(references.MEDIUM.Medium.toLocaleUpperCase())) {
+          if (status && register[29].includes(status.toLocaleUpperCase())) {
             references.MEDIUM.Counter++;
-            mediumRegisters.push(`${register[7]}-${register[5]}`);
+            mediumRegisters.push(`${register[8]}-${register[6]}`);
           } else {
             references.MEDIUM.Counter++;
-            mediumRegisters.push(`${register[7]}-${register[5]}`);
+            mediumRegisters.push(`${register[8]}-${register[6]}`);
           }
-        } else if (register[3] === central && register[28].includes(references.LOW.Low.toLocaleUpperCase())) {
-          if (status && register[28].includes(status.toLocaleUpperCase())) {
+        } else if (register[4] === central && register[29].includes(references.LOW.Low.toLocaleUpperCase())) {
+          if (status && register[29].includes(status.toLocaleUpperCase())) {
             references.LOW.Counter++;
-            lowRegisters.push(`${register[7]}-${register[5]}`);
+            lowRegisters.push(`${register[8]}-${register[6]}`);
           } else {
             references.LOW.Counter++;
-            lowRegisters.push(`${register[7]}-${register[5]}`);
+            lowRegisters.push(`${register[8]}-${register[6]}`);
           }
-        } else if (register[3] === central && register[28].includes(`Sin Clasificación los parametros no corresponden`)) {
-          if (status && register[28].includes(`Sin Clasificación los parametros no corresponden`)) {
+        } else if (register[4] === central && register[29].includes(`Sin Clasificación los parametros no corresponden`)) {
+          if (status && register[29].includes(`Sin Clasificación los parametros no corresponden`)) {
             references.NOLEVEL.Counter++;
-            noLevelRegisters.push(`${register[7]}-${register[5]}`);
+            noLevelRegisters.push(`${register[8]}-${register[6]}`);
           } else {
             references.NOLEVEL.Counter++;
-            noLevelRegisters.push(`${register[7]}-${register[5]}`);
+            noLevelRegisters.push(`${register[8]}-${register[6]}`);
           }
         }
       })
 
       let btnHigh, btnMedium, btnLow, btnNoLevel;
 
-      debugger;
       switch (status) {
         case references.HIGH.High:
           btnHigh = `0`;
@@ -1789,7 +1788,7 @@
 
       row.forEach(register => {
         let monthsData = [];
-        let training = 29, dateThemeTraining = 30, workshop = 31, dateThemeWorkshop = 32, dateTracking = 33, diagnosticCV = 34, observationTracking = 35, valNutritional = 36, observationNutritional = 37, datePhysiotherapy = 38, observationPhysiotherapy = 39, datePsychology = 40, observationPsychology = 41, GYM = 42;
+        let training = 30, dateThemeTraining = 31, workshop = 32, dateThemeWorkshop = 33, dateTracking = 34, diagnosticCV = 35, observationTracking = 36, valNutritional = 37, observationNutritional = 38, datePhysiotherapy = 39, observationPhysiotherapy = 40, datePsychology = 41, observationPsychology = 42, GYM = 43;
 
         months.forEach(month => {
           let dataInside = [];
@@ -1830,12 +1829,12 @@
         insertRow.push({
           0: register[1],
           1: register[2],
-          2: register[3],
-          3: register[4],
-          4: register[5],
+          2: register[4],
+          3: register[5],
+          4: register[6],
           5: register[7],
-          6: register[10],
-          7: `<button type="button" class="btn btn-primary btn-sm d-flex infoGeneral" style="width: 2.5em!important; height: 2.5em!important;" data-bs-toggle="modal" data-bs-target="#totalInfo" data-gerencia="${register[1]}" data-examen="${register[2]}" data-central="${register[3]}" data-paciente="${register[5]}" data-identificacion="${register[7]}" data-cargo="${register[10]}" data-sexo="${register[9]}" data-edad="${register[8]}" data-framingham="${register[25]}" data-metabolico="${register[26]}" data-aterogenico="${register[27]}" data-final="${register[28]}" data-months="${monthsData}">${icon}</button>`
+          6: register[11],
+          7: `<button type="button" class="btn btn-primary btn-sm d-flex infoGeneral" style="width: 2.5em!important; height: 2.5em!important;" data-bs-toggle="modal" data-bs-target="#totalInfo" data-gerencia="${register[1]}" data-examen="${register[2]}" data-central="${register[4]}" data-paciente="${register[6]}" data-identificacion="${register[8]}" data-cargo="${register[11]}" data-sexo="${register[10]}" data-edad="${register[9]}" data-framingham="${register[26]}" data-metabolico="${register[27]}" data-aterogenico="${register[28]}" data-final="${register[29]}" data-months="${monthsData}">${icon}</button>`
         })
       });
 
