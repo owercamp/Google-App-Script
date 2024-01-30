@@ -7,7 +7,9 @@
 function doGet() {
   // const template = HtmlService.createTemplateFromFile("index");
   const template = HtmlService.createTemplateFromFile("index");
-  const outputTemplate = template.evaluate();
+  const outputTemplate = template.evaluate()
+    .setTitle("Apps Script | Cargue Reporte Empresarial")
+    .setFaviconUrl("https://soaics.grupoaltum.com.co/assets/media/logos/favicon.png");
   return outputTemplate;
 }
 
@@ -56,14 +58,14 @@ const informations = {
    */
   openGraph() {
     var html = HtmlService.createHtmlOutput('<html>'
-    + '<script>' +
-    "var urlToOpen = 'https://script.google.com/a/macros/soandes.co/s/AKfycbxxYErn5WzKSO4WmKlByr2GzHgRbwx3nFsSZhWAmMR1/dev';" +
-    "var winRef = window.open(urlToOpen);" +
-    "google.script.host.close();"
-    + '</script>'
-    + '</html>')
-    .setWidth(90).setHeight(1);
-  SpreadsheetApp.getUi().showModalDialog(html, "Abriendo Informe");
+      + '<script>' +
+      "var urlToOpen = 'https://script.google.com/a/macros/soandes.co/s/AKfycbxxYErn5WzKSO4WmKlByr2GzHgRbwx3nFsSZhWAmMR1/dev';" +
+      "var winRef = window.open(urlToOpen);" +
+      "google.script.host.close();"
+      + '</script>'
+      + '</html>')
+      .setWidth(90).setHeight(1);
+    SpreadsheetApp.getUi().showModalDialog(html, "Abriendo Informe");
   },
   /**
    * Insert a register in the active spreadsheet.
@@ -99,11 +101,11 @@ function onOpen(e) {
   let recipients = {}
   if (Session.getActiveUser() == 'ower.campos@soandes.co') {
     recipients = {
-    'Reporte Graficas': 'informations.openGraph',
-    'Registrar Fecha': 'informations.insertRegister'
+      'Reporte Graficas': 'informations.openGraph',
+      'Registrar Fecha': 'informations.insertRegister'
     }
   } else {
-    recipients ={
+    recipients = {
       'graficas': 'informations.openGraph'
     }
   }
@@ -116,5 +118,5 @@ function onOpen(e) {
 function prueba() {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
   const sh = ss.getSheetByName("Registro");
-  sh.getActiveCell().setValue("prueba");  
+  sh.getActiveCell().setValue("prueba");
 }
