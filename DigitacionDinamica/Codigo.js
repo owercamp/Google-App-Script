@@ -1,6 +1,8 @@
 function doGet() {
   let template = HtmlService.createTemplateFromFile("index");
-  let output = template.evaluate();
+  let output = template.evaluate()
+    .setTitle("Apps Script | Digitación Dinámica")
+    .setFaviconUrl("https://soaics.grupoaltum.com.co/assets/media/logos/favicon.png");
 
   return output;
 }
