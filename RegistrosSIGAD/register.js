@@ -12,87 +12,143 @@ function PRUEBA(input) {
  * mails from users
  */
 const mailUser = {
-  leidySanchez: "leidy.sanchez@soandes.co",
-  camilaGonzalez: "camila.gonzalez@soandes.co",
-  nataliaGuerrero: "natalia.guerrero@soandes.co",
-  santiagoRodriguez: "santiago.rodriguez@soandes.co",
-  katherineSanchez: "katherine.sanchez@soandes.co",
-  juanAvila: "juan.avila@soandes.co",
-  monicaMarroquin: "monica.marroquin@soandes.co",
+  leidySanchez: {
+    mail: "leidy.sanchez@soandes.co",
+    withOutComment: `<br/><br/><strong style="color:red">OJO:</strong><br/><br/> Se informa a la Señorita Leidy Sanchez por favor realice el envio de la nota correspondiente`,
+    withComment: `<br/><br/><strong style="color:red">OJO:</strong><br/><br/> La nota corresponde a la informada por la Señorita Leidy Sanchez`
+  },
+  camilaGonzalez: {
+    mail: "camila.gonzalez@soandes.co",
+    withOutComment: `<br/><br/><strong style="color:red">OJO:</strong><br/><br/> Se informa a la Señorita Camila Gonzalez por favor realice el envio de la nota correspondiente`,
+    withComment: `<br/><br/><strong style="color:red">OJO:</strong><br/><br/> La nota corresponde a la informada por la Señorita Camila Gonzalez`
+  },
+  nataliaGuerrero: {
+    mail: "natalia.guerrero@soandes.co",
+    withOutComment: `<br/><br/><strong style="color:red">OJO:</strong><br/><br/> Se informa a la Señorita Natalia Guerrero por favor realice el envio de la nota correspondiente`,
+    withComment: `<br/><br/><strong style="color:red">OJO:</strong><br/><br/> La nota corresponde a la informada por la Señorita Natalia Guerrero`
+  },
+  santiagoRodriguez: {
+    mail: "santiago.rodriguez@soandes.co",
+    withOutComment: `<br/><br/><strong style="color:red">OJO:</strong><br/><br/> Se informa a el Señor Santiago Rodriguez por favor realice el envio de la nota correspondiente`,
+    withComment: `<br/><br/><strong style="color:red">OJO:</strong><br/><br/> La nota corresponde a la informada por el Señor Santiago Rodriguez`
+  },
+  katherineSanchez: {
+    mail: "katherine.sanchez@soandes.co",
+    withOutComment: `<br/><br/><strong style="color:red">OJO:</strong><br/><br/> Se informa a la Señora Katherine Sanchez por favor realice el envio de la nota correspondiente`,
+    withComment: `<br/><br/><strong style="color:red">OJO:</strong><br/><br/> La nota corresponde a la informada por la Señora Katherine Sanchez`
+  },
+  juanAvila: {
+    mail: "juan.avila@soandes.co",
+    withOutComment: `<br/><br/><strong style="color:red">OJO:</strong><br/><br/> Se informa a el Señor Juan Avila por favor realice el envio de la nota correspondiente`,
+    withComment: `<br/><br/><strong style="color:red">OJO:</strong><br/><br/> La nota corresponde a la informada por el Señor Juan Avila`
+  },
+  monicaMarroquin: {
+    mail: "monica.marroquin@soandes.co",
+    withOutComment: `<br/><br/><strong style="color:red">OJO:</strong><br/><br/> Se informa a la Señora Monica Marroquin por favor realice el envio de la nota correspondiente`,
+    withComment: `<br/><br/><strong style="color:red">OJO:</strong><br/><br/> La nota corresponde a la informada por la Señora Monica Marroquin`
+  },
   gestionDocumental: "gestiondocumental@soandes.co",
   dianaOrtiz: "diana.ortiz@soandes.co"
 }
 
 const mailToSend = {
-  /**
-   * Sends an email to Leidy Sanchez with the given mailUser properties.
-   *
-   * @param {object} mailUser - An object containing the properties for sending the email.
-   * @return {void} This function does not return anything.
-   */
-  leidySanchez() {
-    const { leidySanchez, gestionDocumental, dianaOrtiz } = mailUser;
-    mailSend(leidySanchez, gestionDocumental, dianaOrtiz);
+  leidySanchez: {
+    mail() {
+      const { leidySanchez, gestionDocumental, dianaOrtiz } = mailUser;
+      mailSend(leidySanchez.mail, gestionDocumental, dianaOrtiz);
+    },
+    withComment() {
+      const { leidySanchez } = mailUser;
+      mailSendWithComment(leidySanchez.withComment);
+    },
+    withOutComment() {
+      const { leidySanchez } = mailUser;
+      mailSendWithOutComment(leidySanchez.withOutComment);
+    }
   },
-  /**
-   * Sends an email to Camila Gonzalez with the given mailUser properties.
-   *
-   * @param {object} mailUser - An object containing the properties for sending the email.
-   * @return {void} This function does not return anything.
-   */
-  camilaGonzalez() {
-    const { camilaGonzalez, gestionDocumental, dianaOrtiz } = mailUser;
-    mailSend(camilaGonzalez, gestionDocumental, dianaOrtiz);
+  camilaGonzalez: {
+    mail() {
+      const { camilaGonzalez, gestionDocumental, dianaOrtiz } = mailUser;
+      mailSend(camilaGonzalez.mail, gestionDocumental, dianaOrtiz);
+    },
+    withComment() {
+      const { camilaGonzalez } = mailUser;
+      mailSendWithComment(camilaGonzalez.withComment);
+    },
+    withOutComment() {
+      const { camilaGonzalez } = mailUser;
+      mailSendWithOutComment(camilaGonzalez.withOutComment);
+    }
   },
-  /**
-   * Sends an email to Natalia Guerrero with the given mailUser properties.
-   *
-   * @param {object} mailUser - An object containing the properties for sending the email.
-   * @return {void} This function does not return anything.
-   */
-  nataliaGuerrero() {
-    const { nataliaGuerrero, gestionDocumental, dianaOrtiz } = mailUser;
-    mailSend(nataliaGuerrero, gestionDocumental, dianaOrtiz);
+  nataliaGuerrero: {
+    mail() {
+      const { nataliaGuerrero, gestionDocumental, dianaOrtiz } = mailUser;
+      mailSend(nataliaGuerrero.mail, gestionDocumental, dianaOrtiz);
+    },
+    withComment() {
+      const { nataliaGuerrero } = mailUser;
+      mailSendWithComment(nataliaGuerrero.withComment);
+    },
+    withOutComment() {
+      const { nataliaGuerrero } = mailUser;
+      mailSendWithOutComment(nataliaGuerrero.withOutComment);
+    }
   },
-  /**
-   * Sends an email to Diana Perdomo with the given mailUser properties.
-   *
-   * @param {object} mailUser - An object containing the properties for sending the email.
-   * @return {void} This function does not return anything.
-   */
-  santiagoRodriguez() {
-    const { santiagoRodriguez, gestionDocumental, dianaOrtiz } = mailUser;
-    mailSend(santiagoRodriguez, gestionDocumental, dianaOrtiz);
+  santiagoRodriguez: {
+    mail() {
+      const { santiagoRodriguez, gestionDocumental, dianaOrtiz } = mailUser;
+      mailSend(santiagoRodriguez.mail, gestionDocumental, dianaOrtiz);
+    },
+    withComment() {
+      const { santiagoRodriguez } = mailUser;
+      mailSendWithComment(santiagoRodriguez.withComment);
+    },
+    withOutComment() {
+      const { santiagoRodriguez } = mailUser;
+      mailSendWithOutComment(santiagoRodriguez.withOutComment);
+    }
   },
-  /**
-   * Sends an email to Katherine Sanchez with the given mailUser properties.
-   *
-   * @param {object} mailUser - An object containing the properties for sending the email.
-   * @return {void} This function does not return anything.
-   */
-  katherineSanchez() {
-    const { katherineSanchez, gestionDocumental, dianaOrtiz } = mailUser;
-    mailSend(katherineSanchez, gestionDocumental, dianaOrtiz);
+  katherineSanchez: {
+    mail() {
+      const { katherineSanchez, gestionDocumental, dianaOrtiz } = mailUser;
+      mailSend(katherineSanchez.mail, gestionDocumental, dianaOrtiz);
+    },
+    withComment() {
+      const { katherineSanchez } = mailUser;
+      mailSendWithComment(katherineSanchez.withComment);
+    },
+    withOutComment() {
+      const { katherineSanchez } = mailUser;
+      mailSendWithOutComment(katherineSanchez.withOutComment);
+    }
   },
-  /**
-   * Sends an email to Juan Avila with the given mailUser properties.
-   *
-   * @param {object} mailUser - An object containing the properties for sending the email.
-   * @return {void} This function does not return anything.
-   */
-  juanAvila() {
-    const { juanAvila, gestionDocumental, dianaOrtiz } = mailUser;
-    mailSend(juanAvila, gestionDocumental, dianaOrtiz);
+  juanAvila: {
+    mail() {
+      const { juanAvila, gestionDocumental, dianaOrtiz } = mailUser;
+      mailSend(juanAvila.mail, gestionDocumental, dianaOrtiz);
+    },
+    withComment() {
+      const { juanAvila } = mailUser;
+      mailSendWithComment(juanAvila.withComment);
+    },
+    withOutComment() {
+      const { juanAvila } = mailUser;
+      mailSendWithOutComment(juanAvila.withOutComment);
+    }
   },
-  /**
-   * Sends an email to Monica Marroquin with the given mailUser properties.
-   *
-   * @param {object} mailUser - An object containing the properties for sending the email.
-   * @return {void} This function does not return anything.
-   */
-  monicaMarroquin() {
-    const { monicaMarroquin, gestionDocumental, dianaOrtiz } = mailUser;
-    mailSend(monicaMarroquin, gestionDocumental, dianaOrtiz);
+  monicaMarroquin: {
+    mail() {
+      const { monicaMarroquin, gestionDocumental, dianaOrtiz } = mailUser;
+      mailSend(monicaMarroquin.mail, gestionDocumental, dianaOrtiz);
+    },
+    withComment() {
+      const { monicaMarroquin } = mailUser;
+      mailSendWithComment(monicaMarroquin.withComment);
+    },
+    withOutComment() {
+      const { monicaMarroquin } = mailUser;
+      mailSendWithOutComment(monicaMarroquin.withOutComment);
+    }
   }
 }
 
@@ -115,6 +171,47 @@ const mailSend = (manager, group, director) => {
 }
 
 /**
+ * Sends an email with the given message.
+ *
+ * @param {string} mail - the message to be sent in the email
+ * @return {void} 
+ */
+const mailSendWithComment = (mail) => {
+  try {
+    const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+    let message = spreadsheet.getActiveSheet().getActiveCell().getValue();
+    if (["La nota corresponde a"].includes(message)) {
+      message += message;
+    } else {
+      message += mail;
+    }
+    spreadsheet.getActiveSheet().getActiveCell().setValue(message);
+  } catch (error) {
+    Logger.log(`${error.name}: ${error.message}`);
+  }
+}
+/**
+ * Sends mail and updates spreadsheet with message.
+ *
+ * @param {string} mail - the mail to be sent
+ * @return {void} 
+ */
+const mailSendWithOutComment = (mail) => {
+  try {
+    const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+    let message = spreadsheet.getActiveSheet().getActiveCell().getValue();
+    if (["Se informa a"].includes(message)) {
+      message += message;
+    } else {
+      message += mail;
+    }
+    spreadsheet.getActiveSheet().getActiveCell().setValue(message);
+  } catch (error) {
+    Logger.log(`${error.name}: ${error.message}`);
+  }
+}
+
+/**
  * Creates a custom menu in the Google Sheets UI that allows the user to send emails to specific recipients based on their name.
  *
  * @param {Object} e - the event object triggered by opening the Google Sheet
@@ -122,23 +219,61 @@ const mailSend = (manager, group, director) => {
  */
 function onOpen(e) {
   try {
-    const menu = SpreadsheetApp.getUi().createMenu('GESTORES DB');
-    const recipients = {
-      'Leidy Sanchez': 'mailToSend.leidySanchez',
-      'Camila Gonzalez': 'mailToSend.camilaGonzalez',
-      'Natalia Guerrero': 'mailToSend.nataliaGuerrero',
-      'Santiago Rodriguez': 'mailToSend.santiagoRodriguez',
-      'Katherine Sanchez': 'mailToSend.katherineSanchez',
-      'Juan Avila': 'mailToSend.juanAvila',
-      'Monica Marroquin': 'mailToSend.monicaMarroquin'
-    };
-    for (const [name, recipient] of Object.entries(recipients).sort()) {
-      menu.addItem(name, recipient);
-    }
-    menu.addToUi();
+    const menu = SpreadsheetApp.getUi();
+    menu.createMenu('GESTORES DB')
+      .addSubMenu(menu.createMenu('Leidy Sanchez')
+        .addItem('Correos', 'mailToSend.leidySanchez.mail')
+        .addItem('Nota Anexada', 'mailToSend.leidySanchez.withComment')
+        .addItem('Solicitud de Nota', 'mailToSend.leidySanchez.withOutComment')
+      )
+      .addSubMenu(menu.createMenu('Camila Gonzalez')
+        .addItem('Correo', 'mailToSend.camilaGonzalez.mail')
+        .addItem('Nota Anexada', 'mailToSend.camilaGonzalez.withComment')
+        .addItem('Solicitud de Nota', 'mailToSend.camilaGonzalez.withOutComment')
+      )
+      .addSubMenu(menu.createMenu('Natalia Guerrero')
+        .addItem('Correo', 'mailToSend.nataliaGuerrero.mail')
+        .addItem('Nota Anexada', 'mailToSend.nataliaGuerrero.withComment')
+        .addItem('Solicitud de Nota', 'mailToSend.nataliaGuerrero.withOutComment')
+      )
+      .addSubMenu(menu.createMenu('Santiago Rodriguez')
+        .addItem('Correo', 'mailToSend.santiagoRodriguez.mail')
+        .addItem('Nota Anexada', 'mailToSend.santiagoRodriguez.withComment')
+        .addItem('Solicitud de Nota', 'mailToSend.santiagoRodriguez.withOutComment')
+      )
+      .addSubMenu(menu.createMenu('Juan Avila')
+        .addItem('Correo', 'mailToSend.juanAvila.mail')
+        .addItem('Nota Anexada', 'mailToSend.juanAvila.withComment')
+        .addItem('Solicitud de Nota', 'mailToSend.juanAvila.withOutComment')
+      )
+      .addSubMenu(menu.createMenu('Monica Marroquin')
+        .addItem('Correo', 'mailToSend.monicaMarroquin.mail')
+        .addItem('Nota Anexada', 'mailToSend.monicaMarroquin.withComment')
+        .addItem('Solicitud de Nota', 'mailToSend.monicaMarroquin.withOutComment')
+      )
+      .addToUi();
   } catch (error) {
     Logger.log(`${error.name}: ${error.message}`);
   }
+
+  // try {
+  //   const menu = SpreadsheetApp.getUi().createMenu('GESTORES DB');
+  //   const recipients = {
+  //     'Leidy Sanchez': 'mailToSend.leidySanchez',
+  //     'Camila Gonzalez': 'mailToSend.camilaGonzalez',
+  //     'Natalia Guerrero': 'mailToSend.nataliaGuerrero',
+  //     'Santiago Rodriguez': 'mailToSend.santiagoRodriguez',
+  //     'Katherine Sanchez': 'mailToSend.katherineSanchez',
+  //     'Juan Avila': 'mailToSend.juanAvila',
+  //     'Monica Marroquin': 'mailToSend.monicaMarroquin'
+  //   };
+  //   for (const [name, recipient] of Object.entries(recipients).sort()) {
+  //     menu.addItem(name, recipient);
+  //   }
+  //   menu.addToUi();
+  // } catch (error) {
+  //   Logger.log(`${error.name}: ${error.message}`);
+  // }
 }
 
 /**
