@@ -831,10 +831,11 @@ function removePoint() {
   const sheet = spreadsheet.getActiveSheet();
   const column = sheet.getActiveCell().getColumn();
   const row = sheet.getActiveCell().getRow();
+  const num = (sheet.getName() === "RCV-2023") ? 31 : 32;
   const my_value = sheet.getActiveCell().getValue();
   const validateDate = isNaN(Date.parse(my_value));
 
-  if (column >= 31 && sheet.getRange(row, column).getValue() !== "" && validateDate === true) {
+  if (column >= num && sheet.getRange(row, column).getValue() !== "" && validateDate === true) {
     let remove = sheet.getActiveCell().getValue().toString().replaceAll(",", ";");
     sheet.getRange(row, column).setValue(remove);
   }
