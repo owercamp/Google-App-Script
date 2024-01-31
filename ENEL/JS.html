@@ -14,6 +14,22 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 <script>
+  const position_column_sheet = {
+    centrals: 4,
+    framingham: 26,
+    metabolic: 27,
+    aterogenic: 28,
+    intervention: 29,
+    identification: 8,
+    name: 6,
+    management: 1,
+    typeExam: 2,
+    city: 5,
+    charge: 11,
+    sex: 10,
+    age: 9
+  }
+
   $(document).ready(function () {
     let graphFramingham;
     let graphMetabolic;
@@ -520,9 +536,9 @@
       $("#central").append(`<option value=""></option>`);
       $("#central").append(`<option value="TODAS">TODAS</option>`);
       row.forEach(element => {
-        if (!filter.includes(element[4])) {
-          filter.push(element[4]);
-          $("#central").append(`<option value="${element[4]}">${element[4]}</option>`);
+        if (!filter.includes(element[position_column_sheet.centrals])) {
+          filter.push(element[position_column_sheet.centrals]);
+          $("#central").append(`<option value="${element[position_column_sheet.centrals]}">${element[position_column_sheet.centrals]}</option>`);
         }
       });
     })
@@ -596,8 +612,8 @@
     }
 
     params.forEach(element => {
-      if (!centrals.includes(element[4])) {
-        centrals.push(element[4]);
+      if (!centrals.includes(element[position_column_sheet.centrals])) {
+        centrals.push(element[position_column_sheet.centrals]);
       }
     })
 
@@ -619,37 +635,37 @@
       references.LOW.Counter = 0;
       references.NOLEVEL.Counter = 0;
       params.forEach(register => {
-        if (register[4] === central && register[26].includes(references.HIGH.High)) {
-          if (status && register[26].includes(status)) {
+        if (register[position_column_sheet.centrals] === central && register[position_column_sheet.framingham].includes(references.HIGH.High)) {
+          if (status && register[position_column_sheet.framingham].includes(status)) {
             references.HIGH.Counter++;
-            highRegisters.push(`${register[8]}-${register[6]}`);
+            highRegisters.push(`${register[position_column_sheet.identification]}-${register[position_column_sheet.name]}`);
           } else {
             references.HIGH.Counter++;
-            highRegisters.push(`${register[8]}-${register[6]}`);
+            highRegisters.push(`${register[position_column_sheet.identification]}-${register[position_column_sheet.name]}`);
           }
-        } else if (register[4] === central && register[26].includes(references.MEDIUM.Moderate)) {
-          if (status && register[26].includes(status)) {
+        } else if (register[position_column_sheet.centrals] === central && register[position_column_sheet.framingham].includes(references.MEDIUM.Moderate)) {
+          if (status && register[position_column_sheet.framingham].includes(status)) {
             references.MEDIUM.Counter++;
-            mediumRegisters.push(`${register[8]}-${register[6]}`);
+            mediumRegisters.push(`${register[position_column_sheet.identification]}-${register[position_column_sheet.name]}`);
           } else {
             references.MEDIUM.Counter++;
-            mediumRegisters.push(`${register[8]}-${register[6]}`);
+            mediumRegisters.push(`${register[position_column_sheet.identification]}-${register[position_column_sheet.name]}`);
           }
-        } else if (register[4] === central && register[26].includes(references.LOW.Low)) {
-          if (status && register[26].includes(status)) {
+        } else if (register[position_column_sheet.centrals] === central && register[position_column_sheet.framingham].includes(references.LOW.Low)) {
+          if (status && register[position_column_sheet.framingham].includes(status)) {
             references.LOW.Counter++;
-            lowRegisters.push(`${register[8]}-${register[6]}`);
+            lowRegisters.push(`${register[position_column_sheet.identification]}-${register[position_column_sheet.name]}`);
           } else {
             references.LOW.Counter++;
-            lowRegisters.push(`${register[8]}-${register[6]}`);
+            lowRegisters.push(`${register[position_column_sheet.identification]}-${register[position_column_sheet.name]}`);
           }
-        } else if (register[4] === central && ![references.HIGH.High, references.MEDIUM.Moderate, references.LOW.Low].includes(register[26])) {
+        } else if (register[position_column_sheet.centrals] === central && ![references.HIGH.High, references.MEDIUM.Moderate, references.LOW.Low].includes(register[position_column_sheet.framingham])) {
           if (status && ![references.HIGH.High, references.MEDIUM.Moderate, references.LOW.Low].includes(status)) {
             references.NOLEVEL.Counter++;
-            noLevelRegisters.push(`${register[8]}-${register[6]}`);
+            noLevelRegisters.push(`${register[position_column_sheet.identification]}-${register[position_column_sheet.name]}`);
           } else {
             references.NOLEVEL.Counter++;
-            noLevelRegisters.push(`${register[8]}-${register[6]}`);
+            noLevelRegisters.push(`${register[position_column_sheet.identification]}-${register[position_column_sheet.name]}`);
           }
         }
       })
@@ -919,8 +935,8 @@
     }
 
     params.forEach(element => {
-      if (!centrals.includes(element[4])) {
-        centrals.push(element[4]);
+      if (!centrals.includes(element[position_column_sheet.centrals])) {
+        centrals.push(element[position_column_sheet.centrals]);
       }
     })
 
@@ -941,29 +957,29 @@
       referencesMetabolic.withoutAlterations.Counter = 0;
       referencesMetabolic.requiredData.Counter = 0;
       params.forEach(register => {
-        if (register[4] === central && register[27].includes(referencesMetabolic.withAlterations.message)) {
-          if (status && register[27].includes(status)) {
+        if (register[position_column_sheet.centrals] === central && register[position_column_sheet.metabolic].includes(referencesMetabolic.withAlterations.message)) {
+          if (status && register[position_column_sheet.metabolic].includes(status)) {
             referencesMetabolic.withAlterations.Counter++;
-            withAlterationsRegister.push(`${register[8]}-${register[6]}`);
+            withAlterationsRegister.push(`${register[position_column_sheet.identification]}-${register[position_column_sheet.name]}`);
           } else {
             referencesMetabolic.withAlterations.Counter++;
-            withAlterationsRegister.push(`${register[8]}-${register[6]}`);
+            withAlterationsRegister.push(`${register[position_column_sheet.identification]}-${register[position_column_sheet.name]}`);
           }
-        } else if (register[4] === central && register[27].includes(referencesMetabolic.withoutAlterations.message)) {
-          if (status && register[27].includes(status)) {
+        } else if (register[position_column_sheet.centrals] === central && register[position_column_sheet.metabolic].includes(referencesMetabolic.withoutAlterations.message)) {
+          if (status && register[position_column_sheet.metabolic].includes(status)) {
             referencesMetabolic.withoutAlterations.Counter++;
-            withoutAlterationsRegister.push(`${register[8]}-${register[6]}`);
+            withoutAlterationsRegister.push(`${register[position_column_sheet.identification]}-${register[position_column_sheet.name]}`);
           } else {
             referencesMetabolic.withoutAlterations.Counter++;
-            withoutAlterationsRegister.push(`${register[8]}-${register[6]}`);
+            withoutAlterationsRegister.push(`${register[position_column_sheet.identification]}-${register[position_column_sheet.name]}`);
           }
-        } else if (register[4] === central && register[27].includes(referencesMetabolic.requiredData.message)) {
-          if (status && register[27].includes(status)) {
+        } else if (register[position_column_sheet.centrals] === central && register[position_column_sheet.metabolic].includes(referencesMetabolic.requiredData.message)) {
+          if (status && register[position_column_sheet.metabolic].includes(status)) {
             referencesMetabolic.requiredData.Counter++;
-            requiredDataRegister.push(`${register[8]}-${register[6]}`);
+            requiredDataRegister.push(`${register[position_column_sheet.identification]}-${register[position_column_sheet.name]}`);
           } else {
             referencesMetabolic.requiredData.Counter++;
-            requiredDataRegister.push(`${register[8]}-${register[6]}`);
+            requiredDataRegister.push(`${register[position_column_sheet.identification]}-${register[position_column_sheet.name]}`);
           }
         }
       })
@@ -1186,8 +1202,8 @@
     }
 
     params.forEach(element => {
-      if (!centrals.includes(element[4])) {
-        centrals.push(element[4]);
+      if (!centrals.includes(element[position_column_sheet.centrals])) {
+        centrals.push(element[position_column_sheet.centrals]);
       }
     })
 
@@ -1207,29 +1223,29 @@
       referencesAterogenic.MEDIUM.Counter = 0;
       referencesAterogenic.LOW.Counter = 0;
       params.forEach(register => {
-        if (register[4] === central && register[28].includes(referencesAterogenic.HIGH.High)) {
-          if (status && register[28].includes(status)) {
+        if (register[position_column_sheet.centrals] === central && register[position_column_sheet.aterogenic].includes(referencesAterogenic.HIGH.High)) {
+          if (status && register[position_column_sheet.aterogenic].includes(status)) {
             referencesAterogenic.HIGH.Counter++;
-            highRegisters.push(`${register[8]}-${register[6]}`);
+            highRegisters.push(`${register[position_column_sheet.identification]}-${register[position_column_sheet.name]}`);
           } else {
             referencesAterogenic.HIGH.Counter++;
-            highRegisters.push(`${register[8]}-${register[6]}`);
+            highRegisters.push(`${register[position_column_sheet.identification]}-${register[position_column_sheet.name]}`);
           }
-        } else if (register[4] === central && register[28].includes(referencesAterogenic.MEDIUM.Medium)) {
-          if (status && register[28].includes(status)) {
+        } else if (register[position_column_sheet.centrals] === central && register[position_column_sheet.aterogenic].includes(referencesAterogenic.MEDIUM.Medium)) {
+          if (status && register[position_column_sheet.aterogenic].includes(status)) {
             referencesAterogenic.MEDIUM.Counter++;
-            mediumRegisters.push(`${register[8]}-${register[6]}`);
+            mediumRegisters.push(`${register[position_column_sheet.identification]}-${register[position_column_sheet.name]}`);
           } else {
             referencesAterogenic.MEDIUM.Counter++;
-            mediumRegisters.push(`${register[8]}-${register[6]}`);
+            mediumRegisters.push(`${register[position_column_sheet.identification]}-${register[position_column_sheet.name]}`);
           }
-        } else if (register[4] === central && register[28].includes(referencesAterogenic.LOW.Low)) {
-          if (status && register[28].includes(status)) {
+        } else if (register[position_column_sheet.centrals] === central && register[position_column_sheet.aterogenic].includes(referencesAterogenic.LOW.Low)) {
+          if (status && register[position_column_sheet.aterogenic].includes(status)) {
             referencesAterogenic.LOW.Counter++;
-            lowRegisters.push(`${register[8]}-${register[6]}`);
+            lowRegisters.push(`${register[position_column_sheet.identification]}-${register[position_column_sheet.name]}`);
           } else {
             referencesAterogenic.LOW.Counter++;
-            lowRegisters.push(`${register[8]}-${register[6]}`);
+            lowRegisters.push(`${register[position_column_sheet.identification]}-${register[position_column_sheet.name]}`);
           }
         }
       })
@@ -1464,8 +1480,8 @@
     }
 
     params.forEach(element => {
-      if (!centrals.includes(element[4])) {
-        centrals.push(element[4]);
+      if (!centrals.includes(element[position_column_sheet.centrals])) {
+        centrals.push(element[position_column_sheet.centrals]);
       }
     })
 
@@ -1487,37 +1503,37 @@
       references.LOW.Counter = 0;
       references.NOLEVEL.Counter = 0;
       params.forEach(register => {
-        if (register[4] === central && register[29].includes(references.HIGH.High.toLocaleUpperCase())) {
-          if (status && register[29].includes(status.toLocaleUpperCase())) {
+        if (register[position_column_sheet.centrals] === central && register[position_column_sheet.intervention].includes(references.HIGH.High.toLocaleUpperCase())) {
+          if (status && register[position_column_sheet.intervention].includes(status.toLocaleUpperCase())) {
             references.HIGH.Counter++;
-            highRegisters.push(`${register[8]}-${register[6]}`);
+            highRegisters.push(`${register[position_column_sheet.identification]}-${register[position_column_sheet.name]}`);
           } else {
             references.HIGH.Counter++;
-            highRegisters.push(`${register[8]}-${register[6]}`);
+            highRegisters.push(`${register[position_column_sheet.identification]}-${register[position_column_sheet.name]}`);
           }
-        } else if (register[4] === central && register[29].includes(references.MEDIUM.Medium.toLocaleUpperCase())) {
-          if (status && register[29].includes(status.toLocaleUpperCase())) {
+        } else if (register[position_column_sheet.centrals] === central && register[position_column_sheet.intervention].includes(references.MEDIUM.Medium.toLocaleUpperCase())) {
+          if (status && register[position_column_sheet.intervention].includes(status.toLocaleUpperCase())) {
             references.MEDIUM.Counter++;
-            mediumRegisters.push(`${register[8]}-${register[6]}`);
+            mediumRegisters.push(`${register[position_column_sheet.identification]}-${register[position_column_sheet.name]}`);
           } else {
             references.MEDIUM.Counter++;
-            mediumRegisters.push(`${register[8]}-${register[6]}`);
+            mediumRegisters.push(`${register[position_column_sheet.identification]}-${register[position_column_sheet.name]}`);
           }
-        } else if (register[4] === central && register[29].includes(references.LOW.Low.toLocaleUpperCase())) {
-          if (status && register[29].includes(status.toLocaleUpperCase())) {
+        } else if (register[position_column_sheet.centrals] === central && register[position_column_sheet.intervention].includes(references.LOW.Low.toLocaleUpperCase())) {
+          if (status && register[position_column_sheet.intervention].includes(status.toLocaleUpperCase())) {
             references.LOW.Counter++;
-            lowRegisters.push(`${register[8]}-${register[6]}`);
+            lowRegisters.push(`${register[position_column_sheet.identification]}-${register[position_column_sheet.name]}`);
           } else {
             references.LOW.Counter++;
-            lowRegisters.push(`${register[8]}-${register[6]}`);
+            lowRegisters.push(`${register[position_column_sheet.identification]}-${register[position_column_sheet.name]}`);
           }
-        } else if (register[4] === central && register[29].includes(`Sin Clasificación los parametros no corresponden`)) {
-          if (status && register[29].includes(`Sin Clasificación los parametros no corresponden`)) {
+        } else if (register[position_column_sheet.centrals] === central && register[position_column_sheet.intervention].includes(`Sin Clasificación los parametros no corresponden`)) {
+          if (status && register[position_column_sheet.intervention].includes(`Sin Clasificación los parametros no corresponden`)) {
             references.NOLEVEL.Counter++;
-            noLevelRegisters.push(`${register[8]}-${register[6]}`);
+            noLevelRegisters.push(`${register[position_column_sheet.identification]}-${register[position_column_sheet.name]}`);
           } else {
             references.NOLEVEL.Counter++;
-            noLevelRegisters.push(`${register[8]}-${register[6]}`);
+            noLevelRegisters.push(`${register[position_column_sheet.identification]}-${register[position_column_sheet.name]}`);
           }
         }
       })
@@ -1827,14 +1843,14 @@
         });
 
         insertRow.push({
-          0: register[1],
-          1: register[2],
-          2: register[4],
-          3: register[5],
-          4: register[6],
-          5: register[7],
-          6: register[11],
-          7: `<button type="button" class="btn btn-primary btn-sm d-flex infoGeneral" style="width: 2.5em!important; height: 2.5em!important;" data-bs-toggle="modal" data-bs-target="#totalInfo" data-gerencia="${register[1]}" data-examen="${register[2]}" data-central="${register[4]}" data-paciente="${register[6]}" data-identificacion="${register[8]}" data-cargo="${register[11]}" data-sexo="${register[10]}" data-edad="${register[9]}" data-framingham="${register[26]}" data-metabolico="${register[27]}" data-aterogenico="${register[28]}" data-final="${register[29]}" data-months="${monthsData}">${icon}</button>`
+          0: register[position_column_sheet.management],
+          1: register[position_column_sheet.typeExam],
+          2: register[position_column_sheet.centrals],
+          3: register[position_column_sheet.city],
+          4: register[position_column_sheet.name],
+          5: register[position_column_sheet.identification],
+          6: register[position_column_sheet.charge],
+          7: `<button type="button" class="btn btn-primary btn-sm d-flex infoGeneral" style="width: 2.5em!important; height: 2.5em!important;" data-bs-toggle="modal" data-bs-target="#totalInfo" data-gerencia="${register[position_column_sheet.management]}" data-examen="${register[position_column_sheet.typeExam]}" data-central="${register[position_column_sheet.centrals]}" data-paciente="${register[position_column_sheet.name]}" data-identificacion="${register[position_column_sheet.identification]}" data-cargo="${register[position_column_sheet.charge]}" data-sexo="${register[position_column_sheet.sex]}" data-edad="${register[position_column_sheet.age]}" data-framingham="${register[position_column_sheet.framingham]}" data-metabolico="${register[position_column_sheet.metabolic]}" data-aterogenico="${register[position_column_sheet.aterogenic]}" data-final="${register[position_column_sheet.intervention]}" data-months="${monthsData}">${icon}</button>`
         })
       });
 
