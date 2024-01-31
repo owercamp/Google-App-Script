@@ -771,7 +771,9 @@ function onOpen(e) {
  */
 function doGet() {
   let template = HtmlService.createTemplateFromFile('Index');
-  let output = template.evaluate();
+  let output = template.evaluate()
+    .setTitle("Apps Script | ENEL")
+    .setFaviconUrl("https://soaics.grupoaltum.com.co/assets/media/logos/favicon.png");
 
   return output;
 }
