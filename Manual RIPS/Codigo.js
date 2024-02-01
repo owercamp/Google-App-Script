@@ -5,7 +5,9 @@
  */
 function doGet() {
   let template = HtmlService.createTemplateFromFile('index');
-  let output = template.evaluate();
+  let output = template.evaluate()
+    .setTitle("Apps Script | Manual RIPS")
+    .setFaviconUrl("https://soaics.grupoaltum.com.co/assets/media/logos/favicon.png");
 
   return output;
 }
@@ -17,7 +19,7 @@ function doGet() {
  * @return {string} The content of the included file.
  */
 function include(file) {
-  return HtmlService.createHtmlOutputFromFile(file).getContent();  
+  return HtmlService.createHtmlOutputFromFile(file).getContent();
 }
 
 function getDocuments() {
