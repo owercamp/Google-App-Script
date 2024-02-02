@@ -1,6 +1,6 @@
 class respiratory extends emoGraph {
   constructor(contractedName = "", origin = "", destiny = "", city = "", income = "", examType = "", date = "", patient = "", typeID = "", numberIdentification = "", dateOfBirth = "", age = "", range_age = "", stratum = "", gender = "", numberOfChildren = "", numberOfChildrenRec = "", race = "", civilStatus = "", scholarship = "", post = "", postRec = "", durationWorking = "", antiquity = "", tuberculosis = "SIN DATO", bronquitis = "SIN DATO", rinitis = "SIN DATO", sinusitis = "SIN DATO", tosCronicas = "SIN DATO", asmaBronquial = "SIN DATO", covid19 = "SIN DATO", enfermedadPulmonarCronica = "SIN DATO", gripafrequente = "SIN DATO", traumaCostal = "SIN DATO", cancer = "SIN DATO", faringitis = "SIN DATO", neumonia = "SIN DATO", faringoamigdalitis = "SIN DATO", otros = "NO", practicaDeporte = "NO", frecuencia = "", tabaquismo = "", frecuenciaTabaquismo = "", cigarrillos = "", fumando = "", fumandoTiempo = "", frecuenciaCardiaca = "", frecuenciaRespiratoria = "", temperatura = "", rxTorax = "SIN DATO", rxToraxDesc = "", medicacionActual = "SIN DATO", medicacionActualDesc = "", factorDeRiesgo = "NO", tiempoDeExposicion = "NO", usoDeEpr = "NO", usoDeEprDesc = "NO", materialParticulado = "NO", gases = "NO", vaposores = "NO", humos = "NO",
-    biologicos = "NO", otros = "NO", tapabocaTela = "NO", mascarillaDesechable = "NO", mascarillaFiltro = "NO", mascarillaAutocontenido = "NO", cinco = "", cuatro = "", tres = "", dos = "", uno = "", cero = "", claseDeTorax = "", cifosis = "", escoliosis = "", patronRespiratorio = "", coordinacionEntreElToraxYElAbdomen = "", valor = "", interpretacion = "") {
+    biologicos = "NO", otro = "NO", tapabocaTela = "NO", mascarillaDesechable = "NO", mascarillaFiltro = "NO", mascarillaAutocontenido = "NO", cinco = "", cuatro = "", tres = "", dos = "", uno = "", cero = "", claseDeTorax = "", cifosis = "", escoliosis = "", patronRespiratorio = "", coordinacionEntreElToraxYElAbdomen = "", valor = "", interpretacion = "") {
     super(contractedName, origin, destiny, city, income, examType, date, patient, typeID, numberIdentification, dateOfBirth, age, range_age, stratum, gender, numberOfChildren, numberOfChildrenRec, race, civilStatus, scholarship, post, postRec, durationWorking, antiquity);
     this.tuberculosis = tuberculosis;
     this.bronquitis = bronquitis;
@@ -16,7 +16,7 @@ class respiratory extends emoGraph {
     this.faringitis = faringitis;
     this.neumonia = neumonia;
     this.faringoamigdalitis = faringoamigdalitis;
-    this.otros = otros;
+    this.otro = otro;
     this.practicaDeporte = practicaDeporte;
     this.frecuencia = frecuencia;
     this.tabaquismo = tabaquismo;
