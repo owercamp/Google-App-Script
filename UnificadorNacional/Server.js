@@ -5,7 +5,9 @@
  */
 function doGet() {
   const template = HtmlService.createTemplateFromFile(`index`);
-  const outputTemplate = template.evaluate();
+  const outputTemplate = template.evaluate()
+    .setTitle("Apps Script | Unificador Nacional")
+    .setFaviconUrl("https://soaics.grupoaltum.com.co/assets/media/logos/favicon.png");
 
   return outputTemplate;
 }
@@ -60,17 +62,17 @@ function insertData(data) {
           break;
         case `complementary`:
           for (const complementary of information[iterator]) {
-            const response = insertComplementary(complementary,`COMPLEMENTARIOS` ,spreadsheet);
+            const response = insertComplementary(complementary, `COMPLEMENTARIOS`, spreadsheet);
           }
           break;
         case `testInsomnia`:
           for (const insomnia of information[iterator]) {
-            const response = insertInsomnia(insomnia,`TEST DE INSOMNIO`,spreadsheet);
+            const response = insertInsomnia(insomnia, `TEST DE INSOMNIO`, spreadsheet);
           }
           break;
         case `testRespiratory`:
           for (const respiratory of information[iterator]) {
-            const response = insertRespiratory(respiratory,`VALORACION RESPIRATORIA X FISIO`,spreadsheet);
+            const response = insertRespiratory(respiratory, `VALORACION RESPIRATORIA X FISIO`, spreadsheet);
             Logger.log(response);
           }
       }
