@@ -73,10 +73,16 @@
     }, 1000);
 
     $(document).on('click', 'img.full-width-image', function (e) {
+      const urlBasic = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmUmWHXPIc0Z3x1m0EF13NQmf_Tmor8xp9az21M0PoxA&s";
       let url = e.target.src;
-      let picture = document.getElementById('picture');
-      picture.setAttribute('src', url);
-      modal.classList.remove('hidden');
+      if (url !== urlBasic) {
+        let picture = document.getElementById('picture');
+        picture.setAttribute('src', url);
+        modal.classList.remove('hidden');
+      }else {
+        let picture = e.target.dataset.image;
+        window.open(picture,'_blank', 'toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=400,height=400');
+      }
     });
 
     $(document).on('click', 'button#closeModal', function (e) {
@@ -122,7 +128,7 @@
 
   let openImages = () => {
     $("div.image").each((index, element) => {
-      $(`<img src="https://drive.google.com/uc?export=view&id=${arrayImages[index]}" class="full-width-image" onerror="this.onerror=null;this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmUmWHXPIc0Z3x1m0EF13NQmf_Tmor8xp9az21M0PoxA&s'">`).appendTo(element);
+      $(`<img src="https://drive.google.com/uc?export=view&id=${arrayImages[index]}" class="full-width-image" onerror="this.onerror=null;this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmUmWHXPIc0Z3x1m0EF13NQmf_Tmor8xp9az21M0PoxA&s'" data-image="https://drive.google.com/uc?export=view&id=${arrayImages[index]}">`).appendTo(element);
     })
   }
 
@@ -164,9 +170,9 @@
           let image = backSlash.split(" - ");
           arrayImages.push(image[1]);
           sample[position].innerHTML += `<div class="image circular-container ml-8 my-3"></div>`;
-        } else if(backSlash.includes("|")){
+        } else if (backSlash.includes("|")) {
           sample[position].innerHTML += `<h1 class="inline-flex items-center text-2xl tracking-wider my-2 text-orange-800/60">${backSlash.replaceAll("|", "")}</h1>`;
-        } else if(backSlash.includes("*") && !backSlash.includes("Contraseña")){
+        } else if (backSlash.includes("*") && !backSlash.includes("Contraseña")) {
           sample[position].innerHTML += `<h2 class="inline-flex items-center text-lg my-2 text-blue-800/80">${backSlash.replaceAll("*", "")}</h2>`;
         } else {
           sample[position].innerHTML += `<label class="inline-flex items-center mt-3">
