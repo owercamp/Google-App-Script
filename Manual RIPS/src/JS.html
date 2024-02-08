@@ -79,9 +79,9 @@
         let picture = document.getElementById('picture');
         picture.setAttribute('src', url);
         modal.classList.remove('hidden');
-      }else {
+      } else {
         let picture = e.target.dataset.image;
-        window.open(picture,'_blank', 'toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=400,height=400');
+        window.open(picture, '_blank', 'toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=400,height=400');
       }
     });
 
@@ -177,7 +177,31 @@
         } else {
           sample[position].innerHTML += `<label class="inline-flex items-center mt-3">
               <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600"><span
-                class="ml-2 text-gray-700">${backSlash}</span>
+                class="ml-2 text-gray-700">${backSlash.replaceAll(/Sedes|GENERAR TXT|Reportes RIPS.xlsb|Reporte_2023_ENERO-1.1.xlsb|Reporte_2023_ENERO-1.7.xlsb|nombreSede.1.1.xlsb|Reporte_2023_ENERO-1.5.xlsb|Reporte_2023_ENERO-1.6.xlsb|Pisis_1.1.xlsb|Reporte_añoActual_Mes-1.7.xlsb|Pisis_1.1.xslb|TXT|CSV|C:\\Users\\DESARROLLO\\Documents\\Ower Campos\\RIPS|IMEDICAL|FACTURE|corretion_date|C:\\Users\\DESARROLLO\\Documents\\RIPS_SOANDES\\Año\\Mes Anterior|C:\\Users\\DESARROLLO\\Documents\\RIPS|PISIS Cliente Neo|(AC)|(AF)|(AP)|(US)|Generar TXT/gi, function (params) {
+            switch (params) {
+              case "Sedes":
+              case "TXT":
+              case "CSV":
+              case "corretion_date":
+                return `<strong class="text-orange-800">${params}</strong>`;
+                break;
+              case "GENERAR TXT":
+              case "Generar TXT":
+              case "PISIS Cliente Neo":
+                return `<strong class="text-slate-700">${params}</strong>`;
+                break;
+              case "C:\\Users\\DESARROLLO\\Documents\\Ower Campos\\RIPS":
+              case "C:\\Users\\DESARROLLO\\Documents\\RIPS_SOANDES\\Año\\Mes Anterior":
+              case "C:\\Users\\DESARROLLO\\Documents\\RIPS":
+                return `<strong class="text-red-800">${params}</strong>`;
+                break;
+              case "IMEDICAL":
+              case "FACTURE":
+                return `<strong class="text-blue-700">${params}</strong>`;
+              default:
+                return `<strong class="text-green-700">${params}</strong>`;
+            }
+          })}</span>
             </label>`;
         }
         rows++;
