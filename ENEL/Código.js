@@ -611,7 +611,7 @@ function ARTEROGENICO(cholesterol, hdl) {
 async function TODO() {
   await EliminarArchivosEnDirectorio("182TKvhuRb0CE2oFL22oV3bnXDFb-Maa3", "1iqbrT26U-SJFbbWW8tZodsqMehX3FK2AwiyLNfQSs5s");
   const book = await CopyBook();
-  await TransponerYReemplazarFormulas(book);
+  await TransponerYReemplazarFormulas(book, SpreadsheetApp.getActiveSheet().getName());
   SpreadsheetApp.getActiveSpreadsheet().getRange("A5").getValue();
   SpreadsheetApp.getActiveSpreadsheet().getRange("A5").setValue(book);
   var ss = SpreadsheetApp.getActiveSpreadsheet();
@@ -643,12 +643,12 @@ function CopyBook() {
  * @param {string} id - El ID de la hoja de cálculo.
  * @return {void} No devuelve ningún valor.
  */
-async function TransponerYReemplazarFormulas(id) {
+async function TransponerYReemplazarFormulas(id, name) {
   // Obtén el libro por su ID
   var libro = SpreadsheetApp.openById(id);
 
   // Selecciona la hoja por su nombre
-  var hoja = libro.getSheetByName("RCV-2023");
+  var hoja = libro.getSheetByName(name);
 
   // Define el rango en A1Notation (AA3:AC)
   var rangoA1Notation = "AA3:AC" + hoja.getLastRow();
@@ -802,18 +802,31 @@ function abrirInforme() {
 
 function getCentrals() {
   const dataSheet = SpreadsheetApp.getActiveSpreadsheet();
+  const information = [];
+  let years = [];
+  dataSheet.getSheets().forEach((sheet) => {
+    if (sheet.getName().includes("RCV")) {
+      let name = sheet.getName().split("-")[1];
+      years.push(name);
+    }
+  })
   const sheet = dataSheet.getSheetByName("RCV-2023");
   const data = sheet.getRange(3, 1, sheet.getLastRow(), sheet.getLastColumn()).getValues();
   let info;
 
   info = data.filter(e => (e[0] != "") ? e : "");
 
-  return JSON.stringify(info.sort());
+  information[0] = info.sort();
+  information[1] = years;
+
+  return JSON.stringify(information);
 }
 
-function getGeneral(params = "") {
+function getGeneral(params = "", years = "2023") {
   const dataSheet = SpreadsheetApp.getActiveSpreadsheet();
-  const sheet = dataSheet.getSheetByName("RCV-2023");
+  let name_sheet = `RCV-${years}`;
+  const sheet = dataSheet.getSheetByName(name_sheet);
+  Logger.log(`${name_sheet} - ${years}`);
   const data = sheet.getRange(3, 1, sheet.getLastRow(), sheet.getLastColumn()).getValues();
   let info;
 
@@ -831,7 +844,7 @@ function removePoint() {
   const sheet = spreadsheet.getActiveSheet();
   const column = sheet.getActiveCell().getColumn();
   const row = sheet.getActiveCell().getRow();
-  const num = (sheet.getName() === "RCV-2023") ? 31 : 32;
+  const num = (sheet.getName() === "RCV-2023" || sheet.getName() === "RCV-2024") ? 31 : 32;
   const my_value = sheet.getActiveCell().getValue();
   const validateDate = isNaN(Date.parse(my_value));
 

@@ -56,6 +56,11 @@
       selectOnClose: true,
     });
 
+    $('#years').select2({
+      placeholder: 'Select an option',
+      selectOnClose: true,
+    });
+
     $('#FraminghamOpc').select2({
       placeholder: 'Select an option',
       selectOnClose: true,
@@ -204,6 +209,7 @@
   $(document).on("change", "#FraminghamOpc", function () {
     let evaluation = $(this).select2("data")[0].text;
     let central = $("#central").select2("data")[0].text;
+    let year = $("#years").select2("data")[0].text;
     let selector = $(this).attr("name");
 
     Swal.fire({
@@ -229,8 +235,8 @@
         console.log(error);
       })
 
-    if (central) {
-      framinghamResult.getGeneral(central);
+    if (central || year) {
+      framinghamResult.getGeneral(central, year);
     } else {
       framinghamResult.getGeneral();
     }
@@ -239,6 +245,7 @@
   $(document).on("change", "#InterventionOpc", function () {
     let evaluation = $(this).select2("data")[0].text;
     let central = $("#central").select2("data")[0].text;
+    let year = $("#years").select2("data")[0].text;
     let selector = $(this).attr("name");
 
     Swal.fire({
@@ -264,8 +271,8 @@
         console.log(error);
       })
 
-    if (central) {
-      interventionResult.getGeneral(central);
+    if (central || year) {
+      interventionResult.getGeneral(central, year);
     } else {
       interventionResult.getGeneral();
     }
@@ -274,6 +281,7 @@
   $(document).on("change", "#MetabolicOpc", function () {
     let evaluation = $(this).select2("data")[0].text;
     let central = $("#central").select2("data")[0].text;
+    let year = $("#years").select2("data")[0].text;
     let selector = $(this).attr("name");
 
     Swal.fire({
@@ -299,8 +307,8 @@
         console.log(error);
       })
 
-    if (central) {
-      MetabolicResult.getGeneral(central);
+    if (central || year) {
+      MetabolicResult.getGeneral(central, year);
     } else {
       MetabolicResult.getGeneral();
     }
@@ -309,6 +317,7 @@
   $(document).on("change", "#AterogenicOpc", function () {
     let evaluation = $(this).select2("data")[0].text;
     let central = $("#central").select2("data")[0].text;
+    let year = $("#years").select2("data")[0].text;
     let selector = $(this).attr("name");
 
     Swal.fire({
@@ -334,8 +343,8 @@
         console.log(error);
       })
 
-    if (central) {
-      AterogenicResult.getGeneral(central);
+    if (central || year) {
+      AterogenicResult.getGeneral(central, year);
     } else {
       AterogenicResult.getGeneral();
     }
@@ -502,6 +511,7 @@
 
   $(document).on("change", "#central", function () {
     const selection = $(this).select2('data');
+    const year = $("#years").select2("data")[0].text;
     const centralSelection = selection[0].text;
     let response = "";
     Swal.fire({
@@ -522,7 +532,35 @@
           footer: `<p style="color:#5faefe">Por favor espere..</p>`,
           showConfirmButton: false,
         });
-        general(centralSelection);
+        general(centralSelection, year);
+      }
+    });
+  });
+
+  $(document).on("change", "#years", function () {
+    const selection = $(this).select2('data');
+    const central = $("#central").select2("data")[0].text;
+    const yearSelection = selection[0].text;
+    let response = "";
+    Swal.fire({
+      title: `¿Desea realizar la búsqueda por año ${yearSelection}?`,
+      showCancelButton: true,
+      confirmButtonText: `Buscar`,
+      cancelButtonText: `Cancelar Busqueda`,
+      allowOutsideClick: false,
+      allowEscapeKey: false,
+      confirmButtonColor: '#5391f5',
+      cancelButtonColor: '#7e7f80',
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        Swal.fire({
+          icon: 'info',
+          html: `<p>Realizando consulta de los datos para el año <b style="color:Red;"><i>${yearSelection}</i></b></p>`,
+          footer: `<p style="color:#5faefe">Por favor espere..</p>`,
+          showConfirmButton: false,
+        });
+        general(central, yearSelection);
       }
     });
   });
@@ -535,12 +573,17 @@
       $("#central").empty();
       $("#central").append(`<option value=""></option>`);
       $("#central").append(`<option value="TODAS">TODAS</option>`);
-      row.forEach(element => {
+      row[0].forEach(element => {
         if (!filter.includes(element[position_column_sheet.centrals])) {
           filter.push(element[position_column_sheet.centrals]);
           $("#central").append(`<option value="${element[position_column_sheet.centrals]}">${element[position_column_sheet.centrals]}</option>`);
         }
       });
+      $("#years").empty();
+      $("#years").append(`<option value=""></option>`);
+      row[1].forEach(element => {
+        $("#years").append(`<option value="${element}">${element}</option>`);
+      })
     })
       .withFailureHandler(error => {
         console.log(error);
@@ -597,7 +640,7 @@
     },
   }
 
-  function testFramingham(params = "", central = "", status = "") {
+  function testFramingham(params = "", central = "", status = "", year = "") {
     let centrals = [];
     let highValue = [];
     let mediumValue = [];
@@ -606,7 +649,7 @@
     let pushData = [];
     const framinghamChart = document.getElementById("myFramingham");
 
-    if (central || status) {
+    if (central || status || year) {
       graphFramingham.destroy();
       tbl_framingham.clear().draw();
     }
@@ -921,7 +964,7 @@
     });
   }
 
-  function testMetabolic(params = "", central = "", status = "") {
+  function testMetabolic(params = "", central = "", status = "", year = "") {
     let centrals = [];
     let withAlterations = [];
     let withoutAlterations = [];
@@ -929,7 +972,7 @@
     let pushData = [];
     const metabolicChart = document.getElementById("myMetabolic");
 
-    if (central || status) {
+    if (central || status || year) {
       graphMetabolic.destroy();
       tbl_metabolic.clear().draw();
     }
@@ -1189,14 +1232,14 @@
     });
   }
 
-  function testAterogenic(params = "", central = "", status = "") {
+  function testAterogenic(params = "", central = "", status = "", year = "") {
     let centrals = [];
     let max = [];
     let medium = [];
     let min = [];
     const arterogenicChart = document.getElementById("myArterogenic");
 
-    if (central || status) {
+    if (central || status || year) {
       graphArterogenic.destroy();
       tbl_aterogenic.clear().draw();
     }
@@ -1465,7 +1508,7 @@
     });
   }
 
-  function interventionInfo(params = "", central = "", status = "") {
+  function interventionInfo(params = "", central = "", status = "",year = "") {
     let centrals = [];
     let highValue = [];
     let mediumValue = [];
@@ -1474,7 +1517,7 @@
     let pushData = [];
     const interventionChart = document.getElementById("myIntervention");
 
-    if (central || status) {
+    if (central || status || year) {
       graphIntervention.destroy();
       tbl_intervention.clear().draw();
     }
@@ -1788,7 +1831,7 @@
     });
   }
 
-  function general(selected) {
+  function general(selected, year) {
     let months = ['flush-collapseOne', 'flush-collapseTwo', 'flush-collapseThree', 'flush-collapseFour', 'flush-collapseFive', 'flush-collapseSix', 'flush-collapseSeven', 'flush-collapseEight', 'flush-collapseNine', 'flush-collapseTen', 'flush-collapseEleven', 'flush-collapseTwelve'];
     let generalInfo = google.script.run.withSuccessHandler(element => {
       let row = JSON.parse(element);
@@ -1798,7 +1841,7 @@
                   </svg>`;
 
       let insertRow = [];
-      if (selected) {
+      if (selected || year) {
         tbl_general.clear().draw();
       }
 
@@ -1857,10 +1900,10 @@
       tbl_general.rows.add(insertRow).draw();
 
       /*** instanciación de la gráficas ***/
-      testFramingham(row, selected);
-      testMetabolic(row, selected);
-      testAterogenic(row, selected);
-      interventionInfo(row, selected);
+      testFramingham(row, selected, year);
+      testMetabolic(row, selected, year);
+      testAterogenic(row, selected, year);
+      interventionInfo(row, selected, year);
 
 
       let rowsFramingham = $('#tbl_framingham tbody tr');
@@ -1915,7 +1958,7 @@
         }
       }
 
-      if (selected) {
+      if (selected || year) {
         Swal.fire({
           icon: 'success',
           title: "Good job!",
@@ -1927,8 +1970,8 @@
       .withFailureHandler(error => {
         console.log(error);
       })
-    if (selected) {
-      generalInfo.getGeneral(selected);
+    if (selected || year) {
+      generalInfo.getGeneral(selected, year);
     } else {
       generalInfo.getGeneral();
     }
