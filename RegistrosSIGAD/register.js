@@ -14,38 +14,38 @@ function PRUEBA(input) {
 const mailUser = {
   leidySanchez: {
     mail: "leidy.sanchez@soandes.co",
-    withOutComment: `<br/><br/><strong style="color:red">OJO:</strong><br/> Se informa a la Señorita Leidy Sanchez por favor realice el envio de la nota correspondiente`,
-    withComment: `<br/><br/><strong style="color:red">OJO:</strong><br/> La nota corresponde a la informada por la Señorita Leidy Sanchez`
+    withOutComment: `\n<br/><br/><strong style="color:red">OJO:</strong><br/> Se informa a la Señorita Leidy Sanchez por favor realice el envio de la nota correspondiente`,
+    withComment: `\n<br/><br/><strong style="color:red">OJO:</strong><br/> La nota corresponde a la informada por la Señorita Leidy Sanchez`
   },
   camilaGonzalez: {
     mail: "camila.gonzalez@soandes.co",
-    withOutComment: `<br/><br/><strong style="color:red">OJO:</strong><br/> Se informa a la Señorita Camila Gonzalez por favor realice el envio de la nota correspondiente`,
-    withComment: `<br/><br/><strong style="color:red">OJO:</strong><br/> La nota corresponde a la informada por la Señorita Camila Gonzalez`
+    withOutComment: `\n<br/><br/><strong style="color:red">OJO:</strong><br/> Se informa a la Señorita Camila Gonzalez por favor realice el envio de la nota correspondiente`,
+    withComment: `\n<br/><br/><strong style="color:red">OJO:</strong><br/> La nota corresponde a la informada por la Señorita Camila Gonzalez`
   },
   nataliaGuerrero: {
     mail: "natalia.guerrero@soandes.co",
-    withOutComment: `<br/><br/><strong style="color:red">OJO:</strong><br/> Se informa a la Señorita Natalia Guerrero por favor realice el envio de la nota correspondiente`,
-    withComment: `<br/><br/><strong style="color:red">OJO:</strong><br/> La nota corresponde a la informada por la Señorita Natalia Guerrero`
+    withOutComment: `\n<br/><br/><strong style="color:red">OJO:</strong><br/> Se informa a la Señorita Natalia Guerrero por favor realice el envio de la nota correspondiente`,
+    withComment: `\n<br/><br/><strong style="color:red">OJO:</strong><br/> La nota corresponde a la informada por la Señorita Natalia Guerrero`
   },
   santiagoRodriguez: {
     mail: "santiago.rodriguez@soandes.co",
-    withOutComment: `<br/><br/><strong style="color:red">OJO:</strong><br/> Se informa a el Señor Santiago Rodriguez por favor realice el envio de la nota correspondiente`,
-    withComment: `<br/><br/><strong style="color:red">OJO:</strong><br/> La nota corresponde a la informada por el Señor Santiago Rodriguez`
+    withOutComment: `\n<br/><br/><strong style="color:red">OJO:</strong><br/> Se informa a el Señor Santiago Rodriguez por favor realice el envio de la nota correspondiente`,
+    withComment: `\n<br/><br/><strong style="color:red">OJO:</strong><br/> La nota corresponde a la informada por el Señor Santiago Rodriguez`
   },
   katherineSanchez: {
     mail: "katherine.sanchez@soandes.co",
-    withOutComment: `<br/><br/><strong style="color:red">OJO:</strong><br/> Se informa a la Señora Katherine Sanchez por favor realice el envio de la nota correspondiente`,
-    withComment: `<br/><br/><strong style="color:red">OJO:</strong><br/> La nota corresponde a la informada por la Señora Katherine Sanchez`
+    withOutComment: `\n<br/><br/><strong style="color:red">OJO:</strong><br/> Se informa a la Señora Katherine Sanchez por favor realice el envio de la nota correspondiente`,
+    withComment: `\n<br/><br/><strong style="color:red">OJO:</strong><br/> La nota corresponde a la informada por la Señora Katherine Sanchez`
   },
   juanAvila: {
     mail: "juan.avila@soandes.co",
-    withOutComment: `<br/><br/><strong style="color:red">OJO:</strong><br/> Se informa a el Señor Juan Avila por favor realice el envio de la nota correspondiente`,
-    withComment: `<br/><br/><strong style="color:red">OJO:</strong><br/> La nota corresponde a la informada por el Señor Juan Avila`
+    withOutComment: `\n<br/><br/><strong style="color:red">OJO:</strong><br/> Se informa a el Señor Juan Avila por favor realice el envio de la nota correspondiente`,
+    withComment: `\n<br/><br/><strong style="color:red">OJO:</strong><br/> La nota corresponde a la informada por el Señor Juan Avila`
   },
   monicaMarroquin: {
     mail: "monica.marroquin@soandes.co",
-    withOutComment: `<br/><br/><strong style="color:red">OJO:</strong><br/> Se informa a la Señora Monica Marroquin por favor realice el envio de la nota correspondiente`,
-    withComment: `<br/><br/><strong style="color:red">OJO:</strong><br/> La nota corresponde a la informada por la Señora Monica Marroquin`
+    withOutComment: `\n<br/><br/><strong style="color:red">OJO:</strong><br/> Se informa a la Señora Monica Marroquin por favor realice el envio de la nota correspondiente`,
+    withComment: `\n<br/><br/><strong style="color:red">OJO:</strong><br/> La nota corresponde a la informada por la Señora Monica Marroquin`
   },
   gestionDocumental: "gestiondocumental@soandes.co",
   dianaOrtiz: "diana.ortiz@soandes.co"
