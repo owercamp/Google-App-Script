@@ -29,7 +29,7 @@ function habilitarFormulario() {
 
   const dia = fechaActual.split(",");
 
-  const horaActual = parseInt(dia[2].trim());
+  const horaActual = parseInt(dia[2].trim()) + 1;
 
   if (festivos !== true) {
     if (["lunes", "martes", "miercoles", "jueves"].includes(dia[0].trim())) {
