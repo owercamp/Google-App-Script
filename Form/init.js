@@ -25,6 +25,8 @@ function habilitarFormulario() {
   let status;
   let statusInitials = formulario.isAcceptingResponses();
 
+  const festivos = festivos();
+
   const dia = fechaActual.split(",");
 
   const horaActual = parseInt(dia[2].trim());
@@ -53,15 +55,24 @@ function habilitarFormulario() {
       let mailes = '';
       correos.forEach(element => {
         let separador = element.split(".")[0].trim();
-        (nombres !== "") ? nombres += `${nombres}, ${separador}` : nombres += separador;
+        (nombres !== "") ? nombres += `, ${separador}` : nombres += separador;
         mailes += `${element},`;
       });
 
       MailApp.sendEmail({
         to: mailes,
         subject: `Estado del Formulario ${formulario.getTitle()}`,
-        htmlBody: `${greeting}<br><br>El estado actual del formulario <b>${formulario.getTitle()}</b> es: <span style="background-color: #00008B; padding: 5px; border-radius: 5px; color: white;">${(status === true) ? "Habilitado" : "Deshabilitado"}</span><br><br>Atentamente,<br><br>Equipo Soandes - Google Apps Script`,
+        htmlBody: `${greeting}, ${nombres.toUpperCase()}<br><br>El estado actual del formulario <b>${formulario.getTitle()}</b> es: <span style="background-color: #00008B; padding: 5px; border-radius: 5px; color: white;">${(status === true) ? "Habilitado" : "Deshabilitado"}</span><br><br>Atentamente,<br><br>Equipo Soandes - Google Apps Script`,
       });
     }
   }
+}
+
+function festivos() {
+  let year = new Date().getFullYear();
+  let url = `https://date.nager.at/api/v3/publicholidays/${year}/CO`;
+
+  let request = UrlFetchApp.fetch(url);
+  let response = JSON.parse(request.getContentText());
+  return response;
 }
