@@ -25,47 +25,62 @@ function habilitarFormulario() {
   let status;
   let statusInitials = formulario.isAcceptingResponses();
 
-  const festivos = festivos();
+  const festivos = verified();
 
   const dia = fechaActual.split(",");
 
   const horaActual = parseInt(dia[2].trim());
 
-  if (["lunes", "martes", "miercoles", "jueves"].includes(dia[0].trim())) {
-    let greeting;
-    if (horaActual >= 0 && horaActual < 12) {
-      greeting = "Buenos dias";
-    } else if (horaActual >= 12 && horaActual < 18) {
-      greeting = "Buenas tardes";
-    } else if (horaActual >= 18 && horaActual <= 23) {
-      greeting = "Buenas noches";
-    }
+  if (festivos !== true) {
+    if (["lunes", "martes", "miercoles", "jueves"].includes(dia[0].trim())) {
+      let greeting;
+      if (horaActual >= 0 && horaActual < 12) {
+        greeting = "Buenos dias";
+      } else if (horaActual >= 12 && horaActual < 18) {
+        greeting = "Buenas tardes";
+      } else if (horaActual >= 18 && horaActual <= 23) {
+        greeting = "Buenas noches";
+      }
 
-    if ((horaActual >= horaInicio1 && horaActual < horaFin1) || (horaActual >= horaInicio2 && horaActual < horaFin2)) {
-      formulario.setAcceptingResponses(true); // Habilita el formulario
-      status = formulario.isAcceptingResponses();
-    } else {
-      formulario.setAcceptingResponses(false); // Deshabilita el formulario
-      status = formulario.isAcceptingResponses();
-    }
+      if ((horaActual >= horaInicio1 && horaActual < horaFin1) || (horaActual >= horaInicio2 && horaActual < horaFin2)) {
+        formulario.setAcceptingResponses(true); // Habilita el formulario
+        status = formulario.isAcceptingResponses();
+      } else {
+        formulario.setAcceptingResponses(false); // Deshabilita el formulario
+        status = formulario.isAcceptingResponses();
+      }
 
-    // verificamos el estado del formulario se ha cambiado se realiza el envio del correo informativo
-    if (status !== statusInitials) {
-      let nombres = '';
-      let mailes = '';
-      correos.forEach(element => {
-        let separador = element.split(".")[0].trim();
-        (nombres !== "") ? nombres += `, ${separador}` : nombres += separador;
-        mailes += `${element},`;
-      });
+      // verificamos el estado del formulario se ha cambiado se realiza el envio del correo informativo
+      if (status !== statusInitials) {
+        let nombres = '';
+        let mailes = '';
+        correos.forEach(element => {
+          let separador = element.split(".")[0].trim();
+          (nombres !== "") ? nombres += `, ${separador}` : nombres += separador;
+          mailes += `${element},`;
+        });
 
-      MailApp.sendEmail({
-        to: mailes,
-        subject: `Estado del Formulario ${formulario.getTitle()}`,
-        htmlBody: `${greeting}, ${nombres.toUpperCase()}<br><br>El estado actual del formulario <b>${formulario.getTitle()}</b> es: <span style="background-color: #00008B; padding: 5px; border-radius: 5px; color: white;">${(status === true) ? "Habilitado" : "Deshabilitado"}</span><br><br>Atentamente,<br><br>Equipo Soandes - Google Apps Script`,
-      });
+        MailApp.sendEmail({
+          to: mailes,
+          subject: `Estado del Formulario ${formulario.getTitle()}`,
+          htmlBody: `${greeting}, ${nombres.toUpperCase()}<br><br>El estado actual del formulario <b>${formulario.getTitle()}</b> es: <span style="background-color: #00008B; padding: 5px; border-radius: 5px; color: white;">${(status === true) ? "Habilitado" : "Deshabilitado"}</span><br><br>Atentamente,<br><br>Equipo Soandes - Google Apps Script`,
+        });
+      }
     }
   }
+}
+
+function verified() {
+  let verified = false;
+  let now = new Date().toISOString().split("T")[0];
+  let api = festivos();
+  api.forEach(element => {
+    if (element.date == now) {
+      verified = true;
+    }
+  });
+
+  return verified;
 }
 
 function festivos() {
