@@ -60,7 +60,7 @@ function habilitarFormulario() {
       MailApp.sendEmail({
         to: mailes,
         subject: `Estado del Formulario ${formulario.getTitle()}`,
-        htmlBody: `${greeting}, ${nombres}<br><br>El estado actual del formulario <b>${formulario.getTitle()}</b> es: <span style="background-color: #00008B; padding: 5px; border-radius: 5px; color: white;">${(status === true) ? "Habilitado" : "Deshabilitado"}</span><br><br>Atentamente,<br><br>Equipo Soandes - Google Apps Script`,
+        htmlBody: `${greeting}<br><br>El estado actual del formulario <b>${formulario.getTitle()}</b> es: <span style="background-color: #00008B; padding: 5px; border-radius: 5px; color: white;">${(status === true) ? "Habilitado" : "Deshabilitado"}</span><br><br>Atentamente,<br><br>Equipo Soandes - Google Apps Script`,
       });
     }
   }
