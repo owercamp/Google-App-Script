@@ -50,13 +50,15 @@ function habilitarFormulario() {
     // verificamos el estado del formulario se ha cambiado se realiza el envio del correo informativo
     if (status !== statusInitials) {
       let nombres = '';
+      let mailes = '';
       correos.forEach(element => {
         let separador = element.split(".")[0].trim();
         (nombres !== "") ? nombres += `${nombres}, ${separador}` : nombres += separador;
+        mailes += `${element},`;
       });
 
       MailApp.sendEmail({
-        to: correos,
+        to: mailes,
         subject: `Estado del Formulario ${formulario.getTitle()}`,
         htmlBody: `${greeting}, ${nombres}<br><br>El estado actual del formulario <b>${formulario.getTitle()}</b> es: <span style="background-color: #00008B; padding: 5px; border-radius: 5px; color: white;">${(status === true) ? "Habilitado" : "Deshabilitado"}</span><br><br>Atentamente,<br><br>Equipo Soandes - Google Apps Script`,
       });
