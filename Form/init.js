@@ -21,7 +21,7 @@ function habilitarFormulario() {
   const horaInicio1 = 8;
   const horaFin1 = 12;
   const horaInicio2 = 14;
-  const horaFin2 = 17;
+  const horaFin2 = 16;
   let status;
   let statusInitials = formulario.isAcceptingResponses();
 
