@@ -31,8 +31,8 @@ function habilitarFormulario() {
 
   const horaActual = parseInt(dia[2].trim()) + 1;
 
-  if (festivos !== true) {
-    if (["lunes", "martes", "miercoles", "jueves"].includes(dia[0].trim())) {
+  if (festivos == false) {
+    if (["lunes", "martes", "miércoles", "jueves"].includes(dia[0].trim())) {
       let greeting;
       if (horaActual >= 0 && horaActual < 12) {
         greeting = "Buenos dias";
@@ -42,7 +42,7 @@ function habilitarFormulario() {
         greeting = "Buenas noches";
       }
 
-      if ((horaActual >= horaInicio1 && horaActual < horaFin1) || (horaActual >= horaInicio2 && horaActual < horaFin2)) {
+      if ((horaActual >= horaInicio1 && horaActual <= horaFin1) || (horaActual >= horaInicio2 && horaActual <= horaFin2)) {
         formulario.setAcceptingResponses(true); // Habilita el formulario
         status = formulario.isAcceptingResponses();
       } else {
